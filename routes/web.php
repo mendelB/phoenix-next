@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('contentful', function () {
+    $client = app('contentful_delivery');
+
+    return $client->getContentType('campaign');
+});

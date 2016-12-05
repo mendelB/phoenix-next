@@ -35,4 +35,12 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'contentful' => [
+        'cdn' => [
+            'space_id' => env('CONTENTFUL_SPACE_ID'),
+            'delivery_key' => env('CONTENTFUL_CONTENT_DELIVERY_API_KEY'),
+            'preview_key' => env('CONTENTFUL_CONTENT_PREVIEW_API_KEY'),
+        ],
+    ],
+
 ];
