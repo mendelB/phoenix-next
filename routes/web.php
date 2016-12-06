@@ -15,6 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/**
+ * Campaigns
+ */
+Route::get('campaigns', 'CampaignController@index');
+Route::get('campaigns/{slug}', 'CampaignController@show');
+
+/**
+ * Testing
+ *
+ * Temporary route for testing requests to contentful.
+ */
 Route::get('contentful', function () {
     $client = app('contentful.delivery');
 
