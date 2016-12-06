@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('contentful', function () {
-    $client = contentfulClient('delivery');
+    $client = app('contentful.delivery');
 
     return $client->getContentType('campaign');
 });
