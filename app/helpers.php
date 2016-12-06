@@ -3,9 +3,9 @@
 use Contentful\Delivery\Client as DeliveryClient;
 
 /**
- * Return a registered Delivery client from the Laravel service container.
+ * Return a registered Contentful client from the Laravel service container.
  *
- * @return \Contentful\Delivery\Client
+ * @return mixed
  */
 function contentfulClient($client = 'delivery')
 {
