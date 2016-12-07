@@ -14,7 +14,7 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::getCampaigns();
+        $campaigns = Campaign::getAll();
 
         return view('campaigns.index', ['campaigns' => $campaigns]);
     }
@@ -27,6 +27,8 @@ class CampaignController extends Controller
      */
     public function show($slug)
     {
-        $campagin = Campaign::getCampaign($slug);
+        $campaign = Campaign::findBySlug($slug);
+
+        return view('campaigns.show', ['campaign' => $campaign]);
     }
 }

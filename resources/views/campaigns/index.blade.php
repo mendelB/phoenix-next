@@ -1,5 +1,3 @@
-{{-- {{ dd($campaigns) }} --}}
-
 @extends('layouts.master')
 
 @section('content')
@@ -10,6 +8,7 @@
                 <p>{{ $campaign->getTitle() }}</p>
                 <p>{{ $campaign->getCallToAction() }}</p>
                 <p>{{ $campaign->getStatus() }}</p>
+                <p>{{ $campaign->getSlug() }}</p>
             </li>
         @endforeach
     </ul>

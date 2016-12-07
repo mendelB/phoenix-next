@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Contentful\Delivery\Query;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Campaign
 {
@@ -11,31 +12,38 @@ class Campaign
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function getCampaigns()
+    public static function getAll()
     {
         $client = static::getClient();
 
-        $query = new Query;
-        $query->setContentType('campaign');
+        $query = (new Query)->setContentType('campaign');
 
-        $campaigns = collect(iterator_to_array($client->getEntries($query)));
-
-        return $campaigns;
+        return collect(iterator_to_array($client->getEntries($query)));
     }
 
-    public static function getCampaign($slug)
+    /**
+     * Find a campaign by its slug.
+     *
+     * @param  string $slug
+     * @return \Contentful\Delivery\Client
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public static function findBySlug($slug)
     {
         $client = static::getClient();
 
-        $query = new Query;
-        $query->setContentType('campaign');
-        $query->where('slug', $slug);
-
-        dd($query);
+        $query = (new Query)
+            ->setContentType('campaign')
+            ->where('fields.slug', $slug)
+            ->setLimit(1);
 
         $campaign = $client->getEntries($query);
 
-        dd($campaign);
+        if (! $campaign->count()) {
+            throw new ModelNotFoundException;
+        }
+
+        return $campaign->offsetGet(0);
     }
 
     /**
