@@ -25,7 +25,7 @@ class Campaign
      * Find a campaign by its slug.
      *
      * @param  string $slug
-     * @return \Contentful\Delivery\Client
+     * @return \Contentful\Delivery\DynamicEntry
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public static function findBySlug($slug)
@@ -47,7 +47,7 @@ class Campaign
     }
 
     /**
-     * Get instance of the contentful delivery client.
+     * Get instance of the Contentful delivery client.
      *
      * @return \Contentful\Delivery\Client
      */
