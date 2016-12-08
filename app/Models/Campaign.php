@@ -37,13 +37,14 @@ class Campaign
             ->where('fields.slug', $slug)
             ->setLimit(1);
 
-        $campaign = $client->getEntries($query);
-
-        if (! $campaign->count()) {
+        $campaigns = $client->getEntries($query);
+        if (! $campaigns->count()) {
             throw new ModelNotFoundException;
         }
 
-        return $campaign->offsetGet(0);
+        $campaign = $campaigns[0];
+
+        return $campaign;
     }
 
     /**
