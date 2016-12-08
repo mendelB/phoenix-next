@@ -5,10 +5,8 @@
     <ul>
         @foreach($campaigns as $campaign)
             <li>
-                <p>{{ $campaign->getTitle() }}</p>
+                <h2><a href="{{ url('campaigns/'.$campaign->getSlug()) }}">{{ $campaign->getTitle() }}<a/></h2>
                 <p>{{ $campaign->getCallToAction() }}</p>
-                <p>{{ $campaign->getStatus() }}</p>
-                <p>{{ $campaign->getSlug() }}</p>
             </li>
         @endforeach
     </ul>

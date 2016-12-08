@@ -29,6 +29,8 @@ class CampaignController extends Controller
     {
         $campaign = Campaign::findBySlug($slug);
 
+        // dd($campaign->getCoverImage()->getFile()->getUrl());
+
         return view('campaigns.show', ['campaign' => $campaign]);
     }
 }
