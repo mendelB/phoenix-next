@@ -9,5 +9,5 @@
 
     <p>{{ $campaign->getSolutionFact() }}</p>
 
-    <img src="{{ get_cover_image_url($campaign->getCoverImage(), 'large') }}">
+    <img alt="{{ $campaign->getCoverImage()->getTitle() }}" src="{{ get_image_url($campaign->getCoverImage(), 'landscape') }}">
 @endsection
