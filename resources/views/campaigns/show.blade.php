@@ -8,4 +8,6 @@
     <p><i>{{ $campaign->getProblemFact()->getSource() }}</i></p>
 
     <p>{{ $campaign->getSolutionFact() }}</p>
+
+    <img alt="{{ $campaign->getCoverImage()->getTitle() }}" src="{{ get_image_url($campaign->getCoverImage(), 'landscape') }}">
 @endsection
