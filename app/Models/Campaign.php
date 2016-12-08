@@ -43,6 +43,7 @@ class Campaign
         }
 
         $campaign = $campaigns[0];
+        $campaign->setLocale(app()->getLocale());
 
         return $campaign;
     }
