@@ -25,7 +25,7 @@ class Campaign
      * Find a campaign by its slug.
      *
      * @param  string $slug
-     * @return \Contentful\Delivery\Client
+     * @return \Contentful\Delivery\DynamicEntry
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public static function findBySlug($slug)
@@ -37,17 +37,19 @@ class Campaign
             ->where('fields.slug', $slug)
             ->setLimit(1);
 
-        $campaign = $client->getEntries($query);
-
-        if (! $campaign->count()) {
+        $campaigns = $client->getEntries($query);
+        if (! $campaigns->count()) {
             throw new ModelNotFoundException;
         }
 
-        return $campaign->offsetGet(0);
+        $campaign = $campaigns[0];
+        $campaign->setLocale(app()->getLocale());
+
+        return $campaign;
     }
 
     /**
-     * Get instance of the contentful delivery client.
+     * Get instance of the Contentful delivery client.
      *
      * @return \Contentful\Delivery\Client
      */

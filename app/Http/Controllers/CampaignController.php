@@ -27,6 +27,9 @@ class CampaignController extends Controller
      */
     public function show($slug)
     {
+        // @NOTE: Uncomment this line to demo globalization!
+        // app()->setLocale('es-MX');
+
         $campaign = Campaign::findBySlug($slug);
 
         return view('campaigns.show', ['campaign' => $campaign]);
