@@ -32,6 +32,10 @@ class CampaignController extends Controller
 
         $campaign = Campaign::findBySlug($slug);
 
-        return view('campaigns.show', ['campaign' => $campaign]);
+        if (! Campaign::isActive($campaign)) {
+            return view('campaigns.inactive.show', ['campaign' => $campaign]);
+        }
+
+        return view('campaigns.active.show', ['campaign' => $campaign]);
     }
 }
