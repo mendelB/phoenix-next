@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Models;
+namespace App\Repositories;
 
 use Contentful\Delivery\Query;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class Campaign
+class CampaignRepository
 {
     /**
      * Get all campaigns.
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function getAll()
+    public function getAll()
     {
-        $client = static::getClient();
-
         $query = (new Query)->setContentType('campaign');
 
-        return collect(iterator_to_array($client->getEntries($query)));
+        $campaigns = $this->makeRequest($query);
+
+        return collect(iterator_to_array($campaigns));
     }
 
     /**
@@ -28,16 +28,15 @@ class Campaign
      * @return \Contentful\Delivery\DynamicEntry
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public static function findBySlug($slug)
+    public function findBySlug($slug)
     {
-        $client = static::getClient();
-
         $query = (new Query)
             ->setContentType('campaign')
             ->where('fields.slug', $slug)
             ->setLimit(1);
 
-        $campaigns = $client->getEntries($query);
+        $campaigns = $this->makeRequest($query);
+
         if (! $campaigns->count()) {
             throw new ModelNotFoundException;
         }
@@ -48,12 +47,20 @@ class Campaign
         return $campaign;
     }
 
+    public function makeRequest($query) {
+        $client = $this->getClient();
+
+        $campaigns = $client->getEntries($query);
+
+        return $campaigns;
+    }
+
     /**
      * Get instance of the Contentful delivery client.
      *
      * @return \Contentful\Delivery\Client
      */
-    public static function getClient()
+    public function getClient()
     {
         return app('contentful.delivery');
     }

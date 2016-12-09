@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Campaign;
+use App\Repositories\CampaignRepository;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
