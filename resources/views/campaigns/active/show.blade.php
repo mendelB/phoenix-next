@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    <em>This campaign is active!</em>
     <h1>{{ $campaign->getTitle() }}</h1>
     <h2>{{ $campaign->getCallToAction() }}</h2>
 

@@ -57,4 +57,15 @@ class Campaign
     {
         return app('contentful.delivery');
     }
+
+    /**
+     * Determine if the specified campaign is active.
+     *
+     * @param  \Contentful\Delivery\DynamicEntry  $campaign
+     * @return boolean
+     */
+    public static function isActive($campaign)
+    {
+        return $campaign->getActive();
+    }
 }
