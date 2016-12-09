@@ -2,11 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Campaign;
-use Illuminate\Http\Request;
+use App\Repositories\CampaignRepository;
 
 class CampaignController extends Controller
 {
+    /**
+     * The campaign repository.
+     *
+     * @var CampaignRepository
+     */
+    protected $campaignRepository;
+
+    /**
+     * Make a new CampaignController, inject dependencies,
+     * and set middleware for this controller's methods.
+     *
+     * @param CampaignRepository $campaignRepository
+     */
+    public function __construct(CampaignRepository $campaignRepository)
+    {
+        $this->campaignRepository = $campaignRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +31,7 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::getAll();
+        $campaigns = $this->campaignRepository->getAll();
 
         return view('campaigns.index', ['campaigns' => $campaigns]);
     }
@@ -30,9 +47,9 @@ class CampaignController extends Controller
         // @NOTE: Uncomment this line to demo globalization!
         // app()->setLocale('es-MX');
 
-        $campaign = Campaign::findBySlug($slug);
+        $campaign = $this->campaignRepository->findBySlug($slug);
 
-        if (! Campaign::isActive($campaign)) {
+        if (! CampaignRepository::isActive($campaign)) {
             return view('campaigns.inactive.show', ['campaign' => $campaign]);
         }
 
