@@ -29,70 +29,70 @@ class Campaign
     protected $id;
 
     /**
-     * The Contentful id of the campaign.
+     * The title of the campaign.
      *
      * @var string
      */
     protected $title;
 
     /**
-     * The Contentful id of the campaign.
+     * The slug for the campaign.
      *
      * @var string
      */
     protected $slug;
 
     /**
-     * The Contentful id of the campaign.
+     * The call to action field for the campaign.
      *
-     * @var string
+     * @var string|null
      */
     protected $callToAction;
 
     /**
-     * The Contentful id of the campaign.
+     * The cover image field for the campaign.
      *
-     * @var string
+     * @var \Contentful\Delivery\Asset|null
      */
     protected $coverImage;
 
     /**
-     * The Contentful id of the campaign.
+     * The problem fact field for the campaign.
      *
-     * @var string
+     * @var array|null
      */
     protected $problemFact;
 
     /**
-     * The Contentful id of the campaign.
+     * The solution fact field for the campaign.
      *
-     * @var string
+     * @var array|null
      */
     protected $solutionFact;
 
     /**
-     * The Contentful id of the campaign.
+     * The solution statement field for the campaign.
      *
-     * @var string
+     * @var string|null
      */
     protected $solutionStatement;
 
     /**
-     * The Contentful id of the campaign.
+     * The facts field for the campaign.
      *
-     * @var string
+     * @var array|null
      */
     protected $facts;
 
     /**
-     * The Contentful id of the campaign.
+     * The faqs field for the campaign.
      *
      * @var string
      */
     protected $faqs;
 
     /**
-     * The state of the campaign.
+     * Indicates whether the campaign is active or not.
      *
      * @var bool
      */
