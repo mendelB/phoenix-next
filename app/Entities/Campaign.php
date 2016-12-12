@@ -7,17 +7,6 @@ use Contentful\Delivery\DynamicEntry;
 
 /**
  * The Campaign entity.
- *
- * @property  string $title
- * @property  string $slug
- * @property  string $callToAction
- * @property  string $active
- * @property  string $coverImage
- * @property  string $problemFact
- * @property  string $solutionFact
- * @property  string $solutionStatement
- * @property  string $facts
- * @property  string $faqs
  */
 class Campaign
 {
@@ -124,18 +113,6 @@ class Campaign
     }
 
     /**
-     * Dynamically set the campaign's attributes.
-     *
-     * @param  string $property
-     * @param  mixed $data
-     * @return void
-     */
-    public function set($property, $data)
-    {
-        return $this->$property = $this->getByDataType($data);
-    }
-
-    /**
      * Return the state of the campaign.
      *
      * @return bool
@@ -204,4 +181,17 @@ class Campaign
     {
         return array_keys($entry->getContentType()->getFields());
     }
+
+    /**
+     * Dynamically set the campaign's attributes.
+     *
+     * @param  string $property
+     * @param  mixed $data
+     * @return void
+     */
+    private function set($property, $data)
+    {
+        return $this->$property = $this->getByDataType($data);
+    }
+
 }
