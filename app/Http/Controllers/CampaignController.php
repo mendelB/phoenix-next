@@ -49,10 +49,10 @@ class CampaignController extends Controller
 
         $campaign = $this->campaignRepository->findBySlug($slug);
 
-        if (! CampaignRepository::isActive($campaign)) {
-            return view('campaigns.inactive.show', ['campaign' => $campaign]);
+        if (! $campaign->isActive()) {
+            return 'Let\'s figure out a nice way to deal with inactive campaigns. Maybe provide a preview for campaign leads?';
         }
 
-        return view('campaigns.active.show', ['campaign' => $campaign]);
+        return view('campaigns.show', ['campaign' => $campaign]);
     }
 }

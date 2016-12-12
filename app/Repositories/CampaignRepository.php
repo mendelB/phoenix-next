@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Entities\Campaign;
 use Contentful\Delivery\Query;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -44,7 +45,7 @@ class CampaignRepository
         $campaign = $campaigns[0];
         $campaign->setLocale(app()->getLocale());
 
-        return $campaign;
+        return new Campaign($campaign);
     }
 
     public function makeRequest($query) {
@@ -63,16 +64,5 @@ class CampaignRepository
     public function getClient()
     {
         return app('contentful.delivery');
-    }
-
-    /**
-     * Determine if the specified campaign is active.
-     *
-     * @param  \Contentful\Delivery\DynamicEntry  $campaign
-     * @return boolean
-     */
-    public static function isActive($campaign)
-    {
-        return $campaign->getActive();
     }
 }
