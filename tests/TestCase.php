@@ -1,5 +1,7 @@
 <?php
 
+use App\Repositories\CampaignRepository;
+
 abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
     use DatabaseSetup;
@@ -23,5 +25,11 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
         return $app;
+    }
+
+    protected function getCampaign()
+    {
+        // @TODO: set up a mock campaign!
+        return app(CampaignRepository::class)->findBySlug('baby-its-cold-inside');
     }
 }
