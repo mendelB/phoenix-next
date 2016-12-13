@@ -27,6 +27,11 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
         return $app;
     }
 
+    /**
+     * Get an instance of the Campaign entity.
+     *
+     * @return /App\Entities\Campaign
+     */
     protected function getCampaign()
     {
         // @TODO: set up a mock campaign!
