@@ -30,7 +30,7 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
     /**
      * Get an instance of the Campaign entity.
      *
-     * @return /App\Entities\Campaign
+     * @return \App\Entities\Campaign
      */
     protected function getCampaign()
     {
