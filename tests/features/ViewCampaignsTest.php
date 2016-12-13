@@ -16,6 +16,7 @@ class ViewCampaignsTest extends TestCase
     {
         $this->visit('/campaigns');
 
+        $this->seePageIs('/campaigns');
         $this->see('Campaigns');
     }
 
@@ -24,6 +25,8 @@ class ViewCampaignsTest extends TestCase
     {
         $this->visit('/campaigns/baby-its-cold-inside');
 
+        $this->seePageIs('/campaigns/baby-its-cold-inside');
         $this->see('Baby, It\'s Cold Inside');
+        $this->see('Decrease your oil dependence by turning off the heat for a day.');
     }
 }
