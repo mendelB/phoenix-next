@@ -4,10 +4,21 @@ namespace App\Repositories;
 
 use App\Entities\Campaign;
 use Contentful\Delivery\Query;
+use Contentful\Delivery\Client as Contentful;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CampaignRepository
 {
+    /**
+     * CampaignRepository constructor.
+     *
+     * @param Contentful $contentful
+     */
+    public function __construct(Contentful $contentful)
+    {
+        $this->client = $contentful;
+    }
+
     /**
      * Get all campaigns.
      *
@@ -26,7 +37,7 @@ class CampaignRepository
      * Find a campaign by its slug.
      *
      * @param  string $slug
-     * @return \Contentful\Delivery\DynamicEntry
+     * @return \App\Entities\Campaign
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findBySlug($slug)
@@ -48,21 +59,15 @@ class CampaignRepository
         return new Campaign($campaign);
     }
 
+    /**
+     * Make a request to Contentful's Delivery API.
+     *
+     * @param $query
+     * @return \Contentful\ResourceArray
+     */
     public function makeRequest($query) {
-        $client = $this->getClient();
-
-        $campaigns = $client->getEntries($query);
+        $campaigns = $this->client->getEntries($query);
 
         return $campaigns;
-    }
-
-    /**
-     * Get instance of the Contentful delivery client.
-     *
-     * @return \Contentful\Delivery\Client
-     */
-    public function getClient()
-    {
-        return app('contentful.delivery');
     }
 }
