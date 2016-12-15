@@ -95,7 +95,11 @@ class Campaign
     public function __construct(DynamicEntry $entity)
     {
         foreach(array_keys(get_object_vars($this)) as $property) {
-            $this->set($property, $entity->{'get'.ucwords($property)}());
+            try {
+                $this->set($property, $entity->{'get'.ucwords($property)}());
+            } catch (\ErrorException $error) {
+                //
+            }
         }
     }
 
