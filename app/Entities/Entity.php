@@ -27,6 +27,8 @@ class Entity implements ArrayAccess
     public function __construct(DynamicEntry $entry)
     {
         $this->entry = $entry;
+
+        $this->entry->setLocale(app()->getLocale());
     }
 
     /**
