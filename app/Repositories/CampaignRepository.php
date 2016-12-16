@@ -29,8 +29,11 @@ class CampaignRepository
         $query = (new Query)->setContentType('campaign');
 
         $campaigns = $this->makeRequest($query);
+        $array = iterator_to_array($campaigns);
 
-        return collect(iterator_to_array($campaigns));
+        return collect($array)->map(function ($entity) {
+            return new Campaign($entity);
+        });
     }
 
     /**
