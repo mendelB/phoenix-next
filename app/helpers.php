@@ -1,5 +1,6 @@
 <?php
 
+use Contentful\Delivery\Asset;
 use Contentful\Delivery\ImageOptions;
 use Illuminate\Support\HtmlString;
 
@@ -24,11 +25,11 @@ function markdown($source)
 /**
  * Get image URL for a specified asset by the crop type.
  *
- * @param  \Contentful\Deliver\Asset $asset
+ * @param Asset $asset
  * @param  string $crop
  * @return string
  */
-function get_image_url($asset, $crop = 'landscape')
+function get_image_url(Asset $asset, $crop = 'landscape')
 {
     $options = [];
 
@@ -48,5 +49,7 @@ function get_image_url($asset, $crop = 'landscape')
         throw new \InvalidArgumentException('The specified cover image type of '.$crop.' is not available.');
     }
 
-    return $asset->getFile()->getUrl($options[$crop]);
+    $locale = app()->getLocale();
+
+    return $asset->getFile($locale)->getUrl($options[$crop]);
 }
