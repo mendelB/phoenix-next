@@ -40,12 +40,21 @@
             @if ($campaign->facts)
                 <div class="container__block">
                     <h3>Facts</h3>
-                    @foreach ($campaign->facts as $fact)
-                        <dl>
-                            <dt>{{ $fact['content'] }}</dt>
-                            <dd class="footnote">{{ $fact['source'] }}</dd>
-                        </dl>
-                    @endforeach
+                    <ul class="list -compacted">
+                        @foreach ($campaign->facts as $fact)
+                            <li>{{ $fact['content'] }} <sup>{{ $loop->iteration }}</sup></li>
+                        @endforeach
+                    </ul>
+                    <br>
+
+                    <div class="footnote">
+                        <h4 class="js-footnote-toggle">Sources</h4>
+                        <ul class="js-footnote-hidden">
+                            @foreach ($campaign->facts as $fact)
+                                <li><sup>{{ $loop->iteration }}</sup> {{ $fact['source'] }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             @endif
 
