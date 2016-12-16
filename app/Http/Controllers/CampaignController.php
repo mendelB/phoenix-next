@@ -44,9 +44,6 @@ class CampaignController extends Controller
      */
     public function show($slug)
     {
-        // @NOTE: Uncomment this line to demo globalization!
-//        app()->setLocale('es-MX');
-
         $campaign = $this->campaignRepository->findBySlug($slug);
 
         if (! $campaign->isActive()) {
