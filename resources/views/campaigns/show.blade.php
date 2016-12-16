@@ -13,10 +13,14 @@
             @if ($campaign->problemFact)
                 <div class="container__block">
                     <h3>The Problem</h3>
-                    <dl>
-                        <dt>{{ $campaign->problemFact['content'] }}</dt>
-                        <dd><i>{{ $campaign->problemFact['source'] }}</i></dd>
-                    </dl>
+                    <p>{{ $campaign->problemFact['content'] }}<sup>1</sup></p>
+
+                    <div class="footnote">
+                        <h4 class="js-footnote-toggle">Sources</h4>
+                        <ul class="js-footnote-hidden">
+                            <li><sup>1</sup> {{ $campaign->problemFact['source'] }}</li>
+                        </ul>
+                    </div>
                 </div>
             @endif
 
