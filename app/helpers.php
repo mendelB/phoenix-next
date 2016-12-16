@@ -16,7 +16,7 @@ use Illuminate\Support\HtmlString;
 function markdown($source)
 {
     $parsedown = Parsedown::instance();
-    $markup = $parsedown->text($source);
+    $markup = $parsedown->setMarkupEscaped(true)->text($source);
 
     return new HtmlString($markup);
 }
