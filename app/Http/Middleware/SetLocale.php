@@ -16,11 +16,13 @@ class SetLocale
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        $locale = $request->query('locale');
-
-        if ($locale) {
-            app()->setLocale($locale);
+        $override = $request->query('locale');
+        if ($override) {
+            session(['locale' => $override]);
         }
+
+        $currentLocale = session('locale', app()->getLocale());
+        app()->setLocale($currentLocale);
 
         return $next($request);
     }
