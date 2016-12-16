@@ -61,7 +61,7 @@
             @if ($campaign->faqs)
                 <div class="container__block">
                     <h3>FAQs</h3>
-                    <div>{{ $campaign->faqs }}</div>
+                    <div>{{ markdown($campaign->faqs) }}</div>
                 </div>
             @endif
         </div>

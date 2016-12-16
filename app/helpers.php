@@ -1,10 +1,25 @@
 <?php
 
 use Contentful\Delivery\ImageOptions;
+use Illuminate\Support\HtmlString;
 
 /**
  * App helper functions.
  */
+
+/**
+ * Format a string of Markdown into HTML.
+ *
+ * @param $source
+ * @return string
+ */
+function markdown($source)
+{
+    $parsedown = Parsedown::instance();
+    $markup = $parsedown->text($source);
+
+    return new HtmlString($markup);
+}
 
 /**
  * Get image URL for a specified asset by the crop type.
