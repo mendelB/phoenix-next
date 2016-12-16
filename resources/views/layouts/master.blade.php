@@ -14,7 +14,30 @@
 <body>
 <div class="chrome">
     <div class="wrapper">
+        <div class="navigation -floating -white">
+            <a class="navigation__logo" href="{{ url('/') }}"><span>DoSomething.org</span></a>
+            <a class="navigation__toggle js-navigation-toggle" href="#"><span>Show Menu</span></a>
+            <div class="navigation__menu">
+                <ul class="navigation__primary">
+                    <li>
+                        <a href="{{ url('campaigns') }}">
+                            <strong class="navigation__title">Explore Campaigns</strong>
+                            <span class="navigation__subtitle">Any cause, any time, anywhere.</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         @yield('content')
+
+        <div class="container">
+            <div class="wrapper">
+                <div class="container__block">
+                    <p class="footnote">Set Locale: <a href="?locale=en-US">US</a>, <a href="?locale=es-MX">MX</a></p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="https://unpkg.com/jquery@^3.0.0/dist/jquery.min.js"></script>
