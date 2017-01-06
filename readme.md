@@ -1,27 +1,39 @@
-# Laravel PHP Framework
+# Phoenix
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+This is __Phoenix__, the new web interface for [DoSomething.org](https://www.dosomething.org)! It's built using [Laravel 5.3](https://laravel.com/docs/5.3) and [Contentful](https://www.contentful.com), and plays nicely with the rest of our team ([Northstar](https://github.com/DoSomething/northstar), [Rogue](https://github.com/DoSomething/rogue), and co.)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+### Contributing
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Fork and clone this repository, add to your local [DS Homestead](https://github.com/DoSomething/ds-homestead), and run set-up:
 
-## Official Documentation
+```sh
+# Install dependencies:
+$ composer install && npm install
+    
+# Copy the default environment variables:
+$ cp .env.example .env
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+# And finally, run database migrations:
+$ php artisan migrate
+```
 
-## Contributing
+You can seed the database with test data:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+    $ php artisan db:seed
 
-## Security Vulnerabilities
+You may run unit tests locally using PHPUnit:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+    $ vendor/bin/phpunit
+    
+We follow [Laravel's code style](http://laravel.com/docs/5.3/contributions#coding-style) and automatically
+lint all pull requests with [StyleCI](https://styleci.io/repos/26884886). Be sure to configure
+[EditorConfig](http://editorconfig.org) to ensure you have proper indentation settings.
 
-## License
+Consider [writing a test case](http://laravel.com/docs/5.3/testing) when adding or changing a feature.
+Most steps you would take when manually testing your code can be automated, which makes it easier for
+yourself & others to review your code and ensures we don't accidentally break something later on!
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+### License
+&copy;2017 DoSomething.org. Phoenix is free software, and may be redistributed under the terms specified
+in the [LICENSE](https://github.com/DoSomething/phoenix/blob/dev/LICENSE) file. The name and logo for
+DoSomething.org are trademarks of Do Something, Inc and may not be used without permission.
