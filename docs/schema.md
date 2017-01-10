@@ -2,9 +2,9 @@
 
 ## Campaigns
 
-- title
-- slug
-- cta
+- Title
+- Slug
+- Cta
 - Sponsor logo
 - Scholarship incentive
 - Proof of Impact (link to a Google doc, doesn't show up on the site)
