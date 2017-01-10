@@ -5,7 +5,7 @@
 - title
 - slug
 - cta
-- Active State Sponsor logo
+- Sponsor logo
 - Scholarship incentive
 - Proof of Impact (link to a Google doc, doesn't show up on the site)
 - Campaign Info
