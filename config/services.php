@@ -35,4 +35,21 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'northstar' => [
+        'grant' => 'client_credentials', // Default OAuth grant to use: either 'authorization_code' or 'client_credentials'
+        'url' => env('NORTHSTAR_URL'),
+
+        'client_credentials' => [
+            'client_id' => env('NORTHSTAR_CLIENT_ID'),
+            'client_secret' => env('NORTHSTAR_CLIENT_SECRET'),
+            'scope' => ['admin'],
+        ],
+        'authorization_code' => [
+            'client_id' => env('NORTHSTAR_AUTHORIZATION_ID'),
+            'client_secret' => env('NORTHSTAR_AUTHORIZATION_SECRET'),
+            'scope' => ['user', 'role:staff', 'role:admin'],
+            'redirect_uri' => 'login',
+        ],
+    ],
+
 ];
