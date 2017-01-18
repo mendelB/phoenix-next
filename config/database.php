@@ -1,5 +1,19 @@
 <?php
 
+$mysql_host = env('DB_HOST', 'localhost');
+$mysql_port = env('DB_PORT', '3306');
+$mysql_database = env('DB_DATABASE', 'forge');
+$mysql_username = env('DB_USERNAME', 'forge');
+$mysql_password = env('DB_PASSWORD', '');
+
+if (env('CLEARDB_DATABASE_URL')) {
+    $mysql_cloud_url = parse_url(env('CLEARDB_DATABASE_URL'));
+    $host = $mysql_cloud_url['host'];
+    $username = $mysql_cloud_url['user'];
+    $password = $mysql_cloud_url['pass'];
+    $database = substr($url['path'], 1);
+}
+
 return [
 
     /*
@@ -54,11 +68,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => $mysql_host,
+            'port' => $mysql_port,
+            'database' => $mysql_database,
+            'username' => $mysql_username,
+            'password' => $mysql_password,
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
