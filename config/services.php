@@ -47,7 +47,7 @@ return [
         'authorization_code' => [
             'client_id' => env('NORTHSTAR_AUTHORIZATION_ID'),
             'client_secret' => env('NORTHSTAR_AUTHORIZATION_SECRET'),
-            'scope' => ['user', 'role:staff', 'role:admin'],
+            'scope' => ['user', 'openid', 'role:staff', 'role:admin'],
             'redirect_uri' => 'login',
         ],
     ],
