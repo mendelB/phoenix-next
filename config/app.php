@@ -168,6 +168,11 @@ return [
          */
         Contentful\Laravel\ContentfulServiceProvider::class,
 
+        /**
+         * DoSomething Service Providers...
+         */
+        DoSomething\Gateway\Laravel\GatewayServiceProvider::class,
+
 
         /*
          * Application Service Providers...
