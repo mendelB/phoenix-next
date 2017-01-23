@@ -8,10 +8,10 @@ $mysql_password = env('DB_PASSWORD', '');
 
 if (env('CLEARDB_DATABASE_URL')) {
     $mysql_cloud_url = parse_url(env('CLEARDB_DATABASE_URL'));
-    $host = $mysql_cloud_url['host'];
-    $username = $mysql_cloud_url['user'];
-    $password = $mysql_cloud_url['pass'];
-    $database = substr($mysql_cloud_url['path'], 1);
+    $mysql_host = $mysql_cloud_url['host'];
+    $mysql_username = $mysql_cloud_url['user'];
+    $mysql_password = $mysql_cloud_url['pass'];
+    $mysql_database = substr($mysql_cloud_url['path'], 1);
 }
 
 return [
