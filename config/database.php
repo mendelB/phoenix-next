@@ -11,7 +11,7 @@ if (env('CLEARDB_DATABASE_URL')) {
     $host = $mysql_cloud_url['host'];
     $username = $mysql_cloud_url['user'];
     $password = $mysql_cloud_url['pass'];
-    $database = substr($url['path'], 1);
+    $database = substr($mysql_cloud_url['path'], 1);
 }
 
 return [
