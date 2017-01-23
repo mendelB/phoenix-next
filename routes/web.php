@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Authentication
+Route::get('login', 'AuthController@getLogin');
+Route::get('logout', 'AuthController@getLogout');
+
 /**
  * Campaigns
  */
