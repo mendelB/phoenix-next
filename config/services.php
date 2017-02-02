@@ -35,6 +35,12 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'phoenix-legacy' => [
+        'url' => env('PHOENIX_LEGACY_URL', 'https://staging.dosomething.org'),
+        'username' => env('PHOENIX_LEGACY_USERNAME'),
+        'password' => env('PHOENIX_LEGACY_PASSWORD'),
+    ],
+
     'northstar' => [
         'grant' => 'client_credentials', // Default OAuth grant to use: either 'authorization_code' or 'client_credentials'
         'url' => env('NORTHSTAR_URL'),
