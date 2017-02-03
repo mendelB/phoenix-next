@@ -62,7 +62,11 @@ class Entity implements ArrayAccess
 
         if (is_array($value)) {
             return collect($value)->map(function($value) {
-                return new Entity($value);
+                if ($value instanceof DynamicEntry) {
+                    return new self($value);
+                } else {
+                    return $value;
+                }
             });
         }
 
