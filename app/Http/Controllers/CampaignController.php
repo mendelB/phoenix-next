@@ -46,10 +46,6 @@ class CampaignController extends Controller
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
 
-        if (! $campaign->isActive()) {
-            return 'Let\'s figure out a nice way to deal with inactive campaigns. Maybe provide a preview for campaign leads?';
-        }
-
         return view('campaigns.show', ['campaign' => $campaign]);
     }
 }
