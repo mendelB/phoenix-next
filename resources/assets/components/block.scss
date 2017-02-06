@@ -1,0 +1,8 @@
+@import '~@dosomething/forge/scss/toolkit';
+
+.block {
+  background-color: $off-white;
+  border: 1px solid $light-gray;
+  border-radius: $sm-border-radius;
+  padding: $base-spacing;
+}
