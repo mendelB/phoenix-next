@@ -1,3 +1,3 @@
 php artisan migrate --seed --force
-npm install modernizr -g
+npm install modernizr webpack -g
 npm run build
