@@ -1,3 +1,3 @@
-php artisan migrate --seed
+php artisan migrate --seed --force
 npm install
 npm run build
