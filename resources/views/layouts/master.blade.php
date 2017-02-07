@@ -27,6 +27,15 @@
                         </a>
                     </li>
                 </ul>
+                <ul class="navigation__secondary">
+                    <li>
+                        @if (Auth::user())
+                            <a href="{{ url('logout') }}">Log Out</a>
+                        @else
+                            <a href="{{ url('login') }}">Log In</a>
+                        @endif
+                    </li>
+                </ul>
             </div>
         </div>
 
