@@ -2,7 +2,7 @@
   "name": "phoenix-next",
   "description": ":sparkles:",
   "scripts": {
-    "postdeploy": "sh bin/setup.sh"
+    "postdeploy": "sh bootstrap/setup.sh"
   },
   "env": {
     "APP_DEBUG": "true",
