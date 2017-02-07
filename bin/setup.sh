@@ -1,3 +1,3 @@
 php artisan migrate --seed --force
-npm install
+npm install modernizr -g
 npm run build
