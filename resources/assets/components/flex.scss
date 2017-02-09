@@ -1,0 +1,24 @@
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex__cell {
+  display: flex;
+  flex: 1;
+}
+
+.flex__cell.-full {
+  flex: none;
+  width: 100%;
+}
+
+.flex__cell.-one-third {
+  flex: none;
+  width: 33.3333333333333%;
+}
+
+.flex__cell.-two-thirds {
+  flex: none;
+  width: 66.6666666666666%;
+}
