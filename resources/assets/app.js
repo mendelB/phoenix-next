@@ -9,5 +9,8 @@
  */
 
 // Components
-import './components/container.scss';
 import './components/block.scss';
+import './components/cta.scss';
+import './components/flex.scss';
+import './components/header.scss';
+import './components/placeholder.scss';
