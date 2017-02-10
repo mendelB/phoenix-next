@@ -337,6 +337,7 @@
                 "parser"
             ],
             "time": "2016-11-02T15:56:58+00:00"
+<<<<<<< a0c49920fe0811fded8b712e3b4a54dc615dea26
         },
         {
             "name": "fideloper/proxy",
@@ -388,6 +389,8 @@
                 "trusted proxy"
             ],
             "time": "2016-12-20T14:23:22+00:00"
+=======
+>>>>>>> Adding PHP League's Fractal package.
         },
         {
             "name": "giggsey/libphonenumber-for-php",
@@ -1188,16 +1191,16 @@
         },
         {
             "name": "league/fractal",
-            "version": "0.14.0",
+            "version": "0.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/fractal.git",
-                "reference": "56ad8933fbb40328ca3321c84143b2c16186eebf"
+                "reference": "0546bd5c2aba414ba50c6ac676f507d42c6150a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/56ad8933fbb40328ca3321c84143b2c16186eebf",
-                "reference": "56ad8933fbb40328ca3321c84143b2c16186eebf",
+                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/0546bd5c2aba414ba50c6ac676f507d42c6150a5",
+                "reference": "0546bd5c2aba414ba50c6ac676f507d42c6150a5",
                 "shasum": ""
             },
             "require": {
@@ -1247,7 +1250,11 @@
                 "league",
                 "rest"
             ],
+<<<<<<< a0c49920fe0811fded8b712e3b4a54dc615dea26
             "time": "2016-07-21T09:56:14+00:00"
+=======
+            "time": "2016-12-28T01:30:30+00:00"
+>>>>>>> Adding PHP League's Fractal package.
         },
         {
             "name": "league/oauth2-client",
