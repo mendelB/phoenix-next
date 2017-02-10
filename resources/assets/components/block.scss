@@ -21,4 +21,13 @@
   padding: $base-spacing / 2;
   box-shadow: $box-shadow;
   border-radius: $sm-border-radius;
+  overflow: hidden;
+}
+
+.reportback-block {
+  padding: 0;
+}
+
+.padded {
+  padding: $base-spacing / 2;
 }
