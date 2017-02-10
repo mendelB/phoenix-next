@@ -9,6 +9,19 @@ use Illuminate\Support\HtmlString;
  */
 
 /**
+ * Get an item from the cache, or store the default value.
+ *
+ * @param  string  $key
+ * @param  \DateTime|float|int  $minutes
+ * @param  \Closure  $callback
+ * @return mixed
+ */
+function remember($key, $minutes, Closure $callback)
+{
+    return app('cache')->remember($key, $minutes, $callback);
+}
+
+/**
  * Format a string of Markdown into HTML.
  *
  * @param $source
