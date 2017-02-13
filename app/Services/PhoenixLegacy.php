@@ -39,7 +39,7 @@ class PhoenixLegacy extends RestApiClient
     }
 
     /**
-     * Create a new campaign signup on the Drupal site.
+     * Store a new campaign signup on the Drupal site.
      * @see: https://github.com/DoSomething/dosomething/wiki/API#campaign-signup
      *
      * @param string $user_id - UID of user on the Drupal site
@@ -48,7 +48,7 @@ class PhoenixLegacy extends RestApiClient
      *
      * @return string - Signup ID
      */
-    public function createSignup($user_id, $campaign_id, $source)
+    public function storeSignup($user_id, $campaign_id, $source)
     {
         return $this->post('v1/campaigns/'.$campaign_id.'/signup', [
             'uid' => $user_id,
@@ -81,7 +81,7 @@ class PhoenixLegacy extends RestApiClient
     }
 
     /**
-     * Create or update a user's reportback on the Drupal site.
+     * Store or update a user's reportback on the Drupal site.
      * @see: https://github.com/DoSomething/dosomething/wiki/API#campaign-reportback
      *
      * @param string $user_id - UID of user on the Drupal site
@@ -93,7 +93,7 @@ class PhoenixLegacy extends RestApiClient
      *
      * @return array - API response
      */
-    public function createReportback($user_id, $campaign_id, $contents)
+    public function storeReportback($user_id, $campaign_id, $contents)
     {
         return $this->post('v1/campaigns/'.$campaign_id.'/reportback', [
             'uid' => $user_id,
