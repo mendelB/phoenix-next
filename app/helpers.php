@@ -22,6 +22,35 @@ function remember($key, $minutes, Closure $callback)
 }
 
 /**
+ * Make a cache key for API requests based on the request path and any query parameters,
+ * so that the data can be stored in cache using a unique key. Query parameters are also
+ * sorted alphabetically.
+ *
+ * @todo  Might be useful to sort csv of IDs in specific query params as well.
+ *
+ * @param  string $path
+ * @param  array  $query
+ * @return string
+ */
+function make_cache_key($path, $query = []) {
+    $output = str_replace('/', '-', $path);
+
+    if ($query) {
+        $query = array_sort_recursive($query);
+
+        $items = [];
+
+        foreach ($query as $key => $value) {
+            $items[] = $key.'='.$value;
+        }
+
+        $output .= ':'.implode('&', $items);
+    }
+
+    return $output;
+}
+
+/**
  * Format a string of Markdown into HTML.
  *
  * @param $source

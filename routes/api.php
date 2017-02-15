@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function () {
+
+    Route::get('/', function() {
+        return 'Phoenix API version 1.0. Check the GitHub docs for available endpoints.';
+    });
+
+    Route::resource('reportbacks', 'ReportbackController', ['except' => ['create', 'edit', 'destroy']]);
+
+    Route::resource('signups', 'SignupController', ['except' => ['create', 'edit', 'destroy']]);
+
+});
