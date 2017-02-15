@@ -6,18 +6,19 @@ use ArrayAccess;
 use Contentful\Delivery\Asset;
 use Contentful\Delivery\DynamicEntry;
 use InvalidArgumentException;
+use JsonSerializable;
 
 /**
  * A convenience wrapper for Contentful's DynamicEntity.
  */
-class Entity implements ArrayAccess
+class Entity implements ArrayAccess, JsonSerializable
 {
     /**
      * The Contentful entry.
      *
      * @var \Contentful\Delivery\DynamicEntry
      */
-    private $entry;
+    protected $entry;
 
     /**
      * Create instance of the Campaign class.
@@ -57,7 +58,7 @@ class Entity implements ArrayAccess
         }
 
         if ($value instanceof DynamicEntry) {
-            return new self($value);
+            return new Entity($value);
         }
 
         if (is_array($value)) {
@@ -122,5 +123,28 @@ class Entity implements ArrayAccess
     public function offsetUnset($offset)
     {
         throw new InvalidArgumentException;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    function jsonSerialize()
+    {
+        $json = $this->entry->jsonSerialize();
+        $locale = $this->entry->getLocale();
+
+        $fields = collect($json->fields)->map(function($field) use ($locale) {
+            return data_get($field, $locale);
+        });
+
+        return (object) [
+            'id' => $this->entry->getId(),
+            'type' => $this->entry->getContentType()->getId(),
+            'fields' => $fields,
+        ];
     }
 }
