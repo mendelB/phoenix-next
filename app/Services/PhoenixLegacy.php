@@ -3,11 +3,22 @@
 namespace App\Services;
 
 use DoSomething\Gateway\Common\RestApiClient;
+use Illuminate\Http\Request;
 
 class PhoenixLegacy extends RestApiClient
 {
     use AuthorizesWithDrupal;
 
+    /**
+     * Mintues to retain data in cache.
+     *
+     * @var \DateTime|float|int
+     */
+    private $cacheExpiration = 30;
+
+    /**
+     * PhoenixLegacy constructor.
+     */
     public function __construct()
     {
         $base_url = config('services.phoenix-legacy.url');
@@ -24,7 +35,11 @@ class PhoenixLegacy extends RestApiClient
      */
     public function getAllSignups(array $query = [])
     {
-        return $this->get('v1/signups', $query);
+        $path = 'v1/signups';
+
+        return remember(make_cache_key('legacy-'.$path, $query), $this->cacheExpiration, function() use ($path, $query) {
+            return $this->get($path, $query);
+        });
     }
 
     /**
@@ -35,11 +50,15 @@ class PhoenixLegacy extends RestApiClient
      */
     public function getSignup($signup_id)
     {
-        return $this->get('v1/signups/'.$signup_id);
+        $path = 'v1/signups/'.$signup_id;
+
+        return remember(make_cache_key('legacy-'.$path), $this->cacheExpiration, function () use ($path) {
+            return $this->get($path);
+        });
     }
 
     /**
-     * Create a new campaign signup on the Drupal site.
+     * Store a new campaign signup on the Drupal site.
      * @see: https://github.com/DoSomething/dosomething/wiki/API#campaign-signup
      *
      * @param string $user_id - UID of user on the Drupal site
@@ -48,7 +67,7 @@ class PhoenixLegacy extends RestApiClient
      *
      * @return string - Signup ID
      */
-    public function createSignup($user_id, $campaign_id, $source)
+    public function storeSignup($user_id, $campaign_id, $source)
     {
         return $this->post('v1/campaigns/'.$campaign_id.'/signup', [
             'uid' => $user_id,
@@ -65,7 +84,11 @@ class PhoenixLegacy extends RestApiClient
      */
     public function getAllReportbacks(array $query = [])
     {
-        return $this->get('v1/reportbacks', $query);
+        $path = 'v1/reportbacks';
+
+        return remember(make_cache_key('legacy-'.$path, $query), $this->cacheExpiration, function() use ($path, $query) {
+            return $this->get($path, $query);
+        });
     }
 
     /**
@@ -77,11 +100,15 @@ class PhoenixLegacy extends RestApiClient
      */
     public function getReportback($reportback_id)
     {
-        return $this->get('v1/reportbacks/'.$reportback_id);
+        $path = 'v1/reportbacks/'.$reportback_id;
+
+        return remember(make_cache_key('legacy-'.$path), $this->cacheExpiration, function() use ($path) {
+            return $this->get($path);
+        });
     }
 
     /**
-     * Create or update a user's reportback on the Drupal site.
+     * Store or update a user's reportback on the Drupal site.
      * @see: https://github.com/DoSomething/dosomething/wiki/API#campaign-reportback
      *
      * @param string $user_id - UID of user on the Drupal site
@@ -93,7 +120,7 @@ class PhoenixLegacy extends RestApiClient
      *
      * @return array - API response
      */
-    public function createReportback($user_id, $campaign_id, $contents)
+    public function storeReportback($user_id, $campaign_id, $contents)
     {
         return $this->post('v1/campaigns/'.$campaign_id.'/reportback', [
             'uid' => $user_id,
