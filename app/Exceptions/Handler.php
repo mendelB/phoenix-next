@@ -78,18 +78,14 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response
      */
     protected function buildJsonResponse($request, Exception $exception) {
-        switch ($exception) {
-            case ($exception instanceof HttpException):
+        if ($exception instanceof HttpException) {
             $code = $exception->getStatusCode() ?: 500;
-            break;
-
-            case ($exception instanceof ValidationException):
+        }
+        elseif ($exception instanceof ValidationException) {
             $code = 422;
-            break;
-
-            default:
+        }
+        else {
             $code = 500;
-            break;
         }
 
         $hideErrorDetails = $code === 500 && ! config('app.debug');
