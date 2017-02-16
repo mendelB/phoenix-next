@@ -26,20 +26,16 @@ class SignupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $signups = remember($this->makeCacheKeyFromRequest(), 30, function() {
-            return $this->phoenixLegacy->getAllSignups(request()->query());
-        });
-
-        return response()->json($signups);
+        return response()->json($this->phoenixLegacy->getAllSignups($request->query()));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return string
      */
     public function store(Request $request)
     {
@@ -58,11 +54,7 @@ class SignupController extends Controller
      */
     public function show($id)
     {
-        $signup = remember($this->makeCacheKeyFromRequest(), 30, function() use ($id) {
-            return $this->phoenixLegacy->getSignup($id);
-        });
-
-        return response()->json($signup);
+        return response()->json($this->phoenixLegacy->getSignup($id));
     }
 
     /**

@@ -3,11 +3,22 @@
 namespace App\Services;
 
 use DoSomething\Gateway\Common\RestApiClient;
+use Illuminate\Http\Request;
 
 class PhoenixLegacy extends RestApiClient
 {
     use AuthorizesWithDrupal;
 
+    /**
+     * Mintues to retain data in cache.
+     *
+     * @var \DateTime|float|int
+     */
+    private $cacheExpiration = 30;
+
+    /**
+     * PhoenixLegacy constructor.
+     */
     public function __construct()
     {
         $base_url = config('services.phoenix-legacy.url');
@@ -24,7 +35,11 @@ class PhoenixLegacy extends RestApiClient
      */
     public function getAllSignups(array $query = [])
     {
-        return $this->get('v1/signups', $query);
+        $path = 'v1/signups';
+
+        return remember(make_cache_key('legacy-'.$path, $query), $this->cacheExpiration, function() use ($path, $query) {
+            return $this->get($path, $query);
+        });
     }
 
     /**
@@ -35,7 +50,11 @@ class PhoenixLegacy extends RestApiClient
      */
     public function getSignup($signup_id)
     {
-        return $this->get('v1/signups/'.$signup_id);
+        $path = 'v1/signups/'.$signup_id;
+
+        return remember(make_cache_key('legacy-'.$path), $this->cacheExpiration, function () use ($path) {
+            return $this->get($path);
+        });
     }
 
     /**
@@ -65,7 +84,11 @@ class PhoenixLegacy extends RestApiClient
      */
     public function getAllReportbacks(array $query = [])
     {
-        return $this->get('v1/reportbacks', $query);
+        $path = 'v1/reportbacks';
+
+        return remember(make_cache_key('legacy-'.$path, $query), $this->cacheExpiration, function() use ($path, $query) {
+            return $this->get($path, $query);
+        });
     }
 
     /**
@@ -77,7 +100,11 @@ class PhoenixLegacy extends RestApiClient
      */
     public function getReportback($reportback_id)
     {
-        return $this->get('v1/reportbacks/'.$reportback_id);
+        $path = 'v1/reportbacks/'.$reportback_id;
+
+        return remember(make_cache_key('legacy-'.$path), $this->cacheExpiration, function() use ($path) {
+            return $this->get($path);
+        });
     }
 
     /**

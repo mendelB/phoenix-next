@@ -26,13 +26,9 @@ class ReportbackController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $reportbacks = remember($this->makeCacheKeyFromRequest(), 30, function() {
-            return $this->phoenixLegacy->getAllReportbacks(request()->query());
-        });
-
-        return response()->json($reportbacks);
+        return response()->json($this->phoenixLegacy->getAllReportbacks($request->query()));
     }
 
     /**
@@ -54,11 +50,7 @@ class ReportbackController extends Controller
      */
     public function show($id)
     {
-        $reportback = remember($this->makeCacheKeyFromRequest(), 30, function() use ($id) {
-            return $this->phoenixLegacy->getReportback($id);
-        });
-
-        return response()->json($reportback);
+        return response()->json($this->phoenixLegacy->getReportback($id));
     }
 
     /**
