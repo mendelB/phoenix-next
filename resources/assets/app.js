@@ -13,7 +13,6 @@ import { ready } from './helpers';
 // Components
 import './components/construction.scss';
 import './components/container.scss';
-import './components/flex.scss';
 import './components/header.scss';
 
 ready(() => {
