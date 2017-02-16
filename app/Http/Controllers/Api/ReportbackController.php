@@ -17,8 +17,6 @@ class ReportbackController extends Controller
     public function __construct(PhoenixLegacy $phoenixLegacy)
     {
         $this->phoenixLegacy = $phoenixLegacy;
-
-        $this->middleware('api');
     }
 
     /**
