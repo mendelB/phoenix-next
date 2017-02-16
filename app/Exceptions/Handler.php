@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -19,7 +20,7 @@ class Handler extends ExceptionHandler
         \Symfony\Component\HttpKernel\Exception\HttpException::class,
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
         \Illuminate\Session\TokenMismatchException::class,
-        \Illuminate\Validation\ValidationException::class,
+        ValidationException::class,
     ];
 
     /**
@@ -44,6 +45,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($request->ajax() || $request->wantsJson()) {
+            return $this->json($request, $exception);
+        }
+
         return parent::render($request, $exception);
     }
 
@@ -61,5 +66,40 @@ class Handler extends ExceptionHandler
         }
 
         return redirect()->guest('login');
+    }
+
+    /**
+     * Render an exception into an HTTP JSON response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Exception  $exception
+     * @return \Illuminate\Http\Response
+     */
+    protected function json($request, Exception $exception) {
+        $code = 500;
+
+        if ($this->isHttpException($exception)) {
+            $code = $exception->getStatusCode();
+        }
+
+        if ($exception instanceof ValidationException) {
+            $code = 422;
+        }
+
+        $response = [
+            'error' => [
+                'code' => $code,
+                'message' => $exception->getMessage(),
+            ],
+        ];
+
+        if (config('app.debug')) {
+            $response['debug'] = [
+                'file' => $exception->getFile(),
+                'line' => $exception->getLine(),
+            ];
+        }
+
+        return response()->json($response, $code);
     }
 }

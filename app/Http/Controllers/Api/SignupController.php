@@ -37,6 +37,12 @@ class SignupController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'user_id' => 'required',
+            'campaign_id' => 'required',
+            'source' => 'required'
+        ]);
+
         return $this->phoenixLegacy->storeSignup(
             $request->input('user_id'),
             $request->input('campaign_id'),
