@@ -34,6 +34,15 @@
     },
     "NORTHSTAR_URL": {
       "required": true
+    },
+    "PHOENIX_LEGACY_URL": {
+        "required": true
+    },
+    "PHOENIX_LEGACY_USERNAME": {
+        "required": true
+    },
+    "PHOENIX_LEGACY_PASSWORD": {
+        "required": true
     }
   },
   "formation": {},
