@@ -50,7 +50,7 @@ class CampaignController extends Controller
      * Display the specified resource.
      *
      * @param  int  $slug
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show($slug)
     {
@@ -63,6 +63,7 @@ class CampaignController extends Controller
             return collect($response['data'])->pluck('reportback_items.data')->flatten(1);
         });
 
-        return view('campaigns.show', ['campaign' => $campaign, 'reportbacks' => $reportbacks]);
+        return view('campaigns.show', ['campaign' => $campaign])
+            ->with('state', ['campaign' => $campaign, 'reportbacks' => $reportbacks]);
     }
 }
