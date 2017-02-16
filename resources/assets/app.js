@@ -8,6 +8,8 @@
  |
  */
 
+import { ready } from './helpers';
+
 // Components
 import './components/block.scss';
 import './components/construction.scss';
@@ -16,3 +18,7 @@ import './components/cta.scss';
 import './components/flex.scss';
 import './components/header.scss';
 import './components/placeholder.scss';
+
+ready(() => {
+});
+
