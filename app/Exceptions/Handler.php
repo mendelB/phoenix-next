@@ -9,6 +9,8 @@ use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
+    const PRODUCTION_ERROR_MESSAGE = 'Looks like something went wrong. We\'ve noted the problem and will try to get it fixed!';
+
     /**
      * A list of the exception types that should not be reported.
      *
@@ -46,7 +48,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($request->ajax() || $request->wantsJson()) {
-            return $this->json($request, $exception);
+            return $this->buildJsonResponse($request, $exception);
         }
 
         return parent::render($request, $exception);
@@ -75,24 +77,31 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    protected function json($request, Exception $exception) {
-        $code = 500;
+    protected function buildJsonResponse($request, Exception $exception) {
+        switch ($exception) {
+            case ($exception instanceof HttpException):
+            $code = $exception->getStatusCode() ?: 500;
+            break;
 
-        if ($this->isHttpException($exception)) {
-            $code = $exception->getStatusCode();
-        }
-
-        if ($exception instanceof ValidationException) {
+            case ($exception instanceof ValidationException):
             $code = 422;
+            break;
+
+            default:
+            $code = 500;
+            break;
         }
+
+        $hideErrorDetails = $code === 500 && ! config('app.debug');
 
         $response = [
             'error' => [
                 'code' => $code,
-                'message' => $exception->getMessage(),
+                'message' => $hideErrorDetails ? self::PRODUCTION_ERROR_MESSAGE : $exception->getMessage(),
             ],
         ];
 
+        // Debug mode info.
         if (config('app.debug')) {
             $response['debug'] = [
                 'file' => $exception->getFile(),
