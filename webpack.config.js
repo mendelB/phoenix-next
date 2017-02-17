@@ -15,10 +15,10 @@ config.output.path = './public/dist';
 config.plugins.push(
   new webpack.DefinePlugin({
     'services': {
-      'GLADIATOR_URL': JSON.stringify(process.env.GLADIATOR_URL),
-      'NORTHSTAR_URL': JSON.stringify(process.env.NORTHSTAR_URL),
-      'PHOENIX_URL': JSON.stringify(process.env.PHOENIX_URL),
-      'PHOENIX_LEGACY_URL': JSON.stringify(process.env.PHOENIX_LEGACY_URL),
+      'GLADIATOR_URL': JSON.stringify(process.env.GLADIATOR_URL) || null,
+      'NORTHSTAR_URL': JSON.stringify(process.env.NORTHSTAR_URL) || null,
+      'PHOENIX_URL': JSON.stringify(process.env.PHOENIX_URL) || null,
+      'PHOENIX_LEGACY_URL': JSON.stringify(process.env.PHOENIX_LEGACY_URL) || null,
     }
   })
 );
