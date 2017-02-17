@@ -1,19 +1,5 @@
 @import '~@dosomething/forge/scss/toolkit';
 
-.block-container {
-  background: rgb(32, 38, 52);
-  padding: ($base-spacing / 2) 0;
-
-  @include clearfix;
-}
-
-.block-container > .wrapper {
-  @include media($tablet) {
-    @include span(12 no-gutters);
-    @include push(2);
-  }
-}
-
 .block {
   width: 100%;
   background: #fff;

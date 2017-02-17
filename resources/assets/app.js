@@ -8,11 +8,22 @@
  |
  */
 
+import { ready } from './helpers';
+
 // Components
-import './components/block.scss';
 import './components/construction.scss';
 import './components/container.scss';
-import './components/cta.scss';
-import './components/flex.scss';
 import './components/header.scss';
-import './components/placeholder.scss';
+import Feed from './components/Feed';
+
+import React from 'react';
+import ReactDom from 'react-dom';
+
+ready(() => {
+  const appContainer = document.getElementById('app');
+
+  if (appContainer) {
+    ReactDom.render(<Feed state={window.STATE}/>, appContainer);
+  }
+});
+
