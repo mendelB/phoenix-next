@@ -57,9 +57,8 @@ class CampaignController extends Controller
         $campaign = $this->campaignRepository->findBySlug($slug);
         $phoenixNid = data_get($campaign, 'legacy_campaign_id', '1144');
 
-        $response = $this->phoenixLegacy->getAllReportbacks(['campaigns' => $phoenixNid, 'status' => 'promoted']);
-
-        $reportbacks = collect($response['data'])->pluck('reportback_items.data')->flatten(1);
+        $response = $this->phoenixLegacy->getAllReportbacks(['campaigns' => $phoenixNid, 'status' => 'promoted', 'load_user' => true]);
+        $reportbacks = $response['data'];
 
         return view('campaigns.show', ['campaign' => $campaign])
             ->with('state', ['campaign' => $campaign, 'reportbacks' => $reportbacks]);

@@ -2,19 +2,20 @@ import React from 'react';
 import classNames from 'classnames';
 import './flex.scss';
 
-export const Flex = (props) => {
+export const Flex = ({children}) => {
   return (
     <div className="flex">
-      {props.children}
+      {children}
     </div>
   );
 };
 
-export const FlexCell = (props) => {
-  const modifiers = props.modifiers.map(className => `-${className}`);
+export const FlexCell = ({modifiers = [], children}) => {
+  modifiers = modifiers.map(className => `-${className}`);
+
   return (
     <div className={classNames('flex__cell', modifiers)}>
-      {props.children}
+      {children}
     </div>
   );
 };
