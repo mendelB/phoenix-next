@@ -4,6 +4,7 @@ import { get } from 'lodash';
 import CallToActionBlock from '../CallToActionBlock';
 import CampaignUpdateBlock from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
+import ReportbackBlock from "../ReportbackBlock";
 import { Flex, FlexCell } from '../Flex';
 import './feed.scss';
 
@@ -15,12 +16,11 @@ class Feed extends React.Component {
    * @returns {XML}
    */
   renderFeedItem(block) {
-    const type = block.type === 'customBlock' ? block.fields.type : block.type;
-
     const BlockComponent = get({
       'campaign_update': CampaignUpdateBlock,
       'join_cta': CallToActionBlock,
-    }, type, PlaceholderBlock);
+      'reportbacks': ReportbackBlock,
+    }, block.type, PlaceholderBlock);
 
     return <FlexCell key={block.id} modifiers={block.fields.displayOptions}><BlockComponent {...block} /></FlexCell>;
   }
@@ -31,7 +31,27 @@ class Feed extends React.Component {
    * @returns {XML}
    */
   render() {
-    const feed = this.props.state.campaign.activityFeed;
+    let feed = this.props.state.campaign.activityFeed;
+    let reportbacks = this.props.state.reportbacks;
+
+    // @TODO: This should be moved into a separate data normalization layer.
+    feed.map((block) => {
+      // Set root-level type property if it's a custom block.
+      const type = block.type === 'customBlock' ? block.fields.type : block.type;
+      block.type = type;
+
+      // If it's a reportback block, load in the requested number of reportbacks.
+      if (type === 'reportbacks') {
+        block.reportbacks = [];
+
+        const count = block.fields.additionalContent.count || 3;
+        for (let i = 0; i < count; i++) {
+          block.reportbacks.push(reportbacks.shift());
+        }
+      }
+
+      return block;
+    });
 
     return (
       <div className="feed-container">
