@@ -14,16 +14,34 @@ import { ready } from './helpers';
 import './components/construction.scss';
 import './components/container.scss';
 import './components/header.scss';
-import Feed from './components/Feed';
 
 import React from 'react';
 import ReactDom from 'react-dom';
 
+import { Provider } from 'react-redux'
+
+import { createStore, applyMiddleware, compose } from 'redux'
+import createLogger from 'redux-logger'
+import rootReducer from './reducers'
+import ActionFeed from './containers/ActionFeed';
+
 ready(() => {
   const appContainer = document.getElementById('app');
+  const loggerMiddleware = createLogger();
+  const preloadedState = window.STATE || {};
+
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+  const store = createStore(
+    rootReducer,
+    preloadedState,
+    composeEnhancers(
+      applyMiddleware(loggerMiddleware)
+    )
+  );
 
   if (appContainer) {
-    ReactDom.render(<Feed state={window.STATE}/>, appContainer);
+    ReactDom.render(<Provider store={store}><ActionFeed /></Provider>, appContainer);
   }
 });
 

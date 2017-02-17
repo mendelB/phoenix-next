@@ -31,8 +31,8 @@ class Feed extends React.Component {
    * @returns {XML}
    */
   render() {
-    let feed = this.props.state.campaign.activityFeed;
-    let reportbacks = this.props.state.reportbacks;
+    let feed = this.props.campaign.activityFeed;
+    let reportbacks = this.props.reportbacks;
 
     // @TODO: This should be moved into a separate data normalization layer.
     feed.map((block) => {
