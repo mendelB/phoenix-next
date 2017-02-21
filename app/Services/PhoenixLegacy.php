@@ -92,7 +92,7 @@ class PhoenixLegacy extends RestApiClient
     }
 
     /**
-     * Get details for a particular campaign signup from Phoenix.
+     * Get details for a particular reportback from Phoenix.
      * @see: https://github.com/DoSomething/phoenix/wiki/API#retrieve-a-specific-reportback
      *
      * @param $reportback_id
