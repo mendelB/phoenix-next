@@ -25,6 +25,11 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers'
 import ActionFeed from './containers/ActionFeed';
 
+// Make action available to demonstrate loading more reportbacks.
+// @TODO: Expose this in the UI!
+import { fetchReportbacks } from './actions';
+window.actions = { fetchReportbacks };
+
 ready(() => {
   const appContainer = document.getElementById('app');
   const preloadedState = window.STATE || {};
