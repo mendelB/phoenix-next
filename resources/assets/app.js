@@ -21,22 +21,29 @@ import ReactDom from 'react-dom';
 import { Provider } from 'react-redux'
 
 import { createStore, applyMiddleware, compose } from 'redux'
-import createLogger from 'redux-logger'
+import thunk from 'redux-thunk';
 import rootReducer from './reducers'
 import ActionFeed from './containers/ActionFeed';
 
 ready(() => {
   const appContainer = document.getElementById('app');
-  const loggerMiddleware = createLogger();
   const preloadedState = window.STATE || {};
 
+  // Log actions to the console in development.
+  const middleware = [thunk];
+  if (process.env.NODE_ENV === `development`) {
+    const createLogger = require(`redux-logger`);
+    middleware.push(createLogger());
+  }
+
+  // If React DevTools are available, use instrumented compose function.
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   const store = createStore(
     rootReducer,
     preloadedState,
     composeEnhancers(
-      applyMiddleware(loggerMiddleware)
+      applyMiddleware(...middleware)
     )
   );
 

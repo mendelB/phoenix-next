@@ -25,7 +25,8 @@
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
-    "redux-logger": "^2.8.1"
+    "redux-logger": "^2.8.1",
+    "redux-thunk": "latest"
   },
   "devDependencies": {
     "@dosomething/webpack-config": "^1.1.1",
