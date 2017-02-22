@@ -19,11 +19,9 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 import { Provider } from 'react-redux'
-
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk';
-import rootReducer from './reducers'
 import ActionFeed from './containers/ActionFeed';
+import rootReducer from './reducers'
+import configureStore from './store';
 
 // Make action available to demonstrate loading more reportbacks.
 // @TODO: Expose this in the UI!
@@ -32,25 +30,7 @@ window.actions = { fetchReportbacks };
 
 ready(() => {
   const appContainer = document.getElementById('app');
-  const preloadedState = window.STATE || {};
-
-  // Log actions to the console in development.
-  const middleware = [thunk];
-  if (process.env.NODE_ENV === `development`) {
-    const createLogger = require(`redux-logger`);
-    middleware.push(createLogger());
-  }
-
-  // If React DevTools are available, use instrumented compose function.
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-  const store = createStore(
-    rootReducer,
-    preloadedState,
-    composeEnhancers(
-      applyMiddleware(...middleware)
-    )
-  );
+  const store = configureStore(rootReducer, window.STATE);
 
   if (appContainer) {
     ReactDom.render(<Provider store={store}><ActionFeed /></Provider>, appContainer);
