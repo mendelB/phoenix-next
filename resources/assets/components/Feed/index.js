@@ -46,7 +46,10 @@ class Feed extends React.Component {
 
         const count = block.fields.additionalContent.count || 3;
         for (let i = 0; i < count; i++) {
-          block.reportbacks.push(reportbacks.shift());
+          let reportback = reportbacks.data.shift();
+          if (reportback) {
+            block.reportbacks.push(reportback);
+          }
         }
       }
 
