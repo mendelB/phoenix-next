@@ -36,4 +36,3 @@ ready(() => {
     ReactDom.render(<Provider store={store}><ActionFeed /></Provider>, appContainer);
   }
 });
-
