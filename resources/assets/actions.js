@@ -1,7 +1,7 @@
 import { Phoenix } from '@dosomething/gateway';
 
 /*
- * Actions names: import these constants to dispatch an event
+ * Action names: import these constants to dispatch an event
  * without having hardcoded strings all about.
  */
 export const REQUESTED_REPORTBACKS = 'REQUESTED_REPORTBACKS';
