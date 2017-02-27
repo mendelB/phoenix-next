@@ -1,0 +1,22 @@
+@import '~@dosomething/forge/scss/toolkit';
+
+.media-uploader {
+  background-color: #eee;
+  color: $med-gray;
+  height: 300px;
+  width: 300px;
+
+  label {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  input {
+    @include visually-hidden();
+  }
+}
