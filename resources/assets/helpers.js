@@ -1,4 +1,5 @@
 import marked from 'marked';
+import get from 'lodash/get';
 
 /**
  * Wait until the DOM is ready.
@@ -61,31 +62,17 @@ export function processFile(file) {
  * @todo Eventually deal with other file types.
  */
 function getFileType(file) {
-  let type = '';
   let dv = new DataView(file, 0, 5);
   let byte1 = dv.getUint8(0, true);
   let byte2 = dv.getUint8(1, true);
   let hex = byte1.toString(16) + byte2.toString(16);
 
-  switch(hex) {
-    case '8950':
-        type = 'image/png';
-        break;
-    case '4749':
-        type = 'image/gif';
-        break;
-    case '424d':
-        type = 'image/bmp';
-        break;
-    case 'ffd8':
-        type = 'image/jpeg';
-        break;
-    default:
-        type = null;
-        break;
-  };
-
-  return type;
+  return get({
+    '8950': 'image/png',
+    '4749': 'image/gif',
+    '424d': 'image/bmp',
+    'ffd8': 'image/jpeg'
+  }, hex, null);
 }
 
 /**
