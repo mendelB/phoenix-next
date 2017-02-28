@@ -32,6 +32,16 @@ export function markdown(source) {
 }
 
 /**
+ * Prefix a class name or array of class names.
+ * @param {String|Array} classes
+ */
+export function modifiers(...classes) {
+  if (! Array.isArray(classes)) classes = [classes];
+
+  return classes.map(className => `-${className}`);
+}
+
+/**
  * Process file (provided as an ArrayBuffer) depending
  * on its type.
  *

@@ -22,7 +22,7 @@ class Feed extends React.Component {
       'reportbacks': ReportbackBlock,
     }, block.type, PlaceholderBlock);
 
-    return <FlexCell key={block.id} modifiers={block.fields.displayOptions}><BlockComponent {...block} /></FlexCell>;
+    return <FlexCell key={block.id} width={block.fields.displayOptions}><BlockComponent {...block} /></FlexCell>;
   }
 
   /**
