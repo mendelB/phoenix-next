@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { modifiers } from '../../helpers';
 import './flex.scss';
 
 export const Flex = ({children}) => {
@@ -10,17 +11,15 @@ export const Flex = ({children}) => {
   );
 };
 
-export const FlexCell = ({modifiers = [], children}) => {
-  modifiers = modifiers.map(className => `-${className}`);
-
+export const FlexCell = ({width = [], children}) => {
   return (
-    <div className={classNames('flex__cell', modifiers)}>
+    <div className={classNames('flex__cell', modifiers(width))}>
       {children}
     </div>
   );
 };
 
 FlexCell.propTypes = {
-  modifiers: React.PropTypes.arrayOf(React.PropTypes.oneOf(['full', 'one-third', 'two-thirds']))
+  width: React.PropTypes.arrayOf(React.PropTypes.oneOf(['full', 'one-third', 'two-thirds']))
 };
 
