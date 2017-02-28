@@ -11,8 +11,8 @@
                         <h3>We're rebuilding the site!</h3>
                     </div>
                     <div class="container__block -centered">
-                        <p>We're hard at work making a new <strong>DoSomething.org</strong> experience that is designed to be a platform which better serves the community.</p>
-                        <p>Enter your email below to be notified when we launch!</p>
+                        <p>We're hard at work making a new and improved experience for you and the entire DoSomething.org community.</p>
+                        <p>Enter your email below, and we'll let you know when we launch!</p>
                         <form action="waitinglist" method="post">
                             <ul class="form-actions -inline">
                                <li><input name="email" type="text" class="text-field" placeholder="you@gmail.com"></li>
