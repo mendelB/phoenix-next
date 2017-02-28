@@ -1,0 +1,9 @@
+@import "~@dosomething/forge/scss/toolkit";
+
+.campaign-update__content {
+  margin-bottom: $base-spacing;
+}
+
+.campaign-update__content.-tweet p {
+  font-size: $font-large;
+}
