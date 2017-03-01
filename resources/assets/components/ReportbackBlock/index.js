@@ -1,42 +1,70 @@
 import React from 'react';
 import Block from '../Block';
 import { FlexCell } from '../Flex';
-import './reportback.scss';
-import classnames from 'classnames';
+import { Phoenix } from '@dosomething/gateway';
+import Reaction from '../Reaction';
 
 class ReportbackReaction extends React.Component {
   constructor(props) {
     super(props);
 
     this.onReact = this.onReact.bind(this);
+    this.phoenix = new Phoenix();
+
+    const currentUser = this.props.reactions.current_user;
 
     this.state = {
-      reacted: false,
-      total: this.props.term ? this.props.term.total : 0,
+      active: currentUser ? currentUser.reacted : false,
+      total: this.props.reactions.term.total,
+      reactionId: currentUser ? currentUser.kudos_id : '',
     }
   }
 
-  //TODO: Fetch state of Reaction for this user on load
-
   onReact() {
+    const newReactionState = !this.state.active;
+
     this.setState({
-      reacted: !this.state.reacted,
-      total: this.state.total + (this.state.reacted ? -1 : 1),
+      active: newReactionState,
+      total: this.state.total + (newReactionState ? 1 : -1),
     });
-    //TODO: Make API call to change the Reaction state (POST|DELETE)
+
+    if (newReactionState) {
+      this.phoenix.post('reactions', {
+        'reportback_item_id': this.props.itemId,
+        'term_id': this.props.reactions.term.id,
+      })
+      .then((response) => {
+        if (response && response[0] && response[0].created) {
+          this.setState({
+            reactionId: response[0].kid,
+          });
+        }
+      });
+    } else {
+      this.phoenix.delete(`reactions/${this.state.reactionId}`);
+    }
   }
 
   render() {
     return (
-      <div className="reaction" onClick={this.onReact}>
-        <div className={classnames('reaction__button', {'-reacted' : this.state.reacted})}></div>
-        <div className="reaction__meta">
-          <p>{this.state.total}</p>
-        </div>
-      </div>
+      <Reaction active={this.state.active} total={this.state.total} onClick={this.onReact}></Reaction>
     );
   }
 }
+
+ReportbackReaction.defaultProps = {
+  reactions: {
+    term: {
+      id: '',
+      total: 0,
+    },
+    currentUser: {
+      reacted: false,
+      kudos_id: '',
+    },
+  },
+  itemId: '',
+};
 
 const ReportbackItem = (props) => {
   const item = props.reportback.reportback_items.data[0];
@@ -51,7 +79,7 @@ const ReportbackItem = (props) => {
       <div className="padded">
         <h4>{name}</h4>
         <p className="footnote">{impact}</p>
-        <ReportbackReaction reactions={reactions} />
+        <ReportbackReaction reactions={reactions} itemId={item.id} />
       </div>
     </Block>
   );
