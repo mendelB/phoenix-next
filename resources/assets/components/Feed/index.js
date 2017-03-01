@@ -15,14 +15,14 @@ class Feed extends React.Component {
    * @param block
    * @returns {XML}
    */
-  renderFeedItem(block) {
+  renderFeedItem(block, index) {
     const BlockComponent = get({
       'campaign_update': CampaignUpdateBlock,
       'join_cta': CallToActionBlock,
       'reportbacks': ReportbackBlock,
     }, block.type, PlaceholderBlock);
 
-    return <FlexCell key={block.id} width={block.fields.displayOptions}><BlockComponent {...block} /></FlexCell>;
+    return <FlexCell key={block.id + '-' + index} width={block.fields.displayOptions}><BlockComponent {...block} /></FlexCell>;
   }
 
   /**
@@ -60,7 +60,7 @@ class Feed extends React.Component {
       <div className="feed-container">
         <div className="wrapper">
           <Flex>
-            {feed.map((block) => this.renderFeedItem(block))}
+            {feed.map((block, index) => this.renderFeedItem(block, index))}
           </Flex>
         </div>
       </div>
