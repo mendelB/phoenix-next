@@ -26,3 +26,6 @@ $router->post('waitinglist', 'WaitingListController@store');
 // Reactions
 $router->post('reactions', 'ReactionController@store');
 $router->delete('reactions/{id}', 'ReactionController@delete');
+
+// Embeds
+$router->get('embed', 'EmbedController@index');
