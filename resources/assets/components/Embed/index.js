@@ -28,7 +28,7 @@ class Embed extends React.Component {
         <a href={this.state.url} target="_blank">
           <Figure className="embed__preview" image={this.state.image} alignment="left" size="large">
             <h3>{ this.state.title }</h3>
-            <p>{ this.state.description }</p>
+            { this.state.description ? <p>{ this.state.description }</p> : null }
             <p className="footnote">{ this.state.provider.name }</p>
           </Figure>
         </a>
