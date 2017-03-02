@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { markdown } from '../../helpers';
 import Block from '../Block';
 import Figure from '../Figure';
+import Embed from '../Embed';
 import DEFAULT_AVATAR from './default-avatar.png';
 import './campaign-update.scss';
 
@@ -14,7 +15,7 @@ const Byline = ({author, jobTitle = 'DoSomething.org Staff', avatar = DEFAULT_AV
 );
 
 const CampaignUpdateBlock = (props) => {
-  const { title, content, additionalContent } = props.fields;
+  const { title, content, link, additionalContent } = props.fields;
   let { author, jobTitle, avatar } = additionalContent;
 
   const contentHtml = markdown(content);
@@ -25,6 +26,7 @@ const CampaignUpdateBlock = (props) => {
       { isTweet ? null : <h2>{title}</h2> }
       <div className={classnames('campaign-update__content', {'-tweet': isTweet})}
            dangerouslySetInnerHTML={contentHtml} />
+      { link ? <Embed url={link} /> : null }
       { author ? <Byline author={author} jobTitle={jobTitle} avatar={avatar} />: null}
     </Block>
   );
