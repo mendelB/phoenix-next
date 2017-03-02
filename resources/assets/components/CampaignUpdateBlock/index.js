@@ -7,7 +7,7 @@ import DEFAULT_AVATAR from './default-avatar.png';
 import './campaign-update.scss';
 
 const Byline = ({author, jobTitle = 'DoSomething.org Staff', avatar = DEFAULT_AVATAR}) => (
-  <Figure size="small" alignment="left" verticalAlignment="center" image={avatar}>
+  <Figure size="small" alignment="left" verticalAlignment="center" image={avatar} imageClassName="avatar">
     <strong>{author}</strong><br/>
     <p className="footnote">{jobTitle}</p>
   </Figure>
