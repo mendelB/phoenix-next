@@ -59,11 +59,17 @@ class MediaUploader extends React.Component {
 }
 
 MediaUploader.propTypes = {
-  label: React.PropTypes.string
+  label: React.PropTypes.string,
+  media: React.PropTypes.object,
+  setMediaState: React.PropTypes.func
 };
 
 MediaUploader.defaultProps = {
-  label: 'Upload Media'
+  label: 'Upload Media',
+  media: {
+    file: null,
+    filePreviewUrl: null,
+  }
 };
 
 export default MediaUploader;

@@ -19,16 +19,21 @@ $media-uploader-size: 300;
 
 .reportback-form {
   .media-uploader {
-    float: left;
     height: 300px;
-    margin: $base-spacing 0;
+    margin: $base-spacing auto;
     width: 300px;
+
+    @include media($medium) {
+      float: left;
+    }
   }
 
   .wrapper {
-    float: left;
-    padding-left: $base-spacing / 2;
-    width: calc(100% - 300px);
+    @include media($medium) {
+      float: left;
+      padding-left: $base-spacing / 2;
+      width: calc(100% - 300px);
+    }
   }
 
   .form-item {

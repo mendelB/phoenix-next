@@ -9,48 +9,44 @@ class ReportbackUploader extends React.Component {
     super();
 
     this.storeReportback = this.storeReportback.bind(this);
+    this.setMediaState = this.setMediaState.bind(this);
 
     this.state = {
-      media: {
-        file: null,
-        filePreviewUrl: null
-      },
+      media: this.defaultMediaState(),
       caption: null,
       impact: null,
       why_participated: null
     };
   }
 
-  setMediaState(data) {
-    console.log('setMediaState');
-    console.log(data.filePreviewUrl);
+  defaultMediaState() {
+    return {
+      file: null,
+      filePreviewUrl: null
+    }
+  };
 
-    // this.setState({
-    //   media: {
-    //     file: data.file,
-    //     filePreviewUrl: data.filePreviewUrl
-    //   }
-    // });
+  setMediaState(media) {
+    this.setState({ media })
   }
 
   storeReportback(event) {
     event.preventDefault();
 
-    console.log('storeReportback');
+    const reportback = {
+      photo: this.state.media,
+      caption: this.caption.value,
+      impact: this.impact.value,
+      why_participated: this.why_participated.value
+    };
 
-    // const reportback = {
-    //   photo: this.mediaUploader.state.file,
-    //   caption: this.caption.value,
-    //   impact: this.impact.value,
-    //   why_participated: this.why_participated.value
-    // };
-
-    // console.log(reportback);
-    // console.log(this.mediaUploader);
+    console.log(reportback);
 
     // @TODO: only reset form AFTER successful RB submission.
-    // this.form.reset();
-    // this.mediaUploader.setDefaultState();
+    this.form.reset();
+    this.setState({
+      media: this.defaultMediaState()
+    });
   }
 
   render() {
@@ -87,6 +83,3 @@ class ReportbackUploader extends React.Component {
 }
 
 export default ReportbackUploader;
-
-// <MediaUploader label="Send us your photo" media={this.state.photo} onChange={} />
-// <MediaUploader label="Send us your photo" ref={(component) => this.mediaUploader = component} />
