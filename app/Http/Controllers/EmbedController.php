@@ -30,9 +30,10 @@ class EmbedController extends Controller
                 'icon' => $info->providerIcon,
             ],
             'title' => $info->title,
+            'description' => $info->description,
             'url' => $info->url,
             'image' => $info->image,
-            'code' => $info->code,
+            'code' => $info->type === 'video' ? $info->code : null,
         ];
     }
 

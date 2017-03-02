@@ -1,0 +1,26 @@
+@import '~@dosomething/forge/scss/toolkit';
+
+.embed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto $base-spacing;
+  overflow: hidden;
+  min-height: 100px;
+  transition: box-shadow 1s;
+
+  a {
+    color: $black;
+    text-decoration: none;
+    font-weight: $weight-normal;
+  }
+}
+
+.embed.-loaded {
+  display: block;
+  box-shadow: $box-shadow;
+}
+
+.embed__preview {
+  padding: $base-spacing / 2;
+}
