@@ -9,7 +9,7 @@ class ReportbackUploader extends React.Component {
     super();
 
     this.storeReportback = this.storeReportback.bind(this);
-    this.setMediaState = this.setMediaState.bind(this);
+    this.onChange = this.onChange.bind(this);
 
     this.state = {
       media: this.defaultMediaState(),
@@ -26,7 +26,7 @@ class ReportbackUploader extends React.Component {
     }
   };
 
-  setMediaState(media) {
+  onChange(media) {
     this.setState({ media })
   }
 
@@ -55,7 +55,7 @@ class ReportbackUploader extends React.Component {
         <div className="reportback-uploader">
           <h2 className="heading">Upload your photos</h2>
           <form className="reportback-form" onSubmit={this.storeReportback} ref={(form) => this.form = form}>
-            <MediaUploader label="Send us your photo" media={this.state.media} setMediaState={this.setMediaState} />
+            <MediaUploader label="Send us your photo" media={this.state.media} onChange={this.onChange} />
 
             <div className="wrapper">
               <div className="form-item">

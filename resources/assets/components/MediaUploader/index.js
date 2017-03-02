@@ -25,7 +25,7 @@ class MediaUploader extends React.Component {
       try {
         blob = processFile(fileReader.result);
 
-        this.props.setMediaState({
+        this.props.onChange({
           file: blob,
           filePreviewUrl: URL.createObjectURL(blob)
         });
@@ -61,7 +61,7 @@ class MediaUploader extends React.Component {
 MediaUploader.propTypes = {
   label: React.PropTypes.string,
   media: React.PropTypes.object,
-  setMediaState: React.PropTypes.func
+  onChange: React.PropTypes.func
 };
 
 MediaUploader.defaultProps = {
