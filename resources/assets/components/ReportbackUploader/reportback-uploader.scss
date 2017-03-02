@@ -1,0 +1,39 @@
+@import '~@dosomething/forge/scss/toolkit';
+
+$media-uploader-size: 300;
+
+.reportback-uploader {
+  .heading {
+    background-color: $black;
+    color: $white;
+    font-size: $font-medium;
+    margin: -($base-spacing / 2);
+    padding: $base-spacing / 2;
+  }
+
+  .button {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.reportback-form {
+  .media-uploader {
+    float: left;
+    height: 300px;
+    margin: $base-spacing 0;
+    width: 300px;
+  }
+
+  .wrapper {
+    float: left;
+    padding-left: $base-spacing / 2;
+    width: calc(100% - 300px);
+  }
+
+  .form-item {
+    margin-top: $base-spacing;
+    clear: both;
+  }
+}
+
