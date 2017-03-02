@@ -25,7 +25,7 @@ class Embed extends React.Component {
       embed = <div className="media-video" dangerouslySetInnerHTML={{__html: this.state.code }} />;
     } else if (this.state.title && this.state.url && this.state.image) {
       embed = (
-        <a href={this.state.url}>
+        <a href={this.state.url} target="_blank">
           <Figure className="embed__preview" image={this.state.image} alignment="left" size="large">
             <h3>{ this.state.title }</h3>
             <p>{ this.state.description }</p>
