@@ -10,6 +10,9 @@
 
 import { ready } from './helpers';
 
+// WHATWG Fetch Polyfill
+import 'whatwg-fetch';
+
 // Components
 import './components/construction.scss';
 import './components/container.scss';
