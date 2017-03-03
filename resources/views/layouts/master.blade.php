@@ -43,8 +43,6 @@
         @yield('content')
     </div>
 </div>
-<script type="text/javascript" src="https://unpkg.com/jquery@^3.0.0/dist/jquery.min.js"></script>
-<script type="text/javascript" src="https://unpkg.com/@dosomething/forge@^6.7.4/dist/forge.js"></script>
 <script type="text/javascript" src="{{ asset('dist/app.js') }}"></script>
 
 {{ isset($state) ? scriptify($state) : scriptify() }}
