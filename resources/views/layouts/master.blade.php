@@ -43,10 +43,11 @@
         @yield('content')
     </div>
 </div>
-<script type="text/javascript" src="{{ asset('dist/app.js') }}"></script>
 
 {{ isset($state) ? scriptify($state) : scriptify() }}
 {{ scriptifyCurrentUser() }}
+
+<script type="text/javascript" src="{{ asset('dist/app.js') }}"></script>
 </body>
 
 </html>
