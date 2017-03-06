@@ -6,6 +6,7 @@ import { Phoenix } from '@dosomething/gateway';
  */
 export const REQUESTED_REPORTBACKS = 'REQUESTED_REPORTBACKS';
 export const RECEIVED_REPORTBACKS = 'RECEIVED_REPORTBACKS';
+export const STORED_REPORTBACK_SUBMISSION = 'STORED_REPORTBACK_SUBMISSION';
 
 /**
  * Action Creators: these functions create actions, which describe changes
@@ -20,6 +21,10 @@ export function requestingReportbacks(node) {
 // Action: new reportback data received.
 export function receivedReportbacks(node, page, data) {
   return { type: RECEIVED_REPORTBACKS, node, page, data};
+}
+
+export function storeReportbackSubmission() {
+  return { type: STORED_REPORTBACK_SUBMISSION };
 }
 
 // An async action creator to fetch another page of reportbacks.

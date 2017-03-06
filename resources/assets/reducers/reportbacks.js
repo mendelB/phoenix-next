@@ -1,12 +1,4 @@
-import { combineReducers } from 'redux';
-import { REQUESTED_REPORTBACKS, RECEIVED_REPORTBACKS } from './actions';
-
-/**
- * Campaign reducer:
- */
-const campaign = (state = {}, action) => {
-  return state;
-};
+import { REQUESTED_REPORTBACKS, RECEIVED_REPORTBACKS } from '../actions';
 
 /**
  * Reportback reducer:
@@ -27,15 +19,6 @@ const reportbacks = (state = {}, action) => {
     default:
       return state;
   }
-};
+}
 
-/**
- * Events reducer:
- */
-const submission = (state = {}, action) => {
-  return state;
-};
-
-const rootReducer = combineReducers({campaign, submission, reportbacks});
-
-export default rootReducer;
+export default reportbacks;
