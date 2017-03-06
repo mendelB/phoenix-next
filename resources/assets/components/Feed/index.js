@@ -32,44 +32,20 @@ class Feed extends React.Component {
    * @returns {XML}
    */
   render() {
-    let feed = this.props.campaign.activityFeed;
-    let reportbacks = this.props.reportbacks;
-
-    // @TODO: This should be moved into a separate data normalization layer.
-    feed.map((block) => {
-      // Set root-level type property if it's a custom block.
-      const type = block.type === 'customBlock' ? block.fields.type : block.type;
-      block.type = type;
-
-      // If it's a reportback block, load in the requested number of reportbacks.
-      if (type === 'reportbacks') {
-        block.reportbacks = [];
-
-        const count = block.fields.additionalContent.count || 3;
-        for (let i = 0; i < count; i++) {
-          let reportback = reportbacks.data.shift();
-          if (reportback) {
-            block.reportbacks.push(reportback);
-          }
-        }
-      }
-
-      return block;
-    });
-
     return (
-      <div className="feed-container">
-        <div className="wrapper">
-          <Flex>
-            {feed.map((block, index) => this.renderFeedItem(block, index))}
-            <FlexCell key="reportback_uploader">
-              <ReportbackUploader/>
-            </FlexCell>
-          </Flex>
-        </div>
-      </div>
+      <Flex>
+        {this.props.blocks.map((block, index) => this.renderFeedItem(block, index))}
+
+        <FlexCell key="reportback_uploader">
+          <ReportbackUploader/>
+        </FlexCell>
+      </Flex>
     );
   }
+};
+
+Feed.defaultProps = {
+  blocks: [],
 };
 
 export default Feed;
