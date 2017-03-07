@@ -18,7 +18,7 @@ $router->get('logout', 'AuthController@getLogout');
 
 // Campaigns
 $router->get('campaigns', 'CampaignController@index');
-$router->get('campaigns/{slug}', 'CampaignController@show');
+$router->get('campaigns/{slug}/{page?}', 'CampaignController@show');
 
 // Waiting List: for collecting user emails pre-launch.
 $router->post('waitinglist', 'WaitingListController@store');
