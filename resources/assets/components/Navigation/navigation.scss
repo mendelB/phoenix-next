@@ -1,0 +1,16 @@
+@import '~@dosomething/forge/scss/toolkit';
+
+.nav-link {
+  color: #fff;
+  margin: 0 $base-spacing / 2;
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 4px solid rgba(#fff, 0.5);
+  }
+}
+
+.nav-link.is-active {
+  border-bottom: 4px solid #fff;
+}

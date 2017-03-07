@@ -94,11 +94,7 @@ class CampaignFeed extends React.Component {
 
   render() {
     return (
-      <div className="feed-container">
-        <div className="wrapper">
-          <Feed blocks={this.state.blocks} viewMore={this.formulateFeed} />
-        </div>
-      </div>
+      <Feed blocks={this.state.blocks} viewMore={this.formulateFeed} />
     );
   }
 
