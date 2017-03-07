@@ -6,7 +6,8 @@ import CampaignUpdateBlock from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from "../ReportbackBlock";
 import { Flex, FlexCell } from '../Flex';
-import ReportbackUploader from '../ReportbackUploader';
+import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
+import './feed.scss';
 
 class Feed extends React.Component {
   /**
@@ -38,7 +39,7 @@ class Feed extends React.Component {
           <a className="button -secondary" onClick={this.props.viewMore}>view more</a>
         </FlexCell>
         <FlexCell key="reportback_uploader">
-          <ReportbackUploader/>
+          <ReportbackUploaderContainer/>
         </FlexCell>
       </Flex>
     );
