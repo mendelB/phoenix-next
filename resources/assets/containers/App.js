@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import * as reducers from '../reducers/index'
+import * as reducers from '../reducers'
 import configureStore from '../store';
 
 import { Router, Route, useRouterHistory } from 'react-router';
