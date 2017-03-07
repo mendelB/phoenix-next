@@ -7,7 +7,6 @@ import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from "../ReportbackBlock";
 import { Flex, FlexCell } from '../Flex';
 import ReportbackUploader from '../ReportbackUploader';
-import './feed.scss';
 
 class Feed extends React.Component {
   /**
@@ -35,7 +34,6 @@ class Feed extends React.Component {
     return (
       <Flex>
         {this.props.blocks.map((block, index) => this.renderFeedItem(block, index))}
-
         <FlexCell key="reportback_uploader">
           <ReportbackUploader/>
         </FlexCell>
