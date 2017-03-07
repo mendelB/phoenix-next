@@ -2,13 +2,14 @@ import React from 'react';
 import Block from '../Block';
 import { Flex } from '../Flex';
 import MediaUploader from '../MediaUploader';
+import ReportbackSubmissions from '../ReportbackSubmissions';
 import './reportback-uploader.scss';
 
 class ReportbackUploader extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.storeReportback = this.storeReportback.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
 
     this.state = {
@@ -30,7 +31,7 @@ class ReportbackUploader extends React.Component {
     this.setState({ media })
   }
 
-  storeReportback(event) {
+  onSubmit(event) {
     event.preventDefault();
 
     const reportback = {
@@ -40,7 +41,7 @@ class ReportbackUploader extends React.Component {
       why_participated: this.why_participated.value
     };
 
-    console.log(reportback);
+    this.props.submitReportback(reportback);
 
     // @TODO: only reset form AFTER successful RB submission.
     this.form.reset();
@@ -54,7 +55,7 @@ class ReportbackUploader extends React.Component {
       <Block>
         <div className="reportback-uploader">
           <h2 className="heading">Upload your photos</h2>
-          <form className="reportback-form" onSubmit={this.storeReportback} ref={(form) => this.form = form}>
+          <form className="reportback-form" onSubmit={this.onSubmit} ref={(form) => this.form = form}>
             <MediaUploader label="Send us your photo" media={this.state.media} onChange={this.onChange} />
 
             <div className="wrapper">
@@ -77,6 +78,8 @@ class ReportbackUploader extends React.Component {
             <button className="button" type="submit">Submit a new photo</button>
           </form>
         </div>
+
+        <ReportbackSubmissions submissions={this.props.submissions}/>
       </Block>
     );
   }

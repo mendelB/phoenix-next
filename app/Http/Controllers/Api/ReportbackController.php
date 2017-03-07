@@ -37,7 +37,7 @@ class ReportbackController extends Controller
      */
     public function store(Request $request)
     {
-        return '@todo store reportback';
+        return response()->json('temp response here!');
     }
 
     /**

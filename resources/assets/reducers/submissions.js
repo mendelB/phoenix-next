@@ -1,12 +1,24 @@
-import { STORED_REPORTBACK_SUBMISSION } from '../actions';
+import {
+  STORE_REPORTBACK_PENDING,
+  STORE_REPORTBACK_SUCESSFUL,
+  ADD_TO_SUBMISSIONS_LIST
+} from '../actions';
 
 /**
  * Submissions reducer:
  */
 const submissions = (state = {}, action) => {
   switch (action.type) {
-    case STORED_REPORTBACK_SUBMISSION:
-      return state;
+    case STORE_REPORTBACK_PENDING:
+      return {...state, isStoring: true};
+
+    case STORE_REPORTBACK_SUCESSFUL:
+      return {...state, isStoring: false};
+
+    case ADD_TO_SUBMISSIONS_LIST:
+      return Object.assign({}, state, {
+        data: [...state, action.reportback]
+      })
 
     default:
       return state;

@@ -6,7 +6,9 @@ import { Phoenix } from '@dosomething/gateway';
  */
 export const REQUESTED_REPORTBACKS = 'REQUESTED_REPORTBACKS';
 export const RECEIVED_REPORTBACKS = 'RECEIVED_REPORTBACKS';
-export const STORED_REPORTBACK_SUBMISSION = 'STORED_REPORTBACK_SUBMISSION';
+export const STORE_REPORTBACK_PENDING = 'STORE_REPORTBACK_PENDING';
+export const STORE_REPORTBACK_SUCESSFUL = 'STORE_REPORTBACK_SUCESSFUL';
+export const ADD_TO_SUBMISSIONS_LIST = 'ADD_TO_SUBMISSIONS_LIST';
 
 /**
  * Action Creators: these functions create actions, which describe changes
@@ -23,8 +25,35 @@ export function receivedReportbacks(node, page, data) {
   return { type: RECEIVED_REPORTBACKS, node, page, data};
 }
 
-export function storeReportbackSubmission() {
-  return { type: STORED_REPORTBACK_SUBMISSION };
+// Action: store new user submitted reportback.
+export function storeReportback(reportback) {
+  return {
+    type: STORE_REPORTBACK_PENDING,
+    reportback
+  };
+}
+
+// Action: add user reportback submission to submissions list.
+export function addToSubmissionsList(reportback) {
+  return {
+    type: ADD_TO_SUBMISSIONS_LIST,
+    reportback
+  }
+}
+
+// An async action creator to submit a new reportback and place in submissions gallery.
+export function submitReportback(reportback) {
+  return dispatch => {
+    dispatch(storeReportback(reportback));
+
+    return (new Phoenix).post('api/v1/reportbacks', reportback)
+      .then(dispatch({
+        type: STORE_REPORTBACK_SUCESSFUL
+      }))
+      .then((response) => {
+        dispatch(addToSubmissionsList(reportback));
+      });
+  };
 }
 
 // An async action creator to fetch another page of reportbacks.
