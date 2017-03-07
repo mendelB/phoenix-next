@@ -5,6 +5,10 @@ import { Link } from 'react-router';
 
 const Chrome = (props) => (
   <div>
+    <Navigation>
+      <Link to="/" className="nav-link" activeClassName="is-active">Feed</Link>
+      <Link to="/faq" className="nav-link" activeClassName="is-active">FAQ</Link>
+    </Navigation>
     <FeedContainer>
       {props.children}
     </FeedContainer>
