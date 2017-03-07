@@ -6,10 +6,8 @@ class ReportbackSubmissions extends React.Component {
   }
 
   renderSubmission(reportback, index) {
-    let key = `submission-${index}`;
-
     // @TODO: need to flesh out the markup.
-    return <li key={key}>{reportback.caption}</li>;
+    return <li key={index}>{reportback.caption}</li>;
   }
 
   render() {

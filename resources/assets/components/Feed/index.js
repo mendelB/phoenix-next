@@ -7,7 +7,6 @@ import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from "../ReportbackBlock";
 import { Flex, FlexCell } from '../Flex';
 import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
-import './feed.scss';
 
 class Feed extends React.Component {
   /**
