@@ -23,6 +23,7 @@ const App = (props) => (
       <Route component={Chrome}>
         <Route path="/" component={Activity}/>
         <Route path="faq" component={ExamplePage}/>
+        <Route path='*' component={NotFound} />
       </Route>
     </Router>
   </Provider>
