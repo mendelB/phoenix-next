@@ -42,7 +42,6 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        dd(Auth::user());
         $campaigns = $this->campaignRepository->getAll();
 
         return view('campaigns.index', ['campaigns' => $campaigns]);
