@@ -42,6 +42,7 @@ class CampaignController extends Controller
      */
     public function index()
     {
+        dd(Auth::user());
         $campaigns = $this->campaignRepository->getAll();
 
         return view('campaigns.index', ['campaigns' => $campaigns]);
@@ -69,6 +70,6 @@ class CampaignController extends Controller
         $reportbacks = $response['data'];
 
         return view('campaigns.show', ['campaign' => $campaign])
-            ->with('state', ['campaign' => $campaign, 'reportbacks' => ['isFetching' => false, 'data' => $reportbacks], 'submissions' => ['isStoring' => false]]);
+            ->with('state', ['campaign' => $campaign, 'reportbacks' => ['data' => $reportbacks]]);
     }
 }
