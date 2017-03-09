@@ -9,11 +9,17 @@ export const RECEIVED_REPORTBACKS = 'RECEIVED_REPORTBACKS';
 export const STORE_REPORTBACK_PENDING = 'STORE_REPORTBACK_PENDING';
 export const STORE_REPORTBACK_SUCESSFUL = 'STORE_REPORTBACK_SUCESSFUL';
 export const ADD_TO_SUBMISSIONS_LIST = 'ADD_TO_SUBMISSIONS_LIST';
+export const CLICKED_VIEW_MORE = 'CLICKED_VIEW_MORE';
 
 /**
  * Action Creators: these functions create actions, which describe changes
  * to the state tree (either as a result of application logic or user input).
  */
+
+// Action: user asked for more blocks.
+export function clickedViewMore() {
+  return { type: CLICKED_VIEW_MORE };
+}
 
 // Action: reportback fetch initiated.
 export function requestingReportbacks(node) {

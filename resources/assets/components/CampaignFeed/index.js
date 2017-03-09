@@ -1,21 +1,16 @@
 import React from 'react';
 import Feed from '../Feed';
 
+const BLOCKS_PER_ROW = 3;
+
 class CampaignFeed extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.formulateFeed = this.formulateFeed.bind(this);
-
-    this.state = {
-      blockIndex: 0,
-      blocks: [],
-    };
-  }
-
-  componentDidMount() {
-    this.formulateFeed();
+    // Intentionally not attached to the component state as
+    // this property should not trigger re-renders.
+    this.reportbackIndex = 0;
   }
 
   /**
@@ -55,46 +50,45 @@ class CampaignFeed extends React.Component {
 
       const count = block.fields.additionalContent.count || 3;
       for (let i = 0; i < count; i++) {
-        const reportback = this.props.reportbacks.data.shift();
+        const reportback = this.props.reportbacks.data[this.reportbackIndex];
 
         if (reportback) {
           block.reportbacks.push(reportback);
         }
+
+        this.reportbackIndex++;
       }
     }
   }
 
   /**
-   * Create another page of blocks to render.
+   * Create the feed.
    */
-  formulateFeed() {
+  generateFeed() {
+    this.reportbackIndex = 0;
     let blockPoints = 0;
-    const blocks = [];
 
-    const feed = this.props.campaign.activityFeed.slice(this.state.blockIndex);
-    feed.some((block) => {
-      const displayOptions = block.fields.displayOptions;
-      blockPoints += this.mapDisplayToPoints(displayOptions);
+    return this.props.campaign.activityFeed.filter((block) => {
+      blockPoints += this.mapDisplayToPoints(block.fields.displayOptions);
 
-      // 3 equals a filled row of block(s)
-      if (blockPoints / 3 > this.props.rowsPerPage) {
-        return true;
+      const totalRows = blockPoints / BLOCKS_PER_ROW;
+      const rowTarget = this.props.blocks.offset * this.props.rowsPerPage;
+
+      if (totalRows > rowTarget) {
+        return false;
       }
 
       this.setType(block);
       this.appendReportbacks(block);
-      blocks.push(block);
-    });
-
-    this.setState({
-      blockIndex: this.state.blockIndex + blocks.length,
-      blocks: this.state.blocks.concat(blocks),
+      return true;
     });
   }
 
   render() {
+    const blocks = this.generateFeed();
+
     return (
-      <Feed blocks={this.state.blocks} viewMore={this.formulateFeed} />
+      <Feed blocks={blocks} viewMore={this.props.clickedViewMore} />
     );
   }
 
@@ -102,12 +96,6 @@ class CampaignFeed extends React.Component {
 
 CampaignFeed.defaultProps = {
   rowsPerPage: 3,
-  campaign: {
-    activityFeed: [],
-  },
-  reportbacks: {
-    data: [],
-  },
 };
 
 export default CampaignFeed;

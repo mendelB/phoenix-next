@@ -4,6 +4,9 @@ import merge from 'lodash/merge';
 
 export default function(reducers, preloadedState = {}) {
   const initialState = {
+    campaign: {
+      activityFeed: [],
+    },
     reportbacks: {
       isFetching: false,
       data: [],
@@ -11,7 +14,10 @@ export default function(reducers, preloadedState = {}) {
     submissions: {
       isStoring: false,
       data: [],
-    }
+    },
+    blocks: {
+      offset: 1,
+    },
   };
 
   // Log actions to the console in development.
