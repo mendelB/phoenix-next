@@ -46,7 +46,7 @@ export function submitReportback(reportback) {
   return dispatch => {
     dispatch(storeReportback(reportback));
 
-    return (new Phoenix).post('api/v1/reportbacks', reportback)
+    return (new Phoenix).post('reportbacks', reportback)
       .then(dispatch({
         type: STORE_REPORTBACK_SUCESSFUL
       }))
@@ -61,7 +61,7 @@ export function fetchReportbacks(node, page) {
   return dispatch => {
     dispatch(requestingReportbacks(node));
 
-    return (new Phoenix).getAllReportbacks({ campaigns: node, page })
+    return (new Phoenix).get('reportbacks', { campaigns: node, page })
       .then(json => {
         dispatch(receivedReportbacks(node, page, json.data))
       })
