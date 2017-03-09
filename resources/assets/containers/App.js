@@ -9,7 +9,7 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import Chrome from './Chrome';
 import Activity from './Activity';
-import ExamplePage from './ExamplePage';
+import ContentPage from './ContentPage';
 import NotFound from './NotFound';
 
 // Set the application "base name" to /campaigns/:slug so all pages are relative to that.
@@ -24,7 +24,7 @@ const App = (props) => (
     <Router history={history}>
       <Route component={Chrome}>
         <Route path="/" component={Activity}/>
-        <Route path="faq" component={ExamplePage}/>
+        <Route path="/pages/:page" component={ContentPage}/>
         <Route path='*' component={NotFound} />
       </Route>
     </Router>
