@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router';
 import './navigation.scss';
 
-const Navigation = ({children}) => (
+export const Navigation = ({children}) => (
   <div className="feed-container">
     <div className="wrapper">
       { children }
@@ -9,4 +10,6 @@ const Navigation = ({children}) => (
   </div>
 );
 
-export default Navigation;
+export const NavigationLink = props => (
+  <Link {...props} className="nav-link" activeClassName="is-active" />
+);
