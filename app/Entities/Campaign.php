@@ -44,6 +44,7 @@ class Campaign extends Entity implements JsonSerializable
             ],
             // @TODO: Why is it 'activity_feed' oy? ;/
             'activityFeed' => $this->activity_feed,
+            'pages' => $this->pages,
             'additionalContent' => $this->additionalContent,
         ];
     }
