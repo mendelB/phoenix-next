@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Services\PhoenixLegacy;
 use Illuminate\Http\Request;
 
@@ -17,7 +16,6 @@ class ReportbackController extends Controller
     public function __construct(PhoenixLegacy $phoenixLegacy)
     {
         $this->phoenixLegacy = $phoenixLegacy;
-        $this->middleware('auth', ['only' => ['store']]);
     }
 
     /**
