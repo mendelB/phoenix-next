@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 
 const ConnectedContentPage = connect(mapStateToProps)(PageBlock);
 
-const ContentPage = (props) => (
+const ContentPageContainer = (props) => (
   <Flex>
     <FlexCell>
       <ConnectedContentPage route={props.params} />
@@ -17,4 +17,4 @@ const ContentPage = (props) => (
   </Flex>
 );
 
-export default ContentPage;
+export default ContentPageContainer;
