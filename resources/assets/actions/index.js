@@ -51,7 +51,6 @@ export function submitReportback(reportback) {
         type: STORE_REPORTBACK_SUCESSFUL
       }))
       .then((response) => {
-        console.log(response);
         dispatch(addToSubmissionsList(reportback));
       });
   };
