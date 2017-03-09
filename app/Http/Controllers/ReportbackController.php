@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Auth;
 use App\Services\PhoenixLegacy;
 use Illuminate\Http\Request;
 
-class SignupController extends Controller
+class ReportbackController extends Controller
 {
     /**
-     * SignupController constructor.
+     * ReportbackController constructor.
      *
      * @todo once Rogue is ready, this will all change to request
-     * Signups from Rogue instead of PhoenixLegacy.
+     * Reportbacks from Rogue instead of PhoenixLegacy.
      */
     public function __construct(PhoenixLegacy $phoenixLegacy)
     {
         $this->phoenixLegacy = $phoenixLegacy;
+        $this->middleware('auth', ['only' => ['store']]);
     }
 
     /**
@@ -26,28 +27,18 @@ class SignupController extends Controller
      */
     public function index(Request $request)
     {
-        return response()->json($this->phoenixLegacy->getAllSignups($request->query()));
+        return response()->json($this->phoenixLegacy->getAllReportbacks($request->query()));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return string
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'user_id' => 'required',
-            'campaign_id' => 'required',
-            'source' => 'required'
-        ]);
-
-        return $this->phoenixLegacy->storeSignup(
-            $request->input('user_id'),
-            $request->input('campaign_id'),
-            $request->input('source')
-        );
+        return response()->json('temp response here!');
     }
 
     /**
@@ -58,7 +49,7 @@ class SignupController extends Controller
      */
     public function show($id)
     {
-        return response()->json($this->phoenixLegacy->getSignup($id));
+        return response()->json($this->phoenixLegacy->getReportback($id));
     }
 
     /**
@@ -70,6 +61,6 @@ class SignupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return '@todo update signup';
+        return '@todo update reportback';
     }
 }

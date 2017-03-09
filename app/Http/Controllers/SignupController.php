@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Services\PhoenixLegacy;
 use Illuminate\Http\Request;
 
-class ReportbackController extends Controller
+class SignupController extends Controller
 {
     /**
-     * ReportbackController constructor.
+     * SignupController constructor.
      *
      * @todo once Rogue is ready, this will all change to request
-     * Reportbacks from Rogue instead of PhoenixLegacy.
+     * Signups from Rogue instead of PhoenixLegacy.
      */
     public function __construct(PhoenixLegacy $phoenixLegacy)
     {
@@ -26,18 +25,28 @@ class ReportbackController extends Controller
      */
     public function index(Request $request)
     {
-        return response()->json($this->phoenixLegacy->getAllReportbacks($request->query()));
+        return response()->json($this->phoenixLegacy->getAllSignups($request->query()));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return string
      */
     public function store(Request $request)
     {
-        return response()->json('temp response here!');
+        $this->validate($request, [
+            'user_id' => 'required',
+            'campaign_id' => 'required',
+            'source' => 'required'
+        ]);
+
+        return $this->phoenixLegacy->storeSignup(
+            $request->input('user_id'),
+            $request->input('campaign_id'),
+            $request->input('source')
+        );
     }
 
     /**
@@ -48,7 +57,7 @@ class ReportbackController extends Controller
      */
     public function show($id)
     {
-        return response()->json($this->phoenixLegacy->getReportback($id));
+        return response()->json($this->phoenixLegacy->getSignup($id));
     }
 
     /**
@@ -60,6 +69,6 @@ class ReportbackController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return '@todo update reportback';
+        return '@todo update signup';
     }
 }
