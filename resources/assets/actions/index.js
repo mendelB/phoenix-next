@@ -46,11 +46,12 @@ export function submitReportback(reportback) {
   return dispatch => {
     dispatch(storeReportback(reportback));
 
-    return (new Phoenix).post('api/v1/reportbacks', reportback)
+    return (new Phoenix).post('reportbacks', reportback)
       .then(dispatch({
         type: STORE_REPORTBACK_SUCESSFUL
       }))
       .then((response) => {
+        console.log(response);
         dispatch(addToSubmissionsList(reportback));
       });
   };
