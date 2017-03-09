@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { markdown } from '../../helpers';
+import Markdown from '../Markdown';
 import Block from '../Block';
 import Figure from '../Figure';
 import Embed from '../Embed';
@@ -18,14 +18,14 @@ const CampaignUpdateBlock = (props) => {
   const { title, content, link, additionalContent } = props.fields;
   let { author, jobTitle, avatar } = additionalContent;
 
-  const contentHtml = markdown(content);
   const isTweet = content.length < 144;
 
   return (
     <Block>
       { isTweet ? null : <h2>{title}</h2> }
-      <div className={classnames('campaign-update__content', {'-tweet': isTweet})}
-           dangerouslySetInnerHTML={contentHtml} />
+      <Markdown className={classnames('campaign-update__content', {'-tweet': isTweet})}>
+        {content}
+      </Markdown>
       { link ? <Embed url={link} /> : null }
       { author ? <Byline author={author} jobTitle={jobTitle} avatar={avatar} />: null}
     </Block>

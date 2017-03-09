@@ -1,14 +1,10 @@
 import React from 'react';
 import FeedContainer from '../components/FeedContainer';
-import Navigation from '../components/Navigation';
-import { Link } from 'react-router';
+import NavigationContainer from './NavigationContainer';
 
 const Chrome = (props) => (
   <div>
-    <Navigation>
-      <Link to="/" className="nav-link" activeClassName="is-active">Feed</Link>
-      <Link to="/faq" className="nav-link" activeClassName="is-active">FAQ</Link>
-    </Navigation>
+    <NavigationContainer />
     <FeedContainer>
       {props.children}
     </FeedContainer>
