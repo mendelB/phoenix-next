@@ -23,9 +23,21 @@ $router->get('campaigns/{slug}/{page?}', 'CampaignController@show');
 // Waiting List: for collecting user emails pre-launch.
 $router->post('waitinglist', 'WaitingListController@store');
 
+// Embeds
+$router->get('embed', 'EmbedController@index');
+
+
+/**
+ * The following are API Routes that are currently using the web middleware,
+ * until the implementation of JWT tokens.
+ */
+
 // Reactions
 $router->post('reactions', 'ReactionController@store');
 $router->delete('reactions/{id}', 'ReactionController@delete');
 
-// Embeds
-$router->get('embed', 'EmbedController@index');
+// Reportbacks
+$router->resource('reportbacks', 'ReportbackController', ['except' => ['create', 'edit', 'destroy']]);
+
+// Signups
+$router->resource('signups', 'SignupController', ['except' => ['create', 'edit', 'destroy']]);
