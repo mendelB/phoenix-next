@@ -7,7 +7,12 @@ class ReportbackSubmissions extends React.Component {
 
   renderSubmission(reportback, index) {
     // @TODO: need to flesh out the markup.
-    return <li key={index}>{reportback.caption}</li>;
+    return (
+      <li key={index}>
+        <img src={reportback.photo.filePreviewUrl} alt={reportback.caption} />
+        <p>{reportback.caption}</p>
+      </li>
+    );
   }
 
   render() {
