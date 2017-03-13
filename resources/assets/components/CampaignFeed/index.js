@@ -91,7 +91,7 @@ class CampaignFeed extends React.Component {
    */
   buildRevealer() {
     const authenticated = this.props.user.id !== null;
-    const title = authenticated ? 'view more' : 'signup';
+    const title = authenticated ? 'view more' : 'sign up';
     const callToAction = authenticated ? '' : this.props.campaign.callToAction;
     const onReveal = authenticated ? this.props.clickedViewMore : () => window.location.href = '/login';
 
