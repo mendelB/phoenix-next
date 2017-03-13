@@ -58,13 +58,11 @@ class CampaignController extends Controller
         $campaign = $this->campaignRepository->findBySlug($slug);
         $phoenixNid = data_get($campaign, 'legacyCampaignId', '1144');
 
-        $userId = Auth::check() ? Auth::user()->northstar_id : null;
-
         $response = $this->phoenixLegacy->getAllReportbacks([
             'campaigns' => $phoenixNid,
             'status' => 'promoted',
             'load_user' => true,
-            'as_user' => $userId ?: ''
+            'as_user' => auth()->id() ?: ''
         ]);
 
         $reportbacks = $response['data'];
@@ -75,7 +73,7 @@ class CampaignController extends Controller
                 'data' => $reportbacks
             ],
             'user' => [
-                'id' => $userId,
+                'id' => auth()->id(),
             ],
         ];
 

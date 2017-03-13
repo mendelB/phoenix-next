@@ -11,4 +11,24 @@ use DoSomething\Gateway\Laravel\HasNorthstarToken;
 class User extends Model implements AuthenticatableContract, NorthstarUserContract
 {
     use Authenticatable, HasNorthstarToken;
+
+    /**
+     * Get the name of the unique identifier for the user.
+     *
+     * @return string
+     */
+    public function getAuthIdentifierName()
+    {
+        return 'northstar_id';
+    }
+
+    /**
+     * Get the unique identifier for the user.
+     *
+     * @return mixed
+     */
+    public function getAuthIdentifier()
+    {
+        return $this->getAttribute($this->getAuthIdentifierName());
+    }
 }
