@@ -56,10 +56,7 @@ class CampaignRepository
             throw new ModelNotFoundException;
         }
 
-        $campaign = $campaigns[0];
-        $campaign->setLocale(app()->getLocale());
-
-        return new Campaign($campaign);
+        return new Campaign($campaigns[0]);
     }
 
     /**
