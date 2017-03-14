@@ -97,13 +97,36 @@ export function submitReportback(reportback) {
   return dispatch => {
     dispatch(storeReportback(reportback));
 
-    return (new Phoenix).post('reportbacks', reportback)
-      .then(dispatch({
-        type: STORE_REPORTBACK_SUCESSFUL
-      }))
+    const url = '//phoenix.dev/reportbacks';
+    const token = document.querySelector('meta[name="csrf-token"]');
+
+    return window.fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-CSRF-Token': token ? token.getAttribute('content') : null,
+        'Content-Type': 'multipart/form-data'
+      },
+      credentials: 'include',
+      body: reportback.formData,
+    })
       .then((response) => {
-        dispatch(addToSubmissionsList(reportback));
-      });
+        console.log('showing response');
+        // console.log(response);
+        return response;
+      })
+      .then((data) => {
+        console.log('showing data');
+        // console.log(data);
+      })
+      .catch(error => console.log(error));
+
+    // return (new Phoenix).post('reportbacks', reportback)
+    //   .then(dispatch({
+    //     type: STORE_REPORTBACK_SUCESSFUL
+    //   }))
+    //   .then((response) => {
+    //     dispatch(addToSubmissionsList(reportback));
+    //   });
   };
 }
 

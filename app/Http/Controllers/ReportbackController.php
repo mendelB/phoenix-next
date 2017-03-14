@@ -16,6 +16,8 @@ class ReportbackController extends Controller
     public function __construct(PhoenixLegacy $phoenixLegacy)
     {
         $this->phoenixLegacy = $phoenixLegacy;
+
+        $this->middleware('auth', ['only' => ['store']]);
     }
 
     /**
@@ -36,7 +38,9 @@ class ReportbackController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json('temp response here!');
+        $data = $request->input('caption');
+
+        return response()->json(['data' => $data]);
     }
 
     /**
