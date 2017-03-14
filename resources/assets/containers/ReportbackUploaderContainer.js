@@ -4,6 +4,7 @@ import { submitReportback, addToSubmissionsList } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
+    campaign: state.campaign,
     submissions: state.submissions
   };
 }
