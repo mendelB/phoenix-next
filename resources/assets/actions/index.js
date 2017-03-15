@@ -7,7 +7,8 @@ import { Phoenix } from '@dosomething/gateway';
 export const REQUESTED_REPORTBACKS = 'REQUESTED_REPORTBACKS';
 export const RECEIVED_REPORTBACKS = 'RECEIVED_REPORTBACKS';
 export const STORE_REPORTBACK_PENDING = 'STORE_REPORTBACK_PENDING';
-export const STORE_REPORTBACK_SUCESSFUL = 'STORE_REPORTBACK_SUCESSFUL';
+export const STORE_REPORTBACK_FAILED = 'STORE_REPORTBACK_FAILED';
+export const STORE_REPORTBACK_SUCCESSFUL = 'STORE_REPORTBACK_SUCCESSFUL';
 export const ADD_TO_SUBMISSIONS_LIST = 'ADD_TO_SUBMISSIONS_LIST';
 export const CLICKED_VIEW_MORE = 'CLICKED_VIEW_MORE';
 export const USER_TOGGLED_REACTION = 'USER_TOGGLED_REACTION';
@@ -42,6 +43,16 @@ export function storeReportback(reportback) {
     type: STORE_REPORTBACK_PENDING,
     reportback
   };
+}
+
+// Action: storeing new user submitted reportback failed.
+export function storeReportbackFailed(reportback) {
+  return { type: STORE_REPORTBACK_FAILED };
+}
+
+// Action: storing new user submitted reportback was successful.
+export function storeReportbackSuccessful(reportback) {
+  return { type: STORE_REPORTBACK_SUCCESSFUL };
 }
 
 // Action: add user reportback submission to submissions list.
@@ -97,13 +108,32 @@ export function submitReportback(reportback) {
   return dispatch => {
     dispatch(storeReportback(reportback));
 
-    return (new Phoenix).post('reportbacks', reportback)
-      .then(dispatch({
-        type: STORE_REPORTBACK_SUCESSFUL
-      }))
+    const url = `${window.location.origin}/reportbacks`;
+
+    const token = document.querySelector('meta[name="csrf-token"]');
+
+    // @TODO: Refactor once update to Gateway JS is made
+    // to allow overriding header configs properly.
+    return window.fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-CSRF-Token': token ? token.getAttribute('content') : null,
+        'Accept': 'application/json',
+      },
+      credentials: 'same-origin',
+      body: reportback.formData,
+    })
       .then((response) => {
-        dispatch(addToSubmissionsList(reportback));
-      });
+        if (response.status >= 300) {
+          dispatch(storeReportbackFailed());
+          // @TODO: implement showing validation error.
+        }
+        else {
+          dispatch(storeReportbackSuccessful());
+          dispatch(addToSubmissionsList(reportback));
+        }
+      })
+      .catch(error => console.log(error));
   };
 }
 

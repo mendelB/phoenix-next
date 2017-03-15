@@ -38,7 +38,8 @@ class ReportbackUploader extends React.Component {
       photo: this.state.media,
       caption: this.caption.value,
       impact: this.impact.value,
-      whyParticipated: this.why_participated.value
+      whyParticipated: this.why_participated.value,
+      campaignId: this.props.campaign.legacyCampaignId
     };
 
     this.props.submitReportback(this.setFormData(reportback));
@@ -55,21 +56,16 @@ class ReportbackUploader extends React.Component {
 
     Object.keys(reportback).map((item) => {
       if (item === 'photo') {
-        formData.append(item, reportback[item].file, this.makeFileNameForBlob(reportback[item].file));
+        formData.append(item, reportback[item].file);
       }
-
-      formData.append(item, reportback[item]);
+      else {
+        formData.append(item, reportback[item]);
+      }
     });
 
     reportback['formData'] = formData;
 
     return reportback;
-  }
-
-  makeFileNameForBlob(blob) {
-    const extension = blob.type.replace('image/', '.');
-
-    return `${Date.now()}_reportback_photo${extension}`;
   }
 
   render() {

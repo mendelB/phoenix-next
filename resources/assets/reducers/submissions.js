@@ -1,6 +1,6 @@
 import {
   STORE_REPORTBACK_PENDING,
-  STORE_REPORTBACK_SUCESSFUL,
+  STORE_REPORTBACK_SUCCESSFUL,
   ADD_TO_SUBMISSIONS_LIST
 } from '../actions';
 
@@ -12,7 +12,7 @@ const submissions = (state = {}, action) => {
     case STORE_REPORTBACK_PENDING:
       return {...state, isStoring: true};
 
-    case STORE_REPORTBACK_SUCESSFUL:
+    case STORE_REPORTBACK_SUCCESSFUL:
       return {...state, isStoring: false};
 
     case ADD_TO_SUBMISSIONS_LIST:

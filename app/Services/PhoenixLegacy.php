@@ -127,7 +127,7 @@ class PhoenixLegacy extends RestApiClient
             'quantity' => $contents['quantity'],
             'why_participated' => $contents['why_participated'],
             'file' => $contents['file'],
-            'filename' => str_random(10).'.jpg', // Hackz. This sets the filename Phoenix saves reportback with.
+            'filename' => $contents['filename'],
             'caption' => $contents['caption'],
             'source' => $contents['source'],
         ]);

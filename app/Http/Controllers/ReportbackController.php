@@ -16,6 +16,8 @@ class ReportbackController extends Controller
     public function __construct(PhoenixLegacy $phoenixLegacy)
     {
         $this->phoenixLegacy = $phoenixLegacy;
+
+        $this->middleware('auth', ['only' => ['store']]);
     }
 
     /**
@@ -36,7 +38,27 @@ class ReportbackController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json('temp response here!');
+        $this->validate($request, [
+            'photo' => 'required',
+            'caption' => 'required',
+            'impact' => 'required',
+            'whyParticipated' => 'required',
+        ]);
+
+        $reportbackPhoto = $request->file('photo');
+
+        return $this->phoenixLegacy->storeReportback(
+            auth()->user()->legacy_id,
+            $request->input('campaignId'),
+            [
+                'file' => make_data_uri($reportbackPhoto->getPathname(), $reportbackPhoto->getMimeType()),
+                'filename' => time().'_reportback_photo.'.$reportbackPhoto->guessClientExtension(),
+                'caption' => $request->input('caption'),
+                'quantity' => $request->input('impact'),
+                'why_participated' => $request->input('whyParticipated'),
+                'source' => 'phoenix-next',
+            ]
+        );
     }
 
     /**
