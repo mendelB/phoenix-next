@@ -53,7 +53,8 @@ function remember($key, $minutes, Closure $callback)
  * @param  array  $query
  * @return string
  */
-function make_cache_key($path, $query = []) {
+function make_cache_key($path, $query = [])
+{
     $output = str_replace('/', '-', $path);
 
     if ($query) {
@@ -69,6 +70,19 @@ function make_cache_key($path, $query = []) {
     }
 
     return $output;
+}
+
+/**
+ * Convert a file to a base64 encoded string in the following format:
+ * data:[<media type>][;base64],<data>
+ *
+ * @param  [type] $pathname [description]
+ * @param  string $mimeType
+ * @return string
+ */
+function make_data_uri($pathname, $mimeType)
+{
+    return 'data:'.$mimeType.';base64,'.base64_encode(file_get_contents($pathname));
 }
 
 /**

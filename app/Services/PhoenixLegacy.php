@@ -122,12 +122,14 @@ class PhoenixLegacy extends RestApiClient
      */
     public function storeReportback($user_id, $campaign_id, $contents)
     {
+        // return (compact('user_id', 'campaign_id', 'contents'));
+
         return $this->post('v1/campaigns/'.$campaign_id.'/reportback', [
             'uid' => $user_id,
             'quantity' => $contents['quantity'],
             'why_participated' => $contents['why_participated'],
             'file' => $contents['file'],
-            'filename' => str_random(10).'.jpg', // Hackz. This sets the filename Phoenix saves reportback with.
+            'filename' => $contents['filename'],
             'caption' => $contents['caption'],
             'source' => $contents['source'],
         ]);

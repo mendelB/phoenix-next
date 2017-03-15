@@ -38,9 +38,27 @@ class ReportbackController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->input('caption');
+        // $this->validate($request, [
+        //     'photo' => 'required',
+        //     'caption' => 'required',
+        //     'impact' => 'required',
+        //     'whyParticipated' => 'required',
+        // ]);
 
-        return response()->json(['data' => $data]);
+        $reportbackPhoto = $request->file('photo');
+
+        return $this->phoenixLegacy->storeReportback(
+            auth()->user()->legacy_id,
+            $request->input('campaignId'),
+            [
+                'file' => make_data_uri($reportbackPhoto->getPathname(), $reportbackPhoto->getMimeType()),
+                'filename' => time().'_reportback_photo.'.$reportbackPhoto->guessClientExtension(),
+                'caption' => $request->input('caption'),
+                'quantity' => $request->input('impact'),
+                'why_participated' => $request->input('whyParticipated'),
+                'source' => 'phoenix-next',
+            ]
+        );
     }
 
     /**
