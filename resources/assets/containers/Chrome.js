@@ -1,13 +1,13 @@
 import React from 'react';
-import FeedContainer from '../components/FeedContainer';
+import FeedEnclosure from '../components/FeedEnclosure';
 import NavigationContainer from './NavigationContainer';
 
 const Chrome = (props) => (
   <div>
     <NavigationContainer />
-    <FeedContainer>
+    <FeedEnclosure>
       {props.children}
-    </FeedContainer>
+    </FeedEnclosure>
   </div>
 );
 
