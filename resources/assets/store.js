@@ -42,6 +42,11 @@ export default function(reducers, preloadedState = {}) {
     reactions: {
       data: initialReactionState,
     },
+    signups: {
+      data: (localStorage.getItem('signups') || '').split(','),
+      thisCampaign: false,
+      pending: false,
+    },
   };
 
   // Log actions to the console in development.

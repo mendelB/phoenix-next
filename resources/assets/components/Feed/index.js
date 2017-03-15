@@ -1,7 +1,7 @@
 import React from 'react';
 import { get } from 'lodash';
 
-import CallToActionBlock from '../CallToActionBlock';
+import CallToActionContainer from '../../containers/CallToActionContainer';
 import CampaignUpdateBlock from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
 import StaticBlock from '../StaticBlock';
@@ -19,7 +19,7 @@ class Feed extends React.Component {
   renderFeedItem(block, index) {
     const BlockComponent = get({
       'campaign_update': CampaignUpdateBlock,
-      'join_cta': CallToActionBlock,
+      'join_cta': CallToActionContainer,
       'reportbacks': ReportbackContainer,
       'static': StaticBlock,
     }, block.type, PlaceholderBlock);

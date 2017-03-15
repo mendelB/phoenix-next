@@ -70,7 +70,7 @@ class PhoenixLegacy extends RestApiClient
     public function storeSignup($user_id, $campaign_id, $source)
     {
         return $this->post('v1/campaigns/'.$campaign_id.'/signup', [
-            'uid' => $user_id,
+            'northstar_id' => $user_id,
             'source' => $source,
         ]);
     }
@@ -142,7 +142,8 @@ class PhoenixLegacy extends RestApiClient
      * @param  string $user_id            Northstar ID to react on behalf of
      * @return array                      API response
      */
-    public function storeReaction($reportback_item_id, $term_id, $user_id) {
+    public function storeReaction($reportback_item_id, $term_id, $user_id)
+    {
         return $this->post('v1/kudos', [
             'reportback_item_id' => $reportback_item_id,
             'term_ids' => [$term_id],
@@ -156,7 +157,23 @@ class PhoenixLegacy extends RestApiClient
      * @param  string $reaction_id Reaction ID on the Drupal site.
      * @return array               API response
      */
-    public function deleteReaction($reaction_id) {
+    public function deleteReaction($reaction_id)
+    {
         return $this->delete('v1/kudos/'.$reaction_id);
+    }
+
+    /**
+     * Get the activity for the given user and campaign.
+     *
+     * @param  string $user_id      User Northstar ID
+     * @param  string $campaign_id  Legacy drupal campaign id
+     * @return array               API response
+     */
+    public function getActivity($user_id, $campaign_id)
+    {
+        $path = 'v1/users/' . $user_id . '/activity';
+        $query = ['nid' => $campaign_id];
+
+        return $this->get($path, $query);
     }
 }
