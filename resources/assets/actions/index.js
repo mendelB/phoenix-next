@@ -98,7 +98,8 @@ export function submitReportback(reportback) {
   return dispatch => {
     dispatch(storeReportback(reportback));
 
-    const url = `${services.PHOENIX_URL}/reportbacks`;
+    const url = `${window.location.origin}/reportbacks`;
+
     const token = document.querySelector('meta[name="csrf-token"]');
 
     // @TODO: Refactor once update to Gateway JS is made
