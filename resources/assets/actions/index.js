@@ -7,6 +7,7 @@ import { Phoenix } from '@dosomething/gateway';
 export const REQUESTED_REPORTBACKS = 'REQUESTED_REPORTBACKS';
 export const RECEIVED_REPORTBACKS = 'RECEIVED_REPORTBACKS';
 export const STORE_REPORTBACK_PENDING = 'STORE_REPORTBACK_PENDING';
+export const STORE_REPORTBACK_FAILURE = 'STORE_REPORTBACK_FAILURE';
 export const STORE_REPORTBACK_SUCESSFUL = 'STORE_REPORTBACK_SUCESSFUL';
 export const ADD_TO_SUBMISSIONS_LIST = 'ADD_TO_SUBMISSIONS_LIST';
 export const CLICKED_VIEW_MORE = 'CLICKED_VIEW_MORE';
@@ -97,9 +98,11 @@ export function submitReportback(reportback) {
   return dispatch => {
     dispatch(storeReportback(reportback));
 
-    const url = '//phoenix.dev/reportbacks';
+    const url = `${services.PHOENIX_URL}/reportbacks`;
     const token = document.querySelector('meta[name="csrf-token"]');
 
+    // @TODO: Refactor once update to Gateway JS is made
+    // to allow overriding header configs properly.
     return window.fetch(url, {
       method: 'POST',
       headers: {
@@ -109,13 +112,15 @@ export function submitReportback(reportback) {
       credentials: 'same-origin',
       body: reportback.formData,
     })
-      .then(dispatch({
-        type: STORE_REPORTBACK_SUCESSFUL
-      }))
       .then((response) => {
-        dispatch(addToSubmissionsList(reportback));
-        console.log('showing response');
-        console.log(response);
+        if (response.status >= 300) {
+          dispatch({ type: STORE_REPORTBACK_FAILURE })
+          // @TODO: implement showing validation error.
+        }
+        else {
+          dispatch({ type: STORE_REPORTBACK_SUCESSFUL })
+          dispatch(addToSubmissionsList(reportback));
+        }
       })
       .catch(error => console.log(error));
   };

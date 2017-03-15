@@ -38,12 +38,12 @@ class ReportbackController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'photo' => 'required',
-        //     'caption' => 'required',
-        //     'impact' => 'required',
-        //     'whyParticipated' => 'required',
-        // ]);
+        $this->validate($request, [
+            'photo' => 'required',
+            'caption' => 'required',
+            'impact' => 'required',
+            'whyParticipated' => 'required',
+        ]);
 
         $reportbackPhoto = $request->file('photo');
 

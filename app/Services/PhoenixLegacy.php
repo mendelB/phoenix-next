@@ -122,8 +122,6 @@ class PhoenixLegacy extends RestApiClient
      */
     public function storeReportback($user_id, $campaign_id, $contents)
     {
-        // return (compact('user_id', 'campaign_id', 'contents'));
-
         return $this->post('v1/campaigns/'.$campaign_id.'/reportback', [
             'uid' => $user_id,
             'quantity' => $contents['quantity'],
