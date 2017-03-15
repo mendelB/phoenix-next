@@ -8,7 +8,7 @@ export const REQUESTED_REPORTBACKS = 'REQUESTED_REPORTBACKS';
 export const RECEIVED_REPORTBACKS = 'RECEIVED_REPORTBACKS';
 export const STORE_REPORTBACK_PENDING = 'STORE_REPORTBACK_PENDING';
 export const STORE_REPORTBACK_FAILURE = 'STORE_REPORTBACK_FAILURE';
-export const STORE_REPORTBACK_SUCESSFUL = 'STORE_REPORTBACK_SUCESSFUL';
+export const STORE_REPORTBACK_SUCCESSFUL = 'STORE_REPORTBACK_SUCCESSFUL';
 export const ADD_TO_SUBMISSIONS_LIST = 'ADD_TO_SUBMISSIONS_LIST';
 export const CLICKED_VIEW_MORE = 'CLICKED_VIEW_MORE';
 export const USER_TOGGLED_REACTION = 'USER_TOGGLED_REACTION';
@@ -119,7 +119,7 @@ export function submitReportback(reportback) {
           // @TODO: implement showing validation error.
         }
         else {
-          dispatch({ type: STORE_REPORTBACK_SUCESSFUL })
+          dispatch({ type: STORE_REPORTBACK_SUCCESSFUL })
           dispatch(addToSubmissionsList(reportback));
         }
       })
