@@ -7,7 +7,7 @@ import { Phoenix } from '@dosomething/gateway';
 export const REQUESTED_REPORTBACKS = 'REQUESTED_REPORTBACKS';
 export const RECEIVED_REPORTBACKS = 'RECEIVED_REPORTBACKS';
 export const STORE_REPORTBACK_PENDING = 'STORE_REPORTBACK_PENDING';
-export const STORE_REPORTBACK_FAILURE = 'STORE_REPORTBACK_FAILURE';
+export const STORE_REPORTBACK_FAILED = 'STORE_REPORTBACK_FAILED';
 export const STORE_REPORTBACK_SUCCESSFUL = 'STORE_REPORTBACK_SUCCESSFUL';
 export const ADD_TO_SUBMISSIONS_LIST = 'ADD_TO_SUBMISSIONS_LIST';
 export const CLICKED_VIEW_MORE = 'CLICKED_VIEW_MORE';
@@ -43,6 +43,16 @@ export function storeReportback(reportback) {
     type: STORE_REPORTBACK_PENDING,
     reportback
   };
+}
+
+// Action: storeing new user submitted reportback failed.
+export function storeReportbackFailed(reportback) {
+  return { type: STORE_REPORTBACK_FAILED };
+}
+
+// Action: storing new user submitted reportback was successful.
+export function storeReportbackSuccessful(reportback) {
+  return { type: STORE_REPORTBACK_SUCCESSFUL };
 }
 
 // Action: add user reportback submission to submissions list.
@@ -115,11 +125,11 @@ export function submitReportback(reportback) {
     })
       .then((response) => {
         if (response.status >= 300) {
-          dispatch({ type: STORE_REPORTBACK_FAILURE })
+          dispatch(storeReportbackFailed());
           // @TODO: implement showing validation error.
         }
         else {
-          dispatch({ type: STORE_REPORTBACK_SUCCESSFUL })
+          dispatch(storeReportbackSuccessful());
           dispatch(addToSubmissionsList(reportback));
         }
       })
