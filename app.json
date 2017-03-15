@@ -26,12 +26,6 @@
     "NORTHSTAR_AUTHORIZATION_SECRET": {
       "required": true
     },
-    "NORTHSTAR_CLIENT_ID": {
-      "required": true
-    },
-    "NORTHSTAR_CLIENT_SECRET": {
-      "required": true
-    },
     "NORTHSTAR_URL": {
       "required": true
     },
