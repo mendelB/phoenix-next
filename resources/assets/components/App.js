@@ -7,10 +7,10 @@ import { Router, Route, useRouterHistory } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
-import Chrome from '../components/Chrome';
-import ActivityContainer from './ActivityContainer';
-import ContentPageContainer from './ContentPageContainer';
-import NotFound from '../components/NotFound';
+import Chrome from './Chrome';
+import ActivityContainer from '../containers/ActivityContainer';
+import ContentPageContainer from '../containers/ContentPageContainer';
+import NotFound from './NotFound';
 
 // Set the application "base name" to /campaigns/:slug so all pages are relative to that.
 const basename = window.location.pathname.split('/').slice(0, 3).join('/');
