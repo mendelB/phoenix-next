@@ -7,7 +7,7 @@ import { Router, Route, useRouterHistory } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
-import Chrome from './Chrome';
+import Chrome from '../components/Chrome';
 import ActivityContainer from './ActivityContainer';
 import ContentPageContainer from './ContentPageContainer';
 import NotFound from '../components/NotFound';
