@@ -39,9 +39,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-const Activity = connect(
+const ActivityContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(CampaignFeed);
 
-export default Activity;
+export default ActivityContainer;
