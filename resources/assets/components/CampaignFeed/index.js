@@ -113,7 +113,6 @@ class CampaignFeed extends React.Component {
   }
 
   render() {
-    console.log(this.props.signups)
     const blocks = this.generateFeed();
     const revealer = this.buildRevealer();
 
