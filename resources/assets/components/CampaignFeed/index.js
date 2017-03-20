@@ -5,7 +5,6 @@ import Revealer from '../Revealer';
 const BLOCKS_PER_ROW = 3;
 
 class CampaignFeed extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -29,7 +28,7 @@ class CampaignFeed extends React.Component {
    * Map the given display option to a
    * numeric point value.
    *
-   * @param array displayOption
+   * @param {Array} displayOption
    * @return int
    */
   mapDisplayToPoints(displayOption) {
@@ -44,7 +43,7 @@ class CampaignFeed extends React.Component {
   /**
    * Set root-level type property if it's a custom block.
    *
-   * @param Object block
+   * @param {Object} block
    */
   setType(block) {
     const type = block.type === 'customBlock' ? block.fields.type : block.type;
@@ -54,7 +53,7 @@ class CampaignFeed extends React.Component {
   /**
    * If it's a reportback block, load in the requested number of reportbacks.
    *
-   * @param Object block
+   * @param {Object} block
    */
   appendReportbacks(block) {
     if (block.type === 'reportbacks') {
@@ -122,7 +121,6 @@ class CampaignFeed extends React.Component {
       <Feed blocks={blocks} revealer={revealer} />
     );
   }
-
 }
 
 CampaignFeed.defaultProps = {
