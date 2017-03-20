@@ -1,13 +1,15 @@
-import React from 'react';
 import { connect } from 'react-redux';
+import CampaignFeed from '../components/CampaignFeed';
 import {
   clickedViewMore,
   clickedSignUp,
   checkForSignup,
   setCurrentlySignedUp,
 } from '../actions';
-import CampaignFeed from '../components/CampaignFeed';
 
+/**
+ * Provide state from the Redux store as props for this component.
+ */
 const mapStateToProps = (state) => {
   return {
     campaign: state.campaign,
@@ -19,29 +21,16 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    clickedViewMore: () => {
-      dispatch(clickedViewMore());
-    },
-
-    clickedSignUp: (campaignId) => {
-      dispatch(clickedSignUp(campaignId));
-    },
-
-    checkForSignup: (campaignId) => {
-      dispatch(checkForSignup(campaignId));
-    },
-
-    setCurrentlySignedUp: (status) => {
-      dispatch(setCurrentlySignedUp(status));
-    },
-  }
+/**
+ * Provide pre-bound functions that allow the component to dispatch
+ * actions to the Redux store as props for this component.
+ */
+const actionCreators = {
+  clickedViewMore,
+  clickedSignUp,
+  checkForSignup,
+  setCurrentlySignedUp,
 };
 
-const ActivityContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CampaignFeed);
-
-export default ActivityContainer;
+// Export the container component.
+export default connect(mapStateToProps, actionCreators)(CampaignFeed);
