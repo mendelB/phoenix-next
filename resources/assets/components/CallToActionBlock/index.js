@@ -16,18 +16,16 @@ const CallToActionBlock = (props) => {
     backgroundImage: `url(${contentfulImageUrl(props.campaign.coverImage.url, '400', '400', 'fill')})`,
   };
 
-  const impactContent = () => {
-    if (additionalContent.impactNumber) {
-      return (
-        <div className="cta__block cta__impact">
-          {additionalContent.impactPrefix ? <span className="cta__impact-prefix">{additionalContent.impactPrefix}</span> : null}
-          {additionalContent.impactNumber ? <span className="cta__impact-number">{additionalContent.impactNumber}</span> : null}
-          {additionalContent.impactMessage ? <span className="cta__impact-message">{additionalContent.impactMessage}</span> : null}
-        </div>
-      );
-    }
+  let impactContent = null;
 
-    return null;
+  if (additionalContent.impactNumber) {
+    impactContent = (
+      <div className="cta__block cta__impact">
+        {additionalContent.impactPrefix ? <span className="cta__impact-prefix">{additionalContent.impactPrefix}</span> : null}
+        {additionalContent.impactNumber ? <span className="cta__impact-number">{additionalContent.impactNumber}</span> : null}
+        {additionalContent.impactMessage ? <span className="cta__impact-message">{additionalContent.impactMessage}</span> : null}
+      </div>
+    );
   }
 
   return (
@@ -36,7 +34,7 @@ const CallToActionBlock = (props) => {
       <div className="cta__content">
         { !props.fields.content ? <div className="cta__block"><p className="cta__title">{props.fields.title}</p></div> : null }
 
-        {impactContent()}
+        {impactContent}
 
         { props.fields.content ? <div className="cta__block"><p className="cta__message">{props.fields.content}</p></div> : null }
 
