@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ReportbackUploader from '../components/ReportbackUploader';
-import { submitReportback, addToSubmissionsList } from '../actions/reportbackActions';
+import { submitReportback, addToSubmissionsList } from '../actions';
 
 /**
  * Provide state from the Redux store as props for this component.

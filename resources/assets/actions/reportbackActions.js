@@ -1,13 +1,11 @@
-/*
- * Action names: import these constants to dispatch an event
- * without having hardcoded strings all about.
- */
-export const REQUESTED_REPORTBACKS = 'REQUESTED_REPORTBACKS';
-export const RECEIVED_REPORTBACKS = 'RECEIVED_REPORTBACKS';
-export const STORE_REPORTBACK_PENDING = 'STORE_REPORTBACK_PENDING';
-export const STORE_REPORTBACK_FAILED = 'STORE_REPORTBACK_FAILED';
-export const STORE_REPORTBACK_SUCCESSFUL = 'STORE_REPORTBACK_SUCCESSFUL';
-export const ADD_TO_SUBMISSIONS_LIST = 'ADD_TO_SUBMISSIONS_LIST';
+import {
+  REQUESTED_REPORTBACKS,
+  RECEIVED_REPORTBACKS,
+  STORE_REPORTBACK_PENDING,
+  STORE_REPORTBACK_FAILED,
+  STORE_REPORTBACK_SUCCESSFUL,
+  ADD_TO_SUBMISSIONS_LIST
+} from '../actions';
 
 // Action: reportback fetch initiated.
 export function requestingReportbacks(node) {

@@ -1,4 +1,4 @@
-import { REQUESTED_REPORTBACKS, RECEIVED_REPORTBACKS } from '../actions/reportbackActions';
+import { REQUESTED_REPORTBACKS, RECEIVED_REPORTBACKS } from '../actions';
 
 /**
  * Reportback reducer:

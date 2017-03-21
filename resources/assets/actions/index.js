@@ -4,12 +4,23 @@ import { Phoenix } from '@dosomething/gateway';
  * Action names: import these constants to dispatch an event
  * without having hardcoded strings all about.
  */
+export const REQUESTED_REPORTBACKS = 'REQUESTED_REPORTBACKS';
+export const RECEIVED_REPORTBACKS = 'RECEIVED_REPORTBACKS';
+export const STORE_REPORTBACK_PENDING = 'STORE_REPORTBACK_PENDING';
+export const STORE_REPORTBACK_FAILED = 'STORE_REPORTBACK_FAILED';
+export const STORE_REPORTBACK_SUCCESSFUL = 'STORE_REPORTBACK_SUCCESSFUL';
+export const ADD_TO_SUBMISSIONS_LIST = 'ADD_TO_SUBMISSIONS_LIST';
 export const CLICKED_VIEW_MORE = 'CLICKED_VIEW_MORE';
 export const USER_TOGGLED_REACTION = 'USER_TOGGLED_REACTION';
 export const REACTION_COMPLETE = 'REACTION_COMPLETE';
 export const SIGNUP_COMPLETE = 'SIGNUP_COMPLETE';
 export const SIGNUP_PENDING = 'SIGNUP_PENDING';
 export const SET_CURRENTLY_SIGNED_UP = 'SET_CURRENTLY_SIGNED_UP';
+
+/**
+ * Collect and export all Action Creators.
+ */
+export * from './reportbackActions';
 
 /**
  * Action Creators: these functions create actions, which describe changes
