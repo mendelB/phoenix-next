@@ -14,6 +14,7 @@ class Feed extends React.Component {
    * Render a single feed item.
    *
    * @param block
+   * @param index
    * @returns {XML}
    */
   renderFeedItem(block, index) {
