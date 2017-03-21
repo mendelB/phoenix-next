@@ -25,7 +25,7 @@ import App from './components/App';
 
 // Make action available to demonstrate loading more reportbacks.
 // @TODO: Expose this in the UI!
-import { fetchReportbacks } from './actions';
+import { fetchReportbacks } from './actions/reportbackActions';
 window.actions = { fetchReportbacks };
 
 ready(() => {

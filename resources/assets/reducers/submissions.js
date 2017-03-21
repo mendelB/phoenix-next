@@ -2,7 +2,7 @@ import {
   STORE_REPORTBACK_PENDING,
   STORE_REPORTBACK_SUCCESSFUL,
   ADD_TO_SUBMISSIONS_LIST
-} from '../actions';
+} from '../actions/reportbackActions';
 
 /**
  * Submissions reducer:
