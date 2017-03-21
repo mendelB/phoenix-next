@@ -36,6 +36,7 @@ class Feed extends React.Component {
   render() {
     return (
       <Flex>
+        {this.props.affirmation}
         {this.props.blocks.map((block, index) => this.renderFeedItem(block, index))}
         {this.props.revealer}
         <FlexCell key="reportback_uploader" width="full">
@@ -48,6 +49,8 @@ class Feed extends React.Component {
 
 Feed.defaultProps = {
   blocks: [],
+  revealer: null,
+  affirmation: null,
 };
 
 export default Feed;
