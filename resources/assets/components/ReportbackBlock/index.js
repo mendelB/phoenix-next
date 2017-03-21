@@ -1,7 +1,6 @@
 import React from 'react';
 import Block from '../Block';
 import { FlexCell } from '../Flex';
-import { Phoenix } from '@dosomething/gateway';
 import Reaction from '../Reaction';
 
 const ReportbackItem = (props) => {
