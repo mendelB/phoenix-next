@@ -1,5 +1,6 @@
 import React from 'react';
 import './reaction.scss';
+import { BaseFigure } from '../Figure';
 import classnames from 'classnames';
 
 const Reaction = (props) => {
@@ -7,13 +8,13 @@ const Reaction = (props) => {
   const total = props.total || 0;
 
   const onToggle = () => !active ? props.onToggleOn() : props.onToggleOff();
+  const reactionButton = <div className={classnames('reaction__button', {'-reacted' : active})} />;
 
   return (
     <div className="reaction" onClick={onToggle}>
-      <div className={classnames('reaction__button', {'-reacted' : active})}></div>
-      <div className="reaction__meta">
-        <p>{total}</p>
-      </div>
+      <BaseFigure media={reactionButton} alignment="left">
+        <span className="reaction__meta">{total}</span>
+      </BaseFigure>
     </div>
   );
 };

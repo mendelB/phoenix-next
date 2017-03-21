@@ -1,22 +1,42 @@
 import React from 'react';
 import Block from '../Block';
 import { FlexCell } from '../Flex';
+import { Figure, BaseFigure } from '../Figure';
 import Reaction from '../Reaction';
+import LazyLoaded from '../LazyLoaded';
 
-const ReportbackItem = (props) => {
+const ReportbackItemPlaceholder = () => {
+  const placeholderImage = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+  const reactionButton = <Reaction active={false} total={0}/>;
+
   return (
-    <Block className="reportback-block">
-      <img src={props.data.image} />
-      <div className="padded">
-        <h4>{props.data.firstName}</h4>
-        <p className="footnote">{`${props.data.quantity} jeans`}</p>
-        { props.reaction }
-      </div>
-    </Block>
+    <Figure image={placeholderImage}>
+      <BaseFigure media={reactionButton} alignment="right" className="padded">
+        <h4>Loading...</h4>
+        <p className="footnote">...</p>
+      </BaseFigure>
+    </Figure>
   );
 };
 
-const ReportbackBlock = (props) => {
+const ReportbackItemContents = props => (
+  <Figure image={props.data.image}>
+    <BaseFigure media={props.reaction} alignment="right" className="padded">
+      <h4>{props.data.firstName}</h4>
+      <p className="footnote">{`${props.data.quantity} jeans`}</p>
+    </BaseFigure>
+  </Figure>
+);
+
+const ReportbackItem = props => (
+  <Block className="reportback-block placeholder">
+    <LazyLoaded isFetching={false} data={props.data} placeholder={ReportbackItemPlaceholder}>
+      <ReportbackItemContents data={props.data} reaction={props.reaction} />
+    </LazyLoaded>
+  </Block>
+);
+
+const ReportbackBlock = props => {
   const items = props.reportbacks.map(reportback => {
     const item = reportback.reportback_items.data[0];
     const data = {
