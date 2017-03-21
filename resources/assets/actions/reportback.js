@@ -1,3 +1,4 @@
+import { Phoenix } from '@dosomething/gateway';
 import {
   REQUESTED_REPORTBACKS,
   RECEIVED_REPORTBACKS,
@@ -6,6 +7,11 @@ import {
   STORE_REPORTBACK_SUCCESSFUL,
   ADD_TO_SUBMISSIONS_LIST
 } from '../actions';
+
+/**
+ * Action Creators: these functions create actions, which describe changes
+ * to the state tree (either as a result of application logic or user input).
+ */
 
 // Action: reportback fetch initiated.
 export function requestingReportbacks(node) {
