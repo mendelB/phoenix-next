@@ -1,6 +1,6 @@
 import { Phoenix } from '@dosomething/gateway';
 import {
-  USER_TOGGLED_REACTION,
+  REACTION_CHANGED,
   REACTION_COMPLETE
 } from '../actions';
 
@@ -10,8 +10,8 @@ import {
  */
 
 // Action: toggled a reaction
-export function userToggledReaction(reportbackItemId, value) {
-  return { type: USER_TOGGLED_REACTION, reportbackItemId, value };
+export function reactionChanged(reportbackItemId, value) {
+  return { type: REACTION_CHANGED, reportbackItemId, value };
 }
 
 // Action: component got a reaction response back.
@@ -23,12 +23,12 @@ export function reactionComplete(reportbackItemId, reactionId) {
   }
 }
 
-// Async Action: user liked a reportback
-export function userToggledReactionOn(reportbackItemId, termId) {
+// Async Action: user reacted to a photo.
+export function toggleReactionOn(reportbackItemId, termId) {
   return dispatch => {
-    dispatch(userToggledReaction(reportbackItemId, true));
+    dispatch(reactionChanged(reportbackItemId, true));
 
-    return (new Phoenix).post('reactions', {
+    (new Phoenix).post('reactions', {
       reportback_item_id: reportbackItemId,
       term_id: termId,
     })
@@ -40,11 +40,11 @@ export function userToggledReactionOn(reportbackItemId, termId) {
   }
 }
 
-// Async Action: user unliked a reportback
-export function userToggledReactionOff(reportbackItemId, reactionId) {
+// Async Action: user un-reacted to a photo.
+export function toggleReactionOff(reportbackItemId, reactionId) {
   return dispatch => {
-    dispatch(userToggledReaction(reportbackItemId, false));
+    dispatch(reactionChanged(reportbackItemId, false));
 
-    return (new Phoenix).delete(`reactions/${reactionId}`);
+    (new Phoenix).delete(`reactions/${reactionId}`);
   }
 }

@@ -7,7 +7,7 @@ const Reaction = (props) => {
   const active = props.active || false;
   const total = props.total || 0;
 
-  const onToggle = () => !active ? props.onToggleOn() : props.onToggleOff();
+  const onToggle = !active ? props.onToggleOn : props.onToggleOff;
   const reactionButton = <div className={classnames('reaction__button', {'-reacted' : active})} />;
 
   return (
