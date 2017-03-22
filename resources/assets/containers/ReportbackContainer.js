@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import ReportbackBlock from '../components/ReportbackBlock';
 import {
-  userToggledReactionOn,
-  userToggledReactionOff,
+  toggleReactionOn,
+  toggleReactionOff,
 } from '../actions';
 
 /**
@@ -20,8 +20,8 @@ const mapStateToProps = (state) => {
  * actions to the Redux store as props for this component.
  */
 const actionCreators = {
-  userToggledReactionOn,
-  userToggledReactionOff,
+  toggleReactionOn,
+  toggleReactionOff,
 };
 
 // Export the container component.

@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Http\Controllers\Controller;
 use App\Services\PhoenixLegacy;
 use Illuminate\Http\Request;
 
 class ReactionController extends Controller
 {
+    /**
+     * The legacy Phoenix API.
+     *
+     * @var PhoenixLegacy
+     */
+    protected $phoenixLegacy;
+
     /**
      * ReactionController constructor.
      *

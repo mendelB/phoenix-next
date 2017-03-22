@@ -21,7 +21,7 @@ export const CLICKED_VIEW_MORE = 'CLICKED_VIEW_MORE';
 export * from './feed';
 
 // Reaction Action Names & Creators
-export const USER_TOGGLED_REACTION = 'USER_TOGGLED_REACTION';
+export const REACTION_CHANGED = 'REACTION_CHANGED';
 export const REACTION_COMPLETE = 'REACTION_COMPLETE';
 export * from './reaction';
 

@@ -1,5 +1,5 @@
 import {
-  USER_TOGGLED_REACTION,
+  REACTION_CHANGED,
   REACTION_COMPLETE,
 } from '../actions';
 import update from 'react/lib/update';
@@ -8,10 +8,8 @@ import update from 'react/lib/update';
  * Reactions reducer:
  */
 const reactions = (state = {}, action) => {
-  let data = {};
-
   switch (action.type) {
-    case USER_TOGGLED_REACTION:
+    case REACTION_CHANGED:
       return update(state, {
         data: {
           [action.reportbackItemId]: {
