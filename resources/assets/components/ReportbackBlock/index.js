@@ -1,7 +1,7 @@
 import React from 'react';
 import Block from '../Block';
 import { FlexCell } from '../Flex';
-import ReportbackPhoto from '../ReportbackPhoto';
+import ReportbackItem from '../ReportbackItem';
 import './reportback-block.scss';
 
 const ReportbackBlock = props => {
@@ -19,9 +19,9 @@ const ReportbackBlock = props => {
     return (
       <FlexCell key={reportback.id}>
         <Block className="reportback-block">
-          <ReportbackPhoto isFetching={false} data={data}
-                           toggleReactionOn={props.toggleReactionOn}
-                           toggleReactionOff={props.toggleReactionOff} />
+          <ReportbackItem isFetching={false} data={data}
+                          toggleReactionOn={props.toggleReactionOn}
+                          toggleReactionOff={props.toggleReactionOff} />
         </Block>
       </FlexCell>
     );
