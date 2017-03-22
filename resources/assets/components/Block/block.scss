@@ -9,11 +9,3 @@
   border-radius: $sm-border-radius;
   overflow: hidden;
 }
-.reportback-block img {
-  width: 480px; // HACK: Expand smaller images to fit in card.
-  background-color: $off-white;
-}
-
-.padded {
-  padding: $base-spacing / 2;
-}
