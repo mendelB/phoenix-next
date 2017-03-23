@@ -96,7 +96,6 @@ const actionCreators = {
   clickedViewMore,
   clickedSignUp,
   checkForSignup,
-  setCurrentlySignedUp,
 };
 
 // Export the container component.
