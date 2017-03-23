@@ -14,9 +14,10 @@ import { Flex, FlexCell } from '../Flex';
 
 class Feed extends React.Component {
   /**
-   * If we don't already have a signup, check.
+   * Perform actions immediately after mounting component.
    */
   componentDidMount() {
+    // If we don't already have a signup, check.
     if (! this.props.signedUp) {
       this.props.checkForSignup(this.props.legacyCampaignId);
     }
