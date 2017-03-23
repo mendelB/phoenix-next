@@ -6,10 +6,14 @@ class ReportbackSubmissions extends React.Component {
   }
 
   renderSubmission(reportback, index) {
+    // let uri = reportback.media.filePreviewUrl || reportback.media.uri;
+    // @TODO: should be the above line, but currently, images submitted (and thus returned) from Thor are broken.
+    let uri = reportback.media.filePreviewUrl || 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
     // @TODO: need to flesh out the markup.
     return (
       <li key={index}>
-        <img src={reportback.photo.filePreviewUrl} alt={reportback.caption} />
+        <img src={uri} alt={reportback.caption} />
         <p>{reportback.caption}</p>
       </li>
     );
