@@ -5,10 +5,6 @@ import { ensureAuth, EMPTY_IMAGE } from '../../helpers';
 import './reportback-item.scss';
 
 const ReportbackItem = ({id, url, quantity, firstName, reaction, isFetching = false, toggleReactionOn, toggleReactionOff}) => {
-  firstName = isFetching ? '…' : firstName;
-  url = isFetching ? EMPTY_IMAGE : url;
-  const impact = isFetching ? '…' : `${quantity} jeans`;
-
   const reactionElement = isFetching ? null : (
     <Reaction active={reaction.reacted} total={reaction.total}
               onToggleOn={() => ensureAuth(isAuthenticated) && toggleReactionOn(id, reaction.termId)}
@@ -16,10 +12,10 @@ const ReportbackItem = ({id, url, quantity, firstName, reaction, isFetching = fa
   );
 
   return (
-    <Figure className="reportback-item" image={url} imageClassName={isFetching ? 'is-fetching' : null}>
+    <Figure className="reportback-item" image={isFetching ? EMPTY_IMAGE : url} imageClassName={isFetching ? 'is-fetching' : null}>
       <BaseFigure media={reactionElement} alignment="right" className="padded">
-        <h4>{firstName}</h4>
-        <p className="footnote">{impact}</p>
+        <h4>{isFetching ? '…' : firstName}</h4>
+        <p className="footnote">{isFetching ? '…' : `${quantity} jeans`}</p>
       </BaseFigure>
     </Figure>
   );
