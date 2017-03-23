@@ -1,8 +1,8 @@
 import {
   SIGNUP_CREATED,
-  SIGNUP_EXISTS,
+  SIGNUP_FOUND,
   SIGNUP_PENDING,
-  SIGNUP_FINISHED,
+  SIGNUP_NOT_FOUND,
 } from '../actions';
 
 /**
@@ -23,7 +23,7 @@ const signupReducer = (state = {}, action) => {
         thisSession: true,
       };
 
-    case SIGNUP_EXISTS:
+    case SIGNUP_FOUND:
       signups.push(action.campaignId);
       localStorage.setItem('signups', signups);
 
@@ -36,7 +36,7 @@ const signupReducer = (state = {}, action) => {
     case SIGNUP_PENDING:
       return { ...state, isPending: true };
 
-    case SIGNUP_FINISHED:
+    case SIGNUP_NOT_FOUND:
       return { ...state, isPending: false };
 
     default:

@@ -1,8 +1,8 @@
 import { Phoenix } from '@dosomething/gateway';
 import {
   SIGNUP_CREATED,
-  SIGNUP_EXISTS,
-  SIGNUP_FINISHED,
+  SIGNUP_FOUND,
+  SIGNUP_NOT_FOUND,
   SIGNUP_PENDING,
 } from '../actions';
 
@@ -17,13 +17,13 @@ export function signupCreated(campaignId) {
 }
 
 // Action: an existing signup was found for a campaign.
-export function signupExists(campaignId) {
-  return { type: SIGNUP_EXISTS, campaignId };
+export function signupFound(campaignId) {
+  return { type: SIGNUP_FOUND, campaignId };
 }
 
 // Action: a signup response was received.
-export function signupFinished() {
-  return { type: SIGNUP_FINISHED };
+export function signupNotFound() {
+  return { type: SIGNUP_NOT_FOUND };
 }
 
 // Action: waiting on a signup response.
@@ -38,10 +38,10 @@ export function checkForSignup(campaignId) {
 
     (new Phoenix).get(`activity/${campaignId}`).then(response => {
       if (!response || !response.sid) {
-        return dispatch(signupFinished());
+        return dispatch(signupNotFound());
       }
 
-      dispatch(signupExists(campaignId));
+      dispatch(signupFound(campaignId));
     });
   }
 }
