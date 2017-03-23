@@ -65,7 +65,7 @@ class CampaignFeed extends React.Component {
         const reportback = this.props.reportbacks.data[this.reportbackIndex];
 
         if (reportback) {
-          block.reportbacks.push(reportback);
+          block.reportbacks.push(reportback.id);
         }
 
         this.reportbackIndex++;

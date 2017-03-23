@@ -4,9 +4,9 @@ import { get } from 'lodash';
 import CallToActionContainer from '../../containers/CallToActionContainer';
 import CampaignUpdateBlock from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
+import ReportbackBlock from '../ReportbackBlock';
 import StaticBlock from '../StaticBlock';
 import { Flex, FlexCell } from '../Flex';
-import ReportbackContainer from '../../containers/ReportbackContainer';
 import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 
 class Feed extends React.Component {
@@ -21,7 +21,7 @@ class Feed extends React.Component {
     const BlockComponent = get({
       'campaign_update': CampaignUpdateBlock,
       'join_cta': CallToActionContainer,
-      'reportbacks': ReportbackContainer,
+      'reportbacks': ReportbackBlock,
       'static': StaticBlock,
     }, block.type, PlaceholderBlock);
 
