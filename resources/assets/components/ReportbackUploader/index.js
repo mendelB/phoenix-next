@@ -30,7 +30,7 @@ class ReportbackUploader extends React.Component {
   };
 
   componentDidMount() {
-    this.props.fetchUserReportbacks(this.props.userId, this.props.campaign.legacyCampaignId);
+    this.props.fetchUserReportbacks(this.props.userId, this.props.legacyCampaignId);
   }
 
   onChange(media) {
@@ -45,7 +45,7 @@ class ReportbackUploader extends React.Component {
       caption: this.caption.value,
       impact: this.impact.value,
       whyParticipated: this.why_participated.value,
-      campaignId: this.props.campaign.legacyCampaignId,
+      campaignId: this.props.legacyCampaignId,
       status: 'pending',
     };
 
