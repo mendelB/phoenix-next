@@ -29,7 +29,7 @@ const submissions = (state = {}, action) => {
       return {...state, isStoring: false};
 
     case ADD_TO_SUBMISSIONS_LIST:
-      return {...state, data: [...state.data, action.reportback].reverse()}
+      return {...state, data: [action.reportback, ...state.data]}
 
     default:
       return state;
