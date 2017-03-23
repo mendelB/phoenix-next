@@ -47,7 +47,7 @@ class Feed extends React.Component {
    * @returns {XML}
    */
   render() {
-    const { blocks, signedUp, signedUpThisSession, isAuthenticated } = this.props;
+    const { blocks, signedUp, hasNewSignup, isAuthenticated } = this.props;
 
     const viewMoreOrSignup = signedUp ? this.props.clickedViewMore : () => this.props.clickedSignUp(this.props.legacyCampaignId);
     const revealer = <Revealer title={signedUp ? 'view more' : 'sign up'}
@@ -56,7 +56,7 @@ class Feed extends React.Component {
 
     return (
       <Flex>
-        {signedUpThisSession ? <Affirmation /> : null}
+        {hasNewSignup ? <Affirmation /> : null}
         {blocks.map((block, index) => this.renderFeedItem(block, index))}
         {revealer}
         <FlexCell key="reportback_uploader" width="full">
