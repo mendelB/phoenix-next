@@ -1,8 +1,9 @@
 import { Phoenix } from '@dosomething/gateway';
 import {
-  SET_CURRENTLY_SIGNED_UP,
+  SIGNUP_CREATED,
+  SIGNUP_EXISTS,
+  SIGNUP_FINISHED,
   SIGNUP_PENDING,
-  SIGNUP_COMPLETE
 } from '../actions';
 
 /**
@@ -10,29 +11,39 @@ import {
  * to the state tree (either as a result of application logic or user input).
  */
 
-// Action: set whether the user is signed up for this campaign
-export function setCurrentlySignedUp(status) {
-  return { type: SET_CURRENTLY_SIGNED_UP, status };
+// Action: a new signup was created for a campaign.
+export function signupCreated(campaignId) {
+  return { type: SIGNUP_CREATED, campaignId };
 }
 
+// Action: an existing signup was found for a campaign.
+export function signupExists(campaignId) {
+  return { type: SIGNUP_EXISTS, campaignId };
+}
+
+// Action: a signup response was received.
+export function signupFinished() {
+  return { type: SIGNUP_FINISHED };
+}
+
+// Action: waiting on a signup response.
 export function signupPending() {
   return { type: SIGNUP_PENDING };
 }
 
-// Action: set whether the signup completed
-export function signupComplete(campaignId) {
-  return { type: SIGNUP_COMPLETE, campaignId };
-}
-
 // Async Action: check if user already signed up for the campaign
 export function checkForSignup(campaignId) {
-  return dispatch => (new Phoenix).get(`activity/${campaignId}`)
-    .then(response => {
-      if (!response || !response.sid) return;
+  return dispatch => {
+    dispatch(signupPending());
 
-      dispatch(signupComplete(campaignId));
-      dispatch(setCurrentlySignedUp(true));
+    (new Phoenix).get(`activity/${campaignId}`).then(response => {
+      if (!response || !response.sid) {
+        return dispatch(signupFinished());
+      }
+
+      dispatch(signupExists(campaignId));
     });
+  }
 }
 
 // Async Action: send signup to phoenix.
@@ -40,14 +51,10 @@ export function clickedSignUp(campaignId) {
   return dispatch => {
     dispatch(signupPending());
 
-    return (new Phoenix).post('signups', {
-      campaignId,
-    })
-    .then(response => {
+    return (new Phoenix).post('signups', { campaignId }).then(response => {
       if (!response || !response[0]) return;
 
-      dispatch(signupComplete(campaignId));
-      dispatch(setCurrentlySignedUp(true));
+      dispatch(signupCreated(campaignId));
     });
   }
 }
