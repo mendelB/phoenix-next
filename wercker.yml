@@ -8,12 +8,10 @@ build:
       - leipert/composer-install@0.9.1
       - wercker/bundle-install@1.1.1
       - script:
-          name: Laravel key generate
-          code: php artisan key:generate
-      - script:
           name: phpunit
           code: |-
               cp .env.example .env
+              php artisan key:generate
               mysql -u homestead -psecret -e "CREATE DATABASE phoenix_testing;"
               vendor/bin/phpunit
       - script:
