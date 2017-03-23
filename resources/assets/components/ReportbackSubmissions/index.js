@@ -1,4 +1,5 @@
 import React from 'react';
+import { EMPTY_IMAGE } from '../../helpers';
 
 class ReportbackSubmissions extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class ReportbackSubmissions extends React.Component {
   renderSubmission(reportback, index) {
     // let uri = reportback.media.filePreviewUrl || reportback.media.uri;
     // @TODO: should be the above line, but currently, images submitted (and thus returned) from Thor are broken.
-    let uri = reportback.media.filePreviewUrl || 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    let uri = reportback.media.filePreviewUrl || EMPTY_IMAGE;
 
     // @TODO: need to flesh out the markup.
     return (
