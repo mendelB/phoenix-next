@@ -47,11 +47,12 @@ class Feed extends React.Component {
    * @returns {XML}
    */
   render() {
-    const { blocks, signedUp, hasNewSignup, isAuthenticated } = this.props;
+    const { blocks, signedUp, hasNewSignup, hasPendingSignup, isAuthenticated } = this.props;
 
     const viewMoreOrSignup = signedUp ? this.props.clickedViewMore : () => this.props.clickedSignUp(this.props.legacyCampaignId);
     const revealer = <Revealer title={signedUp ? 'view more' : 'sign up'}
                                callToAction={signedUp ? '' : this.props.callToAction}
+                               isLoading={hasPendingSignup}
                                onReveal={() => ensureAuth(isAuthenticated) && viewMoreOrSignup()} />;
 
     return (

@@ -84,6 +84,7 @@ const mapStateToProps = (state) => {
     submissions: state.submissions,
     signedUp: state.signups.data.includes(state.campaign.legacyCampaignId),
     hasNewSignup: state.signups.thisSession,
+    hasPendingSignup: state.signups.isPending,
     isAuthenticated: state.user.id !== null,
   };
 };
