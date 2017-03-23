@@ -21,7 +21,7 @@ export function signupFound(campaignId) {
   return { type: SIGNUP_FOUND, campaignId };
 }
 
-// Action: a signup response was received.
+// Action: no existing signup was found for the campaign.
 export function signupNotFound() {
   return { type: SIGNUP_NOT_FOUND };
 }
