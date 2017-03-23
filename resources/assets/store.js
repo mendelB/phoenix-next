@@ -55,7 +55,7 @@ export default function(reducers, preloadedState = {}) {
   const middleware = [thunk];
   if (process.env.NODE_ENV === `development`) {
     const createLogger = require(`redux-logger`);
-    middleware.push(createLogger());
+    middleware.push(createLogger({collapsed: true}));
   }
 
   // If React DevTools are available, use instrumented compose function.
