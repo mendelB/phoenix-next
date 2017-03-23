@@ -37,7 +37,7 @@ export default function(reducers, preloadedState = {}) {
       offset: 1,
     },
     user: {
-      id: false,
+      id: null,
     },
     reactions: {
       data: initialReactionState,

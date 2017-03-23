@@ -26,7 +26,8 @@ export const REACTION_COMPLETE = 'REACTION_COMPLETE';
 export * from './reaction';
 
 // Signup Action Names & Creators
-export const SIGNUP_COMPLETE = 'SIGNUP_COMPLETE';
+export const SIGNUP_CREATED = 'SIGNUP_CREATED';
+export const SIGNUP_FOUND = 'SIGNUP_FOUND';
 export const SIGNUP_PENDING = 'SIGNUP_PENDING';
-export const SET_CURRENTLY_SIGNED_UP = 'SET_CURRENTLY_SIGNED_UP';
+export const SIGNUP_NOT_FOUND = 'SIGNUP_NOT_FOUND';
 export * from './signup';
