@@ -30,6 +30,7 @@ export default function(reducers, preloadedState = {}) {
       data: [],
     },
     submissions: {
+      isFetching: false,
       isStoring: false,
       data: [],
     },
