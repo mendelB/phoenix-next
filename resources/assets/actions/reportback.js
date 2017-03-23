@@ -113,9 +113,13 @@ export function fetchUserReportbacks(userId, campaignId) {
         dispatch(receivedUserReportbacks());
 
         if (json.data.length) {
-          let reportbackItems = json.data.shift().reportback.reportback_items.data;
+          let reportback = json.data.shift().reportback;
 
-          reportbackItems.forEach(reportbackItem => {
+          if (!reportback) {
+            return;
+          }
+
+          reportback.reportback_items.data.forEach(reportbackItem => {
             dispatch(addToSubmissionsList(reportbackItem));
           });
         }
