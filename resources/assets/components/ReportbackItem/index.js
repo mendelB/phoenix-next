@@ -1,12 +1,12 @@
 import React from 'react';
 import { Figure, BaseFigure } from '../Figure';
 import Reaction from '../Reaction';
-import { ensureAuth } from '../../helpers';
+import { ensureAuth, EMPTY_IMAGE } from '../../helpers';
 import './reportback-item.scss';
 
 const ReportbackItem = ({id, url, quantity, firstName, reaction, isFetching = false, toggleReactionOn, toggleReactionOff}) => {
   firstName = isFetching ? '…' : firstName;
-  url = isFetching ? 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' : url;
+  url = isFetching ? EMPTY_IMAGE : url;
   const impact = isFetching ? '…' : `${quantity} jeans`;
 
   const reactionElement = isFetching ? null : (
