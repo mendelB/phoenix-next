@@ -83,7 +83,8 @@ const mapStateToProps = (state) => {
     callToAction: state.campaign.callToAction,
     submissions: state.submissions,
     signedUp: state.signups.data.includes(state.campaign.legacyCampaignId),
-    signedUpThisSession: state.signups.thisSession,
+    hasNewSignup: state.signups.thisSession,
+    hasPendingSignup: state.signups.isPending,
     isAuthenticated: state.user.id !== null,
   };
 };
@@ -96,7 +97,6 @@ const actionCreators = {
   clickedViewMore,
   clickedSignUp,
   checkForSignup,
-  setCurrentlySignedUp,
 };
 
 // Export the container component.
