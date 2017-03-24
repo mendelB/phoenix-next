@@ -20,9 +20,6 @@ build:
             mkdir -p $WERCKER_CACHE_DIR/wercker/npm
             npm config set cache $WERCKER_CACHE_DIR/wercker/npm
             sudo npm install
-      - script:
-          name: build assets
-          code: gulp
 
 deploy:
   steps:
