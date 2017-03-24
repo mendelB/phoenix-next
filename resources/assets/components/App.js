@@ -12,6 +12,8 @@ import FeedContainer from '../containers/FeedContainer';
 import ContentPageContainer from '../containers/ContentPageContainer';
 import NotFound from './NotFound';
 
+import observe from '../analytics';
+
 // Set the application "base name" to /campaigns/:slug so all pages are relative to that.
 const basename = window.location.pathname.split('/').slice(0, 3).join('/');
 
@@ -19,19 +21,7 @@ const store = configureStore({...reducers, routing: routerReducer}, window.STATE
 const routerHistory = useRouterHistory(createBrowserHistory);
 const history = syncHistoryWithStore(routerHistory({basename}), store);
 
-function pageView(path) {
-  if (typeof ga === 'undefined') return;
-
-  ga('send', 'pageview', path);
-}
-
-pageView(window.location.pathname);
-history.listen(({ basename, pathname }) => {
-  let path = basename;
-  if (pathname) path += pathname;
-
-  pageView(path);
-});
+observe(history, store);
 
 const App = (props) => (
   <Provider store={store}>
