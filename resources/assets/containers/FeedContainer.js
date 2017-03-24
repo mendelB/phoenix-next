@@ -4,7 +4,6 @@ import {
   clickedViewMore,
   clickedSignUp,
   checkForSignup,
-  setCurrentlySignedUp,
 } from '../actions';
 
 const BLOCKS_PER_ROW = 3;
