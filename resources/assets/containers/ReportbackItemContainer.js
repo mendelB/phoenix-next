@@ -11,8 +11,11 @@ import {
  */
 const mapStateToProps = (state, props) => {
   const reportback = find(state.reportbacks.data, {id: props.id});
-  const reportbackItem = reportback.reportback_items.data[0];
+  if (! reportback) {
+    return { isFetching: true };
+  }
 
+  const reportbackItem = reportback.reportback_items.data[0];
   return {
     isFetching: false,
     id: reportbackItem.id,

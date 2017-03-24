@@ -31,15 +31,32 @@ const mapDisplayToPoints = (displayOption) => {
  * @param offset
  */
 const filterVisibleBlocks = (blocks, offset) => {
+  const rowTarget = offset * ROWS_PER_PAGE;
+  const pointTarget = rowTarget * BLOCKS_PER_ROW;
   let totalPoints = 0;
 
-  return blocks.filter(block => {
+  // Filter out blocks that don't fit within offset.
+  const filteredBlocks = blocks.filter(block => {
     totalPoints += mapDisplayToPoints(block.fields.displayOptions);
-    const totalRows = totalPoints / BLOCKS_PER_ROW;
-    const rowTarget = offset * ROWS_PER_PAGE;
-
-    return totalRows < rowTarget;
+    return totalPoints < pointTarget;
   });
+
+  // If we weren't able to fill enough rows with blocks, add
+  // enough additional rows of reportbacks.
+  while (totalPoints < pointTarget) {
+    // @TODO: There's gotta be a better way of doing this.
+    filteredBlocks.push({
+      id: String(Math.ceil(Math.random() * 100000)),
+      type: 'reportbacks',
+      fields: {
+        displayOptions: ['full'],
+        additionalContent: { count: BLOCKS_PER_ROW }
+      }
+    });
+    totalPoints += BLOCKS_PER_ROW;
+  }
+
+  return filteredBlocks;
 };
 
 /**
@@ -63,6 +80,9 @@ const appendReportbacks = (reportbacks, blocks) => {
 
       if (reportback) {
         block.reportbacks.push(reportback.id);
+      } else {
+        block.reportbacks.push(`loading-${String(Math.ceil(Math.random() * 100000))}`);
+        // @TODO: We need to load more! Do we dispatch the action here...?
       }
 
       reportbackIndex++;
@@ -78,6 +98,7 @@ const appendReportbacks = (reportbacks, blocks) => {
 const mapStateToProps = (state) => {
   return {
     blocks: appendReportbacks(state.reportbacks, filterVisibleBlocks(state.campaign.activityFeed, state.blocks.offset)),
+    hasMoreBlocksAvailable: state.blocks.offset > state.blocks.totalOffset,
     legacyCampaignId: state.campaign.legacyCampaignId,
     callToAction: state.campaign.callToAction,
     submissions: state.submissions,

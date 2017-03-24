@@ -5,9 +5,9 @@ import ReportbackItemContainer from '../../containers/ReportbackItemContainer';
 import './reportback-block.scss';
 
 const ReportbackBlock = props => {
-  const items = props.reportbacks.map(id => {
+  const items = props.reportbacks.map((id, index) => {
     return (
-      <FlexCell key={id}>
+      <FlexCell key={id || `null-${index}`}>
         <Block className="reportback-block">
           <ReportbackItemContainer id={id} />
         </Block>
