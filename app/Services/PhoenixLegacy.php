@@ -86,10 +86,11 @@ class PhoenixLegacy extends RestApiClient
     {
         $path = 'v1/reportbacks';
         $query['load_user'] = true;
+        if (auth()->id()) {
+            $query['as_user'] = auth()->id();
+        }
 
-        return remember(make_cache_key('legacy-'.$path, $query), $this->cacheExpiration, function() use ($path, $query) {
-            return $this->get($path, $query);
-        });
+        return $this->get($path, $query);
     }
 
     /**
