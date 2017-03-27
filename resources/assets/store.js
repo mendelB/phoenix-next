@@ -3,8 +3,6 @@ import thunk from 'redux-thunk';
 import merge from 'lodash/merge';
 import { observerMiddleware } from './analytics';
 
-export default function(reducers, preloadedState = {}) {
-
   const initialReactionState = {};
   //TODO: When we do infinite scrolling we're going to need a way of updating this
   preloadedState.reportbacks.data.forEach((reportback) => {
@@ -21,40 +19,42 @@ export default function(reducers, preloadedState = {}) {
       };
     });
   });
+const initialState = {
+  blocks: {
+    offset: 1,
+  },
+  campaign: {
+    activityFeed: [],
+  },
+  reactions: {
+    data: {},
+  },
+  reportbacks: {
+    isFetching: false,
+    page: 1,
+    data: [],
+  },
+  submissions: {
+    isFetching: false,
+    isStoring: false,
+    data: [],
+  },
+  signups: {
+    data: (localStorage.getItem('signups') || '').split(','),
+    thisCampaign: false,
+    thisSession: false,
+    pending: false,
+  },
+  user: {
+    id: null,
+  },
+};
 
-  const initialState = {
-    campaign: {
-      activityFeed: [],
-    },
-    reportbacks: {
-      isFetching: false,
-      data: [],
-    },
-    submissions: {
-      isFetching: false,
-      isStoring: false,
-      data: [],
-    },
-    blocks: {
-      offset: 1,
-    },
-    user: {
-      id: null,
-    },
-    reactions: {
-      data: initialReactionState,
-    },
-    signups: {
-      data: (localStorage.getItem('signups') || '').split(','),
-      thisCampaign: false,
-      thisSession: false,
-      pending: false,
-    },
-  };
+export default function(reducers, preloadedState = {}) {
+  const middleware = [thunk, observerMiddleware];
 
   // Log actions to the console in development & track state changes.
-  const middleware = [thunk, observerMiddleware];
-  if (process.env.NODE_ENV === `development`) {
+  if (process.env.NODE_ENV !== 'production') {
     const createLogger = require(`redux-logger`);
     middleware.push(createLogger({collapsed: true}));
   }
@@ -65,8 +65,6 @@ export default function(reducers, preloadedState = {}) {
   return createStore(
     combineReducers(reducers),
     merge(initialState, preloadedState),
-    composeEnhancers(
-      applyMiddleware(...middleware)
-    )
+    composeEnhancers(applyMiddleware(...middleware))
   );
 };
