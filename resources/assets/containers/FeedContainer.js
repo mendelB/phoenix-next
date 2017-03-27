@@ -4,6 +4,7 @@ import {
   clickedViewMore,
   clickedSignUp,
   checkForSignup,
+  fetchReportbacks,
 } from '../actions';
 
 const BLOCKS_PER_ROW = 3;
@@ -102,6 +103,7 @@ const actionCreators = {
   clickedViewMore,
   clickedSignUp,
   checkForSignup,
+  fetchReportbacks,
 };
 
 // Export the container component.

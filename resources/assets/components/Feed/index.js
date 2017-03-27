@@ -21,6 +21,9 @@ class Feed extends React.Component {
     if (! this.props.signedUp) {
       this.props.checkForSignup(this.props.legacyCampaignId);
     }
+
+    // Load the first page of reportbacks.
+    this.props.fetchReportbacks();
   }
 
   /**
