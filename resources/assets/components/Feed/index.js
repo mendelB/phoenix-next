@@ -36,7 +36,7 @@ class Feed extends React.Component {
       'join_cta': CallToActionContainer,
       'reportbacks': ReportbackBlock,
       'static': StaticBlock,
-    }, block.type, PlaceholderBlock);
+    }, block.fields.type, PlaceholderBlock);
 
     return <FlexCell key={block.id + '-' + index} width={block.fields.displayOptions[0]}><BlockComponent {...block} /></FlexCell>;
   }

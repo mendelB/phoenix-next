@@ -47,8 +47,9 @@ const filterVisibleBlocks = (blocks, offset) => {
     // @TODO: There's gotta be a better way of doing this.
     filteredBlocks.push({
       id: String(Math.ceil(Math.random() * 100000)),
-      type: 'reportbacks',
+      type: 'customBlock',
       fields: {
+        type: 'reportbacks',
         displayOptions: ['full'],
         additionalContent: { count: BLOCKS_PER_ROW }
       }
@@ -70,9 +71,9 @@ const appendReportbacks = (reportbacks, blocks) => {
     // Set block type for custom blocks.
     block.type = block.type === 'customBlock' ? block.fields.type : block.type;
 
-    if (block.type !== 'reportbacks') return block;
 
     block.reportbacks = [];
+    if (block.fields.type !== 'reportbacks') return block;
 
     const count = block.fields.additionalContent.count || 3;
     for (let i = 0; i < count; i++) {
