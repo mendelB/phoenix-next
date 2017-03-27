@@ -20,7 +20,7 @@ export const RECEIVED_USER_SUBMISSIONS = 'RECEIVED_USER_SUBMISSIONS';
 export * from './reportback';
 
 // Feed Action Names & Creators
-export const CLICKED_VIEW_MORE = 'CLICKED_VIEW_MORE';
+export const FEED_INCREMENT_PAGE = 'FEED_INCREMENT_PAGE';
 export * from './feed';
 
 // Reaction Action Names & Creators
