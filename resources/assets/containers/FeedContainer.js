@@ -68,26 +68,11 @@ const filterVisibleBlocks = (blocks, offset) => {
 const appendReportbacks = (reportbacks, blocks) => {
   let reportbackIndex = 0;
   return blocks.map(block => {
-    // Set block type for custom blocks.
-    block.type = block.type === 'customBlock' ? block.fields.type : block.type;
-
-
-    block.reportbacks = [];
     if (block.fields.type !== 'reportbacks') return block;
 
+    // Attach some unique reportback IDs to each block.
     const count = block.fields.additionalContent.count || 3;
-    for (let i = 0; i < count; i++) {
-      const reportback = reportbacks.data[reportbackIndex];
-
-      if (reportback) {
-        block.reportbacks.push(reportback.id);
-      } else {
-        block.reportbacks.push(`loading-${String(Math.ceil(Math.random() * 100000))}`);
-        // @TODO: We need to load more! Do we dispatch the action here...?
-      }
-
-      reportbackIndex++;
-    }
+    block.reportbacks = reportbacks.slice(reportbackIndex, reportbackIndex += count);
 
     return block;
   });
@@ -98,8 +83,7 @@ const appendReportbacks = (reportbacks, blocks) => {
  */
 const mapStateToProps = (state) => {
   return {
-    blocks: appendReportbacks(state.reportbacks, filterVisibleBlocks(state.campaign.activityFeed, state.blocks.offset)),
-    hasMoreBlocksAvailable: state.blocks.offset > state.blocks.totalOffset,
+    blocks: appendReportbacks(state.reportbacks.ids, filterVisibleBlocks(state.campaign.activityFeed, state.blocks.offset)),
     legacyCampaignId: state.campaign.legacyCampaignId,
     callToAction: state.campaign.callToAction,
     submissions: state.submissions,

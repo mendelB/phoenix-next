@@ -1,4 +1,5 @@
 import { Phoenix } from '@dosomething/gateway';
+import { normalizeReportbacksResponse } from "../normalizers";
 import {
   REQUESTED_REPORTBACKS,
   RECEIVED_REPORTBACKS,
@@ -17,13 +18,13 @@ import {
  */
 
 // Action: reportback fetch initiated.
-export function requestingReportbacks(node) {
+export function requestedReportbacks(node) {
   return { type: REQUESTED_REPORTBACKS, node };
 }
 
 // Action: new reportback data received.
-export function receivedReportbacks(node, page, data) {
-  return { type: RECEIVED_REPORTBACKS, node, page, data};
+export function receivedReportbacks(page, { reportbacks, reportbackItems, reactions }) {
+  return { type: RECEIVED_REPORTBACKS, page, reportbacks, reportbackItems, reactions };
 }
 
 // Action: store new user submitted reportback.
@@ -128,13 +129,16 @@ export function fetchUserReportbacks(userId, campaignId) {
 }
 
 // Async Action: fetch another page of reportbacks.
-export function fetchReportbacks(node, page) {
-  return dispatch => {
-    dispatch(requestingReportbacks(node));
+export function fetchReportbacks() {
+  return (dispatch, getState) => {
+    let node = getState().campaign.legacyCampaignId;
+    let page = getState().reportbacks.page;
 
-    return (new Phoenix).get('reportbacks', { campaigns: node, page })
-      .then(json => {
-        dispatch(receivedReportbacks(node, page, json.data))
-      })
+    dispatch(requestedReportbacks(node));
+
+    (new Phoenix).get('reportbacks', { campaigns: node, page }).then(json => {
+      const normalizedData = normalizeReportbacksResponse(json.data);
+      dispatch(receivedReportbacks(json.meta.pagination.current_page, normalizedData))
+    })
   }
 }
