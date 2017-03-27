@@ -56,28 +56,13 @@ class CampaignController extends Controller
     public function show($slug)
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
-        $phoenixNid = data_get($campaign, 'legacyCampaignId', '1144');
-
-        $response = $this->phoenixLegacy->getAllReportbacks([
-            'campaigns' => $phoenixNid,
-            'status' => 'promoted',
-            'load_user' => true,
-            'as_user' => auth()->id() ?: ''
-        ]);
-
-        $reportbacks = $response['data'];
-
-        $state = [
-            'campaign' => $campaign,
-            'reportbacks' => [
-                'data' => $reportbacks
-            ],
-            'user' => [
-                'id' => auth()->id(),
-            ],
-        ];
 
         return view('campaigns.show', ['campaign' => $campaign])
-            ->with('state', $state);
+            ->with('state', [
+                'campaign' => $campaign,
+                'user' => [
+                    'id' => auth()->id(),
+                ],
+            ]);
     }
 }
