@@ -66,7 +66,7 @@ class Feed extends React.Component {
       </Flex>
     );
   }
-};
+}
 
 Feed.defaultProps = {
   blocks: [],
