@@ -10,9 +10,6 @@ const initialState = {
   campaign: {
     activityFeed: [],
   },
-  reactions: {
-    data: {},
-  },
   reportbacks: {
     isFetching: false,
     page: 1,

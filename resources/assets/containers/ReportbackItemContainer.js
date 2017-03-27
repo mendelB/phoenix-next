@@ -21,7 +21,7 @@ const mapStateToProps = (state, props) => {
     url: reportbackItem.media.uri,
     quantity: reportback.quantity,
     firstName: reportback.user.first_name,
-    reaction: state.reactions.data[reportbackItem.id],
+    reaction: reportbackItem.reaction,
     isAuthenticated: state.user.id !== null,
   };
 };
