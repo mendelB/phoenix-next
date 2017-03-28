@@ -101,9 +101,8 @@ export function toggleReactionOff(reportbackItemId, reactionId) {
     dispatch(reactionChanged(reportbackItemId, false));
 
     (new Phoenix).delete(`reactions/${reactionId}`)
-      .catch(() => {
-        dispatch(reactionChanged(reportbackItemId, true));
-      });
+      .then(json => dispatch(reactionComplete(reportbackItemId, null)))
+      .catch(() =>  dispatch(reactionChanged(reportbackItemId, true)));
   }
 }
 
