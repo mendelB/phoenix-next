@@ -2,11 +2,6 @@
 
 .reportback-item > .figure__media {
   background-color: $off-white;
-  transition: opacity 0.5s;
-
-  &.is-fetching {
-    opacity: 0;
-  }
 
   & > img {
     width: 480px; // HACK: Expand smaller images to fit in card.

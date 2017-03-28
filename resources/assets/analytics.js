@@ -8,19 +8,9 @@ import {
 
 import {
   init,
-  analyze
+  analyze,
+  pageview,
 } from '@dosomething/analytics';
-
-/**
- * Track a page has been viewed for Google Analytics
- *
- * @param  {String} path path of the page
- */
-function pageView(path) {
-  if (typeof ga === 'undefined') return;
-
-  ga('send', 'pageview', path);
-}
 
 /**
  * Prepare the state for being sent to Keen.io
@@ -63,7 +53,6 @@ function stateChanged(action, state) {
   const transformation = transformState(action, state);
 
   analyze('action', transformation);
-  console.log(transformation);
 }
 
 /**
@@ -103,9 +92,9 @@ export default function (history, store) {
     let path = basename;
     if (pathname) path += pathname;
 
-    pageView(path);
+    pageview(path);
   });
-  pageView(window.location.pathname);
+  pageview(window.location.pathname);
 
   // Track state changes for Keen.io
   stateChanged({type: 'APPLICATION_INIT'}, store.getState());

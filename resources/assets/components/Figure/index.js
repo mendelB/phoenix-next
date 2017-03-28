@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { modifiers } from '../../helpers';
+import LazyImage from '../LazyImage';
 import './figure.scss';
 
 export const BaseFigure = ({alignment, verticalAlignment, media, size, className, children}) => (
@@ -18,13 +19,13 @@ BaseFigure.propTypes = {
 };
 
 export const Figure = (props) => {
-  const media = <img className={props.imageClassName} alt={props.alt} src={props.image} />;
+  const media = <LazyImage className={props.imageClassName} alt={props.alt} src={props.image} />;
 
   return <BaseFigure {...props} media={media} />;
 };
 
 Figure.propTypes = {
-  image: React.PropTypes.string.isRequired,
+  image: React.PropTypes.string,
   alt: React.PropTypes.string,
 };
 
