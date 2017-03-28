@@ -4,7 +4,6 @@
   background-color: $off-white;
 
   & > img {
-    transition: opacity 0.5s;
     width: 480px; // HACK: Expand smaller images to fit in card.
   }
 }
