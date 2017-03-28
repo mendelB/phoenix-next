@@ -35,13 +35,9 @@ export function reactionChanged(reportbackItemId, value) {
   return { type: REACTION_CHANGED, reportbackItemId, value };
 }
 
-// Action: component got a reaction response back.
+// Action: reaction successfully created or updated.
 export function reactionComplete(reportbackItemId, reactionId) {
-  return {
-    type: REACTION_COMPLETE,
-    reportbackItemId,
-    reactionId,
-  }
+  return { type: REACTION_COMPLETE, reportbackItemId, reactionId };
 }
 
 // Action: store new user submitted reportback.
