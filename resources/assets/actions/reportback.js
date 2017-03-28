@@ -1,5 +1,6 @@
 import { Phoenix } from '@dosomething/gateway';
 import { normalizeReportbacksResponse } from "../normalizers";
+import has from 'lodash/has';
 import {
   REQUESTED_REPORTBACKS,
   RECEIVED_REPORTBACKS,
@@ -89,12 +90,12 @@ export function toggleReactionOn(reportbackItemId, termId) {
     (new Phoenix).post('reactions', {
       reportback_item_id: reportbackItemId,
       term_id: termId,
-    })
-      .then(json => {
-        if (json && json[0] && json[0].created) {
-          dispatch(reactionComplete(reportbackItemId, json[0].kid));
-        }
-      });
+    }).then(json => {
+      if (! has(json, '[0].created')) throw 'Could not create reaction.';
+      dispatch(reactionComplete(reportbackItemId, json[0].kid));
+    }).catch(() => {
+      dispatch(reactionChanged(reportbackItemId, false));
+    });
   }
 }
 
@@ -103,7 +104,10 @@ export function toggleReactionOff(reportbackItemId, reactionId) {
   return dispatch => {
     dispatch(reactionChanged(reportbackItemId, false));
 
-    (new Phoenix).delete(`reactions/${reactionId}`);
+    (new Phoenix).delete(`reactions/${reactionId}`)
+      .catch(() => {
+        dispatch(reactionChanged(reportbackItemId, true));
+      });
   }
 }
 
