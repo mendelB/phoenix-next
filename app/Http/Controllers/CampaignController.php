@@ -56,13 +56,16 @@ class CampaignController extends Controller
     public function show($slug)
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
+        $shareFields = getShareFields($campaign, $campaign->socialOverrides);
 
-        return view('campaigns.show', ['campaign' => $campaign])
-            ->with('state', [
-                'campaign' => $campaign,
-                'user' => [
-                    'id' => auth()->id(),
-                ],
-            ]);
+        return view('campaigns.show', [
+            'campaign' => $campaign,
+            'shareFields' => $shareFields,
+        ])->with('state', [
+            'campaign' => $campaign,
+            'user' => [
+                'id' => auth()->id(),
+            ],
+        ]);
     }
 }
