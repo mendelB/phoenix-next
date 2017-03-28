@@ -3,6 +3,12 @@ import thunk from 'redux-thunk';
 import merge from 'lodash/merge';
 import { observerMiddleware } from './analytics';
 
+/**
+ * Initial state for the Redux store. This is where we
+ * set default values for when the application loads.
+ *
+ * @type {Object}
+ */
 const initialState = {
   blocks: {
     offset: 1,
@@ -33,6 +39,14 @@ const initialState = {
   },
 };
 
+/**
+ * Create a new instance of the Redux store using the given
+ * reducers & preloaded state from the server.
+ *
+ * @param reducers
+ * @param preloadedState
+ * @returns {Store<S>}
+ */
 export default function(reducers, preloadedState = {}) {
   const middleware = [thunk, observerMiddleware];
 
