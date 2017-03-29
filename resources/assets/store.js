@@ -18,6 +18,7 @@ const initialState = {
   },
   reportbacks: {
     isFetching: false,
+    total: 0,
     page: 1,
     ids: [],
     entities: {},
