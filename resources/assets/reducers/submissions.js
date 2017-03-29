@@ -29,7 +29,17 @@ const submissions = (state = {}, action) => {
       return {...state, isStoring: false};
 
     case ADD_TO_SUBMISSIONS_LIST:
-      return {...state, data: [action.reportback, ...state.data]}
+      console.log(action.reportback);
+
+      return {
+        ...state,
+        reportback: {
+          id: action.reportback.id,
+          flagged: action.reportback.flagged,
+          quantity: action.reportback.quantity,
+          whyParticipated: action.reportback.why_participated,
+        },
+        items: [...action.reportback.reportback_items.data, ...state.items]}
 
     default:
       return state;

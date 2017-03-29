@@ -115,28 +115,31 @@ export function submitReportback(reportback) {
 
     const token = document.querySelector('meta[name="csrf-token"]');
 
-    // @TODO: Refactor once update to Gateway JS is made
-    // to allow overriding header configs properly.
-    return window.fetch(url, {
-      method: 'POST',
-      headers: {
-        'X-CSRF-Token': token ? token.getAttribute('content') : null,
-        'Accept': 'application/json',
-      },
-      credentials: 'same-origin',
-      body: reportback.formData,
-    })
-      .then((response) => {
-        if (response.status >= 300) {
-          dispatch(storeReportbackFailed());
-          // @TODO: implement showing validation error.
-        }
-        else {
-          dispatch(storeReportbackSuccessful());
-          dispatch(addToSubmissionsList(reportback));
-        }
-      })
-      .catch(error => console.log(error));
+    dispatch(storeReportbackSuccessful());
+    dispatch(addToSubmissionsList(reportback));
+
+    // // @TODO: Refactor once update to Gateway JS is made
+    // // to allow overriding header configs properly.
+    // return window.fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'X-CSRF-Token': token ? token.getAttribute('content') : null,
+    //     'Accept': 'application/json',
+    //   },
+    //   credentials: 'same-origin',
+    //   body: reportback.formData,
+    // })
+    //   .then((response) => {
+    //     if (response.status >= 300) {
+    //       dispatch(storeReportbackFailed());
+    //       // @TODO: implement showing validation error.
+    //     }
+    //     else {
+    //       dispatch(storeReportbackSuccessful());
+    //       dispatch(addToSubmissionsList(reportback));
+    //     }
+    //   })
+    //   .catch(error => console.log(error));
   };
 }
 
@@ -161,9 +164,7 @@ export function fetchUserReportbacks(userId, campaignId) {
             return;
           }
 
-          reportback.reportback_items.data.forEach(reportbackItem => {
-            dispatch(addToSubmissionsList(reportbackItem));
-          });
+          dispatch(addToSubmissionsList(reportback));
         }
       });
   }
