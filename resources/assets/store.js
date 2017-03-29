@@ -37,6 +37,9 @@ const initialState = {
   user: {
     id: null,
   },
+  share: {
+    status: null,
+  },
 };
 
 /**
