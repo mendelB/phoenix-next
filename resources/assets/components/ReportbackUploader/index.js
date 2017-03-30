@@ -2,7 +2,6 @@ import React from 'react';
 import Block from '../Block';
 import { Flex } from '../Flex';
 import MediaUploader from '../MediaUploader';
-import ReportbackSubmissions from '../ReportbackSubmissions';
 import Gallery from '../Gallery';
 import ReportbackItem from '../ReportbackItem';
 import './reportback-uploader.scss';
