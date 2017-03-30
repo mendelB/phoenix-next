@@ -19,7 +19,7 @@ const ReportbackItem = ({
 
   if (isFetching) {
     return (
-      <Figure className="reportback-item" image={null}>
+      <Figure className="reportback-item" image="">
         <BaseFigure media={reactionElement} alignment="right" className="padded">
           <h4>Loading…</h4>
           <p className="footnote">…</p>
@@ -27,8 +27,6 @@ const ReportbackItem = ({
       </Figure>
     );
   }
-
-  const reportbackItemCaption = caption ? <p>{caption}</p> : null;
 
   const reactionElement = reaction && !isFetching ? (
     <Reaction active={reaction.reacted} total={reaction.total}

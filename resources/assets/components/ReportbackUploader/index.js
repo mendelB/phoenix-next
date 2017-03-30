@@ -108,8 +108,8 @@ class ReportbackUploader extends React.Component {
             <button className="button" type="submit">Submit a new photo</button>
           </form>
         </div>
-          <Gallery isFetching={this.props.submissions.isFetching}>
-            {this.props.submissions.items.map(submission => <ReportbackItem {...submission} url={submission.media.uri || submission.media.filePreviewUrl}/>)}
+          <Gallery isFetching={this.props.submissions.isFetching} type="triad">
+            {this.props.submissions.items.map((submission, index) => <ReportbackItem key={Date.now() + index} {...submission} url={submission.media.uri || submission.media.filePreviewUrl} reaction={null} />)}
           </Gallery>
       </Block>
     );
