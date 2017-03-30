@@ -9,7 +9,8 @@ import {
   STORE_REPORTBACK_PENDING,
   STORE_REPORTBACK_FAILED,
   STORE_REPORTBACK_SUCCESSFUL,
-  ADD_TO_SUBMISSIONS_LIST,
+  ADD_SUBMISSION_METADATA,
+  ADD_SUBMISSION_ITEM_TO_LIST,
   REQUESTED_USER_SUBMISSIONS,
   REQUESTED_USER_SUBMISSIONS_FAILED,
   RECEIVED_USER_SUBMISSIONS
@@ -70,11 +71,20 @@ export function receivedUserReportbacks() {
   return { type: RECEIVED_USER_SUBMISSIONS };
 }
 
-// Action: add user reportback submission to submissions list.
-export function addToSubmissionsList(reportback) {
+// Action: add user reportback submission metadata to submissions store.
+export function addSubmissionMetadata(reportback, id) {
   return {
-    type: ADD_TO_SUBMISSIONS_LIST,
-    reportback
+    type: ADD_SUBMISSION_METADATA,
+    reportback,
+    id
+  }
+}
+
+// Action: add user reportback item submission to submissions store list.
+export function addSubmissionItemToList(reportbackItem) {
+  return {
+    type: ADD_SUBMISSION_ITEM_TO_LIST,
+    reportbackItem
   }
 }
 
@@ -115,32 +125,34 @@ export function submitReportback(reportback) {
 
     const token = document.querySelector('meta[name="csrf-token"]');
 
-    dispatch(storeReportbackSuccessful());
-    dispatch(addToSubmissionsList(reportback));
+    // @TODO: Refactor once update to Gateway JS is made
+    // to allow overriding header configs properly.
+    return window.fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-CSRF-Token': token ? token.getAttribute('content') : null,
+        'Accept': 'application/json',
+      },
+      credentials: 'same-origin',
+      body: reportback.formData,
+    })
+      .then(response => {
+        if (response.status >= 300) {
+          dispatch(storeReportbackFailed());
+          // @TODO: implement showing validation error.
+        }
+        else {
+          dispatch(storeReportbackSuccessful());
 
-    // // @TODO: Refactor once update to Gateway JS is made
-    // // to allow overriding header configs properly.
-    // return window.fetch(url, {
-    //   method: 'POST',
-    //   headers: {
-    //     'X-CSRF-Token': token ? token.getAttribute('content') : null,
-    //     'Accept': 'application/json',
-    //   },
-    //   credentials: 'same-origin',
-    //   body: reportback.formData,
-    // })
-    //   .then((response) => {
-    //     if (response.status >= 300) {
-    //       dispatch(storeReportbackFailed());
-    //       // @TODO: implement showing validation error.
-    //     }
-    //     else {
-    //       dispatch(storeReportbackSuccessful());
-    //       dispatch(addToSubmissionsList(reportback));
-    //     }
-    //   })
-    //   .catch(error => console.log(error));
+          response.json().then(json => {
+            dispatch(addSubmissionMetadata(reportback, json.shift()));
+            dispatch(addSubmissionItemToList(reportback));
+          });
+        }
+      })
+      .catch(error => console.log(error));
   };
+
 }
 
 export function fetchUserReportbacks(userId, campaignId) {
@@ -164,7 +176,10 @@ export function fetchUserReportbacks(userId, campaignId) {
             return;
           }
 
-          dispatch(addToSubmissionsList(reportback));
+          dispatch(addSubmissionMetadata(reportback));
+          reportback.reportback_items.data.forEach(reportbackItem => {
+            dispatch(addSubmissionItemToList(reportbackItem));
+          });
         }
       });
   }
