@@ -30,6 +30,13 @@ export const getBlocks = (state) => state.campaign.activityFeed;
 export const getBlockOffset = (state) => state.blocks.offset * BLOCKS_PER_ROW * ROWS_PER_PAGE;
 
 /**
+ * Get the number of blocks that are visible in the feed.
+ * @param state
+ * @returns {number}
+ */
+export const getMaximumOffset = (state) => totalBlocksInFeed(state) + (state.reportbacks.total - totalReportbackBlocksInFeed(state));
+
+/**
  * Calculate the total number of "blocks" in the feed.
  * @param state
  * @returns {*}
@@ -71,7 +78,7 @@ export function getVisibleBlocks(state) {
 
   // If we weren't able to fill enough rows with blocks, add
   // additional reportback blocks until we hit the target.
-  while (totalPoints < blockOffset) {
+  while (totalPoints < blockOffset && totalPoints < getMaximumOffset(state)) {
     filteredBlocks.push({
       id: 'dynamic',
       type: 'customBlock',
@@ -91,9 +98,10 @@ export function getVisibleBlocks(state) {
  * Append reportback IDs to the reportback blocks.
  *
  * @param blocks
- * @param reportbacks
+ * @param state
  */
-export function getBlocksWithReportbacks(blocks, reportbacks) {
+export function getBlocksWithReportbacks(blocks, state) {
+  const reportbacks = state.reportbacks.ids;
   let reportbackIndex = 0;
 
   return blocks.map(block => {

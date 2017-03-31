@@ -39,11 +39,12 @@ const renderFeedItem = (block, index) => {
  *
  * @returns {XML}
  */
-const Feed = ({ blocks, callToAction, signedUp, hasNewSignup, hasPendingSignup, isAuthenticated, clickedViewMore, clickedSignUp }) => {
+const Feed = ({ blocks, callToAction, signedUp, hasNewSignup, hasPendingSignup, isAuthenticated, canLoadMorePages, clickedViewMore, clickedSignUp }) => {
   const viewMoreOrSignup = signedUp ? clickedViewMore : clickedSignUp;
   const revealer = <Revealer title={signedUp ? 'view more' : 'sign up'}
                              callToAction={signedUp ? '' : callToAction}
                              isLoading={hasPendingSignup}
+                             isVisible={(isAuthenticated && !signedUp) || canLoadMorePages}
                              onReveal={() => ensureAuth(isAuthenticated) && viewMoreOrSignup()} />;
 
   return (
