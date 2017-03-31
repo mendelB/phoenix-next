@@ -21,12 +21,16 @@ export function facebookShareCancelled() {
 
 // Action: user clicked a share button.
 export function clickedShare() {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(requestedFacebookShare());
+
+    const href = window.location.href;
+    const quote = getState().share.quote || '';
 
     FB.ui({
       method: 'share',
-      href: window.location.href,
+      href,
+      quote,
     }, (response) => {
       if (response) {
         dispatch(facebookShareCompleted());

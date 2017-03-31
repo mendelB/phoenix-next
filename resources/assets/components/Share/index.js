@@ -16,6 +16,7 @@ const Share = ({ variant, clickedShare }) => {
 
 Share.defaultProps = {
   variant: 'black',
+  clickedShare: () => {},
 }
 
 export default Share;
