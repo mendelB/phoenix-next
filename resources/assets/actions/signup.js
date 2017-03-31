@@ -13,12 +13,28 @@ import {
 
 // Action: a new signup was created for a campaign.
 export function signupCreated(campaignId) {
-  return { type: SIGNUP_CREATED, campaignId };
+  return (dispatch, getState) => {
+    const { user } = getState();
+
+    dispatch({
+      type: SIGNUP_CREATED,
+      campaignId,
+      userId: user.id,
+    });
+  }
 }
 
 // Action: an existing signup was found for a campaign.
 export function signupFound(campaignId) {
-  return { type: SIGNUP_FOUND, campaignId };
+  return (dispatch, getState) => {
+    const { user } = getState();
+
+    dispatch({
+      type: SIGNUP_FOUND,
+      campaignId,
+      userId: user.id,
+    });
+  }
 }
 
 // Action: no existing signup was found for the campaign.
@@ -33,15 +49,19 @@ export function signupPending() {
 
 // Async Action: check if user already signed up for the campaign
 export function checkForSignup(campaignId) {
-  return dispatch => {
-    dispatch(signupPending());
-
-    (new Phoenix).get(`activity/${campaignId}`).then(response => {
-      if (!response || !response.sid) {
-        return dispatch(signupNotFound());
+  return (dispatch, getState) => {
+    (new Phoenix).get('signups', {
+      campaigns: campaignId,
+      user: getState().user.id,
+    }).then(response => {
+      if (!response || !response.data || !response.data[0]) {
+        throw new Error('no signup found');
       }
 
       dispatch(signupFound(campaignId));
+    })
+    .catch(() => {
+      dispatch(signupNotFound());
     });
   }
 }
@@ -51,7 +71,7 @@ export function clickedSignUp(campaignId) {
   return dispatch => {
     dispatch(signupPending());
 
-    return (new Phoenix).post('signups', { campaignId }).then(response => {
+    (new Phoenix).post('signups', { campaignId }).then(response => {
       if (!response || !response[0]) return;
 
       dispatch(signupCreated(campaignId));
