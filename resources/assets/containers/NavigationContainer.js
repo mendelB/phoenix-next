@@ -17,6 +17,7 @@ const NavigationContainer = (props) => {
   return (
     <Navigation>
       <NavigationLink to="/">Feed</NavigationLink>
+      <NavigationLink to="/action">Action</NavigationLink>
       { additionalPages }
     </Navigation>
   );

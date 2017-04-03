@@ -9,6 +9,7 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import ChromeContainer from '../containers/ChromeContainer';
 import FeedContainer from '../containers/FeedContainer';
+import ActionPageContainer from '../containers/ActionPageContainer';
 import ContentPageContainer from '../containers/ContentPageContainer';
 import NotFound from './NotFound';
 
@@ -28,6 +29,7 @@ const App = (props) => (
     <Router history={history}>
       <Route component={ChromeContainer} onEnter={initializeStore(store)}>
         <Route path="/" component={FeedContainer}/>
+        <Route path="/action" component={ActionPageContainer}/>
         <Route path="/pages/:page" component={ContentPageContainer}/>
         <Route path='*' component={NotFound} />
       </Route>
