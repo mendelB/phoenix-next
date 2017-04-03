@@ -10,6 +10,7 @@ import { ensureAuth } from '../../helpers';
 
 import Revealer from '../Revealer';
 import { Flex, FlexCell } from '../Flex';
+import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Block from '../Block';
 import Markdown from '../Markdown';
 
@@ -27,6 +28,12 @@ const ActionPage = ({ steps, callToAction, signedUp, hasPendingSignup, isAuthent
                              isLoading={hasPendingSignup}
                              onReveal={() => clickedSignUp()} />;
 
+  const uploader = (
+    <FlexCell key="reportback_uploader" width="full">
+      <ReportbackUploaderContainer/>
+    </FlexCell>
+  );
+
   return (
     <Flex>
       {steps.map((step, key) => (
@@ -38,6 +45,7 @@ const ActionPage = ({ steps, callToAction, signedUp, hasPendingSignup, isAuthent
         </FlexCell>
       ))}
       {isAuthenticated && signedUp ? null : revealer}
+      {isAuthenticated && signedUp ? uploader : null}
     </Flex>
   );
 };
