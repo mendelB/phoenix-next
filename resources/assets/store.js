@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import merge from 'lodash/merge';
-import { checkForSignup, fetchReportbacks } from './actions';
+import { checkForSignup, fetchReportbacks, startQueue } from './actions';
 import { observerMiddleware } from './analytics';
 import { loadStorage } from './storageHelpers';
 
@@ -44,6 +44,9 @@ const initialState = {
   share: {
     status: null,
   },
+  events: {
+    queue: [],
+  }
 };
 
 /**
@@ -94,8 +97,9 @@ export function initializeStore(store) {
     // Fetch the first page of reportbacks for the feed.
     store.dispatch(fetchReportbacks());
 
+    // Start the event queue.
+    store.dispatch(startQueue());
+
     callback();
   }
 }
-
-
