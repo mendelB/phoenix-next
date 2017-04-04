@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Exceptions\InvalidFileUploadException;
 use App\Services\PhoenixLegacy;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 
 class ReportbackController extends Controller
 {
