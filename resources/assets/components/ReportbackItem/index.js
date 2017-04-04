@@ -3,18 +3,19 @@ import { Figure, BaseFigure } from '../Figure';
 import Reaction from '../Reaction';
 import './reportback-item.scss';
 
-const ReportbackItem = ({
-  id,
-  url,
-  quantity,
-  caption,
-  firstName,
-  reaction = null,
-  isFetching = false,
-  isAuthenticated,
-  toggleReactionOn,
-  toggleReactionOff
-}) => {
+const ReportbackItem = (props) => {
+  const {
+    id,
+    url,
+    quantity,
+    caption,
+    firstName,
+    reaction = null,
+    isFetching = false,
+    isAuthenticated,
+    toggleReactionOn,
+    toggleReactionOff
+  } = props;
 
   if (isFetching) {
     return (
@@ -29,8 +30,8 @@ const ReportbackItem = ({
 
   const reactionElement = reaction && !isFetching ? (
     <Reaction active={reaction.reacted} total={reaction.total}
-              onToggleOn={() => toggleReactionOn(id, reaction.termId)}
-              onToggleOff={() => toggleReactionOff(id, reaction.id)} />
+              onToggleOn={() => toggleReactionOn(id, reaction.termId, props)}
+              onToggleOff={() => toggleReactionOff(id, reaction.id, props)} />
   ) : null;
 
   return (

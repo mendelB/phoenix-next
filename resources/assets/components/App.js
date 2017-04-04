@@ -13,7 +13,7 @@ import ActionPageContainer from '../containers/ActionPageContainer';
 import ContentPageContainer from '../containers/ContentPageContainer';
 import NotFound from './NotFound';
 
-import observe from '../analytics';
+import observe from '../middleware/analytics';
 
 // Set the application "base name" to /campaigns/:slug so all pages are relative to that.
 const basename = window.location.pathname.split('/').slice(0, 3).join('/');

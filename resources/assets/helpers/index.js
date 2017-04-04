@@ -32,6 +32,21 @@ export function contentfulImageUrl(url, width = null, height = null, fit = null)
 }
 
 /**
+ * Ensure a user is authenticated. If not, redirect them
+ * to log in via the OpenID Connect flow.
+ * @param isAuthenticated
+ * @returns {boolean}
+ */
+export function ensureAuth(isAuthenticated) {
+  if (! isAuthenticated) {
+    window.location.href = '/login';
+    return false;
+  }
+
+  return true;
+}
+
+/**
  * Wait until the DOM is ready.
  *
  * @param {Function} fn
@@ -194,80 +209,13 @@ export function generateUniqueId() {
   return `${Date.now()}${salt}`;
 }
 
-
-const DEVICE_ID = 'DEVICE_ID';
-
 /**
- * Check if this device has a unique id,
- * if not then create one.
- */
-export function createDeviceId() {
-  if (localStorage.getItem(DEVICE_ID)) return;
-
-  localStorage.setItem(DEVICE_ID, generateUniqueId());
-}
-
-/**
- * Get the unique identifier of this device.
- * If it doesn't have one, create it.
+ * Check if the given timestamp has exceeded its lifespan of max time.
  *
- * @return {String}
- */
-export function getDeviceId() {
-  const id = localStorage.getItem(DEVICE_ID);
-  if (id) return id;
-
-  createDeviceId()
-  return getDeviceId();
-}
-
-const SESSION_ID = 'SESSION_ID';
-const SESSION_LAST_UPDATED_AT = 'SESSION_LAST_UPDATED_AT';
-
-export function getSession() {
-  return {
-    id: localStorage.getItem(SESSION_ID),
-    lastUpdatedAt: localStorage.getItem(SESSION_LAST_UPDATED_AT),
-    deviceId: localStorage.getItem(DEVICE_ID),
-  };
-}
-
-/**
- * Update the session to reflect the user is still active.
- */
-export function updateSession() {
-  localStorage.setItem(SESSION_LAST_UPDATED_AT, Date.now());
-}
-
-/**
- * Generate a new session id.
- */
-export function generateSessionid() {
-  localStorage.setItem(SESSION_ID, generateUniqueId());
-  updateSession();
-}
-
-/**
- * Check if the given timestamp is still valid.
- *
- * @param  {int}  timestamp  Timestamp in milliseconds
- * @param  {int}  maxTime    Expire time in milliseconds
- * @return {Boolean}         Whether the timestamp is valid
- */
-export function isTimestampValid(timestmap, maxTime) {
-  return (timestmap + maxTime) > Date.now();
-}
-
-/**
- * Check if the given session id is still valid.
- *
+ * @param  {int}  timestamp    Timestamp in milliseconds.
+ * @param  {int}  maxTime      Max life in milliseconds.
  * @return {Boolean}
  */
-export function isSessionValid() {
-  const session = getSession();
-
-  if (!session.id || !session.lastUpdatedAt) return false;
-
-  // Check if the timestamp is 15 min old.
-  return isTimestampValid(session.lastUpdatedAt, (15 * 60 * 1000));
+export function isTimestampValid(timestamp, maxTime) {
+  return (timestamp + maxTime) > Date.now();
 }

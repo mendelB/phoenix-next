@@ -2,8 +2,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import merge from 'lodash/merge';
 import { checkForSignup, fetchReportbacks, startQueue } from './actions';
-import { observerMiddleware } from './analytics';
-import { loadStorage } from './storageHelpers';
+import { observerMiddleware } from './middleware/analytics';
+import { loadStorage } from './helpers/storage';
 
 /**
  * Initial state for the Redux store. This is where we

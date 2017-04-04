@@ -14,6 +14,7 @@ import {
   REQUESTED_USER_SUBMISSIONS,
   REQUESTED_USER_SUBMISSIONS_FAILED,
   RECEIVED_USER_SUBMISSIONS,
+  trackEvent,
   queueEvent
 } from '../actions';
 
@@ -90,7 +91,7 @@ export function addSubmissionItemToList(reportbackItem) {
 }
 
 // Async Action: user reacted to a photo.
-export function toggleReactionOn(reportbackItemId, termId) {
+export function toggleReactionOn(reportbackItemId, termId, component) {
   return (dispatch, getState) => {
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
@@ -98,6 +99,7 @@ export function toggleReactionOn(reportbackItemId, termId) {
       return;
     }
 
+    dispatch(trackEvent('reaction toggled on', component));
     dispatch(reactionChanged(reportbackItemId, true));
 
     (new Phoenix).post('reactions', {
@@ -113,8 +115,9 @@ export function toggleReactionOn(reportbackItemId, termId) {
 }
 
 // Async Action: user un-reacted to a photo.
-export function toggleReactionOff(reportbackItemId, reactionId) {
+export function toggleReactionOff(reportbackItemId, reactionId, component) {
   return dispatch => {
+    dispatch(trackEvent('reaction toggled off', component));
     dispatch(reactionChanged(reportbackItemId, false));
 
     (new Phoenix).delete(`reactions/${reactionId}`)
