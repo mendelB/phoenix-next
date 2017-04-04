@@ -51,9 +51,6 @@ const Feed = ({ blocks, callToAction, campaignId, signedUp, hasNewSignup, hasPen
       {hasNewSignup ? <Affirmation /> : null}
       {blocks.map(renderFeedItem)}
       {revealer}
-      <FlexCell key="reportback_uploader" width="full">
-        <ReportbackUploaderContainer/>
-      </FlexCell>
     </Flex>
   );
 };
