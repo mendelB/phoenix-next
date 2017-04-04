@@ -1,18 +1,9 @@
-/**
- * Render a single feed item.
- *
- * @param block
- * @param index
- * @returns {XML}
- */
 import React from 'react';
-import { ensureAuth } from '../../helpers';
-
-import Revealer from '../Revealer';
-import { Flex, FlexCell } from '../Flex';
-import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Block from '../Block';
 import Markdown from '../Markdown';
+import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
+import Revealer from '../Revealer';
+import { Flex, FlexCell } from '../Flex';
 
 /**
  * Render the feed.
