@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
+use App\Exceptions\InvalidFileUploadException;
 
 class Handler extends ExceptionHandler
 {
@@ -86,6 +87,9 @@ class Handler extends ExceptionHandler
         }
         elseif ($exception instanceof AuthenticationException) {
             $code = 401;
+        }
+        elseif ($exception instanceof InvalidFileUploadException) {
+            $code = $exception->getStatusCode();
         }
         else {
             $code = 500;
