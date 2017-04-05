@@ -1,8 +1,6 @@
 import React from 'react';
 import { get } from 'lodash';
 import { mergeMetadata } from '../../helpers/analytics';
-
-import Affirmation from '../Affirmation';
 import CallToActionContainer from '../../containers/CallToActionContainer';
 import CampaignUpdateBlock from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
@@ -39,7 +37,7 @@ const renderFeedItem = (block, index) => {
  *
  * @returns {XML}
  */
-const Feed = ({ blocks, callToAction, campaignId, signedUp, hasNewSignup, hasPendingSignup, isAuthenticated, canLoadMorePages, clickedViewMore, clickedSignUp }) => {
+const Feed = ({ blocks, callToAction, campaignId, signedUp, hasPendingSignup, isAuthenticated, canLoadMorePages, clickedViewMore, clickedSignUp }) => {
   const viewMoreOrSignup = signedUp ? clickedViewMore : () => clickedSignUp(campaignId, mergeMetadata(Feed.defaultMetadata));
   const revealer = <Revealer title={signedUp ? 'view more' : 'sign up'}
                              callToAction={signedUp ? '' : callToAction}
@@ -49,7 +47,6 @@ const Feed = ({ blocks, callToAction, campaignId, signedUp, hasNewSignup, hasPen
 
   return (
     <Flex>
-      {hasNewSignup ? <Affirmation /> : null}
       {blocks.map(renderFeedItem)}
       {revealer}
     </Flex>
