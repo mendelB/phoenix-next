@@ -1,5 +1,6 @@
 import React from 'react';
 import FeedEnclosure from './FeedEnclosure';
+import LedeBanner from './LedeBanner';
 import NavigationContainer from '../containers/NavigationContainer';
 import AffirmationContainer from '../containers/AffirmationContainer';
 
