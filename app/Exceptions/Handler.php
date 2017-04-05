@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
@@ -87,9 +88,6 @@ class Handler extends ExceptionHandler
         }
         elseif ($exception instanceof AuthenticationException) {
             $code = 401;
-        }
-        elseif ($exception instanceof InvalidFileUploadException) {
-            $code = $exception->getStatusCode();
         }
         else {
             $code = 500;
