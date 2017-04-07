@@ -1,7 +1,7 @@
 @import '../../scss/next-toolbox';
 
 .feed-enclosure {
-  padding: ($base-spacing / 2) 0;
-
   @include clearfix;
+
+  margin: $base-spacing 0;
 }
