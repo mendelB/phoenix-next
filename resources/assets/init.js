@@ -31,17 +31,13 @@ import './scss/navigation.scss';
 // Elements
 import App from './components/App';
 
-// Navigation
+// Things
 import { init as navigationInit } from './helpers/navigation';
+import { init as historyInit } from './history';
 
-// Set the application "base name" to /campaigns/:slug so all pages are relative to that.
-const basename = window.location.pathname.split('/').slice(0, 3).join('/');
-
+// Configure store & history.
 const store = configureStore({...reducers, routing: routerReducer}, window.STATE);
-const routerHistory = useRouterHistory(createBrowserHistory);
-const history = syncHistoryWithStore(routerHistory({basename}), store);
-
-observe(history, store);
+const history = historyInit(store);
 
 ready(() => {
   const appElement = document.getElementById('app');
