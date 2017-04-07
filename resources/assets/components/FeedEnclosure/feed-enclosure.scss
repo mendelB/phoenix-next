@@ -6,10 +6,3 @@
 
   @include clearfix;
 }
-
-.feed-enclosure > .wrapper {
-  @include media($tablet) {
-    @include span(12 no-gutters);
-    @include push(2);
-  }
-}
