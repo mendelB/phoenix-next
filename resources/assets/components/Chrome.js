@@ -6,6 +6,7 @@ import AffirmationContainer from '../containers/AffirmationContainer';
 
 const Chrome = (props) => (
   <div>
+    <LedeBanner title={props.title} subtitle={props.subtitle} blurb={props.blurb} coverImage={props.coverImage} />
     <AffirmationContainer />
     <NavigationContainer />
     <FeedEnclosure>

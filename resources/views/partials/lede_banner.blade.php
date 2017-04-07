@@ -25,5 +25,5 @@
 
         <div id="banner-signup"></div>
     </div>
-    <div style="background-image: url('{{ get_image_url($campaign->coverImage, 'square') }}')"></div>
+    <div class="cover-image" style="background-image: url('{{ get_image_url($campaign->coverImage, 'square') }}')"></div>
 </header>

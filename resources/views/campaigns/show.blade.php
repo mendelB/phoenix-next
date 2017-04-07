@@ -2,8 +2,6 @@
 
 @section('content')
 
-    @include('partials.lede_banner')
-
     <div id="app">
         <div class="feed-enclosure">
             <div class="flex wrapper">
