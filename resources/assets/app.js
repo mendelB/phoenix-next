@@ -16,6 +16,7 @@ import { ready } from './helpers';
 import 'whatwg-fetch';
 
 // Style Components
+import './scss/chrome.scss';
 import './scss/construction.scss';
 import './scss/container.scss';
 import './scss/header.scss';

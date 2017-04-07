@@ -1,7 +1,6 @@
-@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox';
 
 .feed-enclosure {
-  background: rgb(32, 38, 52);
   padding: ($base-spacing / 2) 0;
 
   @include clearfix;
