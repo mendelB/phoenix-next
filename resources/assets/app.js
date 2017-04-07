@@ -23,6 +23,9 @@ import './scss/header.scss';
 // Containers
 import App from './components/App';
 
+// Navigation
+import { init as navigationInit } from './helpers/navigation';
+
 // Make action available to demonstrate loading more reportbacks.
 // @TODO: Expose this in the UI!
 import { fetchReportbacks } from './actions';
@@ -34,4 +37,6 @@ ready(() => {
   if (appContainer) {
     ReactDom.render(<App />, appContainer);
   }
+
+  navigationInit();
 });
