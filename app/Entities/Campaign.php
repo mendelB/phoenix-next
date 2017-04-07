@@ -33,15 +33,18 @@ class Campaign extends Entity implements JsonSerializable
     {
         return (object) [
             'id' => $this->entry->getId(),
+            'legacyCampaignId' => $this->legacyCampaignId,
             'type' => $this->entry->getContentType()->getId(),
             'title' => $this->title,
             'slug' => $this->slug,
-            'legacyCampaignId' => $this->legacyCampaignId,
             'callToAction' => $this->callToAction,
+            'blurb' => $this->blurb,
             'coverImage' => [
                 'description' => $this->coverImage->getDescription(),
                 'url' => $this->coverImage->getFile()->getUrl(),
             ],
+            'affiliateSponsors' => $this->affiliateSponsors,
+            'affiliatePartners' => $this->affiliatePartners,
             // @TODO: Why is it 'activity_feed' oy? ;/
             'activityFeed' => $this->activity_feed,
             'pages' => $this->pages,
