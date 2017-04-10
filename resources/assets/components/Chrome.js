@@ -8,7 +8,15 @@ import NotificationContainer from '../containers/NotificationContainer';
 const Chrome = (props) => (
   <div>
     <NotificationContainer />
-    <LedeBanner isAffiliated={props.isAffiliated} title={props.title} subtitle={props.subtitle} blurb={props.blurb} coverImage={props.coverImage} legacyCampaignId={props.legacyCampaignId} clickedSignUp={props.clickedSignUp} />
+    <LedeBanner
+      isAffiliated={props.isAffiliated}
+      title={props.title}
+      subtitle={props.subtitle}
+      blurb={props.blurb}
+      coverImage={props.coverImage}
+      legacyCampaignId={props.legacyCampaignId}
+      clickedSignUp={props.clickedSignUp}
+    />
     <AffirmationContainer />
     <NavigationContainer />
     <FeedEnclosure>
