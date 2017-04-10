@@ -1,6 +1,8 @@
 <?php
 
+use App\Entities\Campaign;
 use Contentful\Delivery\Asset;
+use Contentful\Delivery\DynamicEntry;
 use Contentful\Delivery\ImageOptions;
 use Illuminate\Support\HtmlString;
 
@@ -95,10 +97,12 @@ function markdown($source)
  *
  * @param Asset $asset
  * @param  string $crop
- * @return string
+ * @return string|null
  */
-function get_image_url(Asset $asset, $crop = 'landscape')
+function get_image_url($asset, $crop = 'landscape')
 {
+    if (! $asset) return null;
+
     $options = [];
 
     $options['landscape'] = (new ImageOptions)
@@ -109,8 +113,8 @@ function get_image_url(Asset $asset, $crop = 'landscape')
 
     $options['square'] = (new ImageOptions)
         ->setFormat('jpg')
-        ->setWidth(800)
-        ->setHeight(800)
+        ->setWidth(600)
+        ->setHeight(600)
         ->setResizeFit('fill');
 
     $options['logo'] = (new ImageOptions)
@@ -132,7 +136,7 @@ function get_image_url(Asset $asset, $crop = 'landscape')
  * base object.
  *
  * @param  string $field
- * @param  DynamicEntry $base
+ * @param  DynamicEntry $campaign
  * @param  DynamicEntry $override
  * @return mixed
  */
@@ -149,18 +153,18 @@ function useOverrideIfSet($field, $campaign, $override)
  * Determine the fields to display in the social share.
  *
  * @param  Campaign $campaign
- * @param  object $shareOverrides
+ * @param  DynamicEntry $shareOverrides
  * @return array
  */
 function getShareFields($campaign, $shareOverrides)
 {
-    $coverImage = useOverrideIfSet('coverImage', $campaign, $shareOverrides)->getFile()->getUrl();
+    $coverImage = get_image_url(useOverrideIfSet('coverImage', $campaign, $shareOverrides), 'landscape');
 
     return [
         'title' => useOverrideIfSet('title', $campaign, $shareOverrides),
         'callToAction' => useOverrideIfSet('callToAction', $campaign, $shareOverrides),
         'coverImage' => 'http:' . $coverImage, // Contentful outputs "//" which Facebook cannot parse
         'facebookAppId' => config('services.analytics.facebook_id'),
-        'quote' => $shareOverrides->quote,
+        'quote' => $shareOverrides ? $shareOverrides->quote : null,
     ];
 }

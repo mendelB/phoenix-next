@@ -35,19 +35,19 @@ class Campaign extends Entity implements JsonSerializable
         foreach ($this->actionSteps as $step) {
             $photos = [];
             foreach ($step->photos as $photo) {
-                $photos[] = $photo->getFile()->getUrl();
+                $photos[] = get_image_url($photo, 'landscape');
             }
 
             $actionSteps[] = [
                 'title' => $step->title,
                 'content' => $step->content,
                 'displayOptions' => $step->displayOptions,
-                'background' => $step->background->getFile()->getUrl(),
+                'background' => $step->background ? $step->background->getFile()->getUrl() : '',
                 'photos' => $photos,
             ];
         }
 
-        return (object) [
+        return [
             'id' => $this->entry->getId(),
             'legacyCampaignId' => $this->legacyCampaignId,
             'type' => $this->entry->getContentType()->getId(),
@@ -56,8 +56,8 @@ class Campaign extends Entity implements JsonSerializable
             'callToAction' => $this->callToAction,
             'blurb' => $this->blurb,
             'coverImage' => [
-                'description' => $this->coverImage->getDescription(),
-                'url' => $this->coverImage->getFile()->getUrl(),
+                'description' => $this->coverImage ? $this->coverImage->getDescription() : '',
+                'url' => $this->coverImage ? $this->coverImage->getFile()->getUrl() : '',
             ],
             'affiliateSponsors' => $this->affiliateSponsors,
             'affiliatePartners' => $this->affiliatePartners,
