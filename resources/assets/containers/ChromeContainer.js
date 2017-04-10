@@ -9,7 +9,7 @@ const mapStateToProps = (state, props) => {
   return {
     children: props.children,
     legacyCampaignId: state.campaign.legacyCampaignId,
-    isAffiliated: state.signups.thisSession || state.signups.thisCampaign,
+    isAffiliated: state.signups.thisCampaign,
     title: state.campaign.title,
     subtitle: state.campaign.callToAction,
     blurb: state.campaign.blurb,
