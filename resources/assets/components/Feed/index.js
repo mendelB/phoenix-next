@@ -5,10 +5,10 @@ import CallToActionContainer from '../../containers/CallToActionContainer';
 import CampaignUpdateBlock from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from '../ReportbackBlock';
-import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Revealer from '../Revealer';
 import StaticBlock from '../StaticBlock';
 import { Flex, FlexCell } from '../Flex';
+import './feed.scss';
 
 /**
  * Render a single feed item.
@@ -46,10 +46,12 @@ const Feed = ({ blocks, callToAction, campaignId, signedUp, hasPendingSignup, is
                              onReveal={() => viewMoreOrSignup()} />;
 
   return (
-    <Flex>
-      {blocks.map(renderFeedItem)}
+    <div>
+      <Flex className="feed">
+        {blocks.map(renderFeedItem)}
+      </Flex>
       {revealer}
-    </Flex>
+    </div>
   );
 };
 

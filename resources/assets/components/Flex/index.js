@@ -1,19 +1,17 @@
 import React from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { modifiers } from '../../helpers';
 import './flex.scss';
 
-export const Flex = ({children}) => {
-  return (
-    <div className="flex">
-      {children}
-    </div>
-  );
-};
+export const Flex = ({className = null, children}) => (
+  <div className={classnames('flex', className)}>
+    {children}
+  </div>
+);
 
 export const FlexCell = ({width = [], children}) => {
   return (
-    <div className={classNames('flex__cell', modifiers(width))}>
+    <div className={classnames('flex__cell', modifiers(width))}>
       {children}
     </div>
   );
