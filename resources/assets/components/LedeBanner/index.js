@@ -9,7 +9,7 @@ const LedeBanner = ({title, subtitle, blurb, coverImage, isAffiliated, legacyCam
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };
 
-  const onClick = () => clickedSignUp(legacyCampaignId, {}); // @TODO: No metadata for now.
+  const onClick = () => clickedSignUp(legacyCampaignId, {source: 'lede banner'});
 
   return (
     <header role="banner" className="lede-banner">
