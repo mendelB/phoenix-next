@@ -16,13 +16,15 @@ const LedeBanner = ({title, subtitle, blurb, coverImage, isAffiliated, legacyCam
       <div className="lede-banner__image" style={backgroundImageStyle}></div>
       <div className="lede-banner__content">
         <div className="wrapper">
-          <h1 className="lede-banner__title">{title}</h1>
-          <h2 className="lede-banner__subtitle">{subtitle}</h2>
+          <div className="lede-banner__headline">
+            <h1 className="lede-banner__headline-title">{title}</h1>
+            <h2 className="lede-banner__headline-subtitle">{subtitle}</h2>
+          </div>
+
+          <Markdown className="lede-banner__blurb">{blurb}</Markdown>
+
+          { isAffiliated ? null : <button className="button" onClick={onClick}>Join us</button> }
         </div>
-
-        <Markdown className="lede-banner__blurb">{blurb}</Markdown>
-
-        { isAffiliated ? null : <button className="button" onClick={onClick}>Join us</button> }
       </div>
     </header>
   )
