@@ -101,7 +101,9 @@ function markdown($source)
  */
 function get_image_url($asset, $crop = 'landscape')
 {
-    if (! $asset) return null;
+    if (! $asset) {
+        return null;
+    }
 
     $options = [];
 
