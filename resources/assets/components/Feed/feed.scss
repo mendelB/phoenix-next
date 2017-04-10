@@ -1,0 +1,4 @@
+.feed {
+  // Ensure the revealer doesn't overflow if feed is empty.
+  min-height: 300px;
+}
