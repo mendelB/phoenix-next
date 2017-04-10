@@ -4,10 +4,12 @@ import { contentfulImageUrl } from '../../helpers';
 
 import './lede-banner.scss';
 
-const LedeBanner = ({title, subtitle, blurb, coverImage}) => {
+const LedeBanner = ({title, subtitle, blurb, coverImage, isAffiliated, legacyCampaignId, clickedSignUp}) => {
   const backgroundImageStyle = {
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };
+
+  const onClick = () => clickedSignUp(legacyCampaignId, {}); // @TODO: No metadata for now.
 
   return (
     <header role="banner" className="lede-banner">
@@ -20,7 +22,7 @@ const LedeBanner = ({title, subtitle, blurb, coverImage}) => {
 
         <Markdown className="lede-banner__blurb">{blurb}</Markdown>
 
-        {/* @TODO: not implemented yet! Stay tuned! <button className="button">Join us</button> */}
+        { isAffiliated ? null : <button className="button" onClick={onClick}>Join us</button> }
       </div>
     </header>
   )
