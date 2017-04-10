@@ -5,7 +5,6 @@ import CallToActionContainer from '../../containers/CallToActionContainer';
 import CampaignUpdateBlock from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from '../ReportbackBlock';
-import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Revealer from '../Revealer';
 import StaticBlock from '../StaticBlock';
 import { Flex, FlexCell } from '../Flex';
