@@ -31,6 +31,22 @@ class Campaign extends Entity implements JsonSerializable
 
     public function jsonSerialize()
     {
+        $actionSteps = [];
+        foreach ($this->actionSteps as $step) {
+            $photos = [];
+            foreach ($step->photos as $photo) {
+                $photos[] = $photo->getFile()->getUrl();
+            }
+
+            $actionSteps[] = [
+                'title' => $step->title,
+                'content' => $step->content,
+                'displayOptions' => $step->displayOptions,
+                'background' => $step->background->getFile()->getUrl(),
+                'photos' => $photos,
+            ];
+        }
+
         return (object) [
             'id' => $this->entry->getId(),
             'legacyCampaignId' => $this->legacyCampaignId,
@@ -47,6 +63,7 @@ class Campaign extends Entity implements JsonSerializable
             'affiliatePartners' => $this->affiliatePartners,
             // @TODO: Why is it 'activity_feed' oy? ;/
             'activityFeed' => $this->activity_feed,
+            'actionSteps' => $actionSteps,
             'pages' => $this->pages,
             'additionalContent' => $this->additionalContent,
         ];

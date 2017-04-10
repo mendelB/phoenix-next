@@ -1,9 +1,51 @@
 import React from 'react';
-import Block from '../Block';
 import Markdown from '../Markdown';
 import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Revealer from '../Revealer';
 import { Flex, FlexCell } from '../Flex';
+import { convertNumberToWord } from '../../helpers';
+import './actionPage.scss';
+
+const Stepheader = ({ title, step, background }) => (
+  <FlexCell width="full">
+    <div className="action-step__header" style={{ backgroundImage: background }}>
+      <span>step { convertNumberToWord(step) }</span>
+      <h1>{ title }</h1>
+    </div>
+  </FlexCell>
+);
+
+const renderPhoto = (photo, index) => (
+  <div className="action-step__photo" key={index}>
+    <img src={photo} />
+  </div>
+);
+
+const renderStep = (step, index) => {
+  const title = step.title;
+  const background = `url('${step.background}')`;
+
+  const stepWidth = step.displayOptions[0];
+  const photoWidth = stepWidth === 'full' ? 'full' : 'one-third';
+
+  return (
+    <FlexCell width="full" key={index}>
+      <div className="action-step">
+        <Flex>
+          <Stepheader title={title} step={index + 1} background={background} />
+          <FlexCell width={stepWidth}>
+            <Markdown>{ step.content }</Markdown>
+          </FlexCell>
+          <FlexCell width={photoWidth}>
+            <div className={`action-step__photos -${photoWidth}`}>
+              {step.photos ? step.photos.map(renderPhoto) : null}
+            </div>
+          </FlexCell>
+        </Flex>
+      </div>
+    </FlexCell>
+  )
+}
 
 /**
  * Render the feed.
@@ -27,14 +69,7 @@ const ActionPage = ({ steps, callToAction, campaignId, signedUp, hasPendingSignu
 
   return (
     <Flex>
-      {steps.map((step, key) => (
-        <FlexCell width="full" key={key}>
-          <Block>
-            <h2>{step.title}</h2>
-            <Markdown>{step.content}</Markdown>
-          </Block>
-        </FlexCell>
-      ))}
+      {steps.map(renderStep)}
       {isAuthenticated && signedUp ? null : revealer}
       {isAuthenticated && signedUp ? uploader : null}
     </Flex>
