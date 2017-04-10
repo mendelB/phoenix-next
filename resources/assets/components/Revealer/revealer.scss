@@ -8,8 +8,9 @@
   position: relative;
 
   h1 {
-    color: $white;
-    margin-bottom: 8px;
+    color: $black;
+    font-size: type-scale(1);
+    margin-bottom: $base-spacing;
   }
 
   &::before {
