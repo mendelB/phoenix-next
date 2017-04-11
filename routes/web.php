@@ -13,8 +13,8 @@ $router->get('/', function () {
 });
 
 // Authentication
-$router->get('login', 'AuthController@getLogin');
-$router->get('logout', 'AuthController@getLogout');
+$router->get('next/login', 'AuthController@getLogin');
+$router->get('next/logout', 'AuthController@getLogout');
 
 // Campaigns
 $router->get('campaigns', 'CampaignController@index');
@@ -27,7 +27,7 @@ $router->get('campaigns/{path}', 'CampaignController@redirect')
 $router->post('waitinglist', 'WaitingListController@store');
 
 // Embeds
-$router->get('embed', 'EmbedController@index');
+$router->get('next/embed', 'EmbedController@index');
 
 
 /**
@@ -36,14 +36,14 @@ $router->get('embed', 'EmbedController@index');
  */
 
 // Reactions
-$router->post('reactions', 'ReactionController@store');
-$router->delete('reactions/{id}', 'ReactionController@delete');
+$router->post('next/reactions', 'ReactionController@store');
+$router->delete('next/reactions/{id}', 'ReactionController@delete');
 
 // Reportbacks
-$router->resource('reportbacks', 'ReportbackController', ['except' => ['create', 'edit', 'destroy']]);
+$router->resource('next/reportbacks', 'ReportbackController', ['except' => ['create', 'edit', 'destroy']]);
 
 // Signups
-$router->resource('signups', 'SignupController', ['except' => ['create', 'edit', 'destroy']]);
+$router->resource('next/signups', 'SignupController', ['except' => ['create', 'edit', 'destroy']]);
 
 // Activity
-$router->get('activity/{campaignId}', 'ActivityController@show');
+$router->get('next/activity/{campaignId}', 'ActivityController@show');

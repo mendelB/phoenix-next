@@ -63,7 +63,7 @@ export function signupPending() {
 // Async Action: check if user already signed up for the campaign
 export function checkForSignup(campaignId) {
   return (dispatch, getState) => {
-    (new Phoenix).get('signups', {
+    (new Phoenix).get('next/signups', {
       campaigns: campaignId,
       user: getState().user.id,
     }).then(response => {
@@ -93,7 +93,7 @@ export function clickedSignUp(campaignId, metadata) {
 
     dispatch(signupPending());
 
-    (new Phoenix).post('signups', { campaignId }).then(response => {
+    (new Phoenix).post('next/signups', { campaignId }).then(response => {
       // Handle a bad signup response...
       if (! response) dispatch(addNotification('error', 'Agh, looks like we had an error. Try again in a few minutes!'));
       // If Drupal denied our signup request, check if we already had a signup.
