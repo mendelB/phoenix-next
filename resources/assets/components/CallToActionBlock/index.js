@@ -18,16 +18,16 @@ const renderImpactContent = (data) => {
   return null;
 };
 
+const renderBackgroundImageStyle = (imageUrl) => (
+  { backgroundImage: `url(${contentfulImageUrl(imageUrl, '400', '400', 'fill')})` }
+);
+
 const CallToActionBlock = ({ isAffiliated, fields, imageUrl, legacyCampaignId, clickedSignUp }) => {
   const { title, content, additionalContent } = fields;
   const hasPhoto = additionalContent ? additionalContent.hasPhoto : false;
 
   // @TODO: This should probably be editable in contentful...
   const buttonText = isAffiliated ? 'Reportback' : 'Get Involved';
-
-  const backgroundImageStyle = {
-    backgroundImage: `url(${contentfulImageUrl(imageUrl, '400', '400', 'fill')})`,
-  };
 
   const metadata = mergeMetadata(CallToActionBlock.defaultMetadata, {
     hasPhoto: hasPhoto,
@@ -51,7 +51,7 @@ const CallToActionBlock = ({ isAffiliated, fields, imageUrl, legacyCampaignId, c
         </div>
       </div>
 
-      { hasPhoto ? <div className="cta__photo" style={backgroundImageStyle}></div> : null }
+      { hasPhoto ? <div className="cta__photo" style={renderBackgroundImageStyle(imageUrl)}></div> : null }
     </div>
   );
 };
