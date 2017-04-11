@@ -18,7 +18,7 @@ $router->get('logout', 'AuthController@getLogout');
 
 // Campaigns
 $router->get('campaigns', 'CampaignController@index');
-$router->get('campaigns/us/{slug}/{clientRoute?}', 'CampaignController@show')
+$router->get('us/campaigns/{slug}/{clientRoute?}', 'CampaignController@show')
     ->where('clientRoute', '.*');
 $router->get('campaigns/{path}', 'CampaignController@redirect')
     ->where('path', '.*');

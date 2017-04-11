@@ -54,7 +54,7 @@ class CampaignController extends Controller
      */
     public function redirect($path)
     {
-        return redirect('campaigns/us/' . $path);
+        return redirect('us/campaigns/' . $path);
     }
 
     /**
