@@ -12,7 +12,7 @@ var config = configurator({
 
 // Override output path.
 config.output.filename = '[name]-[hash].js';
-config.output.path = './public/dist';
+config.output.path = './public/next/assets';
 
 // Expose Service URLs
 config.plugins.push(
