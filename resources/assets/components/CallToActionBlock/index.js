@@ -4,13 +4,13 @@ import { contentfulImageUrl } from '../../helpers';
 import { mergeMetadata } from '../../helpers/analytics';
 import './cta.scss';
 
-const renderImpactContent = (content) => {
-  if (content.impactNumber) {
+const renderImpactContent = (data) => {
+  if (data.impactNumber) {
     return (
       <div className="cta__block cta__impact">
-        {content.impactPrefix ? <span className="cta__impact-prefix">{content.impactPrefix}</span> : null}
-        {content.impactNumber ? <span className="cta__impact-number">{content.impactNumber}</span> : null}
-        {content.impactMessage ? <span className="cta__impact-message">{content.impactMessage}</span> : null}
+        {data.impactPrefix ? <span className="cta__impact-prefix">{data.impactPrefix}</span> : null}
+        {data.impactNumber ? <span className="cta__impact-number">{data.impactNumber}</span> : null}
+        {data.impactMessage ? <span className="cta__impact-message">{data.impactMessage}</span> : null}
       </div>
     );
   }
