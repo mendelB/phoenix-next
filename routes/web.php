@@ -13,7 +13,8 @@ $router->get('/', function () {
 });
 
 // Authentication
-$router->get('next/login', 'AuthController@getLogin');
+$router->get('next/login', 'AuthController@getLogin')->name('login');
+
 $router->get('next/logout', 'AuthController@getLogout');
 
 // Campaigns
