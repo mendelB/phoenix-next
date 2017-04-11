@@ -111,7 +111,7 @@ class ReportbackUploader extends React.Component {
         </div>
           <Gallery isFetching={this.props.submissions.isFetching} type="triad">
             {/* @TODO: Need to normalize data for uploaded RBs vs API retrieved RBs earlier in process if possible... */}
-            {this.props.submissions.items.map((submission, index) => <ReportbackItem key={makeHash((submission.media.uri || submission.media.filePreviewUrl).slice(-20))} {...submission} url={submission.media.uri || submission.media.filePreviewUrl} reaction={null} />)}
+            {this.props.submissions.items.map((submission, index) => <ReportbackItem key={makeHash(submission.media.uri || submission.media.filePreviewUrl)} {...submission} url={submission.media.uri || submission.media.filePreviewUrl} reaction={null} />)}
           </Gallery>
       </Block>
     );
