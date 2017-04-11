@@ -21,7 +21,7 @@
                 @if (Auth::user())
                     <a id="js-account-toggle" class="navigation__dropdown-toggle">My Profile</a>
                     <ul>
-                        <li><a href="{{ config('services.phoenix-legacy.url') . 'northstar/' . Auth::user()->northstar_id }}">Profile</a></li>
+                        <li><a href="{{ config('services.phoenix-legacy.url') . '/northstar/' . Auth::user()->northstar_id }}">Profile</a></li>
                         <li><a href="{{ url('logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
                     </ul>
                 @else

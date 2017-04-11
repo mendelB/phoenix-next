@@ -237,3 +237,26 @@ export function convertNumberToWord(number) {
     default: throw new Error('Number out of range');
   }
 }
+
+/**
+ * Make a hash from a specified string.
+ * @see  http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
+ *
+ * @param  {String} string
+ * @return {String}
+ */
+export function makeHash(string) {
+  let hash = 0;
+
+  if (!string.length) {
+    return hash;
+  }
+
+  string.split('').forEach((char, index) => {
+    char = string.charCodeAt(index);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  });
+
+  return Math.abs(hash);
+}
