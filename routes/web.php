@@ -18,8 +18,10 @@ $router->get('logout', 'AuthController@getLogout');
 
 // Campaigns
 $router->get('campaigns', 'CampaignController@index');
-$router->get('campaigns/{slug}/{clientRoute?}', 'CampaignController@show')
+$router->get('campaigns/us/{slug}/{clientRoute?}', 'CampaignController@show')
     ->where('clientRoute', '.*');
+$router->get('campaigns/{path}', 'CampaignController@redirect')
+    ->where('path', '.*');
 
 // Waiting List: for collecting user emails pre-launch.
 $router->post('waitinglist', 'WaitingListController@store');
