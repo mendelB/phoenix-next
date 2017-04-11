@@ -25,7 +25,7 @@
                         <li><a href="{{ url('next/logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
                     </ul>
                 @else
-                    <a href="{{ url('next/login') }}">Log In</a>
+                    <a href="{{ route('login', isset($campaign) ? ['destination' => $campaign->title] : null) }}">Log In</a>
                 @endif
             </li>
         </ul>
