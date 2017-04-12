@@ -9,15 +9,15 @@
                 web experience.</p>
             </div>
             <ul class="gallery -quartet">
-                @foreach($campaigns as $link)
+                @foreach($campaigns as $item)
                     <li>
                         <article class="tile">
-                            <a class="wrapper" href="{{ url('campaigns/'.$link->slug) }}">
+                            <a class="wrapper" href="{{ url('campaigns/'.$item->slug) }}">
                                 <div class="tile__meta">
-                                    <h1 class="tile__title">{{ $link->title }}</h1>
-                                    <p class="tile__tagline">{{ $link->callToAction }}</p>
+                                    <h1 class="tile__title">{{ $item->title }}</h1>
+                                    <p class="tile__tagline">{{ $item->callToAction }}</p>
                                 </div>
-                                <img alt="kitten overlords" src="{{ get_image_url($link->coverImage, 'square') }}" />
+                                <img alt="kitten overlords" src="{{ get_image_url($item->coverImage, 'square') }}" />
                             </a>
                         </article>
                     </li>
