@@ -111,8 +111,11 @@ export function clickedSignUp(campaignId, metadata) {
       return;
     }
 
-    // Make sure we don't already have a signup cached before making the request.
-    if (getState().signups.data.includes(campaignId)) return;
+    // If we already have a signup, just go to the action page.
+    if (getState().signups.data.includes(campaignId)) {
+      historyGet().push('/action');
+      return;
+    };
 
     dispatch(signupPending());
 
