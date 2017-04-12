@@ -1,0 +1,12 @@
+@import '../../scss/next-toolbox';
+
+.content-page {
+  padding-top: $half-spacing;
+
+  font-family: $primary-font-family;
+
+  > article {
+    margin: 0 $half-spacing;
+    @extend %block;
+  }
+}
