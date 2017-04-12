@@ -19,14 +19,14 @@ set :use_sudo, false
 set :repository, "."
 set :scm, :none
 set :deploy_via, :copy
-set :keep_releases, 1
+set :keep_releases, 5
 
 ssh_options[:keys] = [ENV["CAP_PRIVATE_KEY"]]
 
 default_run_options[:shell] = '/bin/bash'
 
 namespace :deploy do
-  folders = %w{logs dumps system}
+  folders = %w{logs}
 
   task :link_folders do
     run "ln -nfs #{shared_path}/.env #{release_path}/"
@@ -44,12 +44,13 @@ namespace :deploy do
     run "cd #{release_path} && php artisan cache:clear"
   end
 
-  task :restart_queue_worker, :on_error => :continue do
-    run "ps -ef | grep 'queue:work' | awk '{print $2}' | xargs sudo kill -9"
+  task :restart_php do
+    run "sudo /usr/sbin/service php7.1-fpm restart"
   end
 
 end
 
 after "deploy:update", "deploy:cleanup"
 after "deploy:symlink", "deploy:link_folders"
-after "deploy:link_folders", "deploy:restart_queue_worker", "deploy:artisan_migrate"
+after "deploy:link_folders", "deploy:artisan_migrate"
+after "deploy:artisan_cache_clear", "deploy:restart_php"
