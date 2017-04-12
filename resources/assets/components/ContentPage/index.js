@@ -9,15 +9,23 @@ import './content-page.scss';
 const ContentPage = ({ pages, route }) => {
   const page = pages.find(page => page.fields.slug === route.page);
 
-  const ctaContent = 'some content that needs to get output';
+  // @TODO: temporary variables until these CTAs are no longer hardcoded.
+  const ctaText1 = 'Help us send letters of support to every mosque in the US.\nJoin hundreds of members members making cards!';
+  const ctaText2 = 'Help us send letters of support to every mosque in the United States.';
 
   return (
     <div className="content-page">
-      <article>
-        <h2>{page.fields.title}</h2>
-        <Markdown>{page.fields.content}</Markdown>
-      </article>
-      <CallToActionContainer fields={ {title: 'something', content: ctaContent} } />
+      <div className="primary">
+        <article>
+          <h2 className="visually-hidden">{page.fields.title}</h2>
+          <Markdown>{page.fields.content}</Markdown>
+        </article>
+      </div>
+      <div className="secondary">
+        <CallToActionContainer fields={ {title: 'something', content: ctaText1} } />
+      </div>
+
+      <CallToActionContainer fields={ {title: ctaText2} } />
     </div>
   );
 };

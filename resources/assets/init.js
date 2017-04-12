@@ -23,6 +23,7 @@ import observe from './middleware/analytics';
 import 'whatwg-fetch';
 
 // Style Components
+import './scss/base.scss';
 import './scss/chrome.scss';
 import './scss/construction.scss';
 import './scss/container.scss';
