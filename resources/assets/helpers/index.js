@@ -39,7 +39,7 @@ export function contentfulImageUrl(url, width = null, height = null, fit = null)
  */
 export function ensureAuth(isAuthenticated) {
   if (! isAuthenticated) {
-    window.location.href = '/login';
+    window.location.href = '/next/login';
     return false;
   }
 
