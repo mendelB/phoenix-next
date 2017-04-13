@@ -53,4 +53,5 @@ end
 after "deploy:update", "deploy:cleanup"
 after "deploy:symlink", "deploy:link_folders"
 after "deploy:link_folders", "deploy:artisan_migrate"
+after "deploy:artisan_migrate", "deploy:artisan_cache_clear"
 after "deploy:artisan_cache_clear", "deploy:restart_php"
