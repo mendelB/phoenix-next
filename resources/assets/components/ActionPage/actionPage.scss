@@ -60,10 +60,7 @@
 
     .action-step__photo {
       padding: $base-spacing / 2;
-
-      img {
-        min-height: 200px;
-      }
+      // TODO: We'll want to make these square at some point, and get a proper overflow for the action step photos.
     }
   }
 
