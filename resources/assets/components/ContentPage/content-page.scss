@@ -44,12 +44,4 @@
     clear: both;
     margin: 0;
   }
-
-  // @TODO: Upcoming PR with work specifically on CTA will address having some classes to
-  // allow for transparent vs filled-in CTAs @_@
-  > .cta {
-    background-color: transparent;
-    border: 0 none;
-    color: $off-black;
-  }
 }

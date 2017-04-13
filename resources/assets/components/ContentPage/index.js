@@ -10,7 +10,7 @@ const ContentPage = ({ pages, route }) => {
   const page = pages.find(page => page.fields.slug === route.page);
 
   // @TODO: temporary variables until these CTAs are no longer hardcoded.
-  const ctaText1 = 'Help us send letters of support to every mosque in the US.\nJoin hundreds of members members making cards!';
+  const ctaText1 = 'Help us send letters of support to every mosque in the US.\n\n__Join hundreds of members members making cards!__';
   const ctaText2 = 'Help us send letters of support to every mosque in the United States.';
 
   return (
@@ -22,10 +22,10 @@ const ContentPage = ({ pages, route }) => {
         </article>
       </div>
       <div className="secondary">
-        <CallToActionContainer fields={ {title: 'something', content: ctaText1} } />
+        <CallToActionContainer fields={ {content: ctaText1} } />
       </div>
 
-      <CallToActionContainer fields={ {title: ctaText2} } />
+      <CallToActionContainer fields={ {title: ctaText2} } modifierClasses="transparent" />
     </div>
   );
 };
