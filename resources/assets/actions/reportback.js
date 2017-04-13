@@ -209,8 +209,8 @@ export function fetchReportbacks() {
 
     (new Phoenix).get('next/reportbacks', { campaigns: node, page }).then(json => {
       const normalizedData = normalizeReportbacksResponse(json.data);
-      const currentPage =  get(json, 'meta.pagination.current_page', 1);
-      const total =  get(json, 'meta.pagination.current_page', 0);
+      const currentPage = get(json, 'meta.pagination.current_page', 1);
+      const total = get(json, 'meta.pagination.total', 0);
 
       dispatch(receivedReportbacks(normalizedData, currentPage, total))
     })
