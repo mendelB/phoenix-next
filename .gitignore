@@ -1,6 +1,7 @@
 /node_modules
 /public/dist
 /public/next/assets
+/public/next/uploads
 /public/storage
 /vendor
 /.idea
