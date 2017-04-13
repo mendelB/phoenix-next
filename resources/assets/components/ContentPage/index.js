@@ -22,7 +22,7 @@ const ContentPage = ({ pages, route }) => {
         </article>
       </div>
       <div className="secondary">
-        <CallToActionContainer fields={ {title: 'something', content: ctaText1} } />
+        <CallToActionContainer fields={ {content: ctaText1} } />
       </div>
 
       <CallToActionContainer fields={ {title: ctaText2} } modifierClasses="transparent" />
