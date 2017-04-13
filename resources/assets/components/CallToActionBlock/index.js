@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
-import { contentfulImageUrl } from '../../helpers';
+import Markdown from '../Markdown';
+import { contentfulImageUrl, modifiers } from '../../helpers';
 import { mergeMetadata } from '../../helpers/analytics';
 import './cta.scss';
 
@@ -22,12 +23,12 @@ const renderBackgroundImageStyle = (imageUrl) => (
   { backgroundImage: `url(${contentfulImageUrl(imageUrl, '400', '400', 'fill')})` }
 );
 
-const CallToActionBlock = ({ isAffiliated, fields, imageUrl, legacyCampaignId, clickedSignUp }) => {
+const CallToActionBlock = ({ isAffiliated, fields, imageUrl, legacyCampaignId, clickedSignUp, modifierClasses = [] }) => {
   const { title, content, additionalContent } = fields;
   const hasPhoto = additionalContent ? additionalContent.hasPhoto : false;
 
   // @TODO: This should probably be editable in contentful...
-  const buttonText = isAffiliated ? 'Join Us' : 'Get Involved';
+  const buttonText = isAffiliated ? 'Join Us' : 'Make Cards';
 
   const metadata = mergeMetadata(CallToActionBlock.defaultMetadata, {
     hasPhoto: hasPhoto,
@@ -38,13 +39,13 @@ const CallToActionBlock = ({ isAffiliated, fields, imageUrl, legacyCampaignId, c
   const handleOnClickButton = () => clickedSignUp(legacyCampaignId, metadata);
 
   return (
-    <div className={classnames('cta', {'has-photo': hasPhoto})}>
+    <div className={classnames('cta', modifiers(modifierClasses), {'has-photo': hasPhoto})}>
       <div className="cta__content">
         { !content ? <div className="cta__block"><p className="cta__title">{title}</p></div> : null }
 
         { additionalContent ? renderImpactContent(additionalContent) : null}
 
-        { content ? <div className="cta__block"><p className="cta__message">{content}</p></div> : null }
+        { content ? <div className="cta__block"><Markdown className="cta__message">{content}</Markdown></div> : null }
 
         <div className="cta__block">
           <a className="button" onClick={handleOnClickButton}>{buttonText}</a>
@@ -61,5 +62,3 @@ CallToActionBlock.defaultMetadata = {
 }
 
 export default CallToActionBlock;
-
-

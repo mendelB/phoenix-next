@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { markdown } from "../../helpers";
 import './markdown.scss';
 
-const Markdown = ({className = 'markdown', children}) => (
+const Markdown = ({className = null, children}) => (
   <div className={classnames('markdown', 'with-lists', className)} dangerouslySetInnerHTML={markdown(children)} />
 );
 
