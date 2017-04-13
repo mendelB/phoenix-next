@@ -14,10 +14,7 @@ import ReactDom from 'react-dom';
 import { ready } from './helpers';
 import { configureStore } from './store';
 import * as reducers from './reducers'
-import { useRouterHistory } from 'react-router';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
-import observe from './middleware/analytics';
+import { routerReducer } from 'react-router-redux';
 
 // WHATWG Fetch Polyfill
 import 'whatwg-fetch';
