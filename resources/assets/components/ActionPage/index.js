@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import Markdown from '../Markdown';
 import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Revealer from '../Revealer';
@@ -28,10 +29,11 @@ const renderStep = (step, index) => {
   const background = step.background;
   const stepWidth = step.displayOptions[0];
   const photoWidth = stepWidth === 'full' ? 'full' : 'one-third';
+  const shouldTruncate = step.truncate;
 
   return (
     <FlexCell width="full" key={index}>
-      <div className="action-step">
+      <div className={classnames('action-step', {'-truncate': shouldTruncate})}>
         <Flex>
           <Stepheader title={title} step={index + 1} background={background} />
           <FlexCell width="two-thirds">
@@ -56,6 +58,10 @@ const renderStep = (step, index) => {
 const ActionPage = ({ steps, callToAction, campaignId, signedUp, hasPendingSignup, isAuthenticated, clickedSignUp }) => {
   if (! signedUp) {
     steps = steps.slice(0, 2);
+
+    if (steps[steps.length - 1]) {
+      steps[steps.length - 1].truncate = true;
+    }
   }
 
   const revealer = <Revealer title="sign up" callToAction={callToAction}
