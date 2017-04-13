@@ -64,7 +64,7 @@ const ActionPage = ({ steps, callToAction, campaignId, signedUp, hasPendingSignu
     }
   }
 
-  const revealer = <Revealer title="sign up" callToAction={callToAction}
+  const revealer = <Revealer title='join us' callToAction={callToAction}
                              isLoading={hasPendingSignup}
                              onReveal={() => clickedSignUp(campaignId, ActionPage.defaultMetadata)} />;
 
