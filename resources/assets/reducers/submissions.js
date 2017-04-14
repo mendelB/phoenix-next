@@ -53,7 +53,3 @@ const submissions = (state = {}, action) => {
 }
 
 export default submissions;
-
-// console.log('Reducing...');
-//       console.log(action);
-//       return {...state, errors: action.error, isFetching: false};
