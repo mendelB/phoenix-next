@@ -48,7 +48,7 @@ export function normalizeReportbackItemResponse(data) {
       reacted: !!(currentUser && currentUser.kudos_id),
       total: kudos ? kudos.term.total : 0,
       termId: kudos ? kudos.term.id : '1274', // This is a hardcoded default because phoenix-ashes is bugged.
-    }
+    };
 
     const reportback = reportbackItem.reportback;
     let existingReportback = reportbacks[reportback.id];
