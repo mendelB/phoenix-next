@@ -3,6 +3,7 @@ import {
   REQUESTED_USER_SUBMISSIONS_FAILED,
   RECEIVED_USER_SUBMISSIONS,
   STORE_REPORTBACK_PENDING,
+  STORE_REPORTBACK_FAILED,
   STORE_REPORTBACK_SUCCESSFUL,
   ADD_SUBMISSION_METADATA,
   ADD_SUBMISSION_ITEM_TO_LIST
@@ -25,6 +26,9 @@ const submissions = (state = {}, action) => {
 
     case STORE_REPORTBACK_PENDING:
       return {...state, isStoring: true};
+
+    case STORE_REPORTBACK_FAILED:
+      return {...state, messaging: action.error};
 
     case STORE_REPORTBACK_SUCCESSFUL:
       return {...state, isStoring: false};

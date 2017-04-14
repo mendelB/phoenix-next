@@ -4,6 +4,7 @@ import { Flex } from '../Flex';
 import MediaUploader from '../MediaUploader';
 import Gallery from '../Gallery';
 import ReportbackItem from '../ReportbackItem';
+import FormMessage from '../FormMessage';
 import { makeHash } from '../../helpers';
 import './reportback-uploader.scss';
 
@@ -11,8 +12,8 @@ class ReportbackUploader extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.handleOnSubmitForm = this.handleOnSubmitForm.bind(this);
+    this.handleOnFileUpload = this.handleOnFileUpload.bind(this);
 
     this.state = {
       media: this.defaultMediaState(),
@@ -35,11 +36,11 @@ class ReportbackUploader extends React.Component {
     this.props.fetchUserReportbacks(this.props.userId, this.props.legacyCampaignId);
   }
 
-  onChange(media) {
+  handleOnFileUpload(media) {
     this.setState({ media })
   }
 
-  onSubmit(event) {
+  handleOnSubmitForm(event) {
     event.preventDefault();
 
     const reportback = {
@@ -51,9 +52,9 @@ class ReportbackUploader extends React.Component {
       status: 'pending',
     };
 
-    let fileType = reportback.media.file.type;
+    let fileType = reportback.media.file ? reportback.media.file.type : null;
 
-    reportback.media.type = fileType.substring(0, fileType.indexOf('/'));
+    reportback.media.type = fileType ? fileType.substring(0, fileType.indexOf('/')) : null;
 
     this.props.submitReportback(this.setFormData(reportback));
 
@@ -69,7 +70,7 @@ class ReportbackUploader extends React.Component {
 
     Object.keys(reportback).map((item) => {
       if (item === 'media') {
-        formData.append(item, reportback[item].file);
+        formData.append(item, (reportback[item].file || ''));
       }
       else {
         formData.append(item, reportback[item]);
@@ -86,8 +87,11 @@ class ReportbackUploader extends React.Component {
       <Block>
         <div className="reportback-uploader">
           <h2 className="heading">Upload your photos</h2>
-          <form className="reportback-form" onSubmit={this.onSubmit} ref={(form) => this.form = form}>
-            <MediaUploader label="Send us your photo" media={this.state.media} onChange={this.onChange} />
+
+          { this.props.submissions.messaging ? <FormMessage messaging={this.props.submissions.messaging} /> : null }
+
+          <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={(form) => this.form = form}>
+            <MediaUploader label="Send us your photo" media={this.state.media} onChange={this.handleOnFileUpload} />
 
             <div className="wrapper">
               <div className="form-item">

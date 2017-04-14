@@ -85,6 +85,8 @@ class Handler extends ExceptionHandler
         }
         elseif ($exception instanceof ValidationException) {
             $code = 422;
+
+            $fields = $exception->validator->errors()->all();
         }
         elseif ($exception instanceof AuthenticationException) {
             $code = 401;
@@ -101,6 +103,11 @@ class Handler extends ExceptionHandler
                 'message' => $hideErrorDetails ? self::PRODUCTION_ERROR_MESSAGE : $exception->getMessage(),
             ],
         ];
+
+        // Add fields messages if available.
+        if (isset($fields)) {
+            $response['error']['fields'] = $fields;
+        }
 
         // Debug mode info.
         if (config('app.debug')) {

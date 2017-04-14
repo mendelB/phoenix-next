@@ -40,9 +40,9 @@ class ReportbackController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'media' => 'required',
+            'media' => 'required|file|image',
             'caption' => 'required',
-            'impact' => 'required',
+            'impact' => 'required|numeric',
             'whyParticipated' => 'required',
         ]);
 
