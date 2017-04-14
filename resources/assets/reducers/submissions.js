@@ -25,11 +25,7 @@ const submissions = (state = {}, action) => {
       return {...state, isFetching: false};
 
     case STORE_REPORTBACK_PENDING:
-      return {
-        ...state,
-        // messaging: null,
-        isStoring: true
-      };
+      return {...state, isStoring: true};
 
     case STORE_REPORTBACK_FAILED:
       return {
