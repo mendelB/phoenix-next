@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import { processFile } from '../../helpers';
 import './media-uploader.scss';
 
@@ -48,7 +49,7 @@ class MediaUploader extends React.Component {
     }
 
     return (
-      <div className="media-uploader">
+      <div className={classnames('media-uploader', { 'has-image': filePreviewUrl })}>
         <label htmlFor="media-uploader">
           {content}
           <input type="file" id="media-uploader" name="media-uploader" onChange={this.handleChange} />

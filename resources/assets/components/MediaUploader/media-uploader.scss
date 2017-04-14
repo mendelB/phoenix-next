@@ -29,6 +29,14 @@
     }
   }
 
+  &.has-image {
+    label {
+      &::before {
+        display: none;
+      }
+    }
+  }
+
   input {
     @include visually-hidden();
   }
