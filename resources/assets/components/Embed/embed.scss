@@ -1,4 +1,4 @@
-@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox';
 
 .embed {
   display: flex;
@@ -7,7 +7,6 @@
   margin: 0 auto $base-spacing;
   overflow: hidden;
   min-height: 100px;
-  transition: box-shadow 1s;
 
   a {
     color: $black;
@@ -18,7 +17,12 @@
 
 .embed.-loaded {
   display: block;
-  box-shadow: $box-shadow;
+  border: 1px solid $primary-border-color;
+  border-radius: $lg-border-radius;
+
+  &:hover {
+    background: $light-background-color;
+  }
 }
 
 .embed__preview {
