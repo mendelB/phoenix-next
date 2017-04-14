@@ -30,11 +30,15 @@ const FormMessage = ({ messaging }) => {
     modifierClasses = 'error';
 
     // Validation Error
+    // @TODO: maybe use a switch statement here, or maybe not refer
+    // to the error code, and instead just check if the fields list
+    // has items. Something to debate in the future.
     if (messaging.error.code === 422) {
-      message = renderErrorMessage(messaging.error);
+      message = renderValidationMessage(messaging.error);
     }
-
-    message = renderMessage(messaging.error.message);
+    else {
+      message = renderMessage(messaging.error.message);
+    }
   }
 
   // Success
