@@ -25,13 +25,27 @@ const submissions = (state = {}, action) => {
       return {...state, isFetching: false};
 
     case STORE_REPORTBACK_PENDING:
-      return {...state, isStoring: true};
+      return {
+        ...state,
+        // messaging: null,
+        isStoring: true
+      };
 
     case STORE_REPORTBACK_FAILED:
-      return {...state, messaging: action.error};
+      return {
+        ...state,
+        messaging: action.error,
+        isStoring: false
+      };
 
     case STORE_REPORTBACK_SUCCESSFUL:
-      return {...state, isStoring: false};
+      return {
+        ...state,
+        messaging: {
+          success: { message: 'Thanks! We got your photo and you\'re entered to win the scholarship!' }
+        },
+        isStoring: false
+      };
 
     case ADD_SUBMISSION_METADATA:
       return {

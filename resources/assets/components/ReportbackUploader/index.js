@@ -1,4 +1,5 @@
 import React from 'react';
+import { has } from 'lodash';
 import Block from '../Block';
 import { Flex } from '../Flex';
 import MediaUploader from '../MediaUploader';
@@ -33,8 +34,35 @@ class ReportbackUploader extends React.Component {
   };
 
   componentDidMount() {
+    // console.log(this.form);
     this.props.fetchUserReportbacks(this.props.userId, this.props.legacyCampaignId);
   }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (has(nextProps.submissions.messaging, 'error')) {
+      console.log('shouldComponentUpdate...');
+      // console.log(nextProps);
+      // console.log(nextState);
+
+      this.form.reset();
+
+      return true;
+    }
+
+    return false;
+  }
+
+  // componentWillMount() {
+  //   if (has(this.submissions.messaging, 'success')) {
+  //     console.log('we have A success message');
+  //     this.setState({
+  //       media: this.defaultMediaState()
+  //     });
+  //   }
+  //   // else {
+  //   //   console.log('we have NO success message');
+  //   // }
+  // }
 
   handleOnFileUpload(media) {
     this.setState({ media })
@@ -57,12 +85,6 @@ class ReportbackUploader extends React.Component {
     reportback.media.type = fileType ? fileType.substring(0, fileType.indexOf('/')) : null;
 
     this.props.submitReportback(this.setFormData(reportback));
-
-    // @TODO: only reset form AFTER successful RB submission.
-    this.form.reset();
-    this.setState({
-      media: this.defaultMediaState()
-    });
   }
 
   setFormData(reportback) {
@@ -83,12 +105,20 @@ class ReportbackUploader extends React.Component {
   }
 
   render() {
+    const submissions = this.props.submissions;
+    // console.log(submissions);
+    // console.log(this.form);
+
+    // if (has(submissions.messaging, 'success')) {
+    //   this.form.reset();
+    // }
+
     return (
       <Block>
         <div className="reportback-uploader">
           <h2 className="heading">Upload your photos</h2>
 
-          { this.props.submissions.messaging ? <FormMessage messaging={this.props.submissions.messaging} /> : null }
+          { submissions.messaging ? <FormMessage messaging={submissions.messaging} /> : null }
 
           <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={(form) => this.form = form}>
             <MediaUploader label="Send us your photo" media={this.state.media} onChange={this.handleOnFileUpload} />
@@ -110,12 +140,12 @@ class ReportbackUploader extends React.Component {
               <textarea className="text-field" id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={(input) => this.why_participated = input}></textarea>
             </div>
 
-            <button className="button" type="submit">Submit a new photo</button>
+            <button className="button" type="submit" disabled={submissions.isStoring ? true : false }>Submit a new photo</button>
           </form>
         </div>
-          <Gallery isFetching={this.props.submissions.isFetching} type="triad">
+          <Gallery isFetching={submissions.isFetching} type="triad">
             {/* @TODO: Need to normalize data for uploaded RBs vs API retrieved RBs earlier in process if possible... */}
-            {this.props.submissions.items.map((submission, index) => <ReportbackItem key={makeHash(submission.media.uri || submission.media.filePreviewUrl)} {...submission} url={submission.media.uri || submission.media.filePreviewUrl} reaction={null} />)}
+            {submissions.items.map((submission, index) => <ReportbackItem key={makeHash(submission.media.uri || submission.media.filePreviewUrl)} {...submission} url={submission.media.uri || submission.media.filePreviewUrl} reaction={null} />)}
           </Gallery>
       </Block>
     );
