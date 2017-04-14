@@ -1,5 +1,6 @@
 import React from 'react';
 import Dashboard from './Dashboard';
+import Debugger from './Debugger';
 import FeedEnclosure from './FeedEnclosure';
 import LedeBanner from './LedeBanner';
 import NavigationContainer from '../containers/NavigationContainer';
@@ -19,7 +20,7 @@ const Chrome = (props) => (
       clickedSignUp={props.clickedSignUp}
     />
     <Dashboard
-      totalSignups={props.totalSignups}
+      totalCampaignSignups={props.totalCampaignSignups}
       content={props.dashboard}
       endDate={props.endDate}
     />
@@ -28,6 +29,10 @@ const Chrome = (props) => (
     <FeedEnclosure>
       {props.children}
     </FeedEnclosure>
+    <Debugger
+      user={props.user}
+      signups={props.signups}
+    />
   </div>
 );
 

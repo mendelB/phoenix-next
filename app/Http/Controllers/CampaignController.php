@@ -76,6 +76,7 @@ class CampaignController extends Controller
             'share' => $shareFields,
             'user' => [
                 'id' => auth()->id(),
+                'role' => auth()->user() ? auth()->user()->role : null,
             ],
         ]);
     }
