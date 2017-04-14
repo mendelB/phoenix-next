@@ -41,7 +41,7 @@ class ReportbackController extends Controller
     {
         $this->validate($request, [
             'media' => 'required|file|image',
-            'caption' => 'required',
+            'caption' => 'required|min:4|max:60',
             'impact' => 'required|numeric',
             'whyParticipated' => 'required',
         ]);

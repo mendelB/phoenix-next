@@ -96,12 +96,12 @@ class ReportbackUploader extends React.Component {
           { submissions.messaging ? <FormMessage messaging={submissions.messaging} /> : null }
 
           <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={(form) => this.form = form}>
-            <MediaUploader label="Send us your photo" media={this.state.media} onChange={this.handleOnFileUpload} />
+            <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} />
 
             <div className="wrapper">
               <div className="form-item">
                 <label className="field-label" htmlFor="caption">Add a caption to your photo.</label>
-                <input className="text-field" id="caption" name="caption" type="text" placeholder="Give it your best shot" ref={(input) => this.caption = input} />
+                <input className="text-field" id="caption" name="caption" type="text" placeholder="60 characters or less" ref={(input) => this.caption = input} />
               </div>
 
               <div>
