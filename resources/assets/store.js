@@ -31,6 +31,7 @@ const initialState = {
     isFetching: false,
     isStoring: false,
     items: [],
+    messaging: null,
   },
   signups: {
     data: [],

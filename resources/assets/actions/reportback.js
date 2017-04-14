@@ -52,9 +52,12 @@ export function storeReportback(reportback) {
   };
 }
 
-// Action: storeing new user submitted reportback failed.
-export function storeReportbackFailed(reportback) {
-  return { type: STORE_REPORTBACK_FAILED };
+// Action: storing new user submitted reportback failed.
+export function storeReportbackFailed(error) {
+  return {
+    type: STORE_REPORTBACK_FAILED,
+    error
+  };
 }
 
 // Action: storing new user submitted reportback was successful.
@@ -152,8 +155,9 @@ export function submitReportback(reportback) {
     })
       .then(response => {
         if (response.status >= 300) {
-          dispatch(storeReportbackFailed());
-          // @TODO: implement showing validation error.
+          response.json().then(json => {
+            dispatch(storeReportbackFailed(json));
+          });
         }
         else {
           dispatch(storeReportbackSuccessful());
