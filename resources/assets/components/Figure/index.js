@@ -12,7 +12,7 @@ export const BaseFigure = ({alignment, verticalAlignment, media, size, className
 );
 
 BaseFigure.propTypes = {
-  alignment: React.PropTypes.oneOf(['left', 'right']),
+  alignment: React.PropTypes.oneOf(['left', 'right', 'left-collapse']),
   verticalAlignment: React.PropTypes.oneOf(['center']),
   size: React.PropTypes.oneOf(['small', 'medium', 'large']),
   media: React.PropTypes.element,

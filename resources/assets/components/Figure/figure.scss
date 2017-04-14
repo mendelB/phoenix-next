@@ -1,3 +1,5 @@
+@import '../../scss/next-toolbox';
+
 .figure.-small > .figure__media {
   width: 50px;
 
@@ -8,4 +10,20 @@
   width: 200px;
 
   img { width: 100% }
+}
+
+.figure.-left-collapse {
+  text-align: left;
+
+  @include media($tablet) {
+    > .figure__media {
+      float: left;
+      margin-right: gutter();
+      margin-bottom: 0;
+    }
+
+    > .figure__body {
+      overflow: hidden;
+    }
+  }
 }
