@@ -34,35 +34,8 @@ class ReportbackUploader extends React.Component {
   };
 
   componentDidMount() {
-    // console.log(this.form);
     this.props.fetchUserReportbacks(this.props.userId, this.props.legacyCampaignId);
   }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (has(nextProps.submissions.messaging, 'error')) {
-      console.log('shouldComponentUpdate...');
-      // console.log(nextProps);
-      // console.log(nextState);
-
-      this.form.reset();
-
-      return true;
-    }
-
-    return false;
-  }
-
-  // componentWillMount() {
-  //   if (has(this.submissions.messaging, 'success')) {
-  //     console.log('we have A success message');
-  //     this.setState({
-  //       media: this.defaultMediaState()
-  //     });
-  //   }
-  //   // else {
-  //   //   console.log('we have NO success message');
-  //   // }
-  // }
 
   handleOnFileUpload(media) {
     this.setState({ media })
@@ -85,6 +58,14 @@ class ReportbackUploader extends React.Component {
     reportback.media.type = fileType ? fileType.substring(0, fileType.indexOf('/')) : null;
 
     this.props.submitReportback(this.setFormData(reportback));
+
+    // @TODO: only reset form AFTER successful RB submission.
+    // We'll make this a lot better once we switch to storing all the state
+    // in the Redux store @_@
+    this.form.reset();
+    this.setState({
+      media: this.defaultMediaState()
+    });
   }
 
   setFormData(reportback) {
@@ -106,12 +87,6 @@ class ReportbackUploader extends React.Component {
 
   render() {
     const submissions = this.props.submissions;
-    // console.log(submissions);
-    // console.log(this.form);
-
-    // if (has(submissions.messaging, 'success')) {
-    //   this.form.reset();
-    // }
 
     return (
       <Block>
