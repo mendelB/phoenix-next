@@ -1,6 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Navigation, NavigationLink } from '../components/Navigation';
-import { connect } from 'react-redux'
 
 const mapStateToProps = state => ({
   pages: state.campaign.pages,
@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 const NavigationContainer = (props) => {
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = props.pages.map(page => (
-    <NavigationLink key={page.id} to={'/pages/' + page.fields.slug}>
+    <NavigationLink key={page.id} to={`/pages/${page.fields.slug}`}>
       {page.fields.title}
     </NavigationLink>
   ));

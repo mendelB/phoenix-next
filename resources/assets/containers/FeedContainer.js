@@ -5,24 +5,22 @@ import {
   getBlocksWithReportbacks,
   getVisibleBlocks,
   getBlockOffset,
-  getMaximumOffset
+  getMaximumOffset,
 } from '../selectors/feed';
 
 /**
  * Provide state from the Redux store as props for this component.
  */
-const mapStateToProps = (state) => {
-  return {
-    blocks: getBlocksWithReportbacks(getVisibleBlocks(state), state),
-    canLoadMorePages: getBlockOffset(state) < getMaximumOffset(state),
-    campaignId: state.campaign.legacyCampaignId,
-    callToAction: state.campaign.callToAction,
-    signedUp: state.signups.data.includes(state.campaign.legacyCampaignId),
-    hasNewSignup: state.signups.thisSession,
-    hasPendingSignup: state.signups.isPending,
-    isAuthenticated: state.user.id !== null,
-  };
-};
+const mapStateToProps = state => ({
+  blocks: getBlocksWithReportbacks(getVisibleBlocks(state), state),
+  canLoadMorePages: getBlockOffset(state) < getMaximumOffset(state),
+  campaignId: state.campaign.legacyCampaignId,
+  callToAction: state.campaign.callToAction,
+  signedUp: state.signups.data.includes(state.campaign.legacyCampaignId),
+  hasNewSignup: state.signups.thisSession,
+  hasPendingSignup: state.signups.isPending,
+  isAuthenticated: state.user.id !== null,
+});
 
 /**
  * Provide pre-bound functions that allow the component to dispatch

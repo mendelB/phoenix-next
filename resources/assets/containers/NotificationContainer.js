@@ -2,11 +2,9 @@ import { connect } from 'react-redux';
 import NotificationList from '../components/Notification';
 import { removeNotification } from '../actions';
 
-const mapStateToProps = (state) => {
-  return {
-    notifications: state.notifications.items,
-  };
-};
+const mapStateToProps = state => ({
+  notifications: state.notifications.items,
+});
 
 /**
  * Provide pre-bound functions that allow the component to dispatch

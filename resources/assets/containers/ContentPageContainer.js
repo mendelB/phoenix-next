@@ -1,6 +1,5 @@
-import React from 'react';
+import { connect } from 'react-redux';
 import ContentPage from '../components/ContentPage';
-import { connect } from 'react-redux'
 
 /**
  * Provide state from the Redux store as props for this component.
