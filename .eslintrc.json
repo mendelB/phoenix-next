@@ -1,0 +1,7 @@
+{
+  "extends": "@dosomething/eslint-config",
+
+  "rules": {
+    "import/prefer-default-export": "warn"
+  }
+}
