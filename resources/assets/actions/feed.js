@@ -8,15 +8,7 @@ import { totalBlocksInFeed, totalReportbackBlocksInFeed, getBlockOffset } from '
 
 // Action: load an additional page of the feed.
 export function displayNextPage() {
-  return {type: FEED_INCREMENT_PAGE };
-}
-
-// Async Action: user clicked the "view more" button.
-export function clickedViewMore() {
-  return dispatch => {
-    dispatch(displayNextPage());
-    dispatch(conditionallyFetchReportbacks());
-  }
+  return { type: FEED_INCREMENT_PAGE };
 }
 
 // Async Action: determine if the feed needs to fetch more photos.
@@ -34,5 +26,13 @@ export function conditionallyFetchReportbacks() {
       console.log(`Loading more reportbacks. We have ${state.reportbacks.ids.length} and need ${neededReportbacks}.`);
       dispatch(fetchReportbacks());
     }
-  }
+  };
+}
+
+// Async Action: user clicked the "view more" button.
+export function clickedViewMore() {
+  return (dispatch) => {
+    dispatch(displayNextPage());
+    dispatch(conditionallyFetchReportbacks());
+  };
 }

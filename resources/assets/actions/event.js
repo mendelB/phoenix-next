@@ -47,7 +47,7 @@ export function startQueue() {
         if (action) dispatch(action(...args));
       }
     });
-  }
+  };
 }
 
 // Action: add an event to the queue.
@@ -60,6 +60,6 @@ export function queueEvent(actionCreatorName, ...args) {
     action: {
       creatorName: actionCreatorName,
       args,
-    }
-  }
+    },
+  };
 }

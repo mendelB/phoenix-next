@@ -1,7 +1,7 @@
 import { Phoenix } from '@dosomething/gateway';
-import { normalizeReportbackItemResponse } from "../normalizers";
 import has from 'lodash/has';
 import get from 'lodash/get';
+import { normalizeReportbackItemResponse } from '../normalizers';
 import {
   REQUESTED_REPORTBACKS,
   RECEIVED_REPORTBACKS,
@@ -16,7 +16,7 @@ import {
   REQUESTED_USER_SUBMISSIONS_FAILED,
   RECEIVED_USER_SUBMISSIONS,
   trackEvent,
-  queueEvent
+  queueEvent,
 } from '../actions';
 
 /**
@@ -48,7 +48,7 @@ export function reactionComplete(reportbackItemId, reactionId) {
 export function storeReportback(reportback) {
   return {
     type: STORE_REPORTBACK_PENDING,
-    reportback
+    reportback,
   };
 }
 
@@ -56,7 +56,7 @@ export function storeReportback(reportback) {
 export function storeReportbackFailed(error) {
   return {
     type: STORE_REPORTBACK_FAILED,
-    error
+    error,
   };
 }
 
@@ -82,23 +82,23 @@ export function addSubmissionMetadata(reportback, id) {
   return {
     type: ADD_SUBMISSION_METADATA,
     reportback,
-    id
-  }
+    id,
+  };
 }
 
 // Action: add user reportback item submission to submissions store list.
 export function addSubmissionItemToList(reportbackItem) {
   return {
     type: ADD_SUBMISSION_ITEM_TO_LIST,
-    reportbackItem
-  }
+    reportbackItem,
+  };
 }
 
 // Async Action: user reacted to a photo.
 export function toggleReactionOn(reportbackItemId, termId, metadata) {
   return (dispatch, getState) => {
     // If the user is not logged in, handle this action later.
-    if (! getState().user.id) {
+    if (!getState().user.id) {
       dispatch(queueEvent('toggleReactionOn', reportbackItemId, termId));
       return;
     }
