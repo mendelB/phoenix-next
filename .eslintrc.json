@@ -2,6 +2,7 @@
   "extends": "@dosomething/eslint-config",
 
   "rules": {
-    "import/prefer-default-export": "warn"
+    "import/prefer-default-export": "warn",
+    "react/jsx-filename-extension": "off"
   }
 }
