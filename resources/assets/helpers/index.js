@@ -1,3 +1,5 @@
+/* global window, document, Blob */
+
 import marked from 'marked';
 import get from 'lodash/get';
 
@@ -14,7 +16,7 @@ export const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BA
  * @return {String}
  */
 export function contentfulImageUrl(url, width = null, height = null, fit = null) {
-  let params = [];
+  const params = [];
 
   if (width) {
     params.push(`w=${width}`);
@@ -38,7 +40,7 @@ export function contentfulImageUrl(url, width = null, height = null, fit = null)
  * @returns {boolean}
  */
 export function ensureAuth(isAuthenticated) {
-  if (! isAuthenticated) {
+  if (!isAuthenticated) {
     window.location.href = '/next/login';
     return false;
   }
@@ -52,7 +54,7 @@ export function ensureAuth(isAuthenticated) {
  * @param {Function} fn
  */
 export function ready(fn) {
-  if (document.readyState !== 'loading'){
+  if (document.readyState !== 'loading') {
     fn();
   } else {
     document.addEventListener('DOMContentLoaded', fn);
@@ -68,12 +70,12 @@ export function ready(fn) {
 export function markdown(source = '') {
   // Markdown options <https://github.com/chjj/marked#options-1>
   const options = {
-    sanitize: true
+    sanitize: true,
   };
 
   return {
     __html: marked(source, options),
-  }
+  };
 }
 
 /**
@@ -81,32 +83,9 @@ export function markdown(source = '') {
  * @param {String|Array} classes
  */
 export function modifiers(...classes) {
-  if (! Array.isArray(classes)) classes = [classes];
+  if (!Array.isArray(classes)) classes = [classes];
 
   return classes.filter(className => className).map(className => `-${className}`);
-}
-
-/**
- * Process file (provided as an ArrayBuffer) depending
- * on its type.
- *
- * @param  {ArrayBuffer} file
- * @return {Blob}
- * @todo Eventually deal with other file types.
- */
-export function processFile(file) {
-  let fileType = getFileType(file);
-  let dataView = new DataView(file);
-
-  if (fileType === 'image/png') {
-    return new Blob([dataView], { type: fileType });
-  }
-
-  if (fileType === 'image/jpeg') {
-    return stripExifData(file, dataView);
-  }
-
-  throw 'Unsupported file type.';
 }
 
 /**
@@ -117,16 +96,16 @@ export function processFile(file) {
  * @todo Eventually deal with other file types.
  */
 function getFileType(file) {
-  let dv = new DataView(file, 0, 5);
-  let byte1 = dv.getUint8(0, true);
-  let byte2 = dv.getUint8(1, true);
-  let hex = byte1.toString(16) + byte2.toString(16);
+  const dv = new DataView(file, 0, 5);
+  const byte1 = dv.getUint8(0, true);
+  const byte2 = dv.getUint8(1, true);
+  const hex = byte1.toString(16) + byte2.toString(16);
 
   return get({
     '8950': 'image/png',
     '4749': 'image/gif',
     '424d': 'image/bmp',
-    'ffd8': 'image/jpeg'
+    'ffd8': 'image/jpeg',
   }, hex, null);
 }
 
@@ -138,17 +117,17 @@ function getFileType(file) {
  * @return {Blob}
  */
 function stripExifData(image, dataView = null) {
-  if (! dataView) {
-    let dataView = new DataView(image);
+  if (!dataView) {
+    dataView = new DataView(image);
   }
 
+  const pieces = [];
   let offset = 0;
   let recess = 0;
-  let pieces = [];
   let i = 0;
 
   offset += 2;
-  var app1 = dataView.getUint16(offset);
+  let app1 = dataView.getUint16(offset);
   offset += 2;
 
   // This loop does the acutal reading of the data and creates
@@ -156,13 +135,13 @@ function stripExifData(image, dataView = null) {
   while (offset < dataView.byteLength) {
     if (app1 === 0xffe1) {
       pieces[i] = {
-        recess : recess,
-        offset : offset - 2
+        recess,
+        offset: offset - 2,
       };
 
       recess = offset + dataView.getUint16(offset);
 
-      i++;
+      i += 1;
     }
     else if (app1 === 0xffda) {
       break;
@@ -176,22 +155,43 @@ function stripExifData(image, dataView = null) {
   // If the file had EXIF data and it was removed, create a
   // file blob using the new array of file data.
   if (pieces.length > 0) {
-    var newPieces = [];
+    const newPieces = [];
 
-    pieces.forEach(function(v) {
+    pieces.forEach((v) => {
       newPieces.push(image.slice(v.recess, v.offset));
     }, this);
 
     newPieces.push(image.slice(recess));
 
-    return new Blob(newPieces, {type: 'image/jpeg'});
+    return new Blob(newPieces, { type: 'image/jpeg' });
   }
 
   // If no EXIF data existed on the file, then nothing was done to it.
   // We can just create a blob with the original data.
-  else {
-    return new Blob([dataView], {type: 'image/jpeg'});
+  return new Blob([dataView], { type: 'image/jpeg' });
+}
+
+/**
+ * Process file (provided as an ArrayBuffer) depending
+ * on its type.
+ *
+ * @param  {ArrayBuffer} file
+ * @return {Blob}
+ * @todo Eventually deal with other file types.
+ */
+export function processFile(file) {
+  const fileType = getFileType(file);
+  const dataView = new DataView(file);
+
+  if (fileType === 'image/png') {
+    return new Blob([dataView], { type: fileType });
   }
+
+  if (fileType === 'image/jpeg') {
+    return stripExifData(file, dataView);
+  }
+
+  throw 'Unsupported file type.';
 }
 
 /**
@@ -222,7 +222,7 @@ export function isTimestampValid(timestamp, maxTime) {
  * @return {String}
  */
 export function convertNumberToWord(number) {
-  switch(number) {
+  switch (number) {
     case 0: return 'zero';
     case 1: return 'one';
     case 2: return 'two';
@@ -270,7 +270,7 @@ export function makeHash(string) {
  * @return {int}
  */
 export function getDaysBetween(dateOne, dateTwo) {
-  const oneDay = 24*60*60*1000;
+  const oneDay = 24 * 60 * 60 * 1000;
 
   return Math.round(Math.abs((dateOne.getTime() - dateTwo.getTime()) / oneDay));
 }
