@@ -13,6 +13,20 @@ class User extends Model implements AuthenticatableContract, NorthstarUserContra
     use Authenticatable, HasNorthstarToken;
 
     /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'northstar_id';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
      * Get the name of the unique identifier for the user.
      *
      * @return string
