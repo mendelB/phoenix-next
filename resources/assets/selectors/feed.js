@@ -23,20 +23,6 @@ export function mapDisplayToPoints(displayOption) {
 export const getBlocks = state => state.campaign.activityFeed;
 
 /**
- * Get the number of blocks that are visible in the feed.
- * @param state
- * @returns {number}
- */
-export const getBlockOffset = state => state.blocks.offset * BLOCKS_PER_ROW * ROWS_PER_PAGE;
-
-/**
- * Get the number of blocks that are visible in the feed.
- * @param state
- * @returns {number}
- */
-export const getMaximumOffset = state => totalBlocksInFeed(state) + (state.reportbacks.total - totalReportbackBlocksInFeed(state));
-
-/**
  * Calculate the total number of "blocks" in the feed.
  * @param state
  * @returns {*}
@@ -60,6 +46,20 @@ export function totalReportbackBlocksInFeed(state) {
       return total + mapDisplayToPoints(block.fields.displayOptions);
     }, 0);
 }
+
+/**
+ * Get the number of blocks that are visible in the feed.
+ * @param state
+ * @returns {number}
+ */
+export const getBlockOffset = state => state.blocks.offset * BLOCKS_PER_ROW * ROWS_PER_PAGE;
+
+/**
+ * Get the number of blocks that are visible in the feed.
+ * @param state
+ * @returns {number}
+ */
+export const getMaximumOffset = state => totalBlocksInFeed(state) + (state.reportbacks.total - totalReportbackBlocksInFeed(state));
 
 /**
  * Filter the blocks based on the page offset.
