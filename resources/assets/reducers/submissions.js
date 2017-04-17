@@ -6,7 +6,7 @@ import {
   STORE_REPORTBACK_FAILED,
   STORE_REPORTBACK_SUCCESSFUL,
   ADD_SUBMISSION_METADATA,
-  ADD_SUBMISSION_ITEM_TO_LIST
+  ADD_SUBMISSION_ITEM_TO_LIST,
 } from '../actions';
 
 /**
@@ -15,32 +15,32 @@ import {
 const submissions = (state = {}, action) => {
   switch (action.type) {
     case REQUESTED_USER_SUBMISSIONS:
-      return {...state, isFetching: true};
+      return { ...state, isFetching: true };
 
     case REQUESTED_USER_SUBMISSIONS_FAILED:
       // @TODO: add errors?
-      return {...state, isFetching: false};
+      return { ...state, isFetching: false };
 
     case RECEIVED_USER_SUBMISSIONS:
-      return {...state, isFetching: false};
+      return { ...state, isFetching: false };
 
     case STORE_REPORTBACK_PENDING:
-      return {...state, isStoring: true};
+      return { ...state, isStoring: true };
 
     case STORE_REPORTBACK_FAILED:
       return {
         ...state,
         messaging: action.error,
-        isStoring: false
+        isStoring: false,
       };
 
     case STORE_REPORTBACK_SUCCESSFUL:
       return {
         ...state,
         messaging: {
-          success: { message: 'Thanks! We got your photo and you\'re entered to win the scholarship!' }
+          success: { message: 'Thanks! We got your photo and you\'re entered to win the scholarship!' },
         },
-        isStoring: false
+        isStoring: false,
       };
 
     case ADD_SUBMISSION_METADATA:
@@ -49,17 +49,17 @@ const submissions = (state = {}, action) => {
         reportback: {
           id: action.id || action.reportback.id,
           flagged: action.reportback.flagged || null,
-          quantity: parseInt(action.reportback.impact) || parseInt(action.reportback.quantity),
+          quantity: parseInt(action.reportback.impact, 10) || parseInt(action.reportback.quantity, 10),
           whyParticipated: action.reportback.whyParticipated || action.reportback.why_participated,
         },
       };
 
     case ADD_SUBMISSION_ITEM_TO_LIST:
-      return {...state, items: [action.reportbackItem, ...state.items]}
+      return { ...state, items: [action.reportbackItem, ...state.items] };
 
     default:
       return state;
   }
-}
+};
 
 export default submissions;

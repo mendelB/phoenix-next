@@ -5,14 +5,12 @@ import { submitReportback, addToSubmissionsList, fetchUserReportbacks } from '..
 /**
  * Provide state from the Redux store as props for this component.
  */
-const mapStateToProps = (state) => {
-  return {
-    campaignId: state.campaign.id,
-    legacyCampaignId: state.campaign.legacyCampaignId,
-    submissions: state.submissions,
-    userId: state.user.id
-  };
-};
+const mapStateToProps = state => ({
+  campaignId: state.campaign.id,
+  legacyCampaignId: state.campaign.legacyCampaignId,
+  submissions: state.submissions,
+  userId: state.user.id,
+});
 
 /**
  * Provide pre-bound functions that allow the component to dispatch

@@ -5,22 +5,20 @@ import { clickedSignUp } from '../actions';
 /**
  * Provide state from the Redux store as props for this component.
  */
-const mapStateToProps = (state, props) => {
-  return {
-    children: props.children,
-    legacyCampaignId: state.campaign.legacyCampaignId,
-    isAffiliated: state.signups.thisCampaign,
-    title: state.campaign.title,
-    subtitle: state.campaign.callToAction,
-    blurb: state.campaign.blurb,
-    coverImage: state.campaign.coverImage,
-    totalCampaignSignups: state.signups.total,
-    dashboard: state.campaign.dashboard,
-    endDate: state.campaign.endDate,
-    user: state.user,
-    signups: state.signups.data,
-  };
-};
+const mapStateToProps = (state, props) => ({
+  children: props.children,
+  legacyCampaignId: state.campaign.legacyCampaignId,
+  isAffiliated: state.signups.thisCampaign,
+  title: state.campaign.title,
+  subtitle: state.campaign.callToAction,
+  blurb: state.campaign.blurb,
+  coverImage: state.campaign.coverImage,
+  totalCampaignSignups: state.signups.total,
+  dashboard: state.campaign.dashboard,
+  endDate: state.campaign.endDate,
+  user: state.user,
+  signups: state.signups.data,
+});
 
 /**
  * Provide pre-bound functions that allow the component to dispatch

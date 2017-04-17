@@ -1,7 +1,9 @@
-export const SIGNUP_STORAGE_KEY = 'signups';
-export const EVENT_STORAGE_KEY  = 'events';
+/* global localStorage */
 
 import { getDeviceId } from './analytics';
+
+export const SIGNUP_STORAGE_KEY = 'signups';
+export const EVENT_STORAGE_KEY = 'events';
 
 function key(id, type) {
   return `${id}-${type}`;

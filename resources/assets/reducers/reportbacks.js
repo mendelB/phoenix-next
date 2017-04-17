@@ -15,7 +15,7 @@ const reportbacks = (state = {}, action) => {
     case REQUESTED_REPORTBACKS:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       };
 
     case RECEIVED_REPORTBACKS:
@@ -36,11 +36,11 @@ const reportbacks = (state = {}, action) => {
         itemEntities: {
           [action.reportbackItemId]: {
             reaction: {
-              reacted: {$set: action.value},
-              total: {$set: state.itemEntities[action.reportbackItemId].reaction.total + (action.value ? 1 : -1)},
-            }
-          }
-        }
+              reacted: { $set: action.value },
+              total: { $set: state.itemEntities[action.reportbackItemId].reaction.total + (action.value ? 1 : -1) },
+            },
+          },
+        },
       });
 
     case REACTION_COMPLETE:
@@ -48,15 +48,15 @@ const reportbacks = (state = {}, action) => {
         itemEntities: {
           [action.reportbackItemId]: {
             reaction: {
-              id: {$set: action.reactionId},
+              id: { $set: action.reactionId },
             },
-          }
-        }
+          },
+        },
       });
 
     default:
       return state;
   }
-}
+};
 
 export default reportbacks;

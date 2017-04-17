@@ -5,11 +5,9 @@ import { hideAffirmation } from '../actions';
 /**
  * Provide state from the Redux store as props for this component.
  */
-const mapStateToProps = (state) => {
-  return {
-    showAffirmation: state.signups.showAffirmation,
-  };
-};
+const mapStateToProps = state => ({
+  showAffirmation: state.signups.showAffirmation,
+});
 
 /**
  * Provide pre-bound functions that allow the component to dispatch

@@ -1,12 +1,14 @@
+/* global window */
+
+import { init, pageview } from '@dosomething/analytics';
+import { ANALYTICS_ACTIONS } from '../actions';
+import { get as getHistory } from '../history';
 import {
   generateSessionid,
   isSessionValid,
   stateChanged,
   createDeviceId,
 } from '../helpers/analytics';
-import { init, pageview } from '@dosomething/analytics';
-import { ANALYTICS_ACTIONS } from '../actions';
-import { get as getHistory } from '../history';
 
 /**
  * Redux middleware for tracking state changes.
@@ -15,7 +17,7 @@ import { get as getHistory } from '../history';
  * @return {Object}
  */
 export const observerMiddleware = store => next => action => {
-  if (! ANALYTICS_ACTIONS.includes(action.type)) return next(action);
+  if (!ANALYTICS_ACTIONS.includes(action.type)) return next(action);
 
   const result = next(action);
   stateChanged(action, store.getState());
@@ -54,5 +56,5 @@ export function start(store) {
   pageview(window.location.pathname);
 
   // Track state changes for Keen.io
-  stateChanged({type: 'APPLICATION_INIT'}, store.getState());
+  stateChanged({ type: 'APPLICATION_INIT' }, store.getState());
 }

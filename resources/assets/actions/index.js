@@ -6,6 +6,7 @@
  * create actions, which describe changes to the state tree (either as a result
  * of application logic or user input).
  */
+import { LOCATION_CHANGE } from 'react-router-redux';
 
 // Reportback Action Names & Creators
 export const REQUESTED_REPORTBACKS = 'REQUESTED_REPORTBACKS';
@@ -57,8 +58,6 @@ export * from './event';
 
 // Analytics Action Names & Creators
 export * from './analytics';
-
-import { LOCATION_CHANGE } from 'react-router-redux';
 
 export const ANALYTICS_ACTIONS = [
   REQUESTED_REPORTBACKS,

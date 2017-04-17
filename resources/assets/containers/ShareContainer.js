@@ -2,12 +2,10 @@ import { connect } from 'react-redux';
 import Share from '../components/Share';
 import { clickedShare } from '../actions';
 
-const mapStateToProps = (state) => {
-  return {
-    share: status.share,
-    user: state.user,
-  };
-};
+const mapStateToProps = state => ({
+  share: status.share,
+  user: state.user,
+});
 
 /**
  * Provide pre-bound functions that allow the component to dispatch

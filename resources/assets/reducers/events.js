@@ -1,3 +1,5 @@
+/* global window */
+
 import {
   QUEUE_EVENT,
   COMPLETED_EVENT,
@@ -30,6 +32,6 @@ const events = (state = {}, action) => {
     default:
       return state;
   }
-}
+};
 
 export default events;

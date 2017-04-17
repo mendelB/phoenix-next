@@ -1,3 +1,5 @@
+/* global document */
+
 /**
  * Toggle the specified class on the given target element
  * when the button element is clicked or touched.

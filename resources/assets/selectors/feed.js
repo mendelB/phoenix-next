@@ -20,21 +20,7 @@ export function mapDisplayToPoints(displayOption) {
  * Get the blocks from the application state.
  * @param state
  */
-export const getBlocks = (state) => state.campaign.activityFeed;
-
-/**
- * Get the number of blocks that are visible in the feed.
- * @param state
- * @returns {number}
- */
-export const getBlockOffset = (state) => state.blocks.offset * BLOCKS_PER_ROW * ROWS_PER_PAGE;
-
-/**
- * Get the number of blocks that are visible in the feed.
- * @param state
- * @returns {number}
- */
-export const getMaximumOffset = (state) => totalBlocksInFeed(state) + (state.reportbacks.total - totalReportbackBlocksInFeed(state));
+export const getBlocks = state => state.campaign.activityFeed;
 
 /**
  * Calculate the total number of "blocks" in the feed.
@@ -44,7 +30,7 @@ export const getMaximumOffset = (state) => totalBlocksInFeed(state) + (state.rep
 export function totalBlocksInFeed(state) {
   return getBlocks(state)
     .reduce((total, block) => {
-      return total + mapDisplayToPoints(block.fields.displayOptions)
+      return total + mapDisplayToPoints(block.fields.displayOptions);
     }, 0);
 }
 
@@ -62,6 +48,20 @@ export function totalReportbackBlocksInFeed(state) {
 }
 
 /**
+ * Get the number of blocks that are visible in the feed.
+ * @param state
+ * @returns {number}
+ */
+export const getBlockOffset = state => state.blocks.offset * BLOCKS_PER_ROW * ROWS_PER_PAGE;
+
+/**
+ * Get the number of blocks that are visible in the feed.
+ * @param state
+ * @returns {number}
+ */
+export const getMaximumOffset = state => totalBlocksInFeed(state) + (state.reportbacks.total - totalReportbackBlocksInFeed(state));
+
+/**
  * Filter the blocks based on the page offset.
  *
  * @param state
@@ -71,7 +71,7 @@ export function getVisibleBlocks(state) {
   let totalPoints = 0;
 
   // Filter out blocks that don't fit within offset.
-  const filteredBlocks = getBlocks(state).filter(block => {
+  const filteredBlocks = getBlocks(state).filter((block) => {
     totalPoints += mapDisplayToPoints(block.fields.displayOptions);
     return totalPoints <= blockOffset;
   });
@@ -85,10 +85,10 @@ export function getVisibleBlocks(state) {
       fields: {
         type: 'reportbacks',
         displayOptions: ['one-third'],
-        additionalContent: { count: 1 }
-      }
+        additionalContent: { count: 1 },
+      },
     });
-    totalPoints++;
+    totalPoints += 1;
   }
 
   return filteredBlocks;
@@ -104,7 +104,7 @@ export function getBlocksWithReportbacks(blocks, state) {
   const reportbacks = state.reportbacks.ids;
   let reportbackIndex = 0;
 
-  return blocks.map(block => {
+  return blocks.map((block) => {
     if (block.fields.type !== 'reportbacks') return block;
 
     // Attach some unique reportback IDs to each block.

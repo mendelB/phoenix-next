@@ -2,7 +2,7 @@ import React from 'react';
 import Block from '../components/Block';
 import { Flex, FlexCell } from '../components/Flex';
 
-const NotFound = (props) => (
+const NotFound = () => (
   <Flex>
     <FlexCell>
       <Block className="placeholder">

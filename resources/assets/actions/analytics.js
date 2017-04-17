@@ -1,5 +1,5 @@
-import { transformState } from '../helpers/analytics';
 import { analyze } from '@dosomething/analytics';
+import { transformState } from '../helpers/analytics';
 
 // Action: Track a custom event
 export function trackEvent(collection, metadata) {
@@ -17,5 +17,5 @@ export function trackEvent(collection, metadata) {
       metadata,
       transformedState,
     });
-  }
+  };
 }
