@@ -38,7 +38,8 @@ export function clickedShare(metadata) {
       if (response) {
         dispatch(facebookShareCompleted());
         dispatch(trackEvent('facebook share completed', metadata));
-      } else {
+      }
+      else {
         dispatch(facebookShareCancelled());
         dispatch(trackEvent('facebook share cancelled', metadata));
       }

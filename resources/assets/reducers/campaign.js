@@ -1,8 +1,6 @@
 /**
  * Campaign reducer:
  */
-const campaign = (state = {}, action) => {
-  return state;
-};
+const campaign = (state = {}) => state;
 
 export default campaign;

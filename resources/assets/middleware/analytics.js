@@ -1,4 +1,4 @@
-/* global window */
+/* global window, services */
 
 import { init, pageview } from '@dosomething/analytics';
 import { ANALYTICS_ACTIONS } from '../actions';

@@ -5,7 +5,7 @@ import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from '../actions';
  */
 const notifications = (state = {}, action) => {
   switch (action.type) {
-    case ADD_NOTIFICATION:
+    case ADD_NOTIFICATION: {
       const notification = {
         style: action.style,
         message: action.message,
@@ -18,8 +18,9 @@ const notifications = (state = {}, action) => {
           notification,
         ],
       };
+    }
 
-    case REMOVE_NOTIFICATION:
+    case REMOVE_NOTIFICATION: {
       const index = action.index;
 
       return {
@@ -29,6 +30,7 @@ const notifications = (state = {}, action) => {
           ...state.items.slice(index + 1),
         ],
       };
+    }
 
     default:
       return state;

@@ -3,7 +3,7 @@ import Share from '../components/Share';
 import { clickedShare } from '../actions';
 
 const mapStateToProps = state => ({
-  share: status.share,
+  share: state.share,
   user: state.user,
 });
 

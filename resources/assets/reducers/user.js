@@ -1,8 +1,6 @@
 /**
  * User reducer:
  */
-const user = (state = {}, action) => {
-  return state;
-};
+const user = (state = {}) => state;
 
 export default user;

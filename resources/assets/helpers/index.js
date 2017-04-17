@@ -56,7 +56,8 @@ export function ensureAuth(isAuthenticated) {
 export function ready(fn) {
   if (document.readyState !== 'loading') {
     fn();
-  } else {
+  }
+  else {
     document.addEventListener('DOMContentLoaded', fn);
   }
 }
@@ -253,8 +254,8 @@ export function makeHash(string) {
   }
 
   string.split('').forEach((char, index) => {
-    char = string.charCodeAt(index);
-    hash = ((hash << 5) - hash) + char;
+    const charCode = string.charCodeAt(index);
+    hash = ((hash << 5) - hash) + charCode;
     hash = hash & hash;
   });
 
