@@ -1,3 +1,5 @@
+/* global window, document */
+
 import { Phoenix } from '@dosomething/gateway';
 import has from 'lodash/has';
 import get from 'lodash/get';
@@ -105,37 +107,37 @@ export function toggleReactionOn(reportbackItemId, termId, metadata) {
 
     dispatch(reactionChanged(reportbackItemId, true));
 
-    (new Phoenix).post('next/reactions', {
+    (new Phoenix()).post('next/reactions', {
       reportback_item_id: reportbackItemId,
       term_id: termId,
-    }).then(json => {
-      if (! has(json, '[0].created')) throw 'Could not create reaction.';
+    }).then((json) => {
+      if (!has(json, '[0].created')) throw 'Could not create reaction.';
 
       dispatch(reactionComplete(reportbackItemId, json[0].kid));
       dispatch(trackEvent('reaction toggled on', metadata));
     }).catch(() => {
       dispatch(reactionChanged(reportbackItemId, false));
     });
-  }
+  };
 }
 
 // Async Action: user un-reacted to a photo.
 export function toggleReactionOff(reportbackItemId, reactionId, metadata) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(reactionChanged(reportbackItemId, false));
 
-    (new Phoenix).delete(`next/reactions/${reactionId}`)
-      .then(json => {
+    (new Phoenix()).delete(`next/reactions/${reactionId}`)
+      .then(() => {
         dispatch(reactionComplete(reportbackItemId, null));
         dispatch(trackEvent('reaction toggled off', metadata));
       })
-      .catch(() =>  dispatch(reactionChanged(reportbackItemId, true)));
-  }
+      .catch(() => dispatch(reactionChanged(reportbackItemId, true)));
+  };
 }
 
 // Async Action: submit a new reportback and place in submissions gallery.
 export function submitReportback(reportback) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(storeReportback(reportback));
 
     const url = `${window.location.origin}/next/reportbacks`;
@@ -148,21 +150,21 @@ export function submitReportback(reportback) {
       method: 'POST',
       headers: {
         'X-CSRF-Token': token ? token.getAttribute('content') : null,
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
       credentials: 'same-origin',
       body: reportback.formData,
     })
-      .then(response => {
+      .then((response) => {
         if (response.status >= 300) {
-          response.json().then(json => {
+          response.json().then((json) => {
             dispatch(storeReportbackFailed(json));
           });
         }
         else {
           dispatch(storeReportbackSuccessful());
 
-          response.json().then(json => {
+          response.json().then((json) => {
             dispatch(addSubmissionMetadata(reportback, json.shift()));
             dispatch(addSubmissionItemToList(reportback));
           });
@@ -170,53 +172,52 @@ export function submitReportback(reportback) {
       })
       .catch(error => console.log(error));
   };
-
 }
 
 export function fetchUserReportbacks(userId, campaignId) {
   if (!userId) {
-    return dispatch => {
+    return (dispatch) => {
       dispatch(requestingUserReportbacksFailed());
-    }
+    };
   }
 
-  return dispatch => {
+  return (dispatch) => {
     dispatch(requestingUserReportbacks());
 
-    return (new Phoenix).get('next/signups', { campaigns: campaignId, users: userId })
-      .then(json => {
+    return (new Phoenix()).get('next/signups', { campaigns: campaignId, users: userId })
+      .then((json) => {
         dispatch(receivedUserReportbacks());
 
         if (json.data.length) {
-          let reportback = json.data.shift().reportback;
+          const reportback = json.data.shift().reportback;
 
           if (!reportback) {
             return;
           }
 
           dispatch(addSubmissionMetadata(reportback));
-          reportback.reportback_items.data.forEach(reportbackItem => {
+          reportback.reportback_items.data.forEach((reportbackItem) => {
             dispatch(addSubmissionItemToList(reportbackItem));
           });
         }
       });
-  }
+  };
 }
 
 // Async Action: fetch another page of reportbacks.
 export function fetchReportbacks() {
   return (dispatch, getState) => {
-    let node = getState().campaign.legacyCampaignId;
-    let page = getState().reportbacks.page;
+    const node = getState().campaign.legacyCampaignId;
+    const page = getState().reportbacks.page;
 
     dispatch(requestedReportbacks(node));
 
-    (new Phoenix).get('next/reportbackItems', { campaigns: node, page }).then(json => {
+    (new Phoenix()).get('next/reportbackItems', { campaigns: node, page }).then((json) => {
       const normalizedData = normalizeReportbackItemResponse(json.data);
       const currentPage = get(json, 'meta.pagination.current_page', 1);
       const total = get(json, 'meta.pagination.total', 0);
 
-      dispatch(receivedReportbacks(normalizedData, currentPage, total))
-    })
-  }
+      dispatch(receivedReportbacks(normalizedData, currentPage, total));
+    });
+  };
 }

@@ -1,3 +1,5 @@
+/* global window, FB */
+
 import {
   REQUESTED_FACEBOOK_SHARE,
   FACEBOOK_SHARE_COMPLETED,
@@ -41,5 +43,5 @@ export function clickedShare(metadata) {
         dispatch(trackEvent('facebook share cancelled', metadata));
       }
     });
-  }
+  };
 }

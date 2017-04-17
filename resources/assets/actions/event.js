@@ -56,7 +56,7 @@ export function queueEvent(actionCreatorName, ...args) {
     type: QUEUE_EVENT,
     deviceId: getDeviceId(),
     createdAt: Date.now(),
-    requiresAuth: true, //vLater - Allow more flexibility with configuring events
+    requiresAuth: true, // vLater - Allow more flexibility with configuring events
     action: {
       creatorName: actionCreatorName,
       args,
