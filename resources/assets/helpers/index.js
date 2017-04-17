@@ -157,8 +157,8 @@ function stripExifData(image, dataView = null) {
   if (pieces.length > 0) {
     const newPieces = [];
 
-    pieces.forEach((v) => {
-      newPieces.push(image.slice(v.recess, v.offset));
+    pieces.forEach((piece) => {
+      newPieces.push(image.slice(piece.recess, piece.offset));
     }, this);
 
     newPieces.push(image.slice(recess));

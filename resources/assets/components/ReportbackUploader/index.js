@@ -1,6 +1,5 @@
 import React from 'react';
 import { has } from 'lodash';
-import Block from '../Block';
 import { Flex } from '../Flex';
 import MediaUploader from '../MediaUploader';
 import Gallery from '../Gallery';
@@ -8,6 +7,7 @@ import ReportbackItem from '../ReportbackItem';
 import FormMessage from '../FormMessage';
 import { makeHash } from '../../helpers';
 import './reportback-uploader.scss';
+export Block from '../Block';
 
 class ReportbackUploader extends React.Component {
   constructor(props) {
