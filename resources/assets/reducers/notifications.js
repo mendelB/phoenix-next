@@ -26,13 +26,13 @@ const notifications = (state = {}, action) => {
         ...state,
         items: [
           ...state.items.slice(0, index),
-          ...state.items.slice(index + 1)
+          ...state.items.slice(index + 1),
         ],
       };
 
     default:
       return state;
   }
-}
+};
 
 export default notifications;

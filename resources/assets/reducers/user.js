@@ -1,7 +1,7 @@
 /**
  * User reducer:
  */
-const user = (state = {}) => {
+const user = (state = {}, action) => {
   return state;
 };
 
