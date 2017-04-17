@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { initializeStore } from '../store';
 import { Router, Route } from 'react-router';
+import { initializeStore } from '../store';
 
 
 import ChromeContainer from '../containers/ChromeContainer';
@@ -14,10 +14,10 @@ const App = ({ store, history }) => (
   <Provider store={store}>
     <Router history={history}>
       <Route component={ChromeContainer} onEnter={initializeStore(store)}>
-        <Route path="/" component={FeedContainer}/>
-        <Route path="/action" component={ActionPageContainer}/>
-        <Route path="/pages/:page" component={ContentPageContainer}/>
-        <Route path='*' component={NotFound} />
+        <Route path="/" component={FeedContainer} />
+        <Route path="/action" component={ActionPageContainer} />
+        <Route path="/pages/:page" component={ContentPageContainer} />
+        <Route path="*" component={NotFound} />
       </Route>
     </Router>
   </Provider>

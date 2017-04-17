@@ -15,7 +15,7 @@ Notification.defaultProps = {
   style: 'error',
 };
 
-export const NotificationList = ({ notifications, removeNotification }) => (
+export default NotificationList = ({ notifications, removeNotification }) => (
   <div className='notification-list'>
     {notifications.map(({ message, style }, index) => (
       <Notification
@@ -30,5 +30,3 @@ export const NotificationList = ({ notifications, removeNotification }) => (
 NotificationList.defaultProps = {
   notifications: [],
 }
-
-export default NotificationList;

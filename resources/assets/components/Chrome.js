@@ -7,7 +7,7 @@ import NavigationContainer from '../containers/NavigationContainer';
 import AffirmationContainer from '../containers/AffirmationContainer';
 import NotificationContainer from '../containers/NotificationContainer';
 
-const Chrome = (props) => (
+const Chrome = props => (
   <div>
     <NotificationContainer />
     <LedeBanner
