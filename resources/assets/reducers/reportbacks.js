@@ -30,14 +30,16 @@ const reportbacks = (state = {}, action) => {
       };
 
     case REACTION_CHANGED:
-      if (!state.itemEntities[action.reportbackItemId]) return state;
+      if (! state.itemEntities[action.reportbackItemId]) return state;
 
       return update(state, {
         itemEntities: {
           [action.reportbackItemId]: {
             reaction: {
               reacted: { $set: action.value },
-              total: { $set: state.itemEntities[action.reportbackItemId].reaction.total + (action.value ? 1 : -1) },
+              total: {
+                $set: state.itemEntities[action.reportbackItemId].reaction.total + (action.value ? 1 : -1),
+              },
             },
           },
         },

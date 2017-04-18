@@ -40,7 +40,7 @@ export function contentfulImageUrl(url, width = null, height = null, fit = null)
  * @returns {boolean}
  */
 export function ensureAuth(isAuthenticated) {
-  if (!isAuthenticated) {
+  if (! isAuthenticated) {
     window.location.href = '/next/login';
     return false;
   }
@@ -56,8 +56,7 @@ export function ensureAuth(isAuthenticated) {
 export function ready(fn) {
   if (document.readyState !== 'loading') {
     fn();
-  }
-  else {
+  } else {
     document.addEventListener('DOMContentLoaded', fn);
   }
 }
@@ -84,7 +83,7 @@ export function markdown(source = '') {
  * @param {String|Array} classes
  */
 export function modifiers(...classes) {
-  if (!Array.isArray(classes)) classes = [classes];
+  if (! Array.isArray(classes)) classes = [classes];
 
   return classes.filter(className => className).map(className => `-${className}`);
 }
@@ -103,10 +102,10 @@ function getFileType(file) {
   const hex = byte1.toString(16) + byte2.toString(16);
 
   return get({
-    '8950': 'image/png',
-    '4749': 'image/gif',
-    '424d': 'image/bmp',
-    'ffd8': 'image/jpeg',
+    '8950': 'image/png', // eslint-disable-line quote-props
+    '4749': 'image/gif', // eslint-disable-line quote-props
+    '424d': 'image/bmp', // eslint-disable-line quote-props
+    'ffd8': 'image/jpeg', // eslint-disable-line quote-props
   }, hex, null);
 }
 
@@ -118,7 +117,7 @@ function getFileType(file) {
  * @return {Blob}
  */
 function stripExifData(image, dataView = null) {
-  if (!dataView) {
+  if (! dataView) {
     dataView = new DataView(image);
   }
 
@@ -143,8 +142,7 @@ function stripExifData(image, dataView = null) {
       recess = offset + dataView.getUint16(offset);
 
       i += 1;
-    }
-    else if (app1 === 0xffda) {
+    } else if (app1 === 0xffda) {
       break;
     }
 
@@ -192,7 +190,7 @@ export function processFile(file) {
     return stripExifData(file, dataView);
   }
 
-  throw 'Unsupported file type.';
+  throw new Error('Unsupported file type.');
 }
 
 /**
@@ -249,14 +247,14 @@ export function convertNumberToWord(number) {
 export function makeHash(string) {
   let hash = 0;
 
-  if (!string.length) {
+  if (! string.length) {
     return hash;
   }
 
   string.split('').forEach((char, index) => {
     const charCode = string.charCodeAt(index);
-    hash = ((hash << 5) - hash) + charCode;
-    hash = hash & hash;
+    hash = ((hash << 5) - hash) + charCode; // eslint-disable-line no-bitwise
+    hash = hash & hash; // eslint-disable-line no-bitwise, operator-assignment
   });
 
   return Math.abs(hash);

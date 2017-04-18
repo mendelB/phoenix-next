@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "lint": "eslint resources/assets/**/*.js || exit 0",
+    "lint": "eslint resources/assets/**/*.js",
     "start": "npm run clean && npm run modernizr && NODE_ENV=development webpack",
     "build": "npm run clean && npm run modernizr && NODE_ENV=production webpack",
     "clean": "rm -rf public/next/assets",

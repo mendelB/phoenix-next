@@ -29,9 +29,9 @@ export const getBlocks = state => state.campaign.activityFeed;
  */
 export function totalBlocksInFeed(state) {
   return getBlocks(state)
-    .reduce((total, block) => {
-      return total + mapDisplayToPoints(block.fields.displayOptions);
-    }, 0);
+    .reduce((total, block) => (
+      total + mapDisplayToPoints(block.fields.displayOptions)
+    ), 0);
 }
 
 /**
@@ -42,9 +42,9 @@ export function totalBlocksInFeed(state) {
 export function totalReportbackBlocksInFeed(state) {
   return getBlocks(state)
     .filter(block => block.fields.type === 'reportbacks')
-    .reduce((total, block) => {
-      return total + mapDisplayToPoints(block.fields.displayOptions);
-    }, 0);
+    .reduce((total, block) => (
+      total + mapDisplayToPoints(block.fields.displayOptions)
+    ), 0);
 }
 
 /**
@@ -59,7 +59,9 @@ export const getBlockOffset = state => state.blocks.offset * BLOCKS_PER_ROW * RO
  * @param state
  * @returns {number}
  */
-export const getMaximumOffset = state => totalBlocksInFeed(state) + (state.reportbacks.total - totalReportbackBlocksInFeed(state));
+export const getMaximumOffset = state => (
+  totalBlocksInFeed(state) + (state.reportbacks.total - totalReportbackBlocksInFeed(state))
+);
 
 /**
  * Filter the blocks based on the page offset.
@@ -109,8 +111,10 @@ export function getBlocksWithReportbacks(blocks, state) {
 
     // Attach some unique reportback IDs to each block.
     const count = mapDisplayToPoints(block.fields.displayOptions);
-    block.reportbacks = reportbacks.slice(reportbackIndex, reportbackIndex += count);
 
-    return block;
+    return {
+      ...block,
+      reportbacks: reportbacks.slice(reportbackIndex, reportbackIndex += count),
+    };
   });
 }
