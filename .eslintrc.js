@@ -1,4 +1,6 @@
 module.exports = {
+  parser: 'babel-eslint',
+
   'extends': '@dosomething/eslint-config',
 
   'rules': {

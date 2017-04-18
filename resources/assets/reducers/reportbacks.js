@@ -1,4 +1,4 @@
-import merge from 'lodash/merge';
+import { merge } from 'lodash';
 import update from 'react/lib/update';
 import {
   REQUESTED_REPORTBACKS,
@@ -29,8 +29,10 @@ const reportbacks = (state = {}, action) => {
         itemEntities: merge(state.itemEntities, action.reportbackItems),
       };
 
-    case REACTION_CHANGED:
-      if (! state.itemEntities[action.reportbackItemId]) return state;
+    case REACTION_CHANGED: {
+      if (! state.itemEntities[action.reportbackItemId]) {
+        return state;
+      }
 
       return update(state, {
         itemEntities: {
@@ -38,12 +40,13 @@ const reportbacks = (state = {}, action) => {
             reaction: {
               reacted: { $set: action.value },
               total: {
-                $set: state.itemEntities[action.reportbackItemId].reaction.total + (action.value ? 1 : -1),
+                $set: state.itemEntities[action.reportbackItemId].reaction.total + (action.value ? 1 : -1), // eslint-disable-line max-len
               },
             },
           },
         },
       });
+    }
 
     case REACTION_COMPLETE:
       return update(state, {

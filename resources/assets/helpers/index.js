@@ -80,9 +80,11 @@ export function markdown(source = '') {
 
 /**
  * Prefix a class name or array of class names.
- * @param {String|Array} classes
+ * @param {String|Array} names
  */
-export function modifiers(...classes) {
+export function modifiers(...names) {
+  let classes = names;
+
   if (! Array.isArray(classes)) classes = [classes];
 
   return classes.filter(className => className).map(className => `-${className}`);
@@ -113,10 +115,12 @@ function getFileType(file) {
  * Remove EXIF data on specified file if present.
  *
  * @param  {ArrayBuffer} image
- * @param  {DataView} dataView
+ * @param  {DataView} dv
  * @return {Blob}
  */
-function stripExifData(image, dataView = null) {
+function stripExifData(image, dv = null) {
+  let dataView = dv;
+
   if (! dataView) {
     dataView = new DataView(image);
   }

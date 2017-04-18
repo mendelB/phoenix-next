@@ -1,8 +1,7 @@
 /* global window, document */
 
 import { Phoenix } from '@dosomething/gateway';
-import has from 'lodash/has';
-import get from 'lodash/get';
+import { has, get } from 'lodash';
 import { normalizeReportbackItemResponse } from '../normalizers';
 import {
   REQUESTED_REPORTBACKS,

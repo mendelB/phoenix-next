@@ -107,14 +107,18 @@ export function getBlocksWithReportbacks(blocks, state) {
   let reportbackIndex = 0;
 
   return blocks.map((block) => {
-    if (block.fields.type !== 'reportbacks') return block;
+    if (block.fields.type !== 'reportbacks') {
+      return block;
+    }
 
     // Attach some unique reportback IDs to each block.
+    const start = reportbackIndex;
     const count = mapDisplayToPoints(block.fields.displayOptions);
+    reportbackIndex += count;
 
     return {
       ...block,
-      reportbacks: reportbacks.slice(reportbackIndex, reportbackIndex += count),
+      reportbacks: reportbacks.slice(start, reportbackIndex),
     };
   });
 }
