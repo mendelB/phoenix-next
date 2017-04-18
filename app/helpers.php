@@ -150,6 +150,7 @@ function useOverrideIfSet($field, $campaign, $override)
     }
 
     $override = $override->{$field};
+
     return $override === null ? $base : $override;
 }
 

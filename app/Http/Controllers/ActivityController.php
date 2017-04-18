@@ -41,5 +41,4 @@ class ActivityController extends Controller
 
         return response()->json($activity);
     }
-
 }
