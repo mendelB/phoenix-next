@@ -29,8 +29,7 @@ $router->post('waitinglist', 'WaitingListController@store');
 // Embeds
 $router->get('next/embed', 'EmbedController@index');
 
-
-/**
+/*
  * The following are API Routes that are currently using the web middleware,
  * until the implementation of JWT tokens.
  */

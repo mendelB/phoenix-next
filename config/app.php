@@ -169,11 +169,10 @@ return [
         Contentful\Laravel\ContentfulServiceProvider::class,
         Fideloper\Proxy\TrustedProxyServiceProvider::class,
 
-        /**
+        /*
          * DoSomething Service Providers...
          */
         DoSomething\Gateway\Laravel\GatewayServiceProvider::class,
-
 
         /*
          * Application Service Providers...

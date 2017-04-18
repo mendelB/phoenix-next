@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Services\PhoenixLegacy;
 use Illuminate\Http\Request;
+use App\Services\PhoenixLegacy;
 
 class ReactionController extends Controller
 {

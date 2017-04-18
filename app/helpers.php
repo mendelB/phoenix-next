@@ -2,9 +2,9 @@
 
 use App\Entities\Campaign;
 use Contentful\Delivery\Asset;
+use Illuminate\Support\HtmlString;
 use Contentful\Delivery\DynamicEntry;
 use Contentful\Delivery\ImageOptions;
-use Illuminate\Support\HtmlString;
 
 /**
  * App helper functions.
@@ -145,9 +145,12 @@ function get_image_url($asset, $crop = 'landscape')
 function useOverrideIfSet($field, $campaign, $override)
 {
     $base = $campaign->{$field};
-    if ($override === null) return $base;
+    if ($override === null) {
+        return $base;
+    }
 
     $override = $override->{$field};
+
     return $override === null ? $base : $override;
 }
 
@@ -174,8 +177,8 @@ function getShareFields($campaign, $shareOverrides)
 /**
  * Generate a link to Phoenix Ashes.
  *
- * @param  String $path path/to/something
- * @return String
+ * @param  string $path path/to/something
+ * @return string
  */
 function phoenixLink($path)
 {

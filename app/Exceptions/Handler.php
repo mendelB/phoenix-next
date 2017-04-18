@@ -3,11 +3,10 @@
 namespace App\Exceptions;
 
 use Exception;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
-use App\Exceptions\InvalidFileUploadException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -79,19 +78,17 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    protected function buildJsonResponse($request, Exception $exception) {
+    protected function buildJsonResponse($request, Exception $exception)
+    {
         if ($exception instanceof HttpException) {
             $code = $exception->getStatusCode() ?: 500;
-        }
-        elseif ($exception instanceof ValidationException) {
+        } elseif ($exception instanceof ValidationException) {
             $code = 422;
 
             $fields = $exception->validator->errors()->all();
-        }
-        elseif ($exception instanceof AuthenticationException) {
+        } elseif ($exception instanceof AuthenticationException) {
             $code = 401;
-        }
-        else {
+        } else {
             $code = 500;
         }
 

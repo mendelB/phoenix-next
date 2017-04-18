@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use DoSomething\Gateway\Common\RestApiClient;
-use Illuminate\Http\Request;
 
 class PhoenixLegacy extends RestApiClient
 {
@@ -55,7 +54,7 @@ class PhoenixLegacy extends RestApiClient
         $customCacheExpiration = 10;
         $cacheKey = 'legacy-' . $path . '-' . implode($query);
 
-        return remember(make_cache_key($cacheKey), $customCacheExpiration, function() use ($path, $query) {
+        return remember(make_cache_key($cacheKey), $customCacheExpiration, function () use ($path, $query) {
             return $this->get($path, $query);
         });
     }
@@ -140,7 +139,7 @@ class PhoenixLegacy extends RestApiClient
     {
         $path = 'v1/reportbacks/'.$reportback_id;
 
-        return remember(make_cache_key('legacy-'.$path), $this->cacheExpiration, function() use ($path) {
+        return remember(make_cache_key('legacy-'.$path), $this->cacheExpiration, function () use ($path) {
             return $this->get($path);
         });
     }
