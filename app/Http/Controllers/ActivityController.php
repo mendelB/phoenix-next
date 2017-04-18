@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Http\Controllers\Controller;
-use App\Services\PhoenixLegacy;
 use Illuminate\Http\Request;
+use App\Services\PhoenixLegacy;
 
 class ActivityController extends Controller
 {

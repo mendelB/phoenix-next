@@ -3,10 +3,10 @@
 namespace App\Entities;
 
 use ArrayAccess;
+use JsonSerializable;
+use InvalidArgumentException;
 use Contentful\Delivery\Asset;
 use Contentful\Delivery\DynamicEntry;
-use InvalidArgumentException;
-use JsonSerializable;
 
 /**
  * A convenience wrapper for Contentful's DynamicEntity.
@@ -58,11 +58,11 @@ class Entity implements ArrayAccess, JsonSerializable
         }
 
         if ($value instanceof DynamicEntry) {
-            return new Entity($value);
+            return new self($value);
         }
 
         if (is_array($value)) {
-            return collect($value)->map(function($value) {
+            return collect($value)->map(function ($value) {
                 if ($value instanceof DynamicEntry) {
                     return new self($value);
                 } else {
@@ -91,7 +91,7 @@ class Entity implements ArrayAccess, JsonSerializable
      * @link http://php.net/manual/en/arrayaccess.offsetexists.php
      *
      * @param mixed $offset
-     * @return boolean
+     * @return bool
      */
     public function offsetExists($offset)
     {
@@ -137,7 +137,7 @@ class Entity implements ArrayAccess, JsonSerializable
         $json = $this->entry->jsonSerialize();
         $locale = $this->entry->getLocale();
 
-        $fields = collect($json->fields)->map(function($field) use ($locale) {
+        $fields = collect($json->fields)->map(function ($field) use ($locale) {
             return data_get($field, $locale);
         });
 

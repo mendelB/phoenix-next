@@ -65,7 +65,8 @@ class CampaignRepository
      * @param $query
      * @return \Contentful\ResourceArray
      */
-    public function makeRequest($query) {
+    public function makeRequest($query)
+    {
         $campaigns = $this->client->getEntries($query);
 
         return $campaigns;

@@ -5,7 +5,6 @@
  * or a Heroku configuration which is a single url string
  * containing all of the credentials.
  */
-
 $mysql_host = env('DB_HOST', 'localhost');
 $mysql_port = env('DB_PORT', '3306');
 $mysql_database = env('DB_DATABASE', 'forge');

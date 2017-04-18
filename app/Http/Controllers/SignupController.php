@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\PhoenixLegacy;
 use Illuminate\Http\Request;
+use App\Services\PhoenixLegacy;
 
 class SignupController extends Controller
 {
