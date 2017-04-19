@@ -4,11 +4,20 @@ import { init, pageview } from '@dosomething/analytics';
 import { ANALYTICS_ACTIONS } from '../actions';
 import { get as getHistory } from '../history';
 import {
-  generateSessionid,
+  generateSessionId,
   isSessionValid,
   stateChanged,
   createDeviceId,
 } from '../helpers/analytics';
+
+/**
+ * Check if the session is valid, if not update it.
+ */
+function checkSession() {
+  if (! isSessionValid()) {
+    generateSessionId();
+  }
+}
 
 /**
  * Redux middleware for tracking state changes.
@@ -17,6 +26,8 @@ import {
  * @return {Object}
  */
 export const observerMiddleware = store => next => (action) => {
+  checkSession();
+
   if (! ANALYTICS_ACTIONS.includes(action.type)) return next(action);
 
   const result = next(action);
@@ -36,9 +47,7 @@ export function start(store) {
   // Setup session
   createDeviceId();
 
-  if (! isSessionValid()) {
-    generateSessionid();
-  }
+  checkSession();
 
   // Initialize Analytics
   init('track', true, services.KEEN_PROJECT_ID ? {
