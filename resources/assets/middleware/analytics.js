@@ -16,8 +16,8 @@ import {
  * @param  {Object} store Application store
  * @return {Object}
  */
-export const observerMiddleware = store => next => action => {
-  if (!ANALYTICS_ACTIONS.includes(action.type)) return next(action);
+export const observerMiddleware = store => next => (action) => {
+  if (! ANALYTICS_ACTIONS.includes(action.type)) return next(action);
 
   const result = next(action);
   stateChanged(action, store.getState());
@@ -36,7 +36,7 @@ export function start(store) {
   // Setup session
   createDeviceId();
 
-  if (!isSessionValid()) {
+  if (! isSessionValid()) {
     generateSessionid();
   }
 
