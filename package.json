@@ -37,9 +37,9 @@
   },
   "devDependencies": {
     "@dosomething/eslint-config": "^2.0.0",
-    "babel-eslint": "^7.2.2",
-    "@dosomething/webpack-config": "DoSomething/webpack-config#webpack-2",
+    "@dosomething/webpack-config": "^2.0.0",
     "@dosomething/babel-config": "^1.0",
+    "babel-eslint": "^7.2.2",
     "dotenv": "^4.0.0",
     "modernizr": "^3.3.1",
     "redux-devtools": "^3.3.2",
