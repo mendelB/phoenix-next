@@ -1,16 +1,22 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { modifiers } from '../../helpers';
 import './wrapper.scss';
 
-export const Wrapper = ({width = '', children}) => {
-  return (
-    <div className={classNames('wrapper', modifiers(width))}>
-      {children}
-    </div>
-  );
-};
+const Wrapper = ({ width = '', children }) => (
+  <div className={classNames('wrapper', modifiers(width))}>
+    { children }
+  </div>
+);
 
 Wrapper.propTypes = {
-  width: React.PropTypes.oneOf(['default', 'feed']),
+  children: PropTypes.element.isRequired,
+  width: PropTypes.oneOf(['default', 'feed']),
 };
+
+Wrapper.defaultProps = {
+  width: '',
+};
+
+export default Wrapper;

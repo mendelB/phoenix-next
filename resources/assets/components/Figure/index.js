@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
-import { modifiers } from '../../helpers';
 import LazyImage from '../LazyImage';
+import { modifiers } from '../../helpers';
 import './figure.scss';
 
-export const BaseFigure = ({alignment, verticalAlignment, media, size, className, children}) => (
+export const BaseFigure = ({ alignment, verticalAlignment, media, size, className, children }) => (
   <article className={classnames('figure', className, modifiers(alignment, verticalAlignment, size))}>
     <div className="figure__media">{media}</div>
     <div className="figure__body">{children}</div>
@@ -12,10 +13,21 @@ export const BaseFigure = ({alignment, verticalAlignment, media, size, className
 );
 
 BaseFigure.propTypes = {
-  alignment: React.PropTypes.oneOf(['left', 'right', 'left-collapse']),
-  verticalAlignment: React.PropTypes.oneOf(['center']),
-  size: React.PropTypes.oneOf(['small', 'medium', 'large']),
-  media: React.PropTypes.element,
+  className: PropTypes.string,
+  children: PropTypes.node,
+  alignment: PropTypes.oneOf(['left', 'right', 'left-collapse']),
+  verticalAlignment: PropTypes.oneOf(['center']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  media: PropTypes.node,
+};
+
+BaseFigure.defaultProps = {
+  className: null,
+  alignment: null,
+  children: null,
+  verticalAlignment: null,
+  size: null,
+  media: null,
 };
 
 export const Figure = (props) => {
@@ -25,8 +37,14 @@ export const Figure = (props) => {
 };
 
 Figure.propTypes = {
-  image: React.PropTypes.string,
-  alt: React.PropTypes.string,
+  imageClassName: PropTypes.string,
+  image: PropTypes.string,
+  alt: PropTypes.string.isRequired,
+};
+
+Figure.defaultProps = {
+  imageClassName: null,
+  image: null,
 };
 
 export default Figure;

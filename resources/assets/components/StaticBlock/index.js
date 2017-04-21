@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Block, { BlockTitle } from '../Block';
 import Markdown from '../Markdown';
@@ -13,6 +14,14 @@ const StaticBlock = (props) => {
       { source ? <div className="static-block__citation"><p className="footnote">{source}</p></div> : null }
     </Block>
   );
+};
+
+StaticBlock.propTypes = {
+  fields: PropTypes.shape({
+    title: PropTypes.string,
+    content: PropTypes.string,
+    additionalContent: PropTypes.object,
+  }).isRequired,
 };
 
 export default StaticBlock;

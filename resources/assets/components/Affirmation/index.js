@@ -1,10 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { FlexCell } from '../Flex';
 import Highlight from '../Highlight';
 import { Figure } from '../Figure';
-import { Wrapper } from '../Wrapper';
+import Wrapper from '../Wrapper';
 import ShareContainer from '../../containers/ShareContainer';
-import { EMPTY_IMAGE } from '../../helpers';
 import './affirmation.scss';
 
 const Affirmation = (props) => {
@@ -33,16 +33,27 @@ const Affirmation = (props) => {
             </div>
           </div>
         </Wrapper>
-        <a className="affirmation__exit" href="#" onClick={props.hideAffirmation}>&times;</a>
+        <button className="affirmation__exit" onClick={props.hideAffirmation}>&times;</button>
       </div>
     </FlexCell>
   );
-}
+};
 
-//TODO: Replace these default strings with content from Contentful
+Affirmation.propTypes = {
+  header: PropTypes.string.isRequired,
+  photo: PropTypes.string,
+  author: PropTypes.string,
+  quote: PropTypes.string,
+  ctaHeader: PropTypes.string,
+  ctaDescription: PropTypes.string,
+  showAffirmation: PropTypes.bool.isRequired, // @TODO: This is confusingly named!
+  hideAffirmation: PropTypes.func.isRequired,
+};
+
+// @TODO: Replace these default strings with content from Contentful
 Affirmation.defaultProps = {
   header: 'THANKS FOR JOINING!',
-  quote: `You doing this means so much to my community. Thank you so much for doing this simple action. Ramadan is a special time for us and this just makes it even more special.`,
+  quote: 'You doing this means so much to my community. Thank you so much for doing this simple action. Ramadan is a special time for us and this just makes it even more special.',
   author: 'Usra, Maryland',
   photo: 'https://static.dosomething.org/img/sincerely-us-member-quote.jpg',
   ctaHeader: 'Rally your friends!',

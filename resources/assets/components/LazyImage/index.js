@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+/* global Image */
+
 import React from 'react';
 import { EMPTY_IMAGE } from '../../helpers';
 
@@ -5,7 +8,7 @@ class LazyImage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {loaded: false};
+    this.state = { loaded: false };
   }
 
   /**
@@ -25,14 +28,18 @@ class LazyImage extends React.Component {
    * @returns {XML}
    */
   render() {
-    return <img {...this.props}
-                src={this.state.loaded && this.props.src ? this.props.src : EMPTY_IMAGE}
-                style={{transition: 'opacity 0.5s', opacity: this.state.loaded ? 1 : 0}} />;
+    return (
+      <img
+        {...this.props}
+        src={this.state.loaded && this.props.src ? this.props.src : EMPTY_IMAGE}
+        style={{ transition: 'opacity 0.5s', opacity: this.state.loaded ? 1 : 0 }}
+      />
+    );
   }
 }
 
 LazyImage.propTypes = {
-  src: React.PropTypes.string,
+  src: PropTypes.string.isRequired,
 };
 
 export default LazyImage;

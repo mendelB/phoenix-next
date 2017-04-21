@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+/* global FileReader, URL, Blob */
+
 import React from 'react';
 import classnames from 'classnames';
 import { processFile } from '../../helpers';
@@ -17,7 +20,7 @@ class MediaUploader extends React.Component {
   }
 
   readFile(file) {
-    let fileReader = new FileReader;
+    const fileReader = new FileReader();
     let blob;
 
     fileReader.readAsArrayBuffer(file);
@@ -28,22 +31,21 @@ class MediaUploader extends React.Component {
 
         this.props.onChange({
           file: blob,
-          filePreviewUrl: URL.createObjectURL(blob)
+          filePreviewUrl: URL.createObjectURL(blob),
         });
-      }
-      catch(error) {
+      } catch (error) {
         // @todo: need a nice way to handle this, display message?
         console.log(error);
       }
-    }
+    };
   }
 
   render() {
-    let { filePreviewUrl } = this.props.media;
+    const { filePreviewUrl } = this.props.media;
     let content = null;
 
     if (filePreviewUrl) {
-      content = (<img src={filePreviewUrl} />);
+      content = (<img src={filePreviewUrl} alt="uploaded file" />);
     } else {
       content = (<span>{this.props.label}</span>);
     }
@@ -60,9 +62,12 @@ class MediaUploader extends React.Component {
 }
 
 MediaUploader.propTypes = {
-  label: React.PropTypes.string,
-  media: React.PropTypes.object,
-  onChange: React.PropTypes.func
+  label: PropTypes.string,
+  media: PropTypes.shape({
+    file: PropTypes.instanceOf(Blob),
+    filePreviewUrl: PropTypes.string,
+  }),
+  onChange: PropTypes.func.isRequired,
 };
 
 MediaUploader.defaultProps = {
@@ -70,7 +75,7 @@ MediaUploader.defaultProps = {
   media: {
     file: null,
     filePreviewUrl: null,
-  }
+  },
 };
 
 export default MediaUploader;
