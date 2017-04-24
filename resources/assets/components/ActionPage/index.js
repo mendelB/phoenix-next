@@ -36,7 +36,7 @@ StepHeader.propTypes = {
  */
 const renderPhoto = (photo, index) => (
   <div className="action-step__photo" key={index}>
-    <img src={photo} />
+    <img src={photo} alt="action step example" />
   </div>
 );
 

@@ -15,6 +15,12 @@ module.exports = configure({
     path: path.join(__dirname, '/public/next/assets'),
   },
 
+  module: {
+    loaders: [
+      { enforce: 'pre', test: /\.js$/, use: 'eslint-loader', exclude: /node_modules/ }
+    ],
+  },
+
   plugins: [
     // Inline Service URLs into the build.
     new webpack.DefinePlugin({

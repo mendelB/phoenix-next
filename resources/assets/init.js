@@ -42,7 +42,7 @@ const history = historyInit(store);
 
 ready(() => {
   const appElement = document.getElementById('app');
-
+  // cool
   if (appElement) {
     ReactDom.render(<App store={store} history={history} />, appElement);
   }
