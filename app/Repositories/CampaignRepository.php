@@ -56,6 +56,9 @@ class CampaignRepository
             throw new ModelNotFoundException;
         }
 
+        // dd($campaigns[0]);
+        // dd(new Campaign($campaigns[0]));
+
         return new Campaign($campaigns[0]);
     }
 

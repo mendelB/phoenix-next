@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\Gladiator;
 use Illuminate\Http\Request;
 
-class ContestController extends Controller
+class UserContestController extends Controller
 {
     /**
      * The Gladiator API.
@@ -15,7 +15,7 @@ class ContestController extends Controller
     private $gladiator;
 
     /**
-     * ContestController constructor.
+     * UserContestController constructor.
      *
      * @param Gladiator $gladiator
      */
@@ -27,12 +27,23 @@ class ContestController extends Controller
     }
 
     /**
+     * Display a listing of contest users.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        return response()->json($this->gladiator->getAllUsers($request->query()));
+    }
+
+    /**
      * Store a user in a contest.
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function userStore(Request $request)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'legacyCampaignId' => 'required',
@@ -44,16 +55,5 @@ class ContestController extends Controller
             $request->input('legacyCampaignId'),
             $request->input('legacyCampaignRunId')
         );
-    }
-
-    /**
-     * Display a listing of contest users.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function userIndex(Request $request)
-    {
-        return response()->json($this->gladiator->getAllUsers($request->query()));
     }
 }
