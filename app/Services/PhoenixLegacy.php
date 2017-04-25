@@ -26,6 +26,21 @@ class PhoenixLegacy extends RestApiClient
     }
 
     /**
+     * Get details for a specific campaign from legacy Phoenix.
+     *
+     * @param  string $campaign_id
+     * @return array - JSON response
+     */
+    public function getCampaign($campaign_id)
+    {
+        $path = 'v1/campaigns/'.$campaign_id;
+
+        return remember(make_cache_key('legacy-'.$path), $this->cacheExpiration, function () use ($path) {
+            return $this->get($path);
+        });
+    }
+
+    /**
      * Get an index of (optionally filtered) campaign signups from Phoenix.
      * @see: https://github.com/DoSomething/phoenix/wiki/API#retrieve-a-signup-collection
      *

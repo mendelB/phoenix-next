@@ -2,6 +2,7 @@
 
 use App\Entities\Campaign;
 use Contentful\Delivery\Asset;
+use App\Services\PhoenixLegacy;
 use Illuminate\Support\HtmlString;
 use Contentful\Delivery\DynamicEntry;
 use Contentful\Delivery\ImageOptions;
@@ -131,6 +132,24 @@ function get_image_url($asset, $crop = 'landscape')
     $locale = app()->getLocale();
 
     return $asset->getFile($locale)->getUrl($options[$crop]);
+}
+
+/**
+ * Return all or specific data from legacy campaign.
+ *
+ * @param  string $id
+ * @param  string $key
+ * @return mixed
+ */
+function get_legacy_campaign_data($id, $key = null)
+{
+    $campaign = (new PhoenixLegacy)->getCampaign($id);
+
+    if ($campaign && $key) {
+        return data_get($campaign['data'], $key);
+    }
+
+    return $campaign;
 }
 
 /**

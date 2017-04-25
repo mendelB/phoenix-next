@@ -34,6 +34,10 @@ $router->get('next/embed', 'EmbedController@index');
  * until the implementation of JWT tokens.
  */
 
+// Competitions
+$router->post('next/contests/users', 'UserContestController@store');
+$router->get('next/contests/users', 'UserContestController@index');
+
 // Reactions
 $router->post('next/reactions', 'ReactionController@store');
 $router->delete('next/reactions/{id}', 'ReactionController@delete');
