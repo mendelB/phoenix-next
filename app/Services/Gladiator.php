@@ -18,7 +18,7 @@ class Gladiator extends RestApiClient
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
-                    'X-DS-Gladiator-API-Key' => config('services.gladiator.key')
+                    'X-DS-Gladiator-API-Key' => config('services.gladiator.key'),
                 ],
             ],
         ];
