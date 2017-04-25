@@ -35,7 +35,7 @@ $router->get('next/embed', 'EmbedController@index');
  */
 
 // Competitions
-$router->post('next/contests', 'ContestController@userStore');
+$router->post('next/contests/users', 'ContestController@userStore');
 $router->get('next/contests/users', 'ContestController@userIndex');
 
 // Reactions
