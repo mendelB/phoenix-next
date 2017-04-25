@@ -35,6 +35,11 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'gladiator' => [
+        'url' => env('GLADIATOR_URL', 'https://gladiator-qa.dosomething.org'),
+        'key' => env('GLADIATOR_API_KEY'),
+    ],
+
     'phoenix-legacy' => [
         'url' => env('PHOENIX_LEGACY_URL', 'https://staging.dosomething.org'),
         'username' => env('PHOENIX_LEGACY_USERNAME'),
