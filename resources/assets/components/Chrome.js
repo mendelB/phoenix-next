@@ -33,6 +33,7 @@ const Chrome = props => (
     <Debugger
       user={props.user}
       signups={props.signups}
+      competitions={props.competitions}
     />
   </div>
 );
@@ -61,6 +62,7 @@ Chrome.propTypes = {
     role: PropTypes.string,
   }).isRequired,
   signups: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  competitions: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 Chrome.defaultProps = {

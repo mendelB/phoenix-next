@@ -8,7 +8,8 @@ import Embed from '../Embed';
 import DEFAULT_AVATAR from './default-avatar.png';
 import './campaign-update.scss';
 
-const Byline = ({ author, jobTitle, avatar }) => (
+// @TODO This should be its own exported component
+export const Byline = ({ author, jobTitle, avatar }) => (
   <Figure size="small" alignment="left" verticalAlignment="center" image={avatar} alt={`picture of ${author}`} imageClassName="avatar">
     <strong>{author}</strong><br />
     <p className="footnote">{jobTitle}</p>
