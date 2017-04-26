@@ -1,4 +1,8 @@
 module.exports = {
+  env: {
+    jest: true,
+  },
+
   parser: 'babel-eslint',
 
   'extends': '@dosomething/eslint-config',

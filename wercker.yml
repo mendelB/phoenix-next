@@ -8,6 +8,11 @@ build:
       - leipert/composer-install@0.9.1
       - wercker/bundle-install@1.1.1
       - script:
+        name: upgrade nodejs
+        code: |-
+          curl -sL https://deb.nodesource.com/setup_6.x | sudo bash -
+          sudo apt-get install -y nodejs
+      - script:
           name: update npm
           code: npm install -g npm@3.x-latest
       - script:
@@ -19,6 +24,9 @@ build:
       - script:
           name: check code style
           code: npm run lint
+      - script:
+          name: test javascript code
+          code: npm run jest
       - script:
           name: build front-end assets
           code: npm run build
