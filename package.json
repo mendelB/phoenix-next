@@ -1,7 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "test": "NODE_ENV=test jest",
+    "test": "npm run jest",
+    "jest": "NODE_ENV=test && node --harmony ./node_modules/jest/bin/jest.js",
     "lint": "eslint --ext .js resources/assets",
     "start": "npm run clean && NODE_ENV=development webpack --watch",
     "build:dev": "npm run clean && NODE_ENV=development webpack",
@@ -14,6 +15,12 @@
     "presets": [
       "@dosomething/babel-config"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/resources/assets/__mocks__/fileMock.js",
+      "\\.(css|scss)$": "identity-obj-proxy"
+    }
   },
   "dependencies": {
     "@dosomething/analytics": "^2.0.2",
@@ -42,14 +49,17 @@
     "@dosomething/eslint-config": "^2.0.0",
     "@dosomething/webpack-config": "^2.0.0",
     "babel-eslint": "^7.2.2",
+    "babel-jest": "^19.0.0",
     "dotenv": "^4.0.0",
     "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
     "eslint-loader": "^1.7.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^19.0.2",
     "modernizr": "^3.3.1",
     "react-addons-test-utils": "^15.5.1",
+    "react-test-renderer": "^15.5.4",
     "redux-devtools": "^3.3.2",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.2.0",

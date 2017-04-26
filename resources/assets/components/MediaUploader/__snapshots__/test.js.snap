@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MediaUploader snapshot test 1`] = `
+<div
+  className="media-uploader"
+>
+  <label
+    htmlFor="media-uploader"
+  >
+    <span>
+      Upload Media
+    </span>
+    <input
+      id="media-uploader"
+      name="media-uploader"
+      onChange={[Function]}
+      type="file"
+    />
+  </label>
+</div>
+`;
