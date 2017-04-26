@@ -20,6 +20,9 @@ build:
           name: check code style
           code: npm run lint
       - script:
+          name: test javascript code
+          code: npm run jest
+      - script:
           name: build front-end assets
           code: npm run build
 
