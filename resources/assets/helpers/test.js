@@ -5,7 +5,19 @@ import {
 } from './index';
 
 // Test contentfulImageUrl()
-test('generate contentful image url with added parameters', () => {
+test('generate contentful image url with defaults', () => {
+  const contentfulImage = contentfulImageUrl('//images.contentful.com/somecrazystring.jpg');
+
+  expect(contentfulImage).toBe('//images.contentful.com/somecrazystring.jpg');
+});
+
+test('generate contentful image url with specified fit', () => {
+  const contentfulImage = contentfulImageUrl('//images.contentful.com/somecrazystring.jpg', undefined, undefined, 'fill');
+
+  expect(contentfulImage).toBe('//images.contentful.com/somecrazystring.jpg?fit=fill');
+});
+
+test('generate contentful image url with all specified parameters', () => {
   const contentfulImage = contentfulImageUrl('//images.contentful.com/somecrazystring.jpg', 800, 600, 'fill');
 
   expect(contentfulImage).toBe('//images.contentful.com/somecrazystring.jpg?w=800&h=600&fit=fill');
@@ -23,4 +35,8 @@ test('prefix a class name', () => {
 
 test('prefix a series of class names', () => {
   expect(modifiers('danger', 'will', 'robinson')).toEqual(expect.arrayContaining(['-danger', '-will', '-robinson']));
+});
+
+test('prefix a series of class names, ignoring null or undefined values', () => {
+  expect(modifiers('danger', undefined, 'will', null, 'robinson')).toEqual(expect.arrayContaining(['-danger', '-will', '-robinson']));
 });
