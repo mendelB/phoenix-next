@@ -42,7 +42,7 @@ class Campaign extends Entity implements JsonSerializable
                 'title' => $step->title,
                 'content' => $step->content,
                 'displayOptions' => $step->displayOptions,
-                'background' => $step->background ? $step->background->getFile()->getUrl() : '',
+                'background' => get_image_url($step->background, 'landscape'),
                 'photos' => $photos,
                 'customType' => $step->customType,
                 'additionalContent' => $step->additionalContent,
@@ -61,7 +61,7 @@ class Campaign extends Entity implements JsonSerializable
             'blurb' => $this->blurb,
             'coverImage' => [
                 'description' => $this->coverImage ? $this->coverImage->getDescription() : '',
-                'url' => $this->coverImage ? $this->coverImage->getFile()->getUrl() : '',
+                'url' => get_image_url($this->coverImage),
             ],
             'affiliateSponsors' => $this->affiliateSponsors,
             'affiliatePartners' => $this->affiliatePartners,
