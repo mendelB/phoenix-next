@@ -249,6 +249,10 @@ export function convertNumberToWord(number) {
  * @return {String}
  */
 export function makeHash(string) {
+  if (string === undefined || string === null) {
+    throw new Error('Cannot make hash from undefined or null value.');
+  }
+
   let hash = 0;
 
   if (! string.length) {
