@@ -18,11 +18,27 @@ You can keep working on the campaign for now. I'm so excited to have you onboard
 
 const CompetitionBlock = (props) => {
   const { content, photo, byline, joinCompetition, hasJoinedCompetition,
-    hasPendingJoin, showConfirmation, campaignId } = props;
+    hasPendingJoin, showConfirmation, campaignId, campaignRunId, checkForCompetition } = props;
+  console.log(showConfirmation, hasJoinedCompetition);
+  // If we already joined the competition & saw the confirmation message,
+  // display nothing.
+  if (! showConfirmation && hasJoinedCompetition) {
+    return null;
+  }
 
-  if (! showConfirmation && hasJoinedCompetition) return null;
+  // If we haven't joined a competition yet or clicked the join button,
+  // check for existing competition join.
+  if (! showConfirmation && ! hasJoinedCompetition) {
+    checkForCompetition(campaignId, campaignRunId);
+  }
 
-  const button = showConfirmation ? null : <button disabled={hasPendingJoin} className={classnames('button', { 'is-loading': hasPendingJoin })} onClick={() => joinCompetition(campaignId)}>join competition</button>;
+  const button = showConfirmation ? null : (
+    <button
+      disabled={hasPendingJoin}
+      className={classnames('button', { 'is-loading': hasPendingJoin })}
+      onClick={() => joinCompetition(campaignId, campaignRunId)}
+    >join competition</button>
+  );
 
   return (
     <Block>
@@ -54,10 +70,12 @@ CompetitionBlock.propTypes = {
     avatar: PropTypes.string.isRequired,
   }).isRequired,
   joinCompetition: PropTypes.func.isRequired,
+  checkForCompetition: PropTypes.func.isRequired,
   hasJoinedCompetition: PropTypes.bool.isRequired,
   hasPendingJoin: PropTypes.bool.isRequired,
   showConfirmation: PropTypes.bool.isRequired,
   campaignId: PropTypes.string.isRequired,
+  campaignRunId: PropTypes.string.isRequired,
 };
 
 export default CompetitionBlock;
