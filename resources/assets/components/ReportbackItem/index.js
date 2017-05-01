@@ -17,10 +17,8 @@ function getMetadataFromProps(props) {
 }
 
 const ReportbackItem = (props) => {
-  const { id, url, quantity, noun, caption, reaction = null, isFetching = false,
+  const { id, url, quantity, noun, caption, firstName, reaction = null, isFetching = false,
     basicDisplay = false, toggleReactionOn, toggleReactionOff } = props;
-
-  const firstName = props.firstName || 'A Doer';
 
   const metadata = mergeMetadata(ReportbackItem.defaultMetadata, getMetadataFromProps(props));
 
@@ -85,7 +83,7 @@ ReportbackItem.defaultProps = {
   id: undefined,
   basicDisplay: false,
   caption: undefined,
-  firstName: undefined,
+  firstName: 'A Doer',
   isFetching: false,
   noun: {
     singular: 'item',
