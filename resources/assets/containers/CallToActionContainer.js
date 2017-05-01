@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { get } from 'lodash';
 import CallToActionBlock from '../components/CallToActionBlock';
 import { clickedSignUp } from '../actions';
 
@@ -9,6 +10,8 @@ const mapStateToProps = state => ({
   isAffiliated: state.signups.thisCampaign,
   imageUrl: state.campaign.coverImage.url,
   campaignId: state.campaign.legacyCampaignId,
+  noun: get(state.campaign.additionalContent, 'noun'),
+  verb: get(state.campaign.additionalContent, 'verb'),
 });
 
 /**

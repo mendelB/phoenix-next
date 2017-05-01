@@ -5,12 +5,8 @@ import CallToActionContainer from '../../containers/CallToActionContainer';
 
 import './content-page.scss';
 
-const ContentPage = ({ pages, route }) => {
+const ContentPage = ({ pages, route, tagline, noun, verb }) => {
   const page = pages.find(item => item.fields.slug === route.page);
-
-  // @TODO: temporary variables until these CTAs are no longer hardcoded.
-  const ctaText1 = { content: 'Help us send letters of support to every mosque in the US.\n\n__Join hundreds of members members making cards!__' };
-  const ctaText2 = { content: 'Help us send letters of support to every mosque in the United States.' };
 
   return (
     <div className="content-page">
@@ -21,10 +17,10 @@ const ContentPage = ({ pages, route }) => {
         </article>
       </div>
       <div className="secondary">
-        <CallToActionContainer fields={ctaText1} />
+        <CallToActionContainer fields={{ content: `${tagline}\n\n__Join hundreds of members and ${verb.plural} ${noun.plural}!__` }} />
       </div>
 
-      <CallToActionContainer fields={ctaText2} modifierClasses="transparent" />
+      <CallToActionContainer fields={{ title: tagline }} modifierClasses="transparent" />
     </div>
   );
 };
@@ -37,11 +33,23 @@ ContentPage.propTypes = {
       content: PropTypes.string.isRequired,
     }),
   })),
+  noun: PropTypes.shape({
+    singular: PropTypes.string,
+    plural: PropTypes.string,
+  }),
   route: PropTypes.instanceOf(Object).isRequired,
+  tagline: PropTypes.string,
+  verb: PropTypes.shape({
+    singular: PropTypes.string,
+    plural: PropTypes.string,
+  }),
 };
 
 ContentPage.defaultProps = {
   pages: [],
+  noun: { singular: 'item', plural: 'items' },
+  tagline: 'Ready to start?',
+  verb: { singular: 'make an', plural: 'make' },
 };
 
 export default ContentPage;
