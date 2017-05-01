@@ -17,8 +17,8 @@ function getMetadataFromProps(props) {
 }
 
 const ReportbackItem = (props) => {
-  const { id, url, quantity, noun, caption, firstName, reaction = null,
-    isFetching = false, toggleReactionOn, toggleReactionOff } = props;
+  const { id, url, quantity, noun, caption, firstName, reaction = null, isFetching = false,
+    basicDisplay = false, toggleReactionOn, toggleReactionOff } = props;
 
   const metadata = mergeMetadata(ReportbackItem.defaultMetadata, getMetadataFromProps(props));
 
@@ -45,8 +45,8 @@ const ReportbackItem = (props) => {
   return (
     <Figure className="reportback-item" image={url} alt={`${firstName}'s photo`}>
       <BaseFigure media={reactionElement} alignment="right" className="padded">
-        {firstName ? <h4>{firstName}</h4> : null }
-        {quantity ? <p className="footnote">{quantity} {pluralize(quantity, noun.singular, noun.plural)}</p> : null }
+        {! basicDisplay && firstName ? <h4>{firstName}</h4> : null }
+        {! basicDisplay && quantity ? <p className="footnote">{quantity} {pluralize(quantity, noun.singular, noun.plural)}</p> : null }
         {caption ? <p>{caption}</p> : null }
       </BaseFigure>
     </Figure>
@@ -55,6 +55,7 @@ const ReportbackItem = (props) => {
 
 ReportbackItem.propTypes = {
   id: PropTypes.string,
+  basicDisplay: PropTypes.bool,
   caption: PropTypes.string,
   firstName: PropTypes.string,
   isFetching: PropTypes.bool,
@@ -80,8 +81,9 @@ ReportbackItem.propTypes = {
 // app to crash. Something to look into...
 ReportbackItem.defaultProps = {
   id: undefined,
+  basicDisplay: false,
   caption: undefined,
-  firstName: undefined,
+  firstName: 'A Doer',
   isFetching: false,
   noun: {
     singular: 'item',
