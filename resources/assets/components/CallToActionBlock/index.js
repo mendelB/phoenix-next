@@ -25,12 +25,13 @@ const renderBackgroundImageStyle = imageUrl => (
 );
 
 const CallToActionBlock = (props) => {
-  const { isAffiliated, fields, imageUrl, campaignId, clickedSignUp, modifierClasses } = props;
+  const { isAffiliated, fields, imageUrl, campaignId, clickedSignUp, modifierClasses,
+    noun, verb } = props;
   const { title, content, additionalContent } = fields;
+
   const hasPhoto = additionalContent ? additionalContent.hasPhoto : false;
 
-  // @TODO: This should probably be editable in contentful...
-  const buttonText = isAffiliated ? 'Make Cards' : 'Join Us';
+  const buttonText = isAffiliated ? `${verb.plural} ${noun.plural}` : 'Join Us';
 
   const metadata = mergeMetadata(CallToActionBlock.defaultMetadata, {
     hasPhoto,
@@ -60,20 +61,33 @@ const CallToActionBlock = (props) => {
 };
 
 CallToActionBlock.propTypes = {
-  isAffiliated: PropTypes.bool,
+  campaignId: PropTypes.string.isRequired,
+  clickedSignUp: PropTypes.func.isRequired,
   fields: PropTypes.shape({
     title: PropTypes.string,
     content: PropTypes.string,
     additionalContent: PropTypes.instanceOf(Object),
   }),
   imageUrl: PropTypes.string.isRequired,
-  campaignId: PropTypes.string.isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
+  isAffiliated: PropTypes.bool,
   modifierClasses: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+  noun: PropTypes.shape({
+    singular: PropTypes.string,
+    plural: PropTypes.string,
+  }),
+  verb: PropTypes.shape({
+    singular: PropTypes.string,
+    plural: PropTypes.string,
+  }),
 };
 
 CallToActionBlock.defaultProps = {
+  fields: {
+    title: 'Ready to start?',
+  },
   modifierClasses: [],
+  noun: { singular: 'item', plural: 'items' },
+  verb: { singular: 'make an', plural: 'make' },
 };
 
 CallToActionBlock.defaultMetadata = {
