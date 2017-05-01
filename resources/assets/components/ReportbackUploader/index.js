@@ -16,7 +16,7 @@ class ReportbackUploader extends React.Component {
     const key = makeHash(submission.media.uri || submission.media.filePreviewUrl);
     const url = submission.media.uri || submission.media.filePreviewUrl;
 
-    return <ReportbackItem key={key} {...submission} url={url} reaction={null} />;
+    return <ReportbackItem key={key} {...submission} url={url} reaction={null} basicDisplay />;
   }
 
   static setFormData(container) {
