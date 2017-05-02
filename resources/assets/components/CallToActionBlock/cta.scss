@@ -12,6 +12,10 @@
     background-color: transparent;
     border: 0 none;
     color: $off-black;
+
+    .cta__title {
+      color: $off-black;
+    }
   }
 
   &.has-photo {
@@ -47,6 +51,7 @@
   }
 
   .cta__title {
+    color: $white;
     font-size: $font-medium;
     font-weight: $weight-sbold;
   }
