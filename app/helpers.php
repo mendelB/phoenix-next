@@ -155,6 +155,9 @@ function get_legacy_campaign_data($id, $key = null)
     try {
         $campaign = (new PhoenixLegacy)->getCampaign($id);
     } catch (\Exception $error) {
+        $handler = app(\App\Exceptions\Handler::class);
+        $handler->report($error);
+
         return null;
     }
 
