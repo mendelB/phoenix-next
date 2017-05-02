@@ -152,7 +152,11 @@ function get_image_url($asset, $style = null)
  */
 function get_legacy_campaign_data($id, $key = null)
 {
-    $campaign = (new PhoenixLegacy)->getCampaign($id);
+    try {
+        $campaign = (new PhoenixLegacy)->getCampaign($id);
+    } catch (\Exception $error) {
+        return null;
+    }
 
     if ($campaign && $key) {
         return data_get($campaign['data'], $key);
