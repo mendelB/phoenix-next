@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Barryvdh\Debugbar\ServiceProvider::class,
         Contentful\Laravel\ContentfulServiceProvider::class,
         Fideloper\Proxy\TrustedProxyServiceProvider::class,
 
