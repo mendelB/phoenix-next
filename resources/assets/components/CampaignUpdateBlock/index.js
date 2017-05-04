@@ -8,17 +8,22 @@ import Byline from '../Byline';
 import './campaign-update.scss';
 
 const CampaignUpdateBlock = (props) => {
-  const { title, content, link, additionalContent = null } = props.fields;
+  const { title, content = 'Let\'s Do This!', link, additionalContent = null } = props.fields;
+
   const isTweet = content.length < 144;
 
   return (
     <Block>
       <BlockTitle>Campaign Update</BlockTitle>
+
       { isTweet ? null : <h2>{title}</h2> }
+
       <Markdown className={classnames('campaign-update__content', { '-tweet': isTweet })}>
         {content}
       </Markdown>
+
       { link ? <Embed url={link} /> : null }
+
       { additionalContent ?
         <Byline
           author={additionalContent.author}
