@@ -38,7 +38,10 @@ export const Figure = (props) => {
 
 Figure.propTypes = {
   imageClassName: PropTypes.string,
-  image: PropTypes.string,
+  image: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
   alt: PropTypes.string.isRequired,
 };
 

@@ -1,36 +1,14 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Markdown from '../Markdown';
 import Block, { BlockTitle } from '../Block';
-import { Figure } from '../Figure';
 import Embed from '../Embed';
-import DEFAULT_AVATAR from './default-avatar.png';
+import Byline from '../Byline';
 import './campaign-update.scss';
 
-// @TODO This should be its own exported component
-export const Byline = ({ author, jobTitle, avatar }) => (
-  <Figure size="small" alignment="left" verticalAlignment="center" image={avatar} alt={`picture of ${author}`} imageClassName="avatar">
-    <strong>{author}</strong><br />
-    <p className="footnote">{jobTitle}</p>
-  </Figure>
-);
-
-Byline.propTypes = {
-  author: PropTypes.string.isRequired,
-  jobTitle: PropTypes.string,
-  avatar: PropTypes.string,
-};
-
-Byline.defaultProps = {
-  jobTitle: 'DoSomething.org Staff',
-  avatar: DEFAULT_AVATAR,
-};
-
 const CampaignUpdateBlock = (props) => {
-  const { title, content, link, additionalContent } = props.fields;
-  const { author, jobTitle, avatar } = additionalContent;
-
+  const { title, content, link, additionalContent = null } = props.fields;
   const isTweet = content.length < 144;
 
   return (
@@ -41,7 +19,13 @@ const CampaignUpdateBlock = (props) => {
         {content}
       </Markdown>
       { link ? <Embed url={link} /> : null }
-      { author ? <Byline author={author} jobTitle={jobTitle} avatar={avatar} /> : null}
+      { additionalContent ?
+        <Byline
+          author={additionalContent.author}
+          jobTitle={additionalContent.jobTitle}
+          avatar={additionalContent.avatar}
+        />
+        : null }
     </Block>
   );
 };
@@ -51,7 +35,7 @@ CampaignUpdateBlock.propTypes = {
     title: PropTypes.string,
     content: PropTypes.string,
     additionalContent: PropTypes.shape({
-      author: PropTypes.string.isRequired,
+      author: PropTypes.string,
       jobTitle: PropTypes.string,
       avatar: PropTypes.string,
     }),
