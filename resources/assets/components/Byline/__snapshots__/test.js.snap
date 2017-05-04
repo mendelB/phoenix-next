@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Byline default snapshot test 1`] = `
+<Figure
+  alignment="left"
+  alt="picture of Puppet Sloth"
+  image={Object {}}
+  imageClassName="avatar"
+  size="small"
+  verticalAlignment="center"
+>
+  <strong>
+    Puppet Sloth
+  </strong>
+  <br />
+  <p
+    className="footnote"
+  >
+    DoSomething.org Staff
+  </p>
+</Figure>
+`;
+
+exports[`Byline with props snapshot test 1`] = `
+<Figure
+  alignment="left"
+  alt="picture of Braümhilda Snosages"
+  image="http://placeimg.com/150/150/people"
+  imageClassName="avatar"
+  size="small"
+  verticalAlignment="center"
+>
+  <strong>
+    Braümhilda Snosages
+  </strong>
+  <br />
+  <p
+    className="footnote"
+  >
+    Campaign Tester
+  </p>
+</Figure>
+`;
