@@ -15,7 +15,7 @@ test('Byline with props snapshot test', () => {
       author="Braümhilda Snosages"
       jobTitle="Campaign Tester"
       avatar="http://placeimg.com/150/150/people"
-    />
+    />,
   );
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();
