@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import Markdown from '../Markdown';
 import Block, { BlockTitle } from '../Block';
 import { Flex, FlexCell } from '../Flex';
-import { Byline } from '../Byline';
+import Byline from '../Byline';
 import LazyImage from '../LazyImage';
 import './competitionBlock.scss';
 
