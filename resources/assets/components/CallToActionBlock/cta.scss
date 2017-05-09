@@ -6,7 +6,10 @@
   border: 1px solid $primary-border-color;
   border-radius: $lg-border-radius;
   margin: 12px;
-  width: 100%;
+
+  @include media($medium) {
+    width: 100%;
+  }
 
   &.-transparent {
     background-color: transparent;
