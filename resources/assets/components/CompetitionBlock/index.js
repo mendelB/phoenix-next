@@ -4,7 +4,6 @@ import classnames from 'classnames';
 
 import Markdown from '../Markdown';
 import Block, { BlockTitle } from '../Block';
-import { Flex, FlexCell } from '../Flex';
 import Byline from '../Byline';
 import LazyImage from '../LazyImage';
 import './competitionBlock.scss';
@@ -32,7 +31,7 @@ const CompetitionBlock = (props) => {
     checkForCompetition(campaignId, campaignRunId);
   }
 
-  const button = showConfirmation ? null : (
+  const renderButton = showConfirmation ? null : (
     <button
       disabled={hasPendingJoin}
       className={classnames('button', { 'is-loading': hasPendingJoin })}
@@ -40,23 +39,23 @@ const CompetitionBlock = (props) => {
     >join competition</button>
   );
 
+  const renderPhoto = photo && ! showConfirmation ? (
+    <div className="competition-block__photo">
+      <LazyImage alt="competition" src={photo} />
+    </div>
+  ) : null;
+
   return (
     <Block>
       <BlockTitle>Go above and beyond!</BlockTitle>
-      <Flex className="competition-block">
-        <FlexCell width="two-thirds">
-          <div className={classnames('competition-block__content', { 'is-confirmation': showConfirmation })}>
-            <Markdown className={classnames('', { 'is-success': showConfirmation })}>{ showConfirmation ? DEFAULT_CONFIRMATION : content }</Markdown>
-            { button }
-            <Byline {...byline} />
-          </div>
-        </FlexCell>
-        <FlexCell width="one-third">
-          <div className="competition-block__photo">
-            { photo ? <LazyImage alt="competition" src={photo} /> : null }
-          </div>
-        </FlexCell>
-      </Flex>
+      <div className={classnames('competition-block', { 'is-confirmation': showConfirmation })}>
+        <div className="clearfix">
+          <Markdown className={classnames('', { 'is-success': showConfirmation })}>{ showConfirmation ? DEFAULT_CONFIRMATION : content }</Markdown>
+          { renderPhoto }
+        </div>
+        { renderButton }
+        <Byline {...byline} />
+      </div>
     </Block>
   );
 };
