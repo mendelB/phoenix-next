@@ -1,32 +1,30 @@
 @import '../../scss/next-toolbox';
 
 .competition-block {
-  flex-direction: column-reverse;
-
-  @include media($medium) {
-    flex-direction: row;
-  }
-  
-  > .flex__cell {
-    flex: 0 0 auto;  
+  .button {
+    clear: both;
+    margin-top: $base-spacing;
   }
 
-  .competition-block__content {
-    &.is-confirmation > .markdown {
-      margin-bottom: $base-spacing;
-    }
-
-    button {
-      margin: $base-spacing 0;
+  .markdown {
+    @include media($large) {
+      float: left;
+      padding-right: $base-spacing;
+      width: 66.6666666666666%;
     }
   }
 
-  .competition-block__photo {
-    margin-bottom: $half-spacing;
+  > .figure {
+    margin-top: $base-spacing;
+  }
+}
 
-    @include media($medium) {
-      margin-bottom: 0;
-      margin-left: $half-spacing;
-    }
+.competition-block__photo {
+  margin-top: $half-spacing;
+
+  @include media($large) {
+    float: right;
+    margin-top: 0;
+    width: 33.3333333333333%;
   }
 }
