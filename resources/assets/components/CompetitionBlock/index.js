@@ -31,7 +31,7 @@ const CompetitionBlock = (props) => {
     checkForCompetition(campaignId, campaignRunId);
   }
 
-  const renderButton = showConfirmation ? null : (
+  const button = showConfirmation ? null : (
     <button
       disabled={hasPendingJoin}
       className={classnames('button', { 'is-loading': hasPendingJoin })}
@@ -39,7 +39,7 @@ const CompetitionBlock = (props) => {
     >join competition</button>
   );
 
-  const renderPhoto = photo && ! showConfirmation ? (
+  const competitionPhoto = photo && ! showConfirmation ? (
     <div className="competition-block__photo">
       <LazyImage alt="competition" src={photo} />
     </div>
@@ -51,9 +51,9 @@ const CompetitionBlock = (props) => {
       <div className={classnames('competition-block', { 'is-confirmation': showConfirmation })}>
         <div className="clearfix">
           <Markdown className={classnames('', { 'is-success': showConfirmation })}>{ showConfirmation ? DEFAULT_CONFIRMATION : content }</Markdown>
-          { renderPhoto }
+          { competitionPhoto }
         </div>
-        { renderButton }
+        { button }
         <Byline {...byline} />
       </div>
     </Block>
