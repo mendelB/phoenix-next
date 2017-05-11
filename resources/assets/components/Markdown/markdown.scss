@@ -17,9 +17,11 @@
   p + ul,
   p + ol,
   ul + p,
-  ol + p,
   ul + ul,
-  ol + ol, {
+  ul + ol,
+  ol + p,
+  ol + ol,
+  ol + ul {
     margin-top: $half-spacing;
   }
 
