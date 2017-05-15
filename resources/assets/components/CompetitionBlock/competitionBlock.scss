@@ -28,3 +28,16 @@
     width: 33.3333333333333%;
   }
 }
+
+.block {
+  &.-colorful {
+    background-color: $purple;
+    border-radius: 4px;
+  }
+}
+
+.competition-block {
+  .-colorful & {
+    color: $white;
+  }
+}
