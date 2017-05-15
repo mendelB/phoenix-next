@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Services\PhoenixLegacy;
 use App\Repositories\CampaignRepository;
 use SeatGeek\Sixpack\Session\Base as Sixpack;
-use App\Services\PhoenixLegacy;
-use Auth;
 
 class CampaignController extends Controller
 {
@@ -71,7 +71,7 @@ class CampaignController extends Controller
         if (config('services.sixpack.enabled')) {
             $sixpack = app(Sixpack::class);
             $experiments = [
-                'competitions_prompt_style' => $sixpack->participate('competitions_prompt_style', ['default_block', 'wild_and_crazy_block'])->getAlternative(),
+                'competitions_prompt_style' => $sixpack->participate('competitions_prompt_style', ['default_block', 'colorful_block'])->getAlternative(),
             ];
         }
 

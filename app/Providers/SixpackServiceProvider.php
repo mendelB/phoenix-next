@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use SeatGeek\Sixpack\Session\Base as Sixpack;
 use Illuminate\Support\ServiceProvider;
+use SeatGeek\Sixpack\Session\Base as Sixpack;
 
 class SixpackServiceProvider extends ServiceProvider
 {
@@ -24,7 +24,7 @@ class SixpackServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(Sixpack::class, function($app) {
+        $this->app->bind(Sixpack::class, function ($app) {
             return new Sixpack([
                 'baseUrl' => config('services.sixpack.url'),
                 'cookiePrefix' => config('services.sixpack.prefix'),
