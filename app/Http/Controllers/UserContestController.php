@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\Gladiator;
 use Illuminate\Http\Request;
+use SeatGeek\Sixpack\Session\Base as Sixpack;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class UserContestController extends Controller
@@ -61,6 +62,9 @@ class UserContestController extends Controller
             'legacyCampaignId' => 'required',
             'legacyCampaignRunId' => 'required',
         ]);
+
+        $sixpack = app(Sixpack::class);
+        $sixpack->convert('competitions_prompt_style');
 
         return $this->gladiator->storeUserInContest(
             auth()->id(),

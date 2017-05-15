@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Services\PhoenixLegacy;
 use App\Repositories\CampaignRepository;
+use SeatGeek\Sixpack\Session\Base as Sixpack;
 
 class CampaignController extends Controller
 {
@@ -65,6 +66,15 @@ class CampaignController extends Controller
      */
     public function show($slug)
     {
+        $experiments = [];
+
+        if (config('services.sixpack.enabled')) {
+            $sixpack = app(Sixpack::class);
+            $experiments = [
+                'competitions_prompt_style' => $sixpack->participate('competitions_prompt_style', ['default_block', 'colorful_block'])->getAlternative(),
+            ];
+        }
+
         $campaign = $this->campaignRepository->findBySlug($slug);
         $shareFields = getShareFields($campaign, $campaign->socialOverrides);
 
@@ -73,6 +83,7 @@ class CampaignController extends Controller
             'shareFields' => $shareFields,
         ])->with('state', [
             'campaign' => $campaign,
+            'experiments' => $experiments,
             'share' => $shareFields,
             'user' => [
                 'id' => auth()->id(),

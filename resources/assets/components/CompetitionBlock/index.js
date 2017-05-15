@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { get } from 'lodash';
 
 import Markdown from '../Markdown';
 import Block, { BlockTitle } from '../Block';
@@ -18,6 +19,20 @@ You can keep working on the campaign for now. I'm so excited to have you onboard
 const CompetitionBlock = (props) => {
   const { content, photo, byline, joinCompetition, hasJoinedCompetition,
     hasPendingJoin, showConfirmation, campaignId, campaignRunId, checkForCompetition } = props;
+
+  // @TEST: Sixpack Experiments
+  const experiments = props.experiments;
+  const experimentAlternative = get(experiments, 'competitions_prompt_style', null);
+  const experimentClasses = [];
+
+  switch (experimentAlternative) {
+    case 'colorful_block':
+      experimentClasses.push('-colorful');
+      break;
+    default:
+      experimentClasses.push('-default');
+      break;
+  }
 
   // If we already joined the competition & saw the confirmation message,
   // display nothing.
@@ -46,7 +61,7 @@ const CompetitionBlock = (props) => {
   ) : null;
 
   return (
-    <Block>
+    <Block className={classnames(experimentClasses)}>
       <BlockTitle>Go above and beyond!</BlockTitle>
       <div className={classnames('competition-block', { 'is-confirmation': showConfirmation })}>
         <div className="clearfix">
@@ -68,6 +83,7 @@ CompetitionBlock.propTypes = {
     jobTitle: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
   }).isRequired,
+  experiments: PropTypes.string,
   joinCompetition: PropTypes.func.isRequired,
   checkForCompetition: PropTypes.func.isRequired,
   hasJoinedCompetition: PropTypes.bool.isRequired,
@@ -78,6 +94,7 @@ CompetitionBlock.propTypes = {
 };
 
 CompetitionBlock.defaultProps = {
+  experiments: null,
   photo: null,
 };
 

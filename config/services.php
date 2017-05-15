@@ -14,36 +14,15 @@ return [
     |
     */
 
-    'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
-    ],
-
-    'ses' => [
-        'key' => env('SES_KEY'),
-        'secret' => env('SES_SECRET'),
-        'region' => 'us-east-1',
-    ],
-
-    'sparkpost' => [
-        'secret' => env('SPARKPOST_SECRET'),
-    ],
-
-    'stripe' => [
-        'model' => App\User::class,
-        'key' => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
+    'analytics' => [
+        'google_id' => env('GOOGLE_ANALYTICS_ID'),
+        'keen_id' => env('KEEN_PROJECT_ID'),
+        'facebook_id' => env('FACEBOOK_APP_ID'),
     ],
 
     'gladiator' => [
         'url' => env('GLADIATOR_URL', 'https://gladiator-qa.dosomething.org'),
         'key' => env('GLADIATOR_API_KEY'),
-    ],
-
-    'phoenix-legacy' => [
-        'url' => env('PHOENIX_LEGACY_URL', 'https://staging.dosomething.org'),
-        'username' => env('PHOENIX_LEGACY_USERNAME'),
-        'password' => env('PHOENIX_LEGACY_PASSWORD'),
     ],
 
     'northstar' => [
@@ -58,9 +37,16 @@ return [
         ],
     ],
 
-    'analytics' => [
-        'google_id' => env('GOOGLE_ANALYTICS_ID'),
-        'keen_id' => env('KEEN_PROJECT_ID'),
-        'facebook_id' => env('FACEBOOK_APP_ID'),
+    'phoenix-legacy' => [
+        'url' => env('PHOENIX_LEGACY_URL', 'https://staging.dosomething.org'),
+        'username' => env('PHOENIX_LEGACY_USERNAME'),
+        'password' => env('PHOENIX_LEGACY_PASSWORD'),
+    ],
+
+    'sixpack' => [
+        'enabled' => env('SIXPACK_ENABLED'),
+        'url' => env('SIXPACK_BASE_URL'),
+        'prefix' => env('SIXPACK_COOKIE_PREFIX'),
+        'timeout' => env('SIXPACK_TIMEOUT'),
     ],
 ];

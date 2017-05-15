@@ -60,6 +60,7 @@ const initialState = {
   notifications: {
     items: [],
   },
+  experiments: {},
 };
 
 /**
