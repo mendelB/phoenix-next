@@ -44,6 +44,7 @@ return [
     ],
 
     'sixpack' => [
+        'enabled' => env('SIXPACK_ENABLED'),
         'url' => env('SIXPACK_BASE_URL'),
         'prefix' => env('SIXPACK_COOKIE_PREFIX'),
         'timeout' => env('SIXPACK_TIMEOUT'),
