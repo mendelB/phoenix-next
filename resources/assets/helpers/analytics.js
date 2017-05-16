@@ -1,7 +1,7 @@
 /* global document, location, localStorage */
 
 import { analyze } from '@dosomething/analytics';
-import { generateUniqueId, isTimestampValid } from '../helpers';
+import { generateUniqueId, isTimestampValid, getFormattedScreenSize } from '../helpers';
 
 const DEVICE_ID = 'DEVICE_ID';
 const SESSION_ID = 'SESSION_ID';
@@ -46,6 +46,9 @@ export function transformState(action, state) {
       ...state.user,
     },
     experiments,
+    browser: {
+      size: getFormattedScreenSize(),
+    },
     action,
   };
 
