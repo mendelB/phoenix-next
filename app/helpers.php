@@ -6,6 +6,7 @@ use Contentful\Delivery\Asset;
 use App\Services\PhoenixLegacy;
 use Illuminate\Support\HtmlString;
 use Contentful\Delivery\DynamicEntry;
+use Illuminate\Support\Facades\Storage;
 use SeatGeek\Sixpack\Session\Base as Sixpack;
 
 /**
@@ -95,21 +96,19 @@ function markdown($source)
 }
 
 /**
- * Get all Sixpack experiments from experiments definition file.
+ * Get all Sixpack experiments from specified experiments definition file.
  *
  * @return array
  */
-function get_experiments()
+function get_experiments($file = 'experiments.json')
 {
-    try {
-        $experiments = file_get_contents(resource_path('assets/experiments.json'));
+    $filePath = 'assets/'.$file;
 
-        if (! $experiments) {
-            return [];
-        }
-    } catch (\Exception $error) {
+    if (! Storage::disk('resources')->exists($filePath)) {
         return [];
     }
+
+    $experiments = Storage::disk('resources')->get($filePath);
 
     return json_decode($experiments, true);
 }
