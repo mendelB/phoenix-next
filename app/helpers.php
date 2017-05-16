@@ -6,6 +6,7 @@ use Contentful\Delivery\Asset;
 use App\Services\PhoenixLegacy;
 use Illuminate\Support\HtmlString;
 use Contentful\Delivery\DynamicEntry;
+use SeatGeek\Sixpack\Session\Base as Sixpack;
 
 /**
  * App helper functions.
@@ -91,6 +92,46 @@ function markdown($source)
     $markup = $parsedown->setMarkupEscaped(true)->text($source);
 
     return new HtmlString($markup);
+}
+
+/**
+ * Get all Sixpack experiments from experiments definition file.
+ *
+ * @return array
+ */
+function get_experiments()
+{
+    try {
+        $experiments = file_get_contents(resource_path('assets/experiments.json'));
+
+        if (! $experiments) {
+            return [];
+        }
+    } catch (\Exception $error) {
+        return [];
+    }
+
+    return json_decode($experiments, true);
+}
+
+/**
+ * Get selection of alternatives for all Sixpack experiments for the current client.
+ *
+ * @return array
+ */
+function get_experiment_alternatives_selection()
+{
+    if (! config('services.sixpack.enabled')) {
+        return [];
+    }
+
+    $sixpack = app(Sixpack::class);
+
+    $experiments = get_experiments();
+
+    return collect($experiments)->map(function($alternatives, $name) use ($sixpack) {
+        return $data[$name] = $sixpack->participate($name, array_values($alternatives))->getAlternative();
+    })->toArray();
 }
 
 /**
