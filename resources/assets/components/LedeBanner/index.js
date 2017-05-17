@@ -32,7 +32,7 @@ const LedeBanner = ({
       return (
         <ul className="button-group">
           <li><button className="button" onClick={() => onClick({ source: 'lede banner|text: Support the cause' })}>Support the cause</button></li>
-          <li><button className="button" onClick={() => onClick({ source: `lede banner|text: ${verb.plural} ${noun.plural}` })}>{verb.plural} {noun.plural}</button></li>
+          <li><button className="button" onClick={() => onClick({ source: 'lede banner|text: Custom noun & verb' })}>{verb.plural} {noun.plural}</button></li>
         </ul>
       );
     }
