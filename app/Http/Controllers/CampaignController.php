@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Services\PhoenixLegacy;
 use App\Repositories\CampaignRepository;
-use SeatGeek\Sixpack\Session\Base as Sixpack;
 
 class CampaignController extends Controller
 {

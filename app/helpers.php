@@ -128,7 +128,7 @@ function get_experiment_alternatives_selection()
 
     $experiments = get_experiments();
 
-    return collect($experiments)->map(function($alternatives, $name) use ($sixpack) {
+    return collect($experiments)->map(function ($alternatives, $name) use ($sixpack) {
         return $data[$name] = $sixpack->participate($name, array_values($alternatives))->getAlternative();
     })->toArray();
 }
