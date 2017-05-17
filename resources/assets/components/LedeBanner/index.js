@@ -22,7 +22,7 @@ const LedeBanner = ({
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };
 
-  const onClick = (message) => clickedSignUp(legacyCampaignId, message);
+  const onClick = message => clickedSignUp(legacyCampaignId, message);
 
   // @TEST 2017-05-17 lede_banner_number_of_buttons
   const submissionActions = () => {
@@ -31,14 +31,14 @@ const LedeBanner = ({
     if (buttonCount === 'two_buttons') {
       return (
         <ul className="button-group">
-          <li><button className="button" onClick={() => onClick({ source: `lede banner|text: Support the cause` })}>Support the cause</button></li>
+          <li><button className="button" onClick={() => onClick({ source: 'lede banner|text: Support the cause' })}>Support the cause</button></li>
           <li><button className="button" onClick={() => onClick({ source: `lede banner|text: ${verb.plural} ${noun.plural}` })}>{verb.plural} {noun.plural}</button></li>
         </ul>
       );
     }
 
     return (
-      <button className="button" onClick={() => onClick({ source: `lede banner|text: Join us` })}>Join us</button>
+      <button className="button" onClick={() => onClick({ source: 'lede banner|text: Join us' })}>Join us</button>
     );
   };
 
@@ -81,6 +81,12 @@ LedeBanner.propTypes = {
     singular: PropTypes.string,
     plural: PropTypes.string,
   }),
+};
+
+LedeBanner.defaultProps = {
+  experiments: null,
+  noun: { singular: 'this', plural: 'this' },
+  verb: { singular: 'do', plural: 'do' },
 };
 
 export default LedeBanner;

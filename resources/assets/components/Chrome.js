@@ -44,34 +44,46 @@ const Chrome = props => (
 );
 
 Chrome.propTypes = {
-  isAffiliated: PropTypes.bool,
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
   blurb: PropTypes.string.isRequired,
+  clickedSignUp: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  competitions: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,
   }).isRequired,
-  legacyCampaignId: PropTypes.string.isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
-  totalCampaignSignups: PropTypes.number.isRequired,
   dashboard: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   endDate: PropTypes.shape({
     date: PropTypes.string,
     timezone: PropTypes.string,
     timezone_type: PropTypes.number,
   }).isRequired,
-  children: PropTypes.node.isRequired,
+  experiments: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  legacyCampaignId: PropTypes.string.isRequired,
+  noun: PropTypes.shape({
+    singular: PropTypes.string,
+    plural: PropTypes.string,
+  }),
+  isAffiliated: PropTypes.bool,
+  signups: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  subtitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  totalCampaignSignups: PropTypes.number.isRequired,
   user: PropTypes.shape({
     id: PropTypes.string,
     role: PropTypes.string,
   }).isRequired,
-  signups: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-  competitions: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  verb: PropTypes.shape({
+    singular: PropTypes.string,
+    plural: PropTypes.string,
+  }),
 };
 
 Chrome.defaultProps = {
+  experiments: null,
   isAffiliated: false,
+  noun: { singular: 'this', plural: 'this' },
+  verb: { singular: 'do', plural: 'do' },
 };
 
 export default Chrome;
