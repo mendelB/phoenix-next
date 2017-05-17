@@ -85,8 +85,8 @@ LedeBanner.propTypes = {
 
 LedeBanner.defaultProps = {
   experiments: null,
-  noun: { singular: 'this', plural: 'this' },
-  verb: { singular: 'do', plural: 'do' },
+  noun: { singular: 'action', plural: 'action' },
+  verb: { singular: 'take', plural: 'take' },
 };
 
 export default LedeBanner;

@@ -47,9 +47,9 @@ ContentPage.propTypes = {
 
 ContentPage.defaultProps = {
   pages: [],
-  noun: { singular: 'item', plural: 'items' },
+  noun: { singular: 'action', plural: 'action' },
   tagline: 'Ready to start?',
-  verb: { singular: 'make an', plural: 'make' },
+  verb: { singular: 'take', plural: 'take' },
 };
 
 export default ContentPage;
