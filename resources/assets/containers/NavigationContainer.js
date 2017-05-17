@@ -5,19 +5,19 @@ import { Navigation, NavigationLink } from '../components/Navigation';
 
 const mapStateToProps = state => ({
   pages: state.campaign.pages,
+  pathname: state.routing.location.pathname,
 });
 
 const NavigationContainer = ({ pages }) => {
   // Create links for additional "content" pages on this campaign in Contentful.
-  const additionalPages = pages.map(page => (
-    <NavigationLink key={page.id} to={`/pages/${page.fields.slug}`}>
-      {page.fields.title}
-    </NavigationLink>
-  ));
+  const additionalPages = pages.map((page) => {
+    const path = `/pages/${page.fields.slug}`;
+    return <NavigationLink key={page.id} to={path}>{page.fields.title}</NavigationLink>;
+  });
 
   return (
     <Navigation>
-      <NavigationLink to="/">Community</NavigationLink>
+      <NavigationLink to="/" exact>Community</NavigationLink>
       <NavigationLink to="/action">Action</NavigationLink>
       { additionalPages }
     </Navigation>
