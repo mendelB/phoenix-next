@@ -21,6 +21,9 @@ const Chrome = props => (
       coverImage={props.coverImage}
       legacyCampaignId={props.legacyCampaignId}
       clickedSignUp={props.clickedSignUp}
+      noun={props.noun}
+      verb={props.verb}
+      experiments={props.experiments}
     />
     <Dashboard
       totalCampaignSignups={props.totalCampaignSignups}

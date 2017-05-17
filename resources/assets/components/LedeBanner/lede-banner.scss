@@ -16,16 +16,43 @@
       width: 50%;
     }
   }
+
+  // @TEST 2017-05-17 lede_banner_number_of_buttons
+  .button-group {
+    @include clearfix;
+
+    li {
+      &:last-child {
+        margin-top: $base-spacing;
+      }
+
+      @include media($medium) {
+        .button {
+          width: 100%;
+        }
+      }
+
+      @media (min-width: 1260px) {
+        float: left;
+        width: 50%;
+
+        &:first-child {
+          padding-right: $half-spacing;
+        }
+
+        &:last-child {
+          margin-top: 0;
+          padding-left: $half-spacing;
+        }
+      }
+    }
+  }
 }
 
 .lede-banner__content {
   @include media($medium) {
     flex: 1;
     min-height: 500px;
-  }
-
-  @include media($large) {
-    @include post(2);
   }
 
   & > .wrapper {
@@ -44,10 +71,6 @@
 
   @include media($medium) {
     flex: 1;
-  }
-
-  @include media($large) {
-    @include prefix(2);
   }
 }
 
