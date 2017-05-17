@@ -42,8 +42,8 @@ export function transformState(action, state) {
     },
     routing: {
       referer: document.referrer,
-      path: state.routing.location.pathname,
-      page: getRouteName(state.routing.location.pathname),
+      path: state.routing.location ? state.routing.location.pathname : '',
+      page: state.routing.location ? getRouteName(state.routing.location.pathname) : '',
       // TODO: Might be worth pulling in locationBeforeTransitions.query
       // & getting an array of query items...
     },
