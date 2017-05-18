@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { get } from 'lodash';
 import Chrome from '../components/Chrome';
 import { clickedSignUp } from '../actions';
 
@@ -20,6 +21,9 @@ const mapStateToProps = (state, props) => ({
   user: state.user,
   signups: state.signups.data,
   competitions: state.competitions.data,
+  noun: get(state.campaign.additionalContent, 'noun'),
+  verb: get(state.campaign.additionalContent, 'verb'),
+  experiments: state.experiments,
 });
 
 /**

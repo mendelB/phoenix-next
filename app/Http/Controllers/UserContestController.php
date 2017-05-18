@@ -63,6 +63,7 @@ class UserContestController extends Controller
             'legacyCampaignRunId' => 'required',
         ]);
 
+        // @TEST 2017-05-17 competitions_prompt_style
         $sixpack = app(Sixpack::class);
         $sixpack->convert('competitions_prompt_style');
 

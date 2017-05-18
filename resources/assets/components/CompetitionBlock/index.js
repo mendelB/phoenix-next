@@ -20,7 +20,7 @@ const CompetitionBlock = (props) => {
   const { content, photo, byline, joinCompetition, hasJoinedCompetition,
     hasPendingJoin, showConfirmation, campaignId, campaignRunId, checkForCompetition } = props;
 
-  // @TEST: Sixpack Experiments
+  // @TEST 2017-05-17 competitions_prompt_style
   const experiments = props.experiments;
   const experimentAlternative = get(experiments, 'competitions_prompt_style', null);
   const experimentClasses = [];
