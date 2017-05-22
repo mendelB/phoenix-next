@@ -5,6 +5,8 @@ import Dashboard from './Dashboard';
 import Debugger from './Debugger';
 import FeedEnclosure from './FeedEnclosure';
 import LedeBanner from './LedeBanner';
+import LedeBannerTwoButtons from './LedeBanner/LedeBannerTwoButtons';
+import Experiment from './Experiment';
 import NavigationContainer from '../containers/NavigationContainer';
 import AffirmationContainer from '../containers/AffirmationContainer';
 import NotificationContainer from '../containers/NotificationContainer';
@@ -13,18 +15,34 @@ const Chrome = props => (
   <div>
     <AppInit />
     <NotificationContainer />
-    <LedeBanner
-      isAffiliated={props.isAffiliated}
-      title={props.title}
-      subtitle={props.subtitle}
-      blurb={props.blurb}
-      coverImage={props.coverImage}
-      legacyCampaignId={props.legacyCampaignId}
-      clickedSignUp={props.clickedSignUp}
-      noun={props.noun}
-      verb={props.verb}
-      experiments={props.experiments}
-    />
+    <Experiment name="lede_banner_number_of_buttons" condition="affiliated">
+      <LedeBanner
+        alternative="one_button"
+        isAffiliated={props.isAffiliated}
+        title={props.title}
+        subtitle={props.subtitle}
+        blurb={props.blurb}
+        coverImage={props.coverImage}
+        legacyCampaignId={props.legacyCampaignId}
+        clickedSignUp={props.clickedSignUp}
+        noun={props.noun}
+        verb={props.verb}
+        experiments={props.experiments}
+      />
+      <LedeBannerTwoButtons
+        alternative="two_buttons"
+        isAffiliated={props.isAffiliated}
+        title="Two Button Alternative"
+        subtitle={props.subtitle}
+        blurb={props.blurb}
+        coverImage={props.coverImage}
+        legacyCampaignId={props.legacyCampaignId}
+        clickedSignUp={props.clickedSignUp}
+        noun={props.noun}
+        verb={props.verb}
+        experiments={props.experiments}
+      />
+    </Experiment>
     <Dashboard
       totalCampaignSignups={props.totalCampaignSignups}
       content={props.dashboard}
