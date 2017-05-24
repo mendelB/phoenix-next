@@ -3,11 +3,6 @@
 import client from 'sixpack-client';
 import experiments from '../experiments_v2.json';
 
-// export session new sixpack.Session({
-//   base_url: services.SIXPACK_BASE_URL,
-//   cookie_name: services.SIXPACK_COOKIE_PREFIX,
-// });
-
 export const session = new client.Session({
   base_url: services.SIXPACK_BASE_URL,
   cookie_name: services.SIXPACK_COOKIE_PREFIX,
@@ -17,21 +12,40 @@ export function sixpack() {
   return session;
 }
 
+/**
+ * Participate current client to specified experiment.
+ *
+ * @param  {String} name
+ * @return {Promise}
+ */
 export function participate(name) {
-  // console.log(session);
+  return new Promise(function (resolve, reject) {
+    const alternatives = Object.values(experiments[name].alternatives);
 
-  // const alternatives = Object.values(experiments[name].alternatives);
+    session.participate(name, alternatives, (error, response) => {
+      if (error) {
+        reject(error);
+      }
 
-  // console.log(name);
-  // console.log(alternatives);
+      resolve(response.alternative.name);
+    });
+  });
+};
 
-  // session.participate('test-exp', ['alt-one', 'alt-two'], (error, response) => {
-  //   if (error) {
-  //     throw error;
-  //   }
+/**
+ * Convert current client on specified experiment.
+ *
+ * @param  {String} name
+ * @return {Promise}
+ */
+export function convert(name) {
+  return new Promise(function (resolve, reject) {
+    session.convert(name, (error, response) => {
+      if (error) {
+        reject(error);
+      }
 
-  //   console.log(response);
-  // });
-
-  return name;
+      resolve(response);
+    });
+  });
 }
