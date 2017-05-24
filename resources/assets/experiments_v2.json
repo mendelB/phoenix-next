@@ -9,7 +9,9 @@
     }
   },
   "lede_banner_number_of_buttons": {
-    "condition": "unaffiliated",
+    "meta": {
+      "condition": "unaffiliated"
+    },
     "alternatives": {
       "a": "one_button",
       "b": "two_buttons"
