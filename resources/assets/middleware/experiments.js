@@ -6,16 +6,30 @@ import {
 } from '../actions';
 import experiments from '../experiments_v2.json';
 
+/**
+ * Confirm whether a specified condition passes for executing an experiment.
+ *
+ * @param  {String} condition
+ * @param  {Object} state
+ * @return {Boolean}
+ */
+function assertConditionPasses(condition, state) {
+  if (condition === 'unaffiliated') {
+    return ! state.signups.thisCampaign;
+  }
+
+  // @TODO: Add additional conditions. Maybe break this function out into other file.
+}
+
 const experimentsMiddleware = ({ getState, dispatch }) => next => action => {
   const state = getState();
 
   if (action.type === PARTICIPATE_IN_EXPERIMENT) {
-    // Are there any conditions to pass for current experiment?
+    // Are there any conditions that need to pass for current experiment to execute?
     const condition = get(experiments[action.name], 'meta.condition', null);
-    const conditionPassed = get(action, 'conditionPassed', false);
 
-    if (condition && ! conditionPassed) {
-      dispatch({ ...action, condition });
+    if (condition && ! assertConditionPasses(condition, state)) {
+      return;
     }
 
     if (! state.experiments.hasOwnProperty(action.name)) {
@@ -23,7 +37,7 @@ const experimentsMiddleware = ({ getState, dispatch }) => next => action => {
     }
   }
 
-  next(action);
+  return next(action);
 };
 
 export default experimentsMiddleware;

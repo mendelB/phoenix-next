@@ -12,14 +12,16 @@ class Experiment extends React.Component {
   render() {
     const env = window.ENV || {};
 
+    // Return default control component if Sixpack is not enabled.
     if (typeof env.SIXPACK_ENABLED === 'undefined' || ! env.SIXPACK_ENABLED) {
       return this.props.children[0];
     }
 
     const experiments = this.props.experiments;
 
+    // Return default control component if conditions not met to execute experiment.
     if (Object.keys(experiments).length === 0 || ! experiments[this.props.name]) {
-      return <p>loading...</p>;
+      return this.props.children[0];
     }
 
     const componentAlternative = this.props.children.filter((component) => {

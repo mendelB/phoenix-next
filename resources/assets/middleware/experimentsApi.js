@@ -7,8 +7,6 @@ import { participate, convert } from '../helpers/sixpack';
 
 const experimentsApiMiddleware = ({ dispatch }) => next => action => {
   if (action.type === PARTICIPATE_IN_EXPERIMENT) {
-    // @TODO: this is getting called twice?
-    // Need to look into the control flow with calling dispatch in middleware...
     participate(action.name).then((alternative) => {
       dispatch(updateStore(action.name, alternative));
     });
@@ -20,7 +18,7 @@ const experimentsApiMiddleware = ({ dispatch }) => next => action => {
     });
   }
 
-  next(action);
+  return next(action);
 };
 
 export default experimentsApiMiddleware;

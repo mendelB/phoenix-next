@@ -3,7 +3,6 @@ import merge from 'lodash/merge';
 import { checkForSignup, fetchReportbacks, startQueue, getTotalSignups } from './actions';
 import { start } from './middleware/analytics';
 import experimentsMiddleware from './middleware/experiments';
-import experimentsConditionerMiddleware from './middleware/experimentsConditioner';
 import experimentsApiMiddleware from './middleware/experimentsApi';
 import { loadStorage } from './helpers/storage';
 
@@ -82,7 +81,6 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
 
   // Experiments middleware
   middleware.push(
-    experimentsConditionerMiddleware,
     experimentsMiddleware,
     experimentsApiMiddleware,
   );
