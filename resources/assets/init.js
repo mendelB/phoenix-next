@@ -11,7 +11,7 @@
  |
  */
 
-// WHATWG Fetch Polyfill
+// Polyfills
 import 'whatwg-fetch';
 import 'babel-polyfill';
 

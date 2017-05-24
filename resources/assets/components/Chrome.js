@@ -4,27 +4,48 @@ import AppInit from './AppInit';
 import Dashboard from './Dashboard';
 import Debugger from './Debugger';
 import FeedEnclosure from './FeedEnclosure';
-import LedeBanner from './LedeBanner';
+import LedeBanner from './LedeBanner/LedeBanner';
+import LedeBannerAltB from './LedeBanner/LedeBannerAltB';
+import ExperimentContainer from '../containers/ExperimentContainer';
 import NavigationContainer from '../containers/NavigationContainer';
 import AffirmationContainer from '../containers/AffirmationContainer';
 import NotificationContainer from '../containers/NotificationContainer';
+
+// @TODO: Might be useful to have a separate file of constants?
+const LEDE_BANNER_NUMBER_OF_BUTTONS = 'lede_banner_number_of_buttons';
 
 const Chrome = props => (
   <div>
     <AppInit />
     <NotificationContainer />
-    <LedeBanner
-      isAffiliated={props.isAffiliated}
-      title={props.title}
-      subtitle={props.subtitle}
-      blurb={props.blurb}
-      coverImage={props.coverImage}
-      legacyCampaignId={props.legacyCampaignId}
-      clickedSignUp={props.clickedSignUp}
-      noun={props.noun}
-      verb={props.verb}
-      experiments={props.experiments}
-    />
+    <ExperimentContainer name={LEDE_BANNER_NUMBER_OF_BUTTONS}>
+      <LedeBanner
+        experiment={LEDE_BANNER_NUMBER_OF_BUTTONS}
+        alternative="one_button"
+        convert={props.convertExperiment}
+        isAffiliated={props.isAffiliated}
+        title={props.title}
+        subtitle={props.subtitle}
+        blurb={props.blurb}
+        coverImage={props.coverImage}
+        legacyCampaignId={props.legacyCampaignId}
+        clickedSignUp={props.clickedSignUp}
+      />
+      <LedeBannerAltB
+        experiment={LEDE_BANNER_NUMBER_OF_BUTTONS}
+        alternative="two_buttons"
+        convert={props.convertExperiment}
+        isAffiliated={props.isAffiliated}
+        title={props.title}
+        subtitle={props.subtitle}
+        blurb={props.blurb}
+        coverImage={props.coverImage}
+        legacyCampaignId={props.legacyCampaignId}
+        clickedSignUp={props.clickedSignUp}
+        noun={props.noun}
+        verb={props.verb}
+      />
+    </ExperimentContainer>
     <Dashboard
       totalCampaignSignups={props.totalCampaignSignups}
       content={props.dashboard}
@@ -48,6 +69,7 @@ Chrome.propTypes = {
   clickedSignUp: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   competitions: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  convertExperiment: PropTypes.func.isRequired,
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,
@@ -58,7 +80,6 @@ Chrome.propTypes = {
     timezone: PropTypes.string,
     timezone_type: PropTypes.number,
   }).isRequired,
-  experiments: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   legacyCampaignId: PropTypes.string.isRequired,
   noun: PropTypes.shape({
     singular: PropTypes.string,

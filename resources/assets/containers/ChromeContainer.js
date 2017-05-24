@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { get } from 'lodash';
 import Chrome from '../components/Chrome';
-import { clickedSignUp } from '../actions';
+import { clickedSignUp, convertExperiment } from '../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -32,6 +32,7 @@ const mapStateToProps = (state, props) => ({
  */
 const actionCreators = {
   clickedSignUp,
+  convertExperiment,
 };
 
 // Export the container component.
