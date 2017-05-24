@@ -4,20 +4,37 @@ import AppInit from './AppInit';
 import Dashboard from './Dashboard';
 import Debugger from './Debugger';
 import FeedEnclosure from './FeedEnclosure';
-import LedeBanner from './LedeBanner';
-import LedeBannerTwoButtons from './LedeBanner/LedeBannerTwoButtons';
-import Experiment from './Experiment';
+import LedeBanner from './LedeBanner/LedeBanner';
+import LedeBannerAltB from './LedeBanner/LedeBannerAltB';
+import ExperimentContainer from '../containers/ExperimentContainer';
 import NavigationContainer from '../containers/NavigationContainer';
 import AffirmationContainer from '../containers/AffirmationContainer';
 import NotificationContainer from '../containers/NotificationContainer';
+
+// @TODO: Might be useful to have a separate file of constants?
+const LEDE_BANNER_NUMBER_OF_BUTTONS = "lede_banner_number_of_buttons";
 
 const Chrome = props => (
   <div>
     <AppInit />
     <NotificationContainer />
-    <Experiment name="lede_banner_number_of_buttons" condition="affiliated">
+    <ExperimentContainer name={LEDE_BANNER_NUMBER_OF_BUTTONS}>
       <LedeBanner
+        experiment={LEDE_BANNER_NUMBER_OF_BUTTONS}
         alternative="one_button"
+        convert={props.convertExperiment}
+        isAffiliated={props.isAffiliated}
+        title={props.title}
+        subtitle={props.subtitle}
+        blurb={props.blurb}
+        coverImage={props.coverImage}
+        legacyCampaignId={props.legacyCampaignId}
+        clickedSignUp={props.clickedSignUp}
+      />
+      <LedeBannerAltB
+        experiment={LEDE_BANNER_NUMBER_OF_BUTTONS}
+        alternative="two_buttons"
+        convert={props.convertExperiment}
         isAffiliated={props.isAffiliated}
         title={props.title}
         subtitle={props.subtitle}
@@ -27,22 +44,8 @@ const Chrome = props => (
         clickedSignUp={props.clickedSignUp}
         noun={props.noun}
         verb={props.verb}
-        experiments={props.experiments}
       />
-      <LedeBannerTwoButtons
-        alternative="two_buttons"
-        isAffiliated={props.isAffiliated}
-        title="Two Button Alternative"
-        subtitle={props.subtitle}
-        blurb={props.blurb}
-        coverImage={props.coverImage}
-        legacyCampaignId={props.legacyCampaignId}
-        clickedSignUp={props.clickedSignUp}
-        noun={props.noun}
-        verb={props.verb}
-        experiments={props.experiments}
-      />
-    </Experiment>
+    </ExperimentContainer>
     <Dashboard
       totalCampaignSignups={props.totalCampaignSignups}
       content={props.dashboard}
