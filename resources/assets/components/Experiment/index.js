@@ -1,4 +1,4 @@
-/* global services */
+/* global window */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -10,10 +10,11 @@ class Experiment extends React.Component {
   }
 
   render() {
-    // @TODO: ugh...
-    // if (services.SIXPACK_ENABLED === 'false') {
-    //   return this.props.children[0];
-    // }
+    const env = window.ENV || {};
+
+    if (typeof env.SIXPACK_ENABLED === 'undefined' || ! env.SIXPACK_ENABLED) {
+      return this.props.children[0];
+    }
 
     const experiments = this.props.experiments;
 

@@ -1,15 +1,19 @@
-/* global services */
+/* global window */
 
 import client from 'sixpack-client';
 import experiments from '../experiments_v2.json';
 
-export const session = new client.Session({
-  base_url: services.SIXPACK_BASE_URL,
-  cookie_name: services.SIXPACK_COOKIE_PREFIX,
-});
-
 export function sixpack() {
-  return session;
+  const env = window.ENV || {};
+
+  if (! env.SIXPACK_BASE_URL) {
+    throw 'Missing Sixpack configuration settings.';
+  }
+
+  return new client.Session({
+    base_url: env.SIXPACK_BASE_URL,
+    cookie_name: env.SIXPACK_COOKIE_PREFIX || 'sixpack',
+  });
 }
 
 /**
@@ -22,7 +26,7 @@ export function participate(name) {
   return new Promise(function (resolve, reject) {
     const alternatives = Object.values(experiments[name].alternatives);
 
-    session.participate(name, alternatives, (error, response) => {
+    sixpack().participate(name, alternatives, (error, response) => {
       if (error) {
         reject(error);
       }
@@ -40,7 +44,7 @@ export function participate(name) {
  */
 export function convert(name) {
   return new Promise(function (resolve, reject) {
-    session.convert(name, (error, response) => {
+    sixpack().convert(name, (error, response) => {
       if (error) {
         reject(error);
       }
