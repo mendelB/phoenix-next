@@ -3,6 +3,8 @@ import merge from 'lodash/merge';
 import { checkForSignup, fetchReportbacks, startQueue, getTotalSignups } from './actions';
 import { start } from './middleware/analytics';
 import experimentsMiddleware from './middleware/experiments';
+import experimentsConditionerMiddleware from './middleware/experimentsConditioner';
+import experimentsApiMiddleware from './middleware/experimentsApi';
 import { loadStorage } from './helpers/storage';
 
 /**
@@ -78,7 +80,12 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
     middleware.push(createLogger({ collapsed: true }));
   }
 
-  middleware.push(experimentsMiddleware);
+  // Experiments middleware
+  middleware.push(
+    experimentsConditionerMiddleware,
+    experimentsMiddleware,
+    experimentsApiMiddleware,
+  );
 
   // If React DevTools are available, use instrumented compose function.
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
@@ -101,9 +108,6 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
  */
 export function initializeStore(store) {
   const state = store.getState();
-
-  console.log(':::: DEBUGGING ::::');
-  console.log(state.signups.thisCampaign);
 
   // If we don't already have a signup cached in local storage, check.
   if (! state.signups.data.includes(state.campaign.legacyCampaignId)) {
