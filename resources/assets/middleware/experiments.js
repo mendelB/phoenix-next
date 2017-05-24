@@ -2,7 +2,6 @@ import { get } from 'lodash';
 import {
   PARTICIPATE_IN_EXPERIMENT,
   addToStore,
-  updateStore,
 } from '../actions';
 import experiments from '../experiments_v2.json';
 
@@ -19,9 +18,10 @@ function assertConditionPasses(condition, state) {
   }
 
   // @TODO: Add additional conditions. Maybe break this function out into other file.
+  return false;
 }
 
-const experimentsMiddleware = ({ getState, dispatch }) => next => action => {
+const experimentsMiddleware = ({ getState, dispatch }) => next => (action) => {
   const state = getState();
 
   if (action.type === PARTICIPATE_IN_EXPERIMENT) {
@@ -32,12 +32,12 @@ const experimentsMiddleware = ({ getState, dispatch }) => next => action => {
       return;
     }
 
-    if (! state.experiments.hasOwnProperty(action.name)) {
+    if (! Object.prototype.hasOwnProperty.call(state.experiments, action.name)) {
       dispatch(addToStore(action.name));
     }
   }
 
-  return next(action);
+  return next(action); // eslint-disable-line consistent-return
 };
 
 export default experimentsMiddleware;

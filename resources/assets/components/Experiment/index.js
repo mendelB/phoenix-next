@@ -44,5 +44,8 @@ class Experiment extends React.Component {
 export default Experiment;
 
 Experiment.propTypes = {
+  children: PropTypes.node.isRequired,
+  experiments: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   name: PropTypes.string.isRequired,
+  participateInExperiment: PropTypes.func.isRequired,
 };

@@ -7,7 +7,7 @@ export function sixpack() {
   const env = window.ENV || {};
 
   if (! env.SIXPACK_BASE_URL) {
-    throw 'Missing Sixpack configuration settings.';
+    throw new Error('Missing Sixpack configuration settings.');
   }
 
   return new client.Session({
@@ -23,7 +23,7 @@ export function sixpack() {
  * @return {Promise}
  */
 export function participate(name) {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     const alternatives = Object.values(experiments[name].alternatives);
 
     sixpack().participate(name, alternatives, (error, response) => {
@@ -34,7 +34,7 @@ export function participate(name) {
       resolve(response.alternative.name);
     });
   });
-};
+}
 
 /**
  * Convert current client on specified experiment.
@@ -43,7 +43,7 @@ export function participate(name) {
  * @return {Promise}
  */
 export function convert(name) {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     sixpack().convert(name, (error, response) => {
       if (error) {
         reject(error);

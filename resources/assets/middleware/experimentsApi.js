@@ -5,7 +5,7 @@ import {
 } from '../actions';
 import { participate, convert } from '../helpers/sixpack';
 
-const experimentsApiMiddleware = ({ dispatch }) => next => action => {
+const experimentsApiMiddleware = ({ dispatch }) => next => (action) => {
   if (action.type === PARTICIPATE_IN_EXPERIMENT) {
     participate(action.name).then((alternative) => {
       dispatch(updateStore(action.name, alternative));
@@ -13,8 +13,9 @@ const experimentsApiMiddleware = ({ dispatch }) => next => action => {
   }
 
   if (action.type === CONVERT_EXPERIMENT) {
-    convert(action.name).then((response) => {
-      // @TODO: maybe call an action to signify conversion on experiment?
+    convert(action.name).then(() => {
+      // @TODO: maybe call an action to signify conversion on experiment.
+      // Not sure if we want to use the return from the Promise.
     });
   }
 

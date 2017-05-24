@@ -22,7 +22,7 @@ const LedeBannerAltB = ({
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };
 
-  const onClick = message => {
+  const onClick = (message) => {
     convert(experiment);
     clickedSignUp(legacyCampaignId, message);
   };
@@ -54,10 +54,12 @@ const LedeBannerAltB = ({
 LedeBannerAltB.propTypes = {
   blurb: PropTypes.string.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
+  convert: PropTypes.func.isRequired,
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,
   }).isRequired,
+  experiment: PropTypes.string.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
   noun: PropTypes.shape({
