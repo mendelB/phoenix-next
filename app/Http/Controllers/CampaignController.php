@@ -65,7 +65,6 @@ class CampaignController extends Controller
             'env' => $env,
         ])->with('state', [
             'campaign' => $campaign,
-            'experiments' => get_experiment_alternatives_selection(),
             'share' => $shareFields,
             'user' => [
                 'id' => auth()->id(),
