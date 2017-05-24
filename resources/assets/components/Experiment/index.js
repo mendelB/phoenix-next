@@ -13,7 +13,7 @@ class Experiment extends React.Component {
     const env = window.ENV || {};
 
     // Return default control component if Sixpack is not enabled.
-    if (typeof env.SIXPACK_ENABLED === 'undefined' || ! env.SIXPACK_ENABLED) {
+    if (! env.SIXPACK_ENABLED) {
       return this.props.children[0];
     }
 
