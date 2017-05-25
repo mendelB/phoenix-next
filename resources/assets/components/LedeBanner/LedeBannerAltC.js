@@ -5,8 +5,7 @@ import { contentfulImageUrl } from '../../helpers';
 
 import './lede-banner.scss';
 
-const LedeBannerAltB = (props) => {
-  const {
+const LedeBannerAltC = ({
     title,
     subtitle,
     blurb,
@@ -14,12 +13,11 @@ const LedeBannerAltB = (props) => {
     isAffiliated,
     legacyCampaignId,
     clickedSignUp,
-    experiment,
-    convert,
     noun,
     verb,
-  } = props;
-
+    experiment,
+    convert,
+  }) => {
   const backgroundImageStyle = {
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };
@@ -41,14 +39,19 @@ const LedeBannerAltB = (props) => {
 
           <Markdown className="lede-banner__blurb">{blurb}</Markdown>
 
-          { isAffiliated ? null : <button className="button" onClick={() => onClick({ source: 'lede banner|A2|text: Custom noun & verb' })}>{verb.plural} {noun.plural}</button> }
+          { isAffiliated ? null : (
+            <ul className="button-group">
+              <li><button className="button" onClick={() => onClick({ source: 'lede banner|A3|text: Stand with us' })}>Stand with us</button></li>
+              <li><button className="button" onClick={() => onClick({ source: 'lede banner|A3|text: Custom noun & verb' })}>{verb.plural} {noun.plural}</button></li>
+            </ul>
+          ) }
         </div>
       </div>
     </header>
   );
 };
 
-LedeBannerAltB.propTypes = {
+LedeBannerAltC.propTypes = {
   blurb: PropTypes.string.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
   convert: PropTypes.func.isRequired,
@@ -71,9 +74,9 @@ LedeBannerAltB.propTypes = {
   }),
 };
 
-LedeBannerAltB.defaultProps = {
+LedeBannerAltC.defaultProps = {
   noun: { singular: 'action', plural: 'action' },
   verb: { singular: 'take', plural: 'take' },
 };
 
-export default LedeBannerAltB;
+export default LedeBannerAltC;
