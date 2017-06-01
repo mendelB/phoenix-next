@@ -113,7 +113,7 @@ class ReportbackUploader extends React.Component {
               </div>
 
               <div>
-                <label className="field-label" htmlFor="impact">Total number of cards made.</label>
+                <label className="field-label" htmlFor="impact">Total number of {this.props.noun.plural} made?</label>
                 <input className="text-field" id="impact" name="impact" type="text" placeholder="Enter # here -- like '300' or '5'" ref={input => (this.impact = input)} />
               </div>
             </div>
