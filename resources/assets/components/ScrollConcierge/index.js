@@ -37,11 +37,13 @@ const scrollTo = (target = 0, duration = 500) => {
   const scroller = () => {
     const elapsed = Date.now() - beginning;
 
-    // If we've reached the target or got interrupted, stop.
-    if (window.scrollY > target || interrupted) return;
-
     // Scroll to wherever we should be at this point in the animation.
-    window.scrollTo(0, initialOffset + Math.floor(distance * (elapsed / duration)));
+    const newOffset = Math.min(initialOffset + Math.floor(distance * (elapsed / duration)), target);
+    window.scrollTo(0, newOffset);
+
+    // If we've reached the target or got interrupted, stop.
+    if (newOffset === target || interrupted) return;
+
     window.requestAnimationFrame(scroller);
   };
 
