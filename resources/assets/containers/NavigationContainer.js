@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Navigation, NavigationLink } from '../components/Navigation';
 import { paths } from '../helpers/navigation';
 
@@ -9,7 +10,9 @@ const mapStateToProps = state => ({
   pathname: state.routing.location.pathname,
 });
 
-const NavigationContainer = ({ pages }) => {
+const NavigationContainer = (props) => {
+  const { pages } = props;
+
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = pages.map((page) => {
     const path = `${paths.pages}${page.fields.slug}`;
@@ -33,4 +36,4 @@ NavigationContainer.defaultProps = {
   pages: [],
 };
 
-export default connect(mapStateToProps)(NavigationContainer);
+export default withRouter(connect(mapStateToProps)(NavigationContainer));
