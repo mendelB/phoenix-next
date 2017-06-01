@@ -3,16 +3,10 @@ import {
   ADD_TO_EXPERIMENTS_STORE,
   UPDATE_EXPERIMENTS_STORE,
   CONVERT_EXPERIMENT,
-  queueEvent,
 } from '../actions';
 
 export function convertExperiment(name) {
-  return (dispatch, getState) => {
-    if (! getState().user.id) {
-      dispatch(queueEvent('convertExperiment', name));
-      return;
-    }
-
+  return (dispatch) => {
     dispatch({
       type: CONVERT_EXPERIMENT,
       name,
