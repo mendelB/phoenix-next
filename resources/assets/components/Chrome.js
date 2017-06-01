@@ -10,7 +10,7 @@ import LedeBannerAltB from './LedeBanner/LedeBannerAltB';
 import LedeBannerAltC from './LedeBanner/LedeBannerAltC';
 import LedeBannerAltD from './LedeBanner/LedeBannerAltD';
 import ExperimentContainer from '../containers/ExperimentContainer';
-import NavigationContainer from '../containers/NavigationContainer';
+import TabbedNavigationContainer from '../containers/TabbedNavigationContainer';
 import AffirmationContainer from '../containers/AffirmationContainer';
 import NotificationContainer from '../containers/NotificationContainer';
 
@@ -85,7 +85,7 @@ const Chrome = props => (
       endDate={props.endDate}
     />
     <AffirmationContainer />
-    <NavigationContainer />
+    <TabbedNavigationContainer />
     <FeedEnclosure>
       {props.children}
     </FeedEnclosure>
