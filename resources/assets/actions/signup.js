@@ -1,6 +1,5 @@
 import { Phoenix } from '@dosomething/gateway';
 import { push } from 'react-router-redux';
-import { get as historyGet } from '../history';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
