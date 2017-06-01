@@ -10,9 +10,7 @@ const mapStateToProps = state => ({
   pathname: state.routing.location.pathname,
 });
 
-const NavigationContainer = (props) => {
-  const { pages } = props;
-
+const NavigationContainer = ({ pages }) => {
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = pages.map((page) => {
     const path = `${paths.pages}${page.fields.slug}`;
