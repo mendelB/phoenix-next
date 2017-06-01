@@ -69,6 +69,7 @@ const initialState = {
  * reducers & preloaded state from the server.
  *
  * @param reducers
+ * @param middleware
  * @param preloadedState
  * @returns {Store<S>}
  */
