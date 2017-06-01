@@ -4,6 +4,20 @@ import React from 'react';
 import FontFaceObserver from 'fontfaceobserver';
 
 /**
+ * Wait until we're *really* sure page has rendered
+ * so we don't read the wrong values for layout.
+ *
+ * @see https://stackoverflow.com/a/34999925/811624
+ */
+const waitForLayout = (callback) => {
+  // Wait for the call stack to clear.
+  setTimeout(() => {
+    // Then, wait until we've rendered a frame.
+    window.requestAnimationFrame(callback);
+  }, 0);
+};
+
+/**
  * Scroll to the given offset on the page.
  *
  * @param {Number} target - vertical offset
@@ -46,8 +60,10 @@ class ScrollConcierge extends React.Component {
     // Wait for headline font to load so we don't scroll to
     // the wrong place when the page reflows & offset changes.
     font.load().then(() => {
-      const VISUAL_OFFSET = 150;
-      scrollTo(this.node.offsetTop - VISUAL_OFFSET);
+      const VISUAL_OFFSET = 100;
+
+      // Wait until the page has finished layout, then scroll.
+      waitForLayout(() => scrollTo(this.node.offsetTop - VISUAL_OFFSET));
     });
   }
 
