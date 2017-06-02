@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 import PitchSincerelyUs from './PitchCampaigns/SincerelyUs';
 
-const Pitch = ({ campaignId }) => {
-  if (campaignId !== '7656') return null;
+const Pitch = (props) => {
+  if (! props.enableBackgroundTest) return null;
 
-  return (<PitchSincerelyUs />);
+  return (<PitchSincerelyUs {...props} />);
 };
 
 Pitch.propTypes = {
-  campaignId: PropTypes.string.isRequired,
+  enableBackgroundTest: PropTypes.bool.isRequired,
 };
 
 export default Pitch;

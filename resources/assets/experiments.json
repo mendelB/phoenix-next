@@ -35,5 +35,17 @@
       "b": "get_started",
       "c": "apply_now"
     }
+  },
+  "pitch_page": {
+    "meta": {
+      "preTest": {
+        "signups.thisCampaign": false,
+        "campaign.additionalContent.enableBackgroundTest": true
+      }
+    },
+    "alternatives": {
+      "a": "default",
+      "b": "pitch"
+    }
   }
 }
