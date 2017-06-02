@@ -57,11 +57,17 @@ Page.defaultProps = {
 
 const ContentPage = (props) => {
   const { pages, route, tagline, noun, verb } = props;
+  const ctaContent = `${tagline}\n\n__Join hundreds of members and ${verb.plural} ${noun.plural}!__`;
+
+  // Load the page by the slug, or return a 404 page.
   const page = pages.find(item => item.fields.slug === route.page);
+  if (! page) {
+    const copy = 'That page could not be found. Try choosing from the links above!';
+    return <Page header="Not Found" markdown={copy} ctaTitle={tagline} ctaContent={ctaContent} />;
+  }
 
   const header = page.fields.title;
   const markdown = page.fields.content;
-  const ctaContent = `${tagline}\n\n__Join hundreds of members and ${verb.plural} ${noun.plural}!__`;
 
   if (route.page.includes('scholarship')) {
     return (
