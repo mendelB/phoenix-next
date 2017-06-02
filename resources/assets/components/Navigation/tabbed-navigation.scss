@@ -1,5 +1,14 @@
 @import '../../scss/next-toolbox';
 
+.tabbed-navigation {
+  background-color: fuchsia;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+
+
 .nav {
   overflow-x: auto;
   padding: $half-spacing 0;
