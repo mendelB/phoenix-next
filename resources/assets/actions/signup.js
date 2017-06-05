@@ -104,7 +104,7 @@ export function getTotalSignups(campaignId) {
 export function clickedSignUp(campaignId, metadata) {
   return (dispatch, getState) => {
     if (getState().experiments.pitch_page) {
-      convertExperiment('pitch_page');
+      dispatch(convertExperiment('pitch_page'));
     }
 
     // If the user is not logged in, handle this action later.
