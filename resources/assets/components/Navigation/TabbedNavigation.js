@@ -2,50 +2,59 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import classnames from 'classnames';
+import { MEDIA_MEDIUM_SIZE_MIN } from '../../constants/media-sizes';
 import './tabbed-navigation.scss';
 
-let tabbedNav = null;
-let ticking = false;
-
-const onScroll = () => {
-  if (window.innerWidth <= 759) {
-    return;
-  }
-
-  requestTick();
-};
-
-const requestTick = () => {
-  if (!ticking) {
-    window.requestAnimationFrame(updateClassList);
-  }
-
-  ticking = true;
-};
-
-const updateClassList = () => {
-  ticking = false;
-
-  const tabbedNavRect = tabbedNav.getBoundingClientRect();
-
-  if (tabbedNavRect.top > 0) {
-    tabbedNav.classList.remove('is-stuck');
-  } else {
-    tabbedNav.classList.add('is-stuck');
-  }
-};
-
 class TabbedNavigation extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.tabbedNav = null;
+    this.ticking = false;
+
+    this.updateClassList = this.updateClassList.bind(this);
+    this.requestTick = this.requestTick.bind(this);
+    this.onScroll = this.onScroll.bind(this);
+
+    this.state = {
+      isStuck: false,
+    };
+  }
+
   componentDidMount() {
+    this.tabbedNav = document.getElementById('tabbed-navigation');
 
-    tabbedNav = document.getElementById('tabbed-navigation');
+    window.addEventListener('scroll', this.onScroll, false);
+  }
 
-    window.addEventListener('scroll', onScroll, false);
+  onScroll() {
+    if (window.innerWidth <= MEDIA_MEDIUM_SIZE_MIN) {
+      return;
+    }
+
+    this.requestTick();
+  }
+
+  requestTick() {
+    if (! this.ticking) {
+      window.requestAnimationFrame(this.updateClassList);
+    }
+
+    this.ticking = true;
+  }
+
+  updateClassList() {
+    this.ticking = false;
+
+    const tabbedNavRect = this.tabbedNav.getBoundingClientRect();
+
+    this.setState({ isStuck: tabbedNavRect.top <= 0 });
   }
 
   render() {
     return (
-      <div id="tabbed-navigation" className="tabbed-navigation">
+      <div id="tabbed-navigation" className={classnames('tabbed-navigation', { 'is-stuck': this.state.isStuck })}>
         <div className="wrapper">
           { this.props.children }
         </div>
