@@ -1,4 +1,4 @@
-/* global window, document */
+/* global window */
 
 import PropTypes from 'prop-types';
 import React from 'react';
