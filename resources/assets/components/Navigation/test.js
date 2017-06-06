@@ -8,7 +8,7 @@ test('TabbedNavigation snapshot test', () => {
   const component = shallow(
     <TabbedNavigation>
       <NavigationLink>Awesome Link</NavigationLink>
-    </TabbedNavigation>
+    </TabbedNavigation>,
   );
   const tree = shallowToJson(component);
   expect(tree).toMatchSnapshot();
