@@ -4,6 +4,7 @@ import AppInit from './AppInit';
 import Dashboard from './Dashboard';
 import Debugger from './Debugger';
 import FeedEnclosure from './FeedEnclosure';
+import Overlay from './Overlay';
 import LedeBanner from './LedeBanner/LedeBanner';
 import LedeBannerAltB from './LedeBanner/LedeBannerAltB';
 import LedeBannerAltC from './LedeBanner/LedeBannerAltC';
@@ -19,7 +20,9 @@ const LEDE_BANNER_QUAD_BUTTONS = 'lede_banner_quad_buttons';
 const Chrome = props => (
   <div>
     <AppInit />
-    <NotificationContainer />
+    <Overlay>
+      <NotificationContainer />
+    </Overlay>
     <ExperimentContainer name={LEDE_BANNER_QUAD_BUTTONS}>
       <LedeBanner
         experiment={LEDE_BANNER_QUAD_BUTTONS}
