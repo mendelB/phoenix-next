@@ -30,8 +30,6 @@ class TabbedNavigation extends React.Component {
    * React lifecycle method called after render() method runs.
    */
   componentDidMount() {
-    this.node = document.getElementById('tabbed-navigation');
-
     window.addEventListener('scroll', this.onScroll, false);
   }
 
@@ -73,7 +71,7 @@ class TabbedNavigation extends React.Component {
    */
   render() {
     return (
-      <div id="tabbed-navigation" className={classnames('tabbed-navigation', { 'is-stuck': this.state.isStuck })}>
+      <div ref={node => (this.node = node)} id="tabbed-navigation" className={classnames('tabbed-navigation', { 'is-stuck': this.state.isStuck })}>
         <div className="wrapper">
           { this.props.children }
         </div>
