@@ -318,11 +318,3 @@ export function getFormattedScreenSize(screenWidth = window.innerWidth) {
 
   return breakpoints.find(breakpoint => breakpoint.test(screenWidth)).name;
 }
-
-// export function waitForLayout(callback) {
-//   // Wait for the call stack to clear.
-//   setTimeout(() => {
-//     // Then, wait until we've rendered a frame.
-//     window.requestAnimationFrame(callback);
-//   }, 0);
-// }
