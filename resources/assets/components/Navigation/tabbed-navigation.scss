@@ -29,6 +29,11 @@
     }
   }
 
+  &.is-stuck {
+    background-color: $white;
+    border-bottom: 1px solid $primary-border-color;
+  }
+
   > .wrapper {
     overflow-x: auto;
     padding: $half-spacing;
@@ -58,10 +63,5 @@
       color: $black;
       border-bottom: 4px solid $off-black;
     }
-  }
-
-  &.is-stuck {
-    background-color: $white;
-    border-bottom: 1px solid $primary-border-color;
   }
 }

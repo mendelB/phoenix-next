@@ -13,9 +13,8 @@ class TabbedNavigation extends React.Component {
    */
   constructor(props) {
     super(props);
-    console.log(props);
 
-    this.tabbedNav = null;
+    this.node = null;
     this.isAnimatingFrame = false;
 
     this.updateState = this.updateState.bind(this);
@@ -31,7 +30,7 @@ class TabbedNavigation extends React.Component {
    * React lifecycle method called after render() method runs.
    */
   componentDidMount() {
-    this.tabbedNav = document.getElementById('tabbed-navigation');
+    this.node = document.getElementById('tabbed-navigation');
 
     window.addEventListener('scroll', this.onScroll, false);
   }
@@ -64,7 +63,7 @@ class TabbedNavigation extends React.Component {
   updateState() {
     this.isAnimatingFrame = false;
 
-    const tabbedNavRect = this.tabbedNav.getBoundingClientRect();
+    const tabbedNavRect = this.node.getBoundingClientRect();
 
     this.setState({ isStuck: tabbedNavRect.top <= 0 });
   }

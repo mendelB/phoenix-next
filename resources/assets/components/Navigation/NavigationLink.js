@@ -13,8 +13,6 @@ const NavigationLink = props => (
   </NavLink>
 );
 
-export default NavigationLink;
-
 NavigationLink.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
@@ -23,3 +21,5 @@ NavigationLink.propTypes = {
 NavigationLink.defaultProps = {
   className: null,
 };
+
+export default NavigationLink;
