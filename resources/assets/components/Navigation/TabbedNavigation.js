@@ -7,14 +7,19 @@ import { MEDIA_MEDIUM_SIZE_MIN } from '../../constants/media-sizes';
 import './tabbed-navigation.scss';
 
 class TabbedNavigation extends React.Component {
+  /**
+   * Class contructor
+   * @param  {Object} props
+   */
   constructor(props) {
     super(props);
+    console.log(props);
 
     this.tabbedNav = null;
-    this.ticking = false;
+    this.isAnimatingFrame = false;
 
-    this.updateClassList = this.updateClassList.bind(this);
-    this.requestTick = this.requestTick.bind(this);
+    this.updateState = this.updateState.bind(this);
+    this.requestFrame = this.requestFrame.bind(this);
     this.onScroll = this.onScroll.bind(this);
 
     this.state = {
@@ -22,36 +27,51 @@ class TabbedNavigation extends React.Component {
     };
   }
 
+  /**
+   * React lifecycle method called after render() method runs.
+   */
   componentDidMount() {
     this.tabbedNav = document.getElementById('tabbed-navigation');
 
     window.addEventListener('scroll', this.onScroll, false);
   }
 
+  /**
+   * Method called when the page is scrolled.
+   */
   onScroll() {
     if (window.innerWidth <= MEDIA_MEDIUM_SIZE_MIN) {
       return;
     }
 
-    this.requestTick();
+    this.requestFrame();
   }
 
-  requestTick() {
-    if (! this.ticking) {
-      window.requestAnimationFrame(this.updateClassList);
+  /**
+   * Request frame of animation.
+   */
+  requestFrame() {
+    if (! this.isAnimatingFrame) {
+      window.requestAnimationFrame(this.updateState);
     }
 
-    this.ticking = true;
+    this.isAnimatingFrame = true;
   }
 
-  updateClassList() {
-    this.ticking = false;
+  /**
+   * Update the component's state based on its location on the page.
+   */
+  updateState() {
+    this.isAnimatingFrame = false;
 
     const tabbedNavRect = this.tabbedNav.getBoundingClientRect();
 
     this.setState({ isStuck: tabbedNavRect.top <= 0 });
   }
 
+  /**
+   * Render the component.
+   */
   render() {
     return (
       <div id="tabbed-navigation" className={classnames('tabbed-navigation', { 'is-stuck': this.state.isStuck })}>
