@@ -9,7 +9,6 @@
   @include media($tablet) {
     position: sticky;
     top: 0;
-    transition: background-color 0.2s linear;
     z-index: 100;
   }
 

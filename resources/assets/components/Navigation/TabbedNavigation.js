@@ -30,6 +30,8 @@ class TabbedNavigation extends React.Component {
    * React lifecycle method called after render() method runs.
    */
   componentDidMount() {
+    this.updateState();
+
     window.addEventListener('scroll', this.onScroll, false);
   }
 
