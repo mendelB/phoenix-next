@@ -1,8 +1,17 @@
 @import '../../scss/next-toolbox.scss';
 
+.notification-list {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 25%;
+  min-width: 300px;
+}
+
 .notification {
   position: relative;
   width: 100%;
+  margin: $half-spacing;
 
   &.-error {
     color: $white;
@@ -10,7 +19,8 @@
   }
 
   .notification__content {
-    padding: $base-spacing;
+    padding: $half-spacing $base-spacing;
+    margin-right: $half-spacing;
 
     p {
       color: inherit;
