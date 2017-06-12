@@ -1,32 +1,20 @@
 module.exports = {
+  // Use Babel parser when running linter so
+  // we can use newer language features.
+  parser: 'babel-eslint',
+
+  // Extend our DoSomething.org code style.
+  // https://github.com/dosomething/eslint-config
+  extends: '@dosomething/eslint-config',
+
   env: {
+    // Register Jest global variables.
     jest: true,
   },
 
-  parser: 'babel-eslint',
-
-  'extends': '@dosomething/eslint-config',
-
-  'rules': {
-    // Allow `console.log` so we can include logging
-    // in development builds. Warn on `debugger`.
-    'no-console': 'off',
-    'no-debugger': 'warn',
-
-    // For now, only warn on missing alt tags.
-    'jsx-a11y/img-has-alt': 'warn',
-
-    // Require space before "!" unary operator to conform to
-    // our PHP code style:
-    'space-unary-ops': ['error', {
-      words: true,
-      nonwords: false,
-      overrides: {
-        '!': true,
-      },
-    }],
-
-    // We prefer not to use the .jsx file extension.
-    'react/jsx-filename-extension': 'off'
+  rules: {
+    // For now, only warn on missing alt or caption.
+    'jsx-a11y/alt-text': 'warn',
+    'jsx-a11y/media-has-caption': 'warn',
   }
 };
