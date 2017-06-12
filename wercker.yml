@@ -3,7 +3,6 @@ build:
     # The steps that will be executed on build
     steps:
       - leipert/composer-install@0.9.1
-      - wercker/bundle-install@1.1.1
       - wercker/npm-install
       - script:
           name: check code style
@@ -25,8 +24,7 @@ deploy:
           echo -e $WERCKER_APP_KEY_PRIVATE > $CAP_PRIVATE_KEY
     - cap
   after-steps:
-      - iansmith9876/pretty-slack-notify:
-          team: dosomething
-          token: $SLACK_TOKEN
-          channel: $SLACK_ROOM
-          username: george
+    - sherzberg/slack-notify:
+        subdomain: dosomething
+        token: $SLACK_TOKEN
+        channel: $SLACK_ROOM
