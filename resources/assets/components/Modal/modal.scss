@@ -8,6 +8,7 @@
   top: 0;
   left: 0;
   background-color: $dark-background-color-transparent;
+  z-index: 9999;
 
   .modal__container {
     max-width: 800px;
