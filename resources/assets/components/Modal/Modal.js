@@ -1,48 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Portal from 'react-portal';
 import { closeModal } from '../../actions';
-import RenderModalInBody from './RenderModalInBody';
+import './modal.scss';
 
 // TODO: Way of dynamically doing this.
 import AffirmationContainer from '../../containers/AffirmationContainer';
 import CompetitionContainer from '../../containers/CompetitionContainer';
 
-import './modal.scss';
+class Modal extends React.Component {
+  constructor() {
+    super();
 
-const MODAL_ID = 'modal';
+    this.handleOverlayClick = this.handleOverlayClick.bind(this);
+  }
 
-const Modal = (props) => {
-  const { shouldShowModal, competitionStep } = props;
+  handleOverlayClick(event) {
+    if (event.target !== this.node) return;
+    this.props.closeModal();
+  }
 
-  const onBackgroundClick = (event) => {
-    if (event.target.id === MODAL_ID) props.closeModal();
-  };
+  render() {
+    const { shouldShowModal, competitionStep } = this.props;
 
-  const competition = competitionStep ? (
-    <CompetitionContainer
-      content={competitionStep.content}
-      photo={competitionStep.photos[0]}
-      byline={competitionStep.additionalContent}
-    />
-  ) : null;
+    // @TODO: These should be injected from outside this component.
+    const children = [
+      <AffirmationContainer />,
+      competitionStep ? (
+        <CompetitionContainer
+          content={competitionStep.content}
+          photo={competitionStep.photos[0]}
+          byline={competitionStep.additionalContent}
+        />
+      ) : null,
+    ];
 
-  /* eslint-disable jsx-a11y/no-static-element-interactions */
-  return (
-    <RenderModalInBody shouldShowModal={shouldShowModal}>
-      <div id={MODAL_ID} className="modal" onClick={onBackgroundClick}>
-        <div className="modal__container">
-          <div className="modal__slide">
-            <AffirmationContainer />
+    return (
+      <Portal closeOnEsc isOpened={shouldShowModal}>
+        <div className="modal" role="presentation" ref={node => this.node = node} onClick={this.handleOverlayClick}>
+          <div className="modal__container">
+            { children.map(child => <div className="modal__slide">{child}</div>) }
+            <button className="modal__exit" onClick={this.props.closeModal}>×</button>
           </div>
-          <div className="modal__slide">
-            { competition }
-          </div>
-          <div className="modal__exit" onClick={props.closeModal}>&times;</div>
         </div>
-      </div>
-    </RenderModalInBody>
-  );
-};
+      </Portal>
+    );
+  }
+}
 
 Modal.propTypes = {
   shouldShowModal: PropTypes.bool.isRequired,
