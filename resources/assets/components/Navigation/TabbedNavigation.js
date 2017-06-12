@@ -36,7 +36,7 @@ class TabbedNavigation extends React.Component {
   }
 
   /**
-   * React lifecycle method called after render() method runs.
+   * React lifecycle method called before component is removed from DOM.
    */
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScroll);

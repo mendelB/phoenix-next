@@ -4,7 +4,7 @@ import Button from './Button';
 
 test('Button snapshot test', () => {
   const tree = renderer.create(
-    <Button callback={() => {}} />
+    <Button callback={() => {}} />,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
@@ -12,7 +12,7 @@ test('Button snapshot test', () => {
 
 test('Decked out Button test', () => {
   const tree = renderer.create(
-    <Button classNames="-modifier" callback={() => {}} callbackArgument="1234" callbackMetadata={{ source: 'jest test' }} />
+    <Button classNames="-modifier" callback={() => {}} callbackArgument="1234" callbackMetadata={{ source: 'jest test' }} />,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
