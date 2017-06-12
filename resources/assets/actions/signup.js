@@ -90,7 +90,9 @@ export function getTotalSignups(campaignId) {
 
       let total = response.meta.pagination.total;
       // @TODO: Not ideal, but the browser doesn't know if this is an old cached response or not.
-      if (getState().signups.thisCampaign) total += 1;
+      if (getState().signups.thisCampaign) {
+        total += 1;
+      }
 
       dispatch(setTotalSignups(total));
     });
@@ -120,12 +122,13 @@ export function clickedSignUp(campaignId, metadata) {
 
     (new Phoenix()).post('next/signups', { campaignId }).then((response) => {
       // Handle a bad signup response...
-      if (! response) dispatch(addNotification('error'));
-      // If Drupal denied our signup request, check if we already had a signup.
-      else if (response[0] === false) dispatch(checkForSignup(campaignId));
-      // Otherwise, mark the signup as a success.
-      else {
-        // Take users to the action page after sign up.
+      if (! response) {
+        dispatch(addNotification('error'));
+      } else if (response[0] === false) {
+        // If Drupal denied our signup request, check if we already had a signup.
+        dispatch(checkForSignup(campaignId));
+      } else {
+        // Otherwise, mark the signup as a success & take user to the action page.
         dispatch(push('/action'));
 
         dispatch(signupCreated(campaignId));

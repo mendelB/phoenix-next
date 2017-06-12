@@ -67,7 +67,9 @@ const PitchLineChart = ({ color, dataset }) => {
       />,
     );
 
-    if (gridRow === 0) continue; // eslint-disable-line no-continue
+    if (gridRow === 0) {
+      continue; // eslint-disable-line no-continue
+    }
 
     gridLines.push(
       <text

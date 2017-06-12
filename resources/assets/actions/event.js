@@ -35,7 +35,9 @@ export function startQueue() {
         const args = event.action.args || [];
 
         // If the creator was found, dispatch the action.
-        if (action) dispatch(action(...args));
+        if (action) {
+          dispatch(action(...args));
+        }
       }
     });
   };

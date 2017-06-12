@@ -19,7 +19,9 @@ const CompetitionBlock = (props) => {
   const { content, photo, byline, joinCompetition, hasJoinedCompetition, hasPendingJoin,
     showConfirmation, campaignId, campaignRunId, checkForCompetition, experiment, convert } = props;
 
-  if (! content) return null;
+  if (! content) {
+    return null;
+  }
 
   // If we already joined the competition & saw the confirmation message,
   // display nothing.
@@ -38,7 +40,10 @@ const CompetitionBlock = (props) => {
       disabled={hasPendingJoin}
       className={classnames('button', { 'is-loading': hasPendingJoin })}
       onClick={() => {
-        if (experiment) convert(experiment);
+        if (experiment) {
+          convert(experiment);
+        }
+
         joinCompetition(campaignId, campaignRunId);
       }}
     >join competition</button>

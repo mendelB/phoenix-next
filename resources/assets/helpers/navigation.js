@@ -22,7 +22,9 @@ export function getRouteName(route) {
 
   // Check if /pages/faq starts with /pages/.
   const match = pathValues.find(path => route.startsWith(path));
-  if (! match) return 'undefined route';
+  if (! match) {
+    return 'undefined route';
+  }
 
   // Find the display name for the matched path value.
   // This is a bit crazy because we need to find the index
@@ -47,7 +49,9 @@ export function getRouteName(route) {
  * @param  {String} toggleClass
  */
 export function toggleHandler(button, target, toggleClass) {
-  if (! button || ! target) return;
+  if (! button || ! target) {
+    return;
+  }
 
   function clickHandler() {
     target.classList.toggle(toggleClass);

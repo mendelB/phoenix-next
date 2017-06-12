@@ -85,7 +85,9 @@ export function markdown(source = '') {
 export function modifiers(...names) {
   let classes = names;
 
-  if (! Array.isArray(classes)) classes = [classes];
+  if (! Array.isArray(classes)) {
+    classes = [classes];
+  }
 
   return classes.filter(className => className).map(className => `-${className}`);
 }

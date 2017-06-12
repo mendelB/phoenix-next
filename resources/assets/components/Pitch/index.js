@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import PitchSincerelyUs from './PitchCampaigns/SincerelyUs';
 
 const Pitch = (props) => {
-  if (! props.enableBackgroundTest) return null;
+  if (! props.enableBackgroundTest) {
+    return null;
+  }
 
   return (<PitchSincerelyUs {...props} />);
 };

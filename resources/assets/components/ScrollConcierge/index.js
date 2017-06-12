@@ -42,7 +42,9 @@ const scrollTo = (target = 0, duration = 500) => {
     window.scrollTo(0, newOffset);
 
     // If we've reached the target or got interrupted, stop.
-    if (newOffset === target || interrupted) return;
+    if (newOffset === target || interrupted) {
+      return;
+    }
 
     window.requestAnimationFrame(scroller);
   };

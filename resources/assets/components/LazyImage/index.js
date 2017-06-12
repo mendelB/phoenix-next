@@ -19,7 +19,9 @@ class LazyImage extends React.Component {
 
     // Load image and set `loaded: true` state when ready.
     loader.onload = () => this.setState({ loaded: true });
-    if (this.props.src) loader.src = this.props.src;
+    if (this.props.src) {
+      loader.src = this.props.src;
+    }
   }
 
   /**

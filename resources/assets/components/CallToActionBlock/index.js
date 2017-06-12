@@ -47,7 +47,9 @@ const CallToActionBlock = (props) => {
 
   const handleOnClickButton = () => {
     clickedSignUp(campaignId, metadata);
-    if (experiment) convertExperiment(experiment);
+    if (experiment) {
+      convertExperiment(experiment);
+    }
   };
 
   return (
