@@ -28,7 +28,9 @@ function checkSession() {
 export const observerMiddleware = store => next => (action) => {
   checkSession();
 
-  if (! ANALYTICS_ACTIONS.includes(action.type)) return next(action);
+  if (! ANALYTICS_ACTIONS.includes(action.type)) {
+    return next(action);
+  }
 
   const result = next(action);
   stateChanged(action, store.getState());

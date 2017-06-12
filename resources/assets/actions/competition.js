@@ -22,11 +22,16 @@ export function joinCompetition(campaignId, campaignRunId) {
       legacyCampaignId: campaignId,
       legacyCampaignRunId: campaignRunId,
     }).then((response) => {
-      if (! response) throw new Error('competition signup failed');
+      if (! response) {
+        throw new Error('competition signup failed');
+      }
+
       if (response.data) {
         dispatch({ type: JOINED_COMPETITION, campaignId, userId });
 
-        if (getState().modal.shouldShowModal) dispatch(closeModal());
+        if (getState().modal.shouldShowModal) {
+          dispatch(closeModal());
+        }
       }
     }).catch(() => {
       dispatch(addNotification('error'));
@@ -40,18 +45,24 @@ export function checkForCompetition(campaignId, campaignRunId) {
     const userId = getState().user.id;
 
     // If already signed up don't check again.
-    if (getState().competitions.thisCampaign) return;
+    if (getState().competitions.thisCampaign) {
+      return;
+    }
 
     (new Phoenix()).get('next/contests/users', {
       campaign_id: campaignId,
       campaign_run_id: campaignRunId,
     }).then((response) => {
-      if (! response) throw new Error('competition get failed');
+      if (! response) {
+        throw new Error('competition get failed');
+      }
 
       const joinedCompetition = response.data &&
         (response.data.waitingRoom || response.data.competition);
 
-      if (joinedCompetition) dispatch({ type: COMPETITION_FOUND, campaignId, userId });
+      if (joinedCompetition) {
+        dispatch({ type: COMPETITION_FOUND, campaignId, userId });
+      }
     }).catch(() => {
       dispatch(addNotification('error'));
     });

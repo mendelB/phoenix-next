@@ -16,7 +16,10 @@ class Modal extends React.Component {
   }
 
   handleOverlayClick(event) {
-    if (event.target !== this.node) return;
+    if (event.target !== this.node) {
+      return;
+    }
+
     this.props.closeModal();
   }
 

@@ -63,7 +63,9 @@ export function transformState(action, state) {
  * if not then create one.
  */
 export function createDeviceId() {
-  if (localStorage.getItem(DEVICE_ID)) return;
+  if (localStorage.getItem(DEVICE_ID)) {
+    return;
+  }
 
   localStorage.setItem(DEVICE_ID, generateUniqueId());
 }
@@ -76,7 +78,9 @@ export function createDeviceId() {
  */
 export function getDeviceId() {
   const id = localStorage.getItem(DEVICE_ID);
-  if (id) return id;
+  if (id) {
+    return id;
+  }
 
   createDeviceId();
   return getDeviceId();
@@ -105,7 +109,9 @@ export function generateSessionId() {
 export function isSessionValid() {
   const session = getSession();
 
-  if (! session.id || ! session.lastUpdatedAt) return false;
+  if (! session.id || ! session.lastUpdatedAt) {
+    return false;
+  }
 
   // Check if the timestamp is 30 min old
   return isTimestampValid(session.lastUpdatedAt, (30 * 60 * 1000));

@@ -18,7 +18,9 @@ const backgroundPropTypes = PropTypes.shape({
 });
 
 const getContainerStyle = ({ type, data }) => {
-  if (type === 'video') return {};
+  if (type === 'video') {
+    return {};
+  }
 
   return {
     background: type === 'color' ? data : `url(${data})`,
@@ -26,7 +28,9 @@ const getContainerStyle = ({ type, data }) => {
 };
 
 const PitchContainerVideo = ({ background }) => {
-  if (background.type !== 'video') return null;
+  if (background.type !== 'video') {
+    return null;
+  }
 
   const { poster, sources } = background.data;
   return (
