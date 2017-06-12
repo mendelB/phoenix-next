@@ -35,6 +35,7 @@
 
   > .wrapper {
     overflow-x: auto;
+    overflow-y: hidden;
     padding: $half-spacing;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
@@ -43,6 +44,10 @@
       @include span(12 no-gutters);
       @include push(2);
     }
+  }
+
+  .nav-items {
+    float: left;
   }
 
   .nav-link {
@@ -61,6 +66,19 @@
     &.is-active {
       color: $black;
       border-bottom: 4px solid $off-black;
+    }
+  }
+
+  .nav-button {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity .1s linear, transform .2s linear;
+  }
+
+  &.is-stuck {
+    .nav-button {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }
