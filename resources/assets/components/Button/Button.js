@@ -3,15 +3,9 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import './button.scss';
 
-const Button = ({
-  callback,
-  callbackArgument,
-  callbackMetadata,
-  classNames,
-  text,
-}) => {
+const Button = ({ onClick, classNames, text }) => {
   const handleOnClick = () => {
-    callback(callbackArgument, callbackMetadata);
+    onClick();
   };
 
   return (
@@ -20,18 +14,12 @@ const Button = ({
 };
 
 Button.propTypes = {
-  callback: PropTypes.func.isRequired,
-  callbackArgument: PropTypes.string,
-  callbackMetadata: PropTypes.oneOfType([
-    PropTypes.object,
-  ]),
+  onClick: PropTypes.func.isRequired,
   classNames: PropTypes.string,
   text: PropTypes.string,
 };
 
 Button.defaultProps = {
-  callbackArgument: null,
-  callbackMetadata: null,
   classNames: null,
   text: 'Join Us',
 };
