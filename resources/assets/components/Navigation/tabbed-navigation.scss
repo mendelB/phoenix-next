@@ -37,6 +37,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     padding: $half-spacing;
+    position: relative;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
 
@@ -71,14 +72,19 @@
 
   .nav-button {
     opacity: 0;
+    position: absolute;
+    right: $half-spacing;
+    top: $half-spacing;
     transform: translateY(100%);
     transition: opacity .1s linear, transform .2s linear;
   }
 
   &.is-stuck {
-    .nav-button {
-      opacity: 1;
-      transform: translateY(0);
+    @media (min-width: 900px) {
+      .nav-button {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }
 }
