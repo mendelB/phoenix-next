@@ -1,0 +1,13 @@
+.button {
+  &.-inline {
+    clear: none;
+  }
+
+  &.-align-left {
+    float: left;
+  }
+
+  &.-align-right {
+    float: right;
+  }
+}
