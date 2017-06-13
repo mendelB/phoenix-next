@@ -35,7 +35,7 @@ const TabbedNavigationContainer = ({ isAffiliated, legacyCampaignId, pages }) =>
         <NavigationLink to={paths.action}>Action</NavigationLink>
         { additionalPages }
       </div>
-      { isAffiliated ? null : <Button classNames="-inline -align-right nav-button" onClick={() => clickedSignUp(legacyCampaignId, { source: 'tabbed navigation|text: Join us' })} /> }
+      { isAffiliated ? null : <Button classNames="-inline nav-button" onClick={() => clickedSignUp(legacyCampaignId, { source: 'tabbed navigation|text: Join us' })} /> }
     </TabbedNavigation>
   );
 };
