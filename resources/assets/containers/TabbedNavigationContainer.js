@@ -19,7 +19,9 @@ const mapDispatchToProps = {
   clickedSignUp,
 };
 
-const TabbedNavigationContainer = ({ isAffiliated, legacyCampaignId, pages }) => {
+const TabbedNavigationContainer = (props) => {
+  const { isAffiliated, legacyCampaignId, pages } = props;
+
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = pages.map((page) => {
     const path = `${paths.pages}${page.fields.slug}`;
@@ -35,12 +37,13 @@ const TabbedNavigationContainer = ({ isAffiliated, legacyCampaignId, pages }) =>
         <NavigationLink to={paths.action}>Action</NavigationLink>
         { additionalPages }
       </div>
-      { isAffiliated ? null : <Button classNames="-inline nav-button" onClick={() => clickedSignUp(legacyCampaignId, { source: 'tabbed navigation|text: Join us' })} /> }
+      { isAffiliated ? null : <Button classNames="-inline nav-button" onClick={() => props.clickedSignUp(legacyCampaignId, { source: 'tabbed navigation|text: Join us' })} /> }
     </TabbedNavigation>
   );
 };
 
 TabbedNavigationContainer.propTypes = {
+  clickedSignUp: PropTypes.func.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
   pages: PropTypes.oneOfType([
