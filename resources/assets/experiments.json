@@ -11,19 +11,6 @@
       "b": "colorful_block"
     }
   },
-  "lede_banner_quad_buttons": {
-    "meta": {
-      "preTest": {
-        "signups.thisCampaign": false
-      }
-    },
-    "alternatives": {
-      "a": "one_button_join",
-      "b": "one_button_make",
-      "c": "two_button_stand",
-      "d": "two_button_remind"
-    }
-  },
   "scholarship_cta_copy": {
     "meta": {
       "preTest": {
