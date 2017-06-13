@@ -4,7 +4,6 @@ import Portal from 'react-portal';
 import { closeModal } from '../../actions';
 import './modal.scss';
 
-// TODO: Way of dynamically doing this.
 import AffirmationContainer from '../../containers/AffirmationContainer';
 import CompetitionContainer from '../../containers/CompetitionContainer';
 

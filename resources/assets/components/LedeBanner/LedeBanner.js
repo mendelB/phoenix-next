@@ -14,17 +14,10 @@ const LedeBanner = (props) => {
     isAffiliated,
     legacyCampaignId,
     clickedSignUp,
-    experiment,
-    convert,
   } = props;
 
   const backgroundImageStyle = {
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
-  };
-
-  const onClick = (message) => {
-    convert(experiment);
-    clickedSignUp(legacyCampaignId, message);
   };
 
   return (
@@ -39,7 +32,7 @@ const LedeBanner = (props) => {
 
           <Markdown className="lede-banner__blurb">{blurb}</Markdown>
 
-          { isAffiliated ? null : <button className="button" onClick={() => onClick({ source: 'lede banner|text: Join us' })}>Join us</button> }
+          { isAffiliated ? null : <button className="button" onClick={() => clickedSignUp(legacyCampaignId, { source: 'lede banner|text: Join us' })}>Join us</button> }
         </div>
       </div>
     </header>
@@ -49,12 +42,10 @@ const LedeBanner = (props) => {
 LedeBanner.propTypes = {
   blurb: PropTypes.string.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
-  convert: PropTypes.func.isRequired,
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,
   }).isRequired,
-  experiment: PropTypes.string.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
