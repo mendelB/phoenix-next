@@ -17,7 +17,7 @@ PlaceholderBlock.propTypes = {
 
 PlaceholderBlock.defaultProps = {
   fields: {
-    title: 'Loading...',
+    title: 'Not found :(',
   },
 };
 
