@@ -1,16 +1,3 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import { get } from 'lodash';
-import { mergeMetadata } from '../../helpers/analytics';
-import CallToActionContainer from '../../containers/CallToActionContainer';
-import CampaignUpdateBlock from '../CampaignUpdateBlock';
-import PlaceholderBlock from '../PlaceholderBlock';
-import ReportbackBlock from '../ReportbackBlock';
-import Revealer from '../Revealer';
-import StaticBlock from '../StaticBlock';
-import { Flex, FlexCell } from '../Flex';
-import './feed.scss';
-
 /**
  * Render a single feed item.
  *
@@ -18,20 +5,19 @@ import './feed.scss';
  * @param index
  * @returns {XML}
  */
-const renderFeedItem = (block, index) => {
-  const BlockComponent = get({
-    'campaign_update': CampaignUpdateBlock,  // eslint-disable-line quote-props
-    'join_cta': CallToActionContainer, // eslint-disable-line quote-props
-    'reportbacks': ReportbackBlock, // eslint-disable-line quote-props
-    'static': StaticBlock, // eslint-disable-line quote-props
-  }, block.fields.type, PlaceholderBlock);
+import PropTypes from 'prop-types';
+import React from 'react';
+import { mergeMetadata } from '../../helpers/analytics';
+import Revealer from '../Revealer';
+import { Flex, FlexCell } from '../Flex';
+import './feed.scss';
+import Block from '../Block';
 
-  return (
-    <FlexCell key={`${block.id}-${index}`} width={block.fields.displayOptions[0]}>
-      <BlockComponent {...block} />
-    </FlexCell>
-  );
-};
+const renderFeedItem = (block, index) => (
+  <FlexCell key={`${block.id}-${index}`} width={block.fields.displayOptions[0]}>
+    <Block json={block} />
+  </FlexCell>
+);
 
 /**
  * Render the feed.

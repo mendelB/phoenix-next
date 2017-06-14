@@ -1,18 +1,24 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Block from '../Block/index';
+import { BlockWrapper } from '../Block';
 import './placeholder.scss';
 
 const PlaceholderBlock = props => (
-  <Block className="placeholder">
+  <BlockWrapper className="placeholder">
     {props.fields.title}
-  </Block>
+  </BlockWrapper>
 );
 
 PlaceholderBlock.propTypes = {
   fields: PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
   }).isRequired,
+};
+
+PlaceholderBlock.defaultProps = {
+  fields: {
+    title: 'Loading...',
+  },
 };
 
 export default PlaceholderBlock;
