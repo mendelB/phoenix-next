@@ -23,3 +23,12 @@
   margin: (- $half-spacing) (- $half-spacing) $base-spacing;
   padding: $half-spacing;
 }
+
+.block-wrapper__title a {
+  color: $black;
+}
+
+.block-wrapper__title a:hover {
+  color: rgba($black, 0.75);
+  text-decoration: none;
+}

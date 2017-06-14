@@ -9,7 +9,7 @@ import CallToActionContainer from '../../containers/CallToActionContainer';
 const Block = ({ json }) => {
   switch (json.fields.type) {
     case 'campaign_update':
-      return <CampaignUpdateBlock fields={json.fields} />;
+      return <CampaignUpdateBlock id={json.id} fields={json.fields} />;
 
     case 'join_cta':
       return <CallToActionContainer />;
