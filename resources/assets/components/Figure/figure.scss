@@ -31,3 +31,7 @@
     }
   }
 }
+
+.figure.-center .figure__body {
+  width: initial; // Fixes Forge bug where the div goes 100% width
+}
