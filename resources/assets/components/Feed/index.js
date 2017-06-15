@@ -1,10 +1,3 @@
-/**
- * Render a single feed item.
- *
- * @param block
- * @param index
- * @returns {XML}
- */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { mergeMetadata } from '../../helpers/analytics';
@@ -13,6 +6,13 @@ import { Flex, FlexCell } from '../Flex';
 import './feed.scss';
 import Block from '../Block';
 
+/**
+ * Render a single feed item.
+ *
+ * @param block
+ * @param index
+ * @returns {XML}
+ */
 const renderFeedItem = (block, index) => (
   <FlexCell key={`${block.id}-${index}`} width={block.fields.displayOptions[0]}>
     <Block json={block} />
