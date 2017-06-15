@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import './block-wrapper.scss';
 
@@ -21,10 +21,10 @@ BlockTitle.defaultProps = {
 };
 
 const BlockWrapper = props => (
-  <div className={classNames('block-wrapper', props.className)}>
+  <article className={classnames('block-wrapper', props.className)}>
     { props.title ? <BlockTitle title={props.title} id={props.id} /> : null }
     {props.children}
-  </div>
+  </article>
 );
 
 BlockWrapper.propTypes = {
