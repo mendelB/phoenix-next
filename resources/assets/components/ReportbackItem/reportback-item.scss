@@ -25,6 +25,10 @@
   .caption {
     padding: 0 $half-spacing;
   }
+
+  .figure {
+    margin-bottom: 0; // This is fixing the figures on mobile.
+  }
 }
 
 .padded {
