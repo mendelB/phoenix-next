@@ -56,6 +56,7 @@
     display: inline-block;
     margin: 10px $half-spacing;
     text-transform: uppercase;
+    border-bottom: 4px solid transparent;
 
     &:hover {
       color: $off-black;
