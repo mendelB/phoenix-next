@@ -1,12 +1,17 @@
+/* @flow */
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import CampaignUpdateBlock from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import StaticBlock from '../StaticBlock';
 import CallToActionContainer from '../../containers/CallToActionContainer';
+import { BlockJson } from '../../types';
 
-const Block = ({ json }) => {
+// If no block is passed, just render an empty "placeholder".
+const DEFAULT_BLOCK: BlockJson = { fields: { type: null } };
+
+const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
   switch (json.fields.type) {
     case 'campaign_update':
       return <CampaignUpdateBlock id={json.id} fields={json.fields} />;
@@ -23,15 +28,6 @@ const Block = ({ json }) => {
     default:
       return <PlaceholderBlock />;
   }
-};
-
-Block.propTypes = {
-  // @TODO: Validate the shape of this JSON object with prop types.
-  json: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-};
-
-Block.defaultProps = {
-  json: { fields: { type: null } },
 };
 
 export default Block;

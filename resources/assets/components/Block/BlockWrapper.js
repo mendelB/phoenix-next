@@ -1,43 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/* @flow */
+
+import React, { Element } from 'react';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import './block-wrapper.scss';
 
-const BlockTitle = (props) => {
-  const title = props.id ? <Link to={`/blocks/${props.id}`}>{props.title}</Link> : props.title;
-
-  return <h4 className="block-wrapper__title">{title}</h4>;
+type BlockTitleProps = {
+  id: ?string,
+  title: ?string,
 };
 
-BlockTitle.propTypes = {
-  title: PropTypes.string,
-  id: PropTypes.string,
+const BlockTitle = ({ id, title }: BlockTitleProps) => {
+  const titleElement = id ? <Link to={`/blocks/${id}`}>{title}</Link> : title;
+
+  return <h4 className="block-wrapper__title">{titleElement}</h4>;
 };
 
-BlockTitle.defaultProps = {
-  title: null,
-  id: null,
-};
+type BlockWrapperProps = {
+  className: ?string,
+  title: ?string,
+  id: ?string,
+  children: ?Element<any>
+}
 
-const BlockWrapper = props => (
-  <article className={classnames('block-wrapper', props.className)}>
-    { props.title ? <BlockTitle title={props.title} id={props.id} /> : null }
-    {props.children}
+const BlockWrapper = ({ id, title, className, children }: BlockWrapperProps) => (
+  <article className={classnames('block-wrapper', className)}>
+    { title ? <BlockTitle title={title} id={id} /> : null }
+    { children }
   </article>
 );
-
-BlockWrapper.propTypes = {
-  className: PropTypes.string,
-  title: PropTypes.string,
-  id: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
-
-BlockWrapper.defaultProps = {
-  className: null,
-  title: null,
-  id: null,
-};
 
 export default BlockWrapper;
