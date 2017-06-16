@@ -1,0 +1,9 @@
+[ignore]
+.*/vendor/.*
+
+[include]
+
+[libs]
+
+
+[options]
