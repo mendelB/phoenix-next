@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import Block from '../Block';
+import PropTypes from 'prop-types';
+import BlockWrapper from '../Block/BlockWrapper';
 import { FlexCell } from '../Flex';
 import ReportbackItemContainer from '../../containers/ReportbackItemContainer';
 import { mapDisplayToPoints } from '../../selectors/feed';
@@ -14,9 +14,9 @@ const ReportbackBlock = (props) => {
 
     items.push(
       <FlexCell key={id || `null-${i}`}>
-        <Block className="reportback-block">
+        <BlockWrapper className="reportback-block">
           <ReportbackItemContainer id={id} />
-        </Block>
+        </BlockWrapper>
       </FlexCell>,
     );
   }

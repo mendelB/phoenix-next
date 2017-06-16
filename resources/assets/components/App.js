@@ -10,6 +10,7 @@ import ChromeContainer from '../containers/ChromeContainer';
 import Experience from '../components/Experience';
 import FeedContainer from '../containers/FeedContainer';
 import ActionPageContainer from '../containers/ActionPageContainer';
+import { BlockContainer } from './Block';
 import ContentPageContainer from '../containers/ContentPageContainer';
 import PitchContainer from '../containers/PitchContainer';
 import ExperimentContainer from '../containers/ExperimentContainer';
@@ -60,6 +61,7 @@ const App = ({ store, history }) => {
           <Route path={paths.community} exact component={PitchTest} />
           <Route path={paths.action} component={chrome(ActionPageContainer)} />
           <Route path={`${paths.pages}:page`} component={chrome(ContentPageContainer)} />
+          <Route path={`${paths.blocks}:id`} component={chrome(BlockContainer)} />
           {/* * */}
 
           {/* Custom user experiences */}

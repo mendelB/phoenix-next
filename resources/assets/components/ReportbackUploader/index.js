@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 /* global FormData */
 
 import React from 'react';
-import Block from '../Block';
+import { BlockWrapper } from '../Block';
 import MediaUploader from '../MediaUploader';
 import Gallery from '../Gallery';
 import ReportbackItem from '../ReportbackItem';
@@ -97,7 +97,7 @@ class ReportbackUploader extends React.Component {
     const submissions = this.props.submissions;
 
     return (
-      <Block>
+      <BlockWrapper>
         <div className="reportback-uploader">
           <h2 className="heading">Upload your photos</h2>
 
@@ -129,7 +129,7 @@ class ReportbackUploader extends React.Component {
         <Gallery isFetching={submissions.isFetching} type="triad">
           {submissions.items.map(submission => ReportbackUploader.renderReportbackItem(submission))}
         </Gallery>
-      </Block>
+      </BlockWrapper>
     );
   }
 }

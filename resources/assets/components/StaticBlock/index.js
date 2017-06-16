@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Block, { BlockTitle } from '../Block';
+import BlockWrapper from '../Block/BlockWrapper';
 import Markdown from '../Markdown';
 import './static-block.scss';
 
@@ -8,11 +8,10 @@ const StaticBlock = (props) => {
   const { source } = props.fields.additionalContent;
 
   return (
-    <Block>
-      <BlockTitle>{ props.fields.title }</BlockTitle>
+    <BlockWrapper title={props.fields.title}>
       <Markdown>{props.fields.content}</Markdown>
       { source ? <div className="static-block__citation"><p className="footnote">{source}</p></div> : null }
-    </Block>
+    </BlockWrapper>
   );
 };
 

@@ -1,6 +1,6 @@
 @import '../../scss/next-toolbox';
 
-.block {
+.block-wrapper {
   @extend %block;
   margin: $half-spacing;
   overflow: hidden;
@@ -15,11 +15,20 @@
   }
 }
 
-.block__title {
+.block-wrapper__title {
   color: $black;
   font-family: $primary-font-family;
   background-color: $primary-color;
   text-transform: uppercase;
   margin: (- $half-spacing) (- $half-spacing) $base-spacing;
   padding: $half-spacing;
+}
+
+.block-wrapper__title a {
+  color: $black;
+}
+
+.block-wrapper__title a:hover {
+  color: rgba($black, 0.75);
+  text-decoration: none;
 }
