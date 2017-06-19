@@ -30,14 +30,19 @@ BaseFigure.defaultProps = {
   media: null,
 };
 
-// Experimental Reportback figure. This should eventually be consolidated when Figures are re-worked.
-export const ReportbackFigure = ({ alignment, verticalAlignment, size, media, meta, children, className }) => (
-  <article className={classnames('figure -reportback', className, modifiers(alignment, verticalAlignment, size))}>
-    <div className="figure__media">{media}</div>
-    <div className="figure__body">{children}</div>
-    <div className="figure__meta">{meta}</div>
-  </article>
-);
+// Experimental Reportback figure.
+// This should eventually be consolidated when Figures are re-worked.
+export const ReportbackFigure = (props) => {
+  const { alignment, verticalAlignment, size, media, meta, children, className } = props;
+
+  return (
+    <article className={classnames('figure -reportback', className, modifiers(alignment, verticalAlignment, size))}>
+      <div className="figure__media">{media}</div>
+      <div className="figure__body">{children}</div>
+      <div className="figure__meta">{meta}</div>
+    </article>
+  );
+};
 
 ReportbackFigure.propTypes = {
   className: PropTypes.string,
@@ -46,6 +51,7 @@ ReportbackFigure.propTypes = {
   verticalAlignment: PropTypes.oneOf(['center']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   media: PropTypes.node,
+  meta: PropTypes.node,
 };
 
 ReportbackFigure.defaultProps = {
@@ -55,6 +61,7 @@ ReportbackFigure.defaultProps = {
   verticalAlignment: null,
   size: null,
   media: null,
+  meta: null,
 };
 
 export const Figure = (props) => {
