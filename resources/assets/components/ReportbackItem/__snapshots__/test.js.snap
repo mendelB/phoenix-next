@@ -54,7 +54,7 @@ exports[`Reportback Item snapshot test 1`] = `
         Luke Skywalker
       </h4>
       <p
-        className="footnote -italic"
+        className="footnote italic"
       >
         20
          
@@ -66,7 +66,7 @@ exports[`Reportback Item snapshot test 1`] = `
     className="caption"
   >
     <p
-      className="-italic"
+      className="italic"
     >
       Some awesmome caption
     </p>
