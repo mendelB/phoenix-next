@@ -1,12 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Campaign Update Block with additional content as tweet snapshot test 1`] = `
-<Block
-  className={null}
+<BlockWrapper
+  id="1234512345"
+  title="Campaign Update"
 >
-  <BlockTitle>
-    Campaign Update
-  </BlockTitle>
   <Markdown
     className="campaign-update__content -tweet"
   >
@@ -17,16 +15,14 @@ exports[`Campaign Update Block with additional content as tweet snapshot test 1`
     avatar={Object {}}
     jobTitle="DoSomething.org Staff"
   />
-</Block>
+</BlockWrapper>
 `;
 
 exports[`Campaign Update Block with additional content snapshot test 1`] = `
-<Block
-  className={null}
+<BlockWrapper
+  id="1234512345"
+  title="Campaign Update"
 >
-  <BlockTitle>
-    Campaign Update
-  </BlockTitle>
   <h2>
     Heyo!
   </h2>
@@ -40,16 +36,14 @@ exports[`Campaign Update Block with additional content snapshot test 1`] = `
     avatar={Object {}}
     jobTitle="DoSomething.org Staff"
   />
-</Block>
+</BlockWrapper>
 `;
 
 exports[`Campaign Update Block with no additional content snapshot test 1`] = `
-<Block
-  className={null}
+<BlockWrapper
+  id="1234512345"
+  title="Campaign Update"
 >
-  <BlockTitle>
-    Campaign Update
-  </BlockTitle>
   <h2>
     Heyo!
   </h2>
@@ -58,5 +52,5 @@ exports[`Campaign Update Block with no additional content snapshot test 1`] = `
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
   </Markdown>
-</Block>
+</BlockWrapper>
 `;

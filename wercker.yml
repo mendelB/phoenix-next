@@ -8,6 +8,9 @@ build:
           name: check code style
           code: npm run lint
       - script:
+          name: run type checker
+          code: npm run flow
+      - script:
           name: test javascript code
           code: npm run test:ci
       - script:

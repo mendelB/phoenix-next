@@ -32,6 +32,10 @@ $ php artisan migrate
 $ npm start
 ```
 
+### Step 4: Content Access
+
+We use [Contentful](https://www.contentful.com/) as our content management platform. Please setup an account and request access to the _space_ used for this project. Once you have access, head to the **APIs** section for the space and then you can update your `.env` file with the correct API keys and Space ID for the project, allowing you to make requests to access the data from your local environment.
+
 
 ## Testing
 

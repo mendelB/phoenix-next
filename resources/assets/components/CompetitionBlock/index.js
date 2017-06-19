@@ -3,7 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 import Markdown from '../Markdown';
-import Block, { BlockTitle } from '../Block';
+import { BlockWrapper } from '../Block';
 import Byline from '../Byline';
 import LazyImage from '../LazyImage';
 import './competitionBlock.scss';
@@ -11,7 +11,7 @@ import './competitionBlock.scss';
 const DEFAULT_CONFIRMATION = `
 # You're signed up!
 
-You should recieve an email shortly with more instructions.
+You should receive an email shortly with more instructions.
 You can keep working on the campaign for now. I'm so excited to have you onboard!
 `;
 
@@ -56,17 +56,16 @@ const CompetitionBlock = (props) => {
   ) : null;
 
   return (
-    <Block className={classnames('-default')}>
-      <BlockTitle>Go above and beyond!</BlockTitle>
+    <BlockWrapper title="Go above and beyond!" className="-default">
       <div className={classnames('competition-block', { 'is-confirmation': showConfirmation })}>
         <div className="clearfix">
-          <Markdown className={classnames('', { 'is-success': showConfirmation })}>{ showConfirmation ? DEFAULT_CONFIRMATION : content }</Markdown>
+          <Markdown className={classnames({ 'is-success': showConfirmation })}>{ showConfirmation ? DEFAULT_CONFIRMATION : content }</Markdown>
           { competitionPhoto }
         </div>
         { button }
         <Byline {...byline} />
       </div>
-    </Block>
+    </BlockWrapper>
   );
 };
 

@@ -1,29 +1,11 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import classNames from 'classnames';
-import './block.scss';
+// The <BlockWrapper> can be used to give the "block" visual
+// treatment (and optional title bar) to any type of block.
+export BlockWrapper from './BlockWrapper';
 
-export const BlockTitle = ({ children }) => (
-  <h4 className="block__title">{children}</h4>
-);
+// The <BlockContainer> can match a route to a particular
+// block from the campaign feed in the Redux store.
+export BlockContainer from './BlockContainer';
 
-BlockTitle.propTypes = {
-  children: PropTypes.string.isRequired,
-};
-
-const Block = props => (
-  <div className={classNames('block', props.className)}>
-    {props.children}
-  </div>
-);
-
-Block.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
-
-Block.defaultProps = {
-  className: null,
-};
-
-export default Block;
+// The <Block> component accepts a JSON blob from the Contentful
+// content type & renders the appropriate component.
+export default from './Block';

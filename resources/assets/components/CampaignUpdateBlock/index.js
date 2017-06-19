@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Markdown from '../Markdown';
-import Block, { BlockTitle } from '../Block';
+import { BlockWrapper } from '../Block';
 import Embed from '../Embed';
 import Byline from '../Byline';
 import './campaign-update.scss';
@@ -13,9 +13,7 @@ const CampaignUpdateBlock = (props) => {
   const isTweet = content.length < 144;
 
   return (
-    <Block>
-      <BlockTitle>Campaign Update</BlockTitle>
-
+    <BlockWrapper title="Campaign Update" id={props.id}>
       { isTweet ? null : <h2>{title}</h2> }
 
       <Markdown className={classnames('campaign-update__content', { '-tweet': isTweet })}>
@@ -31,11 +29,12 @@ const CampaignUpdateBlock = (props) => {
           avatar={additionalContent.avatar}
         />
         : null }
-    </Block>
+    </BlockWrapper>
   );
 };
 
 CampaignUpdateBlock.propTypes = {
+  id: PropTypes.string.isRequired,
   fields: PropTypes.shape({
     title: PropTypes.string,
     content: PropTypes.string,

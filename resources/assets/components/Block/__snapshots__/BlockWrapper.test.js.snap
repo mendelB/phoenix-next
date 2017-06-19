@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it renders correctly with children 1`] = `
+<article
+  className="block-wrapper"
+>
+  <div
+    id="tongue-cat"
+  />
+</article>
+`;
+
+exports[`it renders correctly with title 1`] = `
+<article
+  className="block-wrapper"
+>
+  <BlockTitle
+    id="123abc"
+    title="Lets Do This"
+  />
+  <div
+    id="tongue-cat"
+  />
+</article>
+`;
+
+exports[`it renders without children 1`] = `
+<article
+  className="block-wrapper"
+/>
+`;
