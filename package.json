@@ -29,6 +29,7 @@
     "@dosomething/forge": "^6.7.4",
     "@dosomething/gateway": "^1.0.1",
     "@publica/url-polyfill": "^0.5.8",
+    "babel-jest": "^20.0.3",
     "babel-polyfill": "^6.23.0",
     "babel-preset-flow": "^6.23.0",
     "classnames": "^2.2.5",
