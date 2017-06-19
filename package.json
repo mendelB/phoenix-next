@@ -12,6 +12,10 @@
     "clean": "rm -rf public/next/assets",
     "heroku-postbuild": "sh bootstrap/setup.sh"
   },
+  "engines": {
+    "node": "6.x",
+    "npm": "4.x"
+  },
   "babel": {
     "presets": [
       "@dosomething/babel-config",
