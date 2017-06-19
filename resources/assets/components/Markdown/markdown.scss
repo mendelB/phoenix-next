@@ -63,4 +63,25 @@
     font-family: $primary-font-family;
     font-size: 22px;
   }
+
+  table {
+    background-color: $white;
+    margin: $base-spacing 0;
+    table-layout: fixed;
+  }
+
+  th {
+    font-weight: 700;
+    text-align: center;
+  }
+
+  th, td {
+    border: 1px solid $light-gray;
+    padding: $half-spacing;
+    width: 50%;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
 }
