@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Figure, BaseFigure } from '../Figure';
+import { Figure, BaseFigure, ReportbackFigure } from '../Figure';
 import Reaction from '../Reaction';
 import { mergeMetadata } from '../../helpers/analytics';
 import { pluralize } from '../../helpers';
@@ -42,18 +42,15 @@ const ReportbackItem = (props) => {
     );
   }
 
+  const meta = caption ? (<p className="italic">{caption}</p>) : null;
+
   return (
-    <div className="reportback-item">
-      <Figure image={url} alt={`${firstName}'s photo`}>
-        <BaseFigure media={reactionElement} alignment="right" className="padded">
-          {! basicDisplay && firstName ? <h4>{firstName}</h4> : null }
-          {! basicDisplay && quantity ? <p className="footnote italic">{quantity} {pluralize(quantity, noun.singular, noun.plural)}</p> : null }
-        </BaseFigure>
-      </Figure>
-      <div className="caption">
-        { caption ? <p className="italic">{caption}</p> : null }
-      </div>
-    </div>
+    <Figure image={url} alt={`${firstName}'s photo`}>
+      <ReportbackFigure media={reactionElement} meta={meta} alignment="right" className="padded">
+        {! basicDisplay && firstName ? <h4>{firstName}</h4> : null }
+        {! basicDisplay && quantity ? <p className="footnote italic">{quantity} {pluralize(quantity, noun.singular, noun.plural)}</p> : null }
+      </ReportbackFigure>
+    </Figure>
   );
 };
 
