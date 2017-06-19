@@ -4,6 +4,7 @@
     "test": "NODE_ENV=test && node --harmony ./node_modules/jest/bin/jest.js --watch",
     "test:ci": "NODE_ENV=test && node --harmony ./node_modules/jest/bin/jest.js",
     "lint": "eslint --ext .js resources/assets",
+    "flow": "flow",
     "start": "npm run clean && NODE_ENV=development webpack --watch",
     "build:dev": "npm run clean && NODE_ENV=development webpack",
     "build": "npm run clean && NODE_ENV=production webpack",
@@ -13,7 +14,8 @@
   },
   "babel": {
     "presets": [
-      "@dosomething/babel-config"
+      "@dosomething/babel-config",
+      "flow"
     ]
   },
   "jest": {
@@ -28,7 +30,9 @@
     "@dosomething/gateway": "^1.0.1",
     "@publica/url-polyfill": "^0.5.8",
     "babel-polyfill": "^6.23.0",
+    "babel-preset-flow": "^6.23.0",
     "classnames": "^2.2.5",
+    "css-module-flow": "^1.0.0",
     "dom-delegate": "^2.0.3",
     "dosomething-modal": "^0.3.0",
     "enzyme": "^2.8.2",
@@ -59,6 +63,7 @@
     "babel-eslint": "^7.2.2",
     "dotenv": "^4.0.0",
     "eslint-loader": "^1.7.1",
+    "flow-bin": "^0.48.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^19.0.2",
     "modernizr": "^3.3.1",

@@ -1,0 +1,10 @@
+[ignore]
+.*/vendor/.*
+
+[include]
+
+[libs]
+
+[options]
+module.name_mapper='^.*\.css$' -> 'css-module-flow'
+module.name_mapper='^.*\.scss$' -> 'css-module-flow'
