@@ -47,11 +47,11 @@ const ReportbackItem = (props) => {
       <Figure image={url} alt={`${firstName}'s photo`}>
         <BaseFigure media={reactionElement} alignment="right" className="padded">
           {! basicDisplay && firstName ? <h4>{firstName}</h4> : null }
-          {! basicDisplay && quantity ? <p className="footnote -italic">{quantity} {pluralize(quantity, noun.singular, noun.plural)}</p> : null }
+          {! basicDisplay && quantity ? <p className="footnote italic">{quantity} {pluralize(quantity, noun.singular, noun.plural)}</p> : null }
         </BaseFigure>
       </Figure>
       <div className="caption">
-        { caption ? <p className="-italic">{caption}</p> : null }
+        { caption ? <p className="italic">{caption}</p> : null }
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
 .reaction {
   padding: $eighth-spacing $quarter-spacing;
   border: 1px solid $primary-border-color;
-  border-radius: 8px;
+  border-radius: $border-radius;
   background-color: transparent;
   float: right;
 
