@@ -30,7 +30,7 @@
     margin-bottom: $base-spacing;
   }
 
-  .button {
+  .button.is-cta {
     display: none;
 
     @include media($medium) {

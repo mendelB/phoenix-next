@@ -17,10 +17,8 @@ const CallToAction = ({ clickedSignUp, legacyCampaignId, classNames = '' }: Call
   </div>
 );
 
-export default CallToAction;
-
-// @TODO: ESLint kept yelling at me that I needed to define this somewhere and does not
-// recognize the above default.
 CallToAction.defaultProps = {
   classNames: '',
 };
+
+export default CallToAction;

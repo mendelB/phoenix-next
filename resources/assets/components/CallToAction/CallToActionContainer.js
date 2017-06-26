@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import CallToAction from '../components/CallToAction/CallToAction';
-import { clickedSignUp } from '../actions';
+import CallToAction from './CallToAction';
+import { clickedSignUp } from '../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.

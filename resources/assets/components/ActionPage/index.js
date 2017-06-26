@@ -170,6 +170,7 @@ const ActionPage = (props) => {
       callToAction={callToAction}
       isLoading={hasPendingSignup}
       onReveal={() => clickedSignUp(campaignId, ActionPage.defaultMetadata)}
+      isAuthenticated={isAuthenticated}
     />
   );
 

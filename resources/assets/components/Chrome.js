@@ -3,7 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 import AppInit from './AppInit';
-import CallToActionContainer from '../containers/CallToActionContainer';
+import { CallToActionContainer } from './CallToAction';
 import Dashboard from './Dashboard';
 import Debugger from './Debugger';
 import FeedEnclosure from './FeedEnclosure';
