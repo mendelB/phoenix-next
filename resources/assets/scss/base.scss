@@ -1,5 +1,9 @@
 @import 'next-toolbox';
 
+// Import Forge so we get our base styles.
+$forge-path: "../../../node_modules/@dosomething/forge/assets/";
+@import '~@dosomething/forge/scss/forge';
+
 body, html {
   font-family: $primary-font-family;
   line-height: 1.4;
