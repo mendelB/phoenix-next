@@ -20,6 +20,9 @@
         <li>
           <a href="http://www.youtube.com/user/DoSomething1" class="social-icon -youtube" title="dosomething1 on YouTube"><span>dosomething1 on YouTube</span></a>
         </li>
+        <li>
+          <a href="http://dosomething.tumblr.com" class="social-icon -tumblr" title="dosomething on Tumblr"><span>dosomething on Tumblr</span></a>
+        </li>
       </ul>
     </div>
     <div class="footer__column -links">
