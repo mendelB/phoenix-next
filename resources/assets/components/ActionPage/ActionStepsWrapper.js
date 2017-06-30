@@ -7,7 +7,7 @@ import Revealer from '../Revealer';
 import { Flex, FlexCell } from '../Flex';
 import { makeHash } from '../../helpers';
 import CompetitionContainer from '../../containers/CompetitionContainer';
-import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
+import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { clickedSignUp as clickedSignUpAction } from '../../actions';
 
 const ActionStepsWrapper = (props) => {
