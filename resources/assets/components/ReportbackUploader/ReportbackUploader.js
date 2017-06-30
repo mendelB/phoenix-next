@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
 /* global FormData */
 
+import PropTypes from 'prop-types';
 import React from 'react';
 import { BlockWrapper } from '../Block';
 import MediaUploader from '../MediaUploader';
