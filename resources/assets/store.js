@@ -64,6 +64,7 @@ const initialState = {
   modal: {
     shouldShowModal: false,
   },
+  uploads: {},
 };
 
 /**
