@@ -1,75 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Reportback Item basic snapshot test 1`] = `
-<div
-  className="reportback-item"
+<Figure
+  alt="A Doer's photo"
+  image={null}
+  imageClassName={null}
 >
-  <Figure
-    alt="A Doer's photo"
-    image={null}
-    imageClassName={null}
+  <ReportbackFigure
+    alignment="right"
+    className="padded"
+    media={null}
+    meta={null}
+    size={null}
+    verticalAlignment={null}
   >
-    <BaseFigure
-      alignment="right"
-      className="padded"
-      media={null}
-      size={null}
-      verticalAlignment={null}
-    >
-      <h4>
-        A Doer
-      </h4>
-    </BaseFigure>
-  </Figure>
-  <div
-    className="caption"
-  />
-</div>
+    <h4>
+      A Doer
+    </h4>
+  </ReportbackFigure>
+</Figure>
 `;
 
 exports[`Reportback Item snapshot test 1`] = `
-<div
-  className="reportback-item"
+<Figure
+  alt="Luke Skywalker's photo"
+  image="https://static1.comicvine.com/uploads/original/11118/111184078/5124660-6531264806-22292.jpg"
+  imageClassName={null}
 >
-  <Figure
-    alt="Luke Skywalker's photo"
-    image="https://static1.comicvine.com/uploads/original/11118/111184078/5124660-6531264806-22292.jpg"
-    imageClassName={null}
-  >
-    <BaseFigure
-      alignment="right"
-      className="padded"
-      media={
-        <Reaction
-          active={true}
-          onToggleOff={[Function]}
-          onToggleOn={[Function]}
-          total={30}
-        />
-      }
-      size={null}
-      verticalAlignment={null}
-    >
-      <h4>
-        Luke Skywalker
-      </h4>
+  <ReportbackFigure
+    alignment="right"
+    className="padded"
+    media={
+      <Reaction
+        active={true}
+        onToggleOff={[Function]}
+        onToggleOn={[Function]}
+        total={30}
+      />
+    }
+    meta={
       <p
-        className="footnote italic"
+        className="italic"
       >
-        20
-         
-        lightsabers
+        Some awesmome caption
       </p>
-    </BaseFigure>
-  </Figure>
-  <div
-    className="caption"
+    }
+    size={null}
+    verticalAlignment={null}
   >
+    <h4>
+      Luke Skywalker
+    </h4>
     <p
-      className="italic"
+      className="footnote italic"
     >
-      Some awesmome caption
+      20
+       
+      lightsabers
     </p>
-  </div>
-</div>
+  </ReportbackFigure>
+</Figure>
 `;
