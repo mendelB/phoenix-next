@@ -1,5 +1,8 @@
 @import '../../scss/next-toolbox.scss';
 
+$quarter-spacing: $half-spacing / 2;
+$eighth-spacing: $quarter-spacing / 2;
+
 .reaction {
   padding: $eighth-spacing $quarter-spacing;
   border: 1px solid $primary-border-color;
