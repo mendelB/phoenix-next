@@ -8,15 +8,22 @@ import { Flex, FlexCell } from '../Flex';
 import { makeHash } from '../../helpers';
 import CompetitionContainer from '../../containers/CompetitionContainer';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
+import { SubmissionGalleryContainer } from '../Gallery';
 import { clickedSignUp as clickedSignUpAction } from '../../actions';
 
 const ActionStepsWrapper = (props) => {
-  const { callToAction, campaignId, hasPendingSignup,
-    isSignedUp, isAuthenticated, clickedSignUp, actionSteps } = props;
+  const { actionSteps, callToAction, campaignId, clickedSignUp,
+    hasPendingSignup, isAuthenticated, isSignedUp  } = props;
 
-  const uploader = (
+  const photoUploader = (
     <FlexCell key="reportback_uploader" width="full">
       <ReportbackUploaderContainer />
+    </FlexCell>
+  );
+
+  const submissionGallery = (
+    <FlexCell key="submission_gallery" width="full">
+      <SubmissionGalleryContainer />
     </FlexCell>
   );
 
@@ -31,10 +38,13 @@ const ActionStepsWrapper = (props) => {
     />
   );
 
-  const revealerOrUploader = isSignedUp ? uploader : actionRevealer;
+  const revealerOrUploader = isSignedUp ? photoUploader : actionRevealer;
+
+  const renderSubmissionGallery = isSignedUp ? submissionGallery : null;
 
   let stepIndex = 0;
-  let appendUploader = true; // TODO: Remove this after content updates.
+  let appendPhotoUploader = true; // TODO: Remove this after contentful updates.
+  let appendSubmissionGallery = true; // TODO: Remove this after contentful updates.
 
   const stepComponents = actionSteps.map((step) => {
     const title = step.title;
@@ -56,8 +66,14 @@ const ActionStepsWrapper = (props) => {
         );
 
       case 'photo-uploader':
-        appendUploader = false; // TODO: Remove this flag after content updates post deploy.
+        appendPhotoUploader = false; // TODO: Remove this flag after contentful updates post deploy.
+
         return revealerOrUploader;
+
+      case 'submission-gallery':
+        appendSubmissionGallery = false; // TODO: Remove this flag after contentful updates post deploy.
+
+        return renderSubmissionGallery;
 
       default:
         stepIndex += 1;
@@ -76,8 +92,12 @@ const ActionStepsWrapper = (props) => {
     }
   });
 
-  if (appendUploader) {
+  if (appendPhotoUploader) {
     stepComponents.push(revealerOrUploader);
+  }
+
+  if (appendSubmissionGallery) {
+    stepComponents.push(renderSubmissionGallery);
   }
 
   return (
