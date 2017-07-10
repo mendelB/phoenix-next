@@ -9,7 +9,7 @@ test('it renders correctly with children', () => {
       <div>item two</div>
       <div>item three</div>
       <div>item four</div>
-    </Gallery>
+    </Gallery>,
   );
 
   expect(tree).toMatchSnapshot();
