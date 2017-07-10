@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { get } from 'lodash';
 import ReportbackUploader from './ReportbackUploader';
-import { submitReportback, addToSubmissionsList, fetchUserReportbacks } from '../../actions';
+import { submitReportback, addSubmissionItemToList, fetchUserReportbacks } from '../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
  */
 const actionCreators = {
   submitReportback,
-  addToSubmissionsList,
+  addSubmissionItemToList,
   fetchUserReportbacks,
 };
 
