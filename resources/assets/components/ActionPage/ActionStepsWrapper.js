@@ -13,7 +13,7 @@ import { clickedSignUp as clickedSignUpAction } from '../../actions';
 
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
-    hasPendingSignup, isAuthenticated, isSignedUp  } = props;
+    hasPendingSignup, isAuthenticated, isSignedUp } = props;
 
   const photoUploader = (
     <FlexCell key="reportback_uploader" width="full">
@@ -66,12 +66,14 @@ const ActionStepsWrapper = (props) => {
         );
 
       case 'photo-uploader':
-        appendPhotoUploader = false; // TODO: Remove this flag after contentful updates post deploy.
+        // TODO: Remove this flag after contentful updates post deploy.
+        appendPhotoUploader = false;
 
         return revealerOrUploader;
 
       case 'submission-gallery':
-        appendSubmissionGallery = false; // TODO: Remove this flag after contentful updates post deploy.
+        // TODO: Remove this flag after contentful updates post deploy.
+        appendSubmissionGallery = false;
 
         return renderSubmissionGallery;
 
