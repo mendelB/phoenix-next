@@ -54,17 +54,15 @@ const ActionStepsWrapper = (props) => {
     }
 
     const title = step.title;
-
-    const sharedProps = {
-      content: step.content || null,
-      key: makeHash(title),
-    };
+    const content = step.content || null;
+    const key = makeHash(title);
 
     switch (type) {
       case 'competition':
         return (
           <CompetitionContainer
-            {...sharedProps}
+            key={key}
+            content={content}
             photo={step.photos[0]}
             byline={step.additionalContent}
           />
@@ -81,8 +79,9 @@ const ActionStepsWrapper = (props) => {
 
         return (
           <ActionStep
-            {...sharedProps}
+            key={key}
             title={title}
+            content={content}
             stepIndex={stepIndex}
             background={step.background}
             photos={step.photos}
