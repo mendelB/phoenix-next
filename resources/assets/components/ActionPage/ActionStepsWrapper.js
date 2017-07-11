@@ -45,8 +45,7 @@ const ActionStepsWrapper = (props) => {
   let stepIndex = 0;
 
   const stepComponents = actionSteps.map((step) => {
-    let type = step.customType || 'default';
-
+    const type = step.customType || 'default';
     const title = step.title;
     const content = step.content || null;
     const key = makeHash(title);
