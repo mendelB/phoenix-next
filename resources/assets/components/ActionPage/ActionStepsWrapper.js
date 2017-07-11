@@ -45,13 +45,7 @@ const ActionStepsWrapper = (props) => {
   let stepIndex = 0;
 
   const stepComponents = actionSteps.map((step) => {
-    let type = null;
-
-    if (get(props.featureFlags, 'useComponentActions')) {
-      type = step.type || 'default';
-    } else {
-      type = step.customType || step.type || 'default';
-    }
+    let type = step.customType || 'default';
 
     const title = step.title;
     const content = step.content || null;

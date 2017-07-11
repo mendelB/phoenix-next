@@ -37,13 +37,9 @@ class Campaign extends Entity implements JsonSerializable
      */
     public function parseActionStepPhotos($photos)
     {
-        $output = [];
-
-        foreach ($photos as $photo) {
-            $output[] = get_image_url($photo, 'landscape');
-        }
-
-        return $output;
+        return collect($photos)->map(function ($photo) {
+            return get_image_url($photo, 'landscape');
+        });
     }
 
     /**
@@ -54,25 +50,20 @@ class Campaign extends Entity implements JsonSerializable
      */
     public function parseActionSteps($actionSteps)
     {
-        $output = [];
-
-        foreach ($actionSteps as $step) {
+        return collect($actionSteps)->map(function ($step) {
             $data = [];
 
             $data['title'] = $step->title;
-            $data['displayOptions'] = $step->displayOptions->shift();
+            $data['displayOptions'] = $step->displayOptions->first();
 
             $step->content ? $data['content'] = $step->content : null;
             $step->background ? $data['background'] = get_image_url($step->background, 'landscape') : null;
             $step->photos ? $data['photos'] = $this->parseActionStepPhotos($step->photos) : null;
-            $step->type ? $data['type'] = $step->type->shift() : null;
-            $step->customType ? $data['customType'] = $step->customType->shift() : null; // @TODO deprecate.
+            $step->customType ? $data['customType'] = $step->customType->first() : null;
             $step->additionalContent ? $data['additionalContent'] = $step->additionalContent : null;
 
-            $output[] = $data;
-        }
-
-        return $output;
+            return $data;
+        });
     }
 
     public function jsonSerialize()
