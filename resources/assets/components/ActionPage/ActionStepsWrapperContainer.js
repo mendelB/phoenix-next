@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
  * actions to the Redux store as props for this component.
  */
 const mapDispatchToProps = {
-  clickedSignUp: clickedSignUp,
+  clickedSignUp,
 };
 
 // Export the container component.
