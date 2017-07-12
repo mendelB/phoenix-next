@@ -111,21 +111,4 @@ ActionStepsWrapper.defaultProps = {
   featureFlags: null,
 };
 
-// ActionStepsWrapper.mapStateToProps = state => ({
-//   campaignId: state.campaign.legacyCampaignId,
-//   callToAction: state.campaign.callToAction,
-//   hasPendingSignup: state.signups.isPending,
-//   isSignedUp: state.signups.thisCampaign,
-//   isAuthenticated: state.user.id !== null,
-// });
-
-// ActionStepsWrapper.actionCreators = {
-//   clickedSignUp: clickedSignUpAction,
-// };
-
-// export default connect(
-//   ActionStepsWrapper.mapStateToProps,
-//   ActionStepsWrapper.actionCreators,
-// )(ActionStepsWrapper);
-
 export default ActionStepsWrapper;
