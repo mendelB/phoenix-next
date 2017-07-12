@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { get } from 'lodash';
 import ActionStepsWrapper from './ActionStepsWrapper';
-import { clickedSignUp as clickedSignUpAction } from '../../actions';
+import { clickedSignUp } from '../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
  * actions to the Redux store as props for this component.
  */
 const mapDispatchToProps = {
-  clickedSignUp: clickedSignUpAction,
+  clickedSignUp: clickedSignUp,
 };
 
 // Export the container component.

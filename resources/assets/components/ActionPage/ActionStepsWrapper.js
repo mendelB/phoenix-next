@@ -1,5 +1,4 @@
 import React from 'react';
-// import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
@@ -10,7 +9,6 @@ import { makeHash } from '../../helpers';
 import CompetitionContainer from '../../containers/CompetitionContainer';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { SubmissionGalleryContainer } from '../Gallery';
-// import { clickedSignUp as clickedSignUpAction } from '../../actions';
 
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
