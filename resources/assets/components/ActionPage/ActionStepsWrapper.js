@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 
 import ActionStep from './ActionStep';
 import Revealer from '../Revealer';
@@ -9,7 +9,6 @@ import { makeHash } from '../../helpers';
 import CompetitionContainer from '../../containers/CompetitionContainer';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { SubmissionGalleryContainer } from '../Gallery';
-import { clickedSignUp as clickedSignUpAction } from '../../actions';
 
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
@@ -38,67 +37,53 @@ const ActionStepsWrapper = (props) => {
     />
   );
 
-  const revealerOrUploader = isSignedUp ? photoUploader : actionRevealer;
-
+  const renderPhotoUploader = isSignedUp ? photoUploader : actionRevealer;
   const renderSubmissionGallery = isSignedUp ? submissionGallery : null;
 
   let stepIndex = 0;
-  let appendPhotoUploader = true; // TODO: Remove this after contentful updates.
-  let appendSubmissionGallery = true; // TODO: Remove this after contentful updates.
 
   const stepComponents = actionSteps.map((step) => {
+    const type = step.customType || 'default';
     const title = step.title;
-    const type = step.customType[0] || 'default';
-
-    const sharedProps = {
-      content: step.content,
-      key: makeHash(title),
-    };
+    const content = step.content || null;
+    const key = makeHash(title);
 
     switch (type) {
       case 'competition':
         return (
           <CompetitionContainer
-            {...sharedProps}
+            key={key}
+            content={content}
             photo={step.photos[0]}
             byline={step.additionalContent}
           />
         );
 
       case 'photo-uploader':
-        // TODO: Remove this flag after contentful updates post deploy.
-        appendPhotoUploader = false;
-
-        return revealerOrUploader;
+        return (renderPhotoUploader);
 
       case 'submission-gallery':
-        // TODO: Remove this flag after contentful updates post deploy.
-        appendSubmissionGallery = false;
-
-        return renderSubmissionGallery;
+        return (renderSubmissionGallery);
 
       default:
         stepIndex += 1;
 
         return (
           <ActionStep
-            {...sharedProps}
+            key={key}
             title={title}
+            content={content}
             stepIndex={stepIndex}
             background={step.background}
             photos={step.photos}
-            photoWidth={step.displayOptions[0] === 'full' ? 'full' : 'one-third'}
+            photoWidth={step.displayOptions === 'full' ? 'full' : 'one-third'}
             shouldTruncate={step.truncate}
           />
         );
     }
   });
 
-  if (appendPhotoUploader) {
-    stepComponents.push(revealerOrUploader);
-  }
-
-  if (appendSubmissionGallery) {
+  if (! get(props.featureFlags, 'useComponentActions')) {
     stepComponents.push(renderSubmissionGallery);
   }
 
@@ -113,25 +98,15 @@ ActionStepsWrapper.propTypes = {
   actionSteps: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   callToAction: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
+  clickedSignUp: PropTypes.func.isRequired,
+  featureFlags: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   hasPendingSignup: PropTypes.bool.isRequired,
   isSignedUp: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
 };
 
-ActionStepsWrapper.mapStateToProps = state => ({
-  campaignId: state.campaign.legacyCampaignId,
-  callToAction: state.campaign.callToAction,
-  hasPendingSignup: state.signups.isPending,
-  isSignedUp: state.signups.thisCampaign,
-  isAuthenticated: state.user.id !== null,
-});
-
-ActionStepsWrapper.actionCreators = {
-  clickedSignUp: clickedSignUpAction,
+ActionStepsWrapper.defaultProps = {
+  featureFlags: null,
 };
 
-export default connect(
-  ActionStepsWrapper.mapStateToProps,
-  ActionStepsWrapper.actionCreators,
-)(ActionStepsWrapper);
+export default ActionStepsWrapper;
