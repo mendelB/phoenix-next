@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { cloneDeep } from 'lodash';
 
-import ActionStepsWrapper from './ActionStepsWrapper';
+import ActionStepsWrapperContainer from './ActionStepsWrapperContainer';
 import './actionPage.scss';
 
 /**
@@ -11,7 +11,7 @@ import './actionPage.scss';
  * @returns {XML}
  */
 const ActionPage = (props) => {
-  const { steps, signedUp, featureFlags } = props;
+  const { steps, signedUp } = props;
 
   let actionSteps = cloneDeep(steps);
 
@@ -25,18 +25,13 @@ const ActionPage = (props) => {
   }
 
   return (
-    <ActionStepsWrapper actionSteps={actionSteps} featureFlags={featureFlags} />
+    <ActionStepsWrapperContainer actionSteps={actionSteps} />
   );
 };
 
 ActionPage.propTypes = {
-  featureFlags: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   steps: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   signedUp: PropTypes.bool.isRequired,
-};
-
-ActionPage.defaultProps = {
-  featureFlags: null,
 };
 
 export default ActionPage;

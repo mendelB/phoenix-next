@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
@@ -10,7 +10,7 @@ import { makeHash } from '../../helpers';
 import CompetitionContainer from '../../containers/CompetitionContainer';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { SubmissionGalleryContainer } from '../Gallery';
-import { clickedSignUp as clickedSignUpAction } from '../../actions';
+// import { clickedSignUp as clickedSignUpAction } from '../../actions';
 
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
@@ -111,19 +111,21 @@ ActionStepsWrapper.defaultProps = {
   featureFlags: null,
 };
 
-ActionStepsWrapper.mapStateToProps = state => ({
-  campaignId: state.campaign.legacyCampaignId,
-  callToAction: state.campaign.callToAction,
-  hasPendingSignup: state.signups.isPending,
-  isSignedUp: state.signups.thisCampaign,
-  isAuthenticated: state.user.id !== null,
-});
+// ActionStepsWrapper.mapStateToProps = state => ({
+//   campaignId: state.campaign.legacyCampaignId,
+//   callToAction: state.campaign.callToAction,
+//   hasPendingSignup: state.signups.isPending,
+//   isSignedUp: state.signups.thisCampaign,
+//   isAuthenticated: state.user.id !== null,
+// });
 
-ActionStepsWrapper.actionCreators = {
-  clickedSignUp: clickedSignUpAction,
-};
+// ActionStepsWrapper.actionCreators = {
+//   clickedSignUp: clickedSignUpAction,
+// };
 
-export default connect(
-  ActionStepsWrapper.mapStateToProps,
-  ActionStepsWrapper.actionCreators,
-)(ActionStepsWrapper);
+// export default connect(
+//   ActionStepsWrapper.mapStateToProps,
+//   ActionStepsWrapper.actionCreators,
+// )(ActionStepsWrapper);
+
+export default ActionStepsWrapper;
