@@ -9,13 +9,16 @@
           <a href="https://twitter.com/dosomething" class="social-icon -twitter" title="@dosomething on Twitter"><span>@dosomething on Twitter</span></a>
         </li>
         <li>
+          <a href="http://instagram.com/dosomething" class="social-icon -instagram" title="@dosomething on Instagram"><span>@dosomething on Instagram</span></a>
+        </li>
+        <li>
+          <a href="http://dosomething.tumblr.com" class="social-icon -tumblr" title="dosomething on Tumblr"><span>dosomething on Tumblr</span></a>
+        </li>
+        <li>
           <a href="https://www.snapchat.com/add/dosomething" class="social-icon -snapchat" title="dosomething on Snapchat"><span>dosomething on Snapchat</span></a>
         </li>
         <li>
           <a href="http://weheartit.com/dosomething" class="social-icon -weheartit" title="dosomething on We Heart It"><span>dosomething on We Heart It</span></a>
-        </li>
-        <li>
-          <a href="http://instagram.com/dosomething" class="social-icon -instagram" title="@dosomething on Instagram"><span>@dosomething on Instagram</span></a>
         </li>
         <li>
           <a href="http://www.youtube.com/user/DoSomething1" class="social-icon -youtube" title="dosomething1 on YouTube"><span>dosomething1 on YouTube</span></a>

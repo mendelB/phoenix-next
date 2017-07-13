@@ -6,7 +6,9 @@ This is __Phoenix Next__, the new campaign experience for [DoSomething.org](http
 
 ## Installation
 
-Fork and clone this repository to your computer, and then add to your local [Homestead](https://github.com/laravel/homestead) installation. Homestead provides a pre-packaged development environment to help get you up and running quickly! Please checkout the Homestead [documentation](https://laravel.com/docs/master/homestead) for help on getting it setup on your computer.
+Fork and clone this repository to your computer, and then add to your local [Homestead](https://github.com/laravel/homestead) installation. Homestead provides a pre-packaged development environment to help get you up and running quickly! 
+
+For help on getting Homestead setup on your computer, refer to the following [instructions](https://github.com/DoSomething/communal-docs/tree/master/Homestead).
 
 ### Step 1: Dependencies & Environment
 

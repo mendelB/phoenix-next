@@ -9,7 +9,6 @@
     <title>DoSomething.org</title>
 
     <link rel="icon" type="image/ico" href="/favicon.ico?v1">
-    <link rel="stylesheet" href="https://unpkg.com/@dosomething/forge@^6.7.4/dist/forge.css" media="screen, projection" type="text/css">
     <link rel="stylesheet" href="{{ elixir('app.css', 'next/assets') }}" media="screen, projection" type="text/css">
 
     @if(isset($shareFields))

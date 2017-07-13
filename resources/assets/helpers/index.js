@@ -320,3 +320,13 @@ export function getFormattedScreenSize(screenWidth = window.innerWidth) {
 
   return breakpoints.find(breakpoint => breakpoint.test(screenWidth)).name;
 }
+
+/**
+ * Check if the given campaign is closed.
+ *
+ * @param  {String}  endDate
+ * @return {Boolean}
+ */
+export function isCampaignClosed(endDate) {
+  return new Date(endDate) - new Date() < 0;
+}

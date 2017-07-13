@@ -7,12 +7,14 @@ import NavigationLink from '../components/Navigation/NavigationLink';
 import TabbedNavigation from '../components/Navigation/TabbedNavigation';
 import { clickedSignUp } from '../actions';
 import { paths } from '../helpers/navigation';
+import { isCampaignClosed } from '../helpers';
 
 const mapStateToProps = state => ({
   isAffiliated: state.signups.thisCampaign,
   legacyCampaignId: state.campaign.legacyCampaignId,
   pages: state.campaign.pages,
   pathname: state.routing.location.pathname,
+  campaignEndDate: state.campaign.endDate.date,
 });
 
 const mapDispatchToProps = {
@@ -20,7 +22,9 @@ const mapDispatchToProps = {
 };
 
 const TabbedNavigationContainer = (props) => {
-  const { isAffiliated, legacyCampaignId, pages } = props;
+  const { isAffiliated, legacyCampaignId, pages, campaignEndDate } = props;
+
+  const isClosed = isCampaignClosed(campaignEndDate);
 
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = pages.map((page) => {
@@ -34,7 +38,7 @@ const TabbedNavigationContainer = (props) => {
     <TabbedNavigation>
       <div className="nav-items">
         <NavigationLink to={paths.community} exact>Community</NavigationLink>
-        <NavigationLink to={paths.action}>Action</NavigationLink>
+        { isClosed ? null : <NavigationLink to={paths.action}>Action</NavigationLink> }
         { additionalPages }
       </div>
       { isAffiliated ? null : <Button classNames="-inline nav-button" onClick={() => props.clickedSignUp(legacyCampaignId, { source: 'tabbed navigation|text: Join us' })} /> }
@@ -43,6 +47,7 @@ const TabbedNavigationContainer = (props) => {
 };
 
 TabbedNavigationContainer.propTypes = {
+  campaignEndDate: PropTypes.string.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
