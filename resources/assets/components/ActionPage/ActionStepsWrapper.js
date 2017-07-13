@@ -84,8 +84,8 @@ const ActionStepsWrapper = (props) => {
     stepComponents.push(actionRevealer);
   }
 
-  if (! get(props.featureFlags, 'useComponentActions')) {
-    stepComponents.push(renderSubmissionGallery);
+  if (isSignedUp && ! get(props.featureFlags, 'useComponentActions')) {
+    stepComponents.push(submissionGallery);
   }
 
   return (
