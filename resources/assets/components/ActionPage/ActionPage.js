@@ -15,8 +15,6 @@ const ActionPage = (props) => {
 
   let actionSteps = cloneDeep(steps);
 
-  console.log(signedUp);
-
   if (! signedUp) {
     // Truncate steps if user isn't signed up & remove any custom steps.
     actionSteps = actionSteps.filter(step => ! step.customType).slice(0, 2);
