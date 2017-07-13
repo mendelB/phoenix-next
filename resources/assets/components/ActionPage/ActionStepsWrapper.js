@@ -37,7 +37,7 @@ const ActionStepsWrapper = (props) => {
     />
   );
 
-  const renderPhotoUploader = isSignedUp ? photoUploader : actionRevealer;
+  const renderPhotoUploader = isSignedUp ? photoUploader : null;
   const renderSubmissionGallery = isSignedUp ? submissionGallery : null;
 
   let stepIndex = 0;
@@ -82,6 +82,10 @@ const ActionStepsWrapper = (props) => {
         );
     }
   });
+
+  if (! isSignedUp) {
+    stepComponents.push(actionRevealer);
+  }
 
   if (! get(props.featureFlags, 'useComponentActions')) {
     stepComponents.push(renderSubmissionGallery);
