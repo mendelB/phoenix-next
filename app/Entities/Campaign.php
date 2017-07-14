@@ -38,7 +38,7 @@ class Campaign extends Entity implements JsonSerializable
     public function parseActionStepPhotos($photos)
     {
         return collect($photos)->map(function ($photo) {
-            return get_image_url($photo, 'landscape');
+            return get_image_url($photo, 'square');
         });
     }
 
