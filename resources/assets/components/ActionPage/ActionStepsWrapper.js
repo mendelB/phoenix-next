@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
 
 import ActionStep from './ActionStep';
 import Revealer from '../Revealer';
@@ -84,10 +83,6 @@ const ActionStepsWrapper = (props) => {
     stepComponents.push(actionRevealer);
   }
 
-  if (isSignedUp && ! get(props.featureFlags, 'useComponentActions')) {
-    stepComponents.push(submissionGallery);
-  }
-
   return (
     <Flex>
       { stepComponents }
@@ -100,14 +95,9 @@ ActionStepsWrapper.propTypes = {
   callToAction: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
-  featureFlags: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   hasPendingSignup: PropTypes.bool.isRequired,
   isSignedUp: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-};
-
-ActionStepsWrapper.defaultProps = {
-  featureFlags: null,
 };
 
 export default ActionStepsWrapper;
