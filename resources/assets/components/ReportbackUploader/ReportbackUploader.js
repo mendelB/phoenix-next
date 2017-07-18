@@ -46,10 +46,6 @@ class ReportbackUploader extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.props.fetchUserReportbacks(this.props.userId, this.props.legacyCampaignId);
-  }
-
   handleOnFileUpload(media) {
     this.setState({ media });
   }
@@ -120,7 +116,6 @@ class ReportbackUploader extends React.Component {
 }
 
 ReportbackUploader.propTypes = {
-  fetchUserReportbacks: PropTypes.func.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
   submissions: PropTypes.shape({
     isFetching: PropTypes.bool,
@@ -130,7 +125,6 @@ ReportbackUploader.propTypes = {
     reportback: PropTypes.object,
   }).isRequired,
   submitReportback: PropTypes.func.isRequired,
-  userId: PropTypes.string.isRequired,
   noun: PropTypes.shape({
     singular: PropTypes.string,
     plural: PropTypes.string,
