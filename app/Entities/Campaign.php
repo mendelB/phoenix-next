@@ -43,6 +43,28 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
+     * Parse and extract activity feed item data based on content type.
+     *
+     * @param  array $activityItems
+     * @return array
+     */
+    public function parseActivityFeed($activityItems)
+    {
+        return collect($activityItems)->map(function ($item) {
+            switch ($item->getContentType()) {
+                case 'campaignUpdate':
+                    return new CampaignUpdate($item->entry);
+
+                case 'customBlock':
+                    return new CustomBlock($item->entry);
+
+                default:
+                    return $item;
+            }
+        });
+    }
+
+    /**
      * Parse and extract data for action steps.
      *
      * @param  array $actionSteps
@@ -66,6 +88,11 @@ class Campaign extends Entity implements JsonSerializable
         });
     }
 
+    /**
+     * Convert the object into something JSON serializable.
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return [
@@ -85,7 +112,7 @@ class Campaign extends Entity implements JsonSerializable
             'affiliateSponsors' => $this->affiliateSponsors,
             'affiliatePartners' => $this->affiliatePartners,
             // @TODO: Why is it 'activity_feed' oy? ;/
-            'activityFeed' => $this->activity_feed,
+            'activityFeed' => $this->parseActivityFeed($this->activity_feed),
             'actionSteps' => $this->parseActionSteps($this->actionSteps),
             'dashboard' => $this->dashboard,
             'affirmation' => [

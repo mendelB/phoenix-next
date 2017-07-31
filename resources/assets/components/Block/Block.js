@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { CampaignUpdateBlockContainer } from '../CampaignUpdateBlock';
+import { CampaignUpdate } from '../CampaignUpdate';
 import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import StaticBlock from '../StaticBlock';
@@ -12,7 +13,17 @@ import { BlockJson } from '../../types';
 const DEFAULT_BLOCK: BlockJson = { fields: { type: null } };
 
 const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
-  switch (json.fields.type) {
+  switch (json.type) {
+    case 'campaignUpdate':
+      return (
+        <CampaignUpdate
+          id={json.id}
+          displayOptions={json.fields.displayOptions}
+          content={json.fields.content}
+          author={json.fields.author}
+        />
+      );
+
     case 'campaign_update':
       return <CampaignUpdateBlockContainer id={json.id} fields={json.fields} />;
 
