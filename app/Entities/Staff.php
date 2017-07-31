@@ -3,7 +3,6 @@
 namespace App\Entities;
 
 use JsonSerializable;
-use Contentful\Delivery\Asset;
 
 class Staff extends Entity implements JsonSerializable
 {
