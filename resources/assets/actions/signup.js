@@ -69,8 +69,7 @@ export function checkForSignup(campaignId) {
       }
 
       dispatch(signupFound(campaignId));
-    })
-    .catch(() => {
+    }).catch(() => {
       dispatch(signupNotFound());
     });
   };
