@@ -14,12 +14,15 @@ class SubmissionGallery extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUserReportbacks(this.props.userId, this.props.legacyCampaignId);
+    const { userId, legacyCampaignId } = this.props;
+
+    if (userId && legacyCampaignId) {
+      this.props.fetchUserReportbacks(userId, legacyCampaignId);
+    }
   }
 
   render() {
-    const isFetching = this.props.submissions.isFetching;
-    const items = this.props.submissions.items;
+    const { isFetching, items } = this.props.submissions;
 
     return isFetching
       ? <div className="spinner -centered" />
@@ -30,13 +33,19 @@ class SubmissionGallery extends React.Component {
 }
 
 SubmissionGallery.propTypes = {
-  fetchUserReportbacks: PropTypes.func.isRequired,
-  legacyCampaignId: PropTypes.string.isRequired,
+  fetchUserReportbacks: PropTypes.func,
+  legacyCampaignId: PropTypes.string,
   submissions: PropTypes.shape({
     isFetching: PropTypes.bool,
     items: PropTypes.array,
   }).isRequired,
-  userId: PropTypes.string.isRequired,
+  userId: PropTypes.string,
+};
+
+SubmissionGallery.defaultProps = {
+  fetchUserReportbacks: () => {},
+  legacyCampaignId: null,
+  userId: null,
 };
 
 export default SubmissionGallery;
