@@ -8,7 +8,7 @@ const ROWS_PER_PAGE = 5;
  * @return int
  */
 export function mapDisplayToPoints(displayOption) {
-  switch (displayOption[0]) {
+  switch (displayOption) {
     case 'one-third': return 1;
     case 'two-thirds': return 2;
     case 'full': return 3;
@@ -84,10 +84,10 @@ export function getVisibleBlocks(state) {
   while (totalPoints < blockOffset && totalPoints < getMaximumOffset(state)) {
     filteredBlocks.push({
       id: 'dynamic',
-      type: 'customBlock',
+      type: 'reportbacks',
       fields: {
         type: 'reportbacks',
-        displayOptions: ['one-third'],
+        displayOptions: 'one-third',
         additionalContent: { count: 1 },
       },
     });
