@@ -8,7 +8,7 @@ import { isCampaignClosed } from '../helpers';
 
 import { paths } from '../helpers/navigation';
 import ChromeContainer from '../containers/ChromeContainer';
-import FeedContainer from '../containers/FeedContainer';
+import { FeedContainer } from './Feed';
 import { ActionPageContainer } from './ActionPage';
 import { BlockContainer } from './Block';
 import ContentPageContainer from '../containers/ContentPageContainer';
