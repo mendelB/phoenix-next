@@ -20,13 +20,44 @@ use Contentful\Delivery\Asset;
 class Campaign extends Entity implements JsonSerializable
 {
     /**
-     * Return the state of the campaign.
+     * Fill with specified number of Reportback Post items.
      *
-     * @return bool
+     * @param  \Contentful\Delivery\DynamicEntry $entry
+     * @return array
+     *
+     * @todo Temporary reportback post item filler based on
+     * desired layout display option. Eventually, we'll be
+     * using a different system to fill in reportback post
+     * items. May eventually use a ReportbackPost entity.
      */
-    public function isActive()
+    public function fillReportbackPosts($entry)
     {
-        return $this->active;
+        $posts = [];
+
+        switch ($entry->getType()) {
+            case 'one-third':
+                $count = 1;
+                break;
+
+            case 'two-thirds':
+                $count = 2;
+                break;
+
+            default:
+                $count = 3;
+        }
+
+        for ($i = 0; $i < $count; $i++) {
+            $posts[] = [
+                'id' => str_random(22),
+                'type' => 'reportbacks', // @TODO: reporbackPost?
+                'fields' => [
+                    'displayOptions' => 'one-third',
+                ],
+            ];
+        }
+
+        return $posts;
     }
 
     /**
@@ -50,18 +81,24 @@ class Campaign extends Entity implements JsonSerializable
      */
     public function parseActivityFeed($activityItems)
     {
-        return collect($activityItems)->map(function ($item) {
+        $test = collect($activityItems)->map(function ($item) {
             switch ($item->getContentType()) {
                 case 'campaignUpdate':
                     return new CampaignUpdate($item->entry);
 
                 case 'customBlock':
+                    if ($item->entry->getType() === 'reportbacks') {
+                        return  $this->fillReportbackPosts($item->entry);
+                    }
+
                     return new CustomBlock($item->entry);
 
                 default:
                     return $item;
             }
-        });
+        })->flatten(1);
+
+        return $test;
     }
 
     /**
