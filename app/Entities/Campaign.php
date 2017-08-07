@@ -81,7 +81,7 @@ class Campaign extends Entity implements JsonSerializable
      */
     public function parseActivityFeed($activityItems)
     {
-        $test = collect($activityItems)->map(function ($item) {
+        return collect($activityItems)->map(function ($item) {
             switch ($item->getContentType()) {
                 case 'campaignUpdate':
                     return new CampaignUpdate($item->entry);
@@ -97,8 +97,6 @@ class Campaign extends Entity implements JsonSerializable
                     return $item;
             }
         })->flatten(1);
-
-        return $test;
     }
 
     /**
