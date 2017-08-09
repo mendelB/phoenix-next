@@ -25,7 +25,7 @@ const CampaignUpdateBlock = (props) => {
     <BlockWrapper title="Campaign Update" id={props.id}>
       { isTweet ? null : <h2>{title}</h2> }
 
-      <Markdown className={classnames('campaign-update__content', { '-tweet': isTweet })}>
+      <Markdown classNames={classnames('campaign-update__content', { '-tweet': isTweet })}>
         {content}
       </Markdown>
 
