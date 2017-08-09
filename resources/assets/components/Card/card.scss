@@ -2,9 +2,10 @@
 
 .card {
   background-color: $white;
+  overflow: hidden;
 }
 
-.card__header {
+.card__title {
   color: $black;
   background-color: $primary-color;
   padding: $half-spacing;
