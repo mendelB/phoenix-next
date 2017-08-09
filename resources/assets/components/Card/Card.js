@@ -19,7 +19,7 @@ const Card = ({ classNames = '', title = null, children }) => (
 );
 
 Card.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(PropTypes.object).isRequired,
   classNames: PropTypes.string,
   title: PropTypes.string,
 };

@@ -6,7 +6,7 @@ exports[`Campaign Update Block with additional content as tweet snapshot test 1`
   title="Campaign Update"
 >
   <Markdown
-    className="campaign-update__content -tweet"
+    classNames="campaign-update__content -tweet"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id elit non mi porta gravida at eget metus vestibulum.
   </Markdown>
@@ -34,7 +34,7 @@ exports[`Campaign Update Block with additional content snapshot test 1`] = `
     Heyo!
   </h2>
   <Markdown
-    className="campaign-update__content"
+    classNames="campaign-update__content"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
   </Markdown>
@@ -62,7 +62,7 @@ exports[`Campaign Update Block with no additional content snapshot test 1`] = `
     Heyo!
   </h2>
   <Markdown
-    className="campaign-update__content"
+    classNames="campaign-update__content"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
   </Markdown>
