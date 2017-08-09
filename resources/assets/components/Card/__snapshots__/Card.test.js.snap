@@ -11,6 +11,8 @@ exports[`it generates a card snapshot 1`] = `
       Awesomest Content Ever
     </h1>
   </header>
-  Praesent commodo cursus magna, vel scelerisque nisl
+  <p>
+    Praesent commodo cursus magna, vel scelerisque nisl
+  </p>
 </article>
 `;
