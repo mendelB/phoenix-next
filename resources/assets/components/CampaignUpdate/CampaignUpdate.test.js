@@ -21,9 +21,10 @@ const component = shallow(
 
 test('it generates a campaign update snapshot', () => {
   const tree = shallowToJson(component);
+
   expect(tree).toMatchSnapshot();
 });
 
-test('it can display a campaign update', () => {
+test('it can display a campaign update as a card component', () => {
   expect(component.find('Card')).toHaveLength(1);
 });

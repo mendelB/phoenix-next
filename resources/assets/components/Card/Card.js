@@ -10,7 +10,7 @@ const renderHeader = title => (
   </header>
 );
 
-const Card = ({ classNames = '', title = null, children }) => (
+const Card = ({ children, classNames = '', title = null }) => (
   <article className={classnames('card', classNames)}>
     { title ? renderHeader(title) : null }
 
@@ -19,7 +19,11 @@ const Card = ({ classNames = '', title = null, children }) => (
 );
 
 Card.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+    PropTypes.object,
+  ]).isRequired,
   classNames: PropTypes.string,
   title: PropTypes.string,
 };
