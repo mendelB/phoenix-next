@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { get } from 'lodash';
 import ActionStepsWrapper from './ActionStepsWrapper';
 import { clickedSignUp } from '../../actions';
 
@@ -9,7 +8,6 @@ import { clickedSignUp } from '../../actions';
 const mapStateToProps = state => ({
   campaignId: state.campaign.legacyCampaignId,
   callToAction: state.campaign.callToAction,
-  featureFlags: get(state.campaign.additionalContent, 'featureFlags'),
   hasPendingSignup: state.signups.isPending,
   isSignedUp: state.signups.thisCampaign,
   isAuthenticated: state.user.id !== null,

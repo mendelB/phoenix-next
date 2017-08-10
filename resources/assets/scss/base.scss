@@ -32,3 +32,16 @@ h1, h2, h3, p {
     width: 100%;
   }
 }
+
+// Utility classes.
+.bordered {
+  border: 1px solid $primary-border-color;
+}
+
+.padded {
+  padding: $half-spacing;
+}
+
+.rounded {
+  border-radius: $lg-border-radius;
+}

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it generates a campaign update snapshot 1`] = `
+<Card
+  className="rounded bordered"
+  id="1234567890"
+  title="Campaign Update"
+>
+  <Markdown
+    className="padded"
+  >
+    Donec id elit non mi porta gravida at eget metus.
+  </Markdown>
+  <footer
+    className="padded"
+  >
+    <Byline
+      author="Aang"
+      avatar="http://example.com/avatar-aang.jpg"
+      jobTitle="The Last Airbender"
+      share={null}
+    />
+  </footer>
+</Card>
+`;

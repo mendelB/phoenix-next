@@ -40,6 +40,8 @@ const submissions = (state = {}, action) => {
         ...state,
         messaging: {
           success: {
+            // @TODO: Add this to Contentful either in the the campaign or
+            // in the Photo Uploader Component.
             message: 'Thanks! We got your photo and you\'re entered to win the scholarship!',
           },
         },
