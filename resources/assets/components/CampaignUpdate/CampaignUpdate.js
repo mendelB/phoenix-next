@@ -9,8 +9,8 @@ const CampaignUpdate = ({ id, author, content }) => {
   const { avatar, jobTitle, name } = author.fields;
 
   return (
-    <Card id={id} classNames="rounded bordered" title="Campaign Update">
-      <Markdown classNames="padded">
+    <Card id={id} className="rounded bordered" title="Campaign Update">
+      <Markdown className="padded">
         {content}
       </Markdown>
 

@@ -36,7 +36,7 @@ const Chrome = props => (
       <FeedEnclosure>
         {props.children}
       </FeedEnclosure>
-      { props.isAffiliated ? null : <CallToActionContainer classNames="-sticky" /> }
+      { props.isAffiliated ? null : <CallToActionContainer className="-sticky" /> }
       <Debugger
         user={props.user}
         signups={props.signups}
