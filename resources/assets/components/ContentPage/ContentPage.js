@@ -6,36 +6,34 @@ import CallToActionBlockContainer from '../../containers/CallToActionBlockContai
 
 import './content-page.scss';
 
-const Page = ({ header, markdown, ctaContent, ctaTitle,
-  buttonOverride, experiment, alternative }) => (
-
-    <div className="content-page">
-      <div className="primary">
-        <ScrollConcierge />
-        <article>
-          <h2 className="visually-hidden">{ header }</h2>
-          <Markdown>{ markdown }</Markdown>
-        </article>
-      </div>
-      <div className="secondary">
-        {ctaContent ? (
-          <CallToActionBlockContainer
-            experiment={experiment}
-            alternative={alternative}
-            buttonOverride={buttonOverride}
-            fields={{ content: ctaContent }}
-          />
-        ) : null}
-      </div>
-
-      <CallToActionBlockContainer
-        experiment={experiment}
-        alternative={alternative}
-        buttonOverride={buttonOverride}
-        fields={{ title: ctaTitle }}
-        modifierClasses="transparent"
-      />
+const Page = ({ header, markdown, ctaContent, ctaTitle, buttonOverride, experiment, alternative }) => ( // eslint-disable-line max-len
+  <div className="content-page">
+    <div className="primary">
+      <ScrollConcierge />
+      <article>
+        <h2 className="visually-hidden">{ header }</h2>
+        <Markdown>{ markdown }</Markdown>
+      </article>
     </div>
+    <div className="secondary">
+      {ctaContent ? (
+        <CallToActionBlockContainer
+          experiment={experiment}
+          alternative={alternative}
+          buttonOverride={buttonOverride}
+          fields={{ content: ctaContent }}
+        />
+      ) : null}
+    </div>
+
+    <CallToActionBlockContainer
+      experiment={experiment}
+      alternative={alternative}
+      buttonOverride={buttonOverride}
+      fields={{ title: ctaTitle }}
+      modifierClasses="transparent"
+    />
+  </div>
 );
 
 Page.propTypes = {
