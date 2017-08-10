@@ -11,7 +11,7 @@ type CallToActionProps = {
   className?: string,
 };
 
-const CallToAction = ({ clickedSignUp, legacyCampaignId, className = '' }: CallToActionProps) => (
+const CallToAction = ({ clickedSignUp, legacyCampaignId, className = null }: CallToActionProps) => (
   <div className={classnames('call-to-action', className)}>
     <Button onClick={() => clickedSignUp(legacyCampaignId, { source: 'small screen sticky cta|text: Join us' })} />
   </div>
