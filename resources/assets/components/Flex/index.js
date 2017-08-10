@@ -22,19 +22,19 @@ Flex.defaultProps = {
   className: null,
 };
 
-export const FlexCell = ({ classNames = null, width = [], children }) => (
-  <div className={classnames('flex__cell', classNames, modifiers(width))}>
+export const FlexCell = ({ className = null, width = [], children }) => (
+  <div className={classnames('flex__cell', className, modifiers(width))}>
     {children}
   </div>
 );
 
 FlexCell.propTypes = {
-  classNames: PropTypes.string,
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
   width: PropTypes.oneOf(['full', 'half', 'one-third', 'two-thirds']),
 };
 
 FlexCell.defaultProps = {
-  classNames: null,
+  className: null,
   width: null,
 };

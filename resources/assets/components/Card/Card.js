@@ -10,8 +10,8 @@ const renderHeader = title => (
   </header>
 );
 
-const Card = ({ children, classNames = '', title = null }) => (
-  <article className={classnames('card', classNames)}>
+const Card = ({ children, className = '', title = null }) => (
+  <article className={classnames('card', className)}>
     { title ? renderHeader(title) : null }
 
     { children }
@@ -24,12 +24,12 @@ Card.propTypes = {
     PropTypes.array,
     PropTypes.object,
   ]).isRequired,
-  classNames: PropTypes.string,
+  className: PropTypes.string,
   title: PropTypes.string,
 };
 
 Card.defaultProps = {
-  classNames: null,
+  className: null,
 };
 
 export default Card;

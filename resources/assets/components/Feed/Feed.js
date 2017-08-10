@@ -14,7 +14,7 @@ import Block from '../Block';
  * @returns {XML}
  */
 const renderFeedItem = (block, index) => (
-  <FlexCell classNames="padded" key={`${block.id}-${index}`} width={block.fields.displayOptions}>
+  <FlexCell className="padded" key={`${block.id}-${index}`} width={block.fields.displayOptions}>
     <Block json={block} />
   </FlexCell>
 );

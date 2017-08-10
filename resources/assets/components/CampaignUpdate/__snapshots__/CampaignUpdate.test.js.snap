@@ -2,12 +2,12 @@
 
 exports[`it generates a campaign update snapshot 1`] = `
 <Card
-  classNames="rounded bordered"
+  className="rounded bordered"
   id="1234567890"
   title="Campaign Update"
 >
   <Markdown
-    classNames="padded"
+    className="padded"
   >
     Donec id elit non mi porta gravida at eget metus.
   </Markdown>
