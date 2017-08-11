@@ -13,14 +13,6 @@ const CampaignUpdateBlock = (props) => {
 
   const isTweet = content.length < 144;
 
-  const share = (
-    <ShareContainer
-      link={props.shareLink}
-      variant="icon"
-      parentSource="campaign-update"
-    />
-  );
-
   return (
     <BlockWrapper title="Campaign Update" id={props.id}>
       { isTweet ? null : <h2>{title}</h2> }
@@ -36,7 +28,16 @@ const CampaignUpdateBlock = (props) => {
           author={additionalContent.author}
           jobTitle={additionalContent.jobTitle}
           avatar={additionalContent.avatar}
-          share={share}
+          className="fl-left"
+        />
+        : null }
+
+      { props.shareLink ?
+        <ShareContainer
+          link={props.shareLink}
+          variant="icon"
+          parentSource="campaign-update"
+          className="fl-right cl-none"
         />
         : null }
     </BlockWrapper>

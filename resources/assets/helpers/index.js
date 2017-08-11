@@ -282,6 +282,24 @@ export function makeHash(string) {
 }
 
 /**
+ * Make a shareable link to a content item.
+ *
+ * @param  {Object} state
+ * @param  {String} key  An id or a slug for the content.
+ * @param  {String} type
+ * @return {String}
+ */
+export function makeShareLink(type, options = {}) {
+  switch (type) {
+    case 'campaigns':
+      return `${options.domain}/us/campaigns/${options.slug}/blocks/${options.key}`;
+
+    default:
+      throw new Error('Please provide an expected section type for generating the link.');
+  }
+}
+
+/**
  * Get the days between two Date objects
  * @see  http://stackoverflow.com/questions/2627473/how-to-calculate-the-number-of-days-between-two-dates-using-javascript
  *

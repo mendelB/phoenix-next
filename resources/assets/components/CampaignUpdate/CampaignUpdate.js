@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import Card from '../Card';
 import Byline from '../Byline';
 import Markdown from '../Markdown';
+import { ShareContainer } from '../Share';
 
-const CampaignUpdate = ({ id, author, content }) => {
+const CampaignUpdate = ({ id, author, content, shareLink }) => {
   const { avatar, jobTitle, name } = author.fields;
 
   return (
@@ -14,11 +15,18 @@ const CampaignUpdate = ({ id, author, content }) => {
         {content}
       </Markdown>
 
-      <footer className="padded">
+      <footer className="padded clearfix">
         <Byline
           author={name}
           avatar={avatar || undefined}
           jobTitle={jobTitle || undefined}
+          className="fl-left"
+        />
+        <ShareContainer
+          link={shareLink}
+          variant="icon"
+          parentSource="campaignUpdate"
+          className="fl-right cl-none"
         />
       </footer>
     </Card>
@@ -33,6 +41,7 @@ CampaignUpdate.propTypes = {
     fields: PropTypes.object,
   }).isRequired,
   content: PropTypes.string.isRequired,
+  shareLink: PropTypes.string.isRequired,
 };
 
 export default CampaignUpdate;
