@@ -38,6 +38,30 @@ h1, h2, h3, p {
   border: 1px solid $primary-border-color;
 }
 
+.cl-both {
+  clear: both;
+}
+
+.cl-left {
+  clear: left;
+}
+
+.cl-right {
+  clear: right;
+}
+
+.cl-none {
+  clear: none;
+}
+
+.fl-left {
+  float: left;
+}
+
+.fl-right {
+  float: right;
+}
+
 .padded {
   padding: $half-spacing;
 }
