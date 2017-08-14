@@ -1,7 +1,7 @@
 /* global window */
 
 import { connect } from 'react-redux';
-import CampaignUpdateBlock from './CampaignUpdateBlock';
+import CampaignUpdate from './CampaignUpdate';
 import { makeShareLink } from '../../helpers';
 
 const mapStateToProps = (state, props) => ({
@@ -12,4 +12,4 @@ const mapStateToProps = (state, props) => ({
   }),
 });
 
-export default connect(mapStateToProps)(CampaignUpdateBlock);
+export default connect(mapStateToProps)(CampaignUpdate);

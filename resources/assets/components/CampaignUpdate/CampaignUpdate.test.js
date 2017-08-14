@@ -16,6 +16,7 @@ const component = shallow(
     id="1234567890"
     author={author}
     content="Donec id elit non mi porta gravida at eget metus."
+    shareLink="http://example.com/link-to-content"
   />,
 );
 

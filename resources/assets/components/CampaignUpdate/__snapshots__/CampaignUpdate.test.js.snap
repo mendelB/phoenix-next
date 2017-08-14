@@ -12,13 +12,20 @@ exports[`it generates a campaign update snapshot 1`] = `
     Donec id elit non mi porta gravida at eget metus.
   </Markdown>
   <footer
-    className="padded"
+    className="padded clearfix"
   >
     <Byline
       author="Aang"
       avatar="http://example.com/avatar-aang.jpg"
+      className="float-left"
       jobTitle="The Last Airbender"
       share={null}
+    />
+    <Connect(Share)
+      className="float-right clear-none"
+      link="http://example.com/link-to-content"
+      parentSource="campaignUpdate"
+      variant="icon"
     />
   </footer>
 </Card>
