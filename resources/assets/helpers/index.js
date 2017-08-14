@@ -288,8 +288,9 @@ export function makeHash(string) {
  * @param  {String} key  An id or a slug for the content.
  * @param  {String} type
  * @return {String}
+ * @flow
  */
-export function makeShareLink(type, options = {}) {
+export function makeShareLink(type, options: { domain: string, slug?: string, key: string }) {
   switch (type) {
     case 'campaigns':
       return `${options.domain}/us/campaigns/${options.slug}/blocks/${options.key}`;
