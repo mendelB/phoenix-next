@@ -13,12 +13,12 @@ exports[`Campaign Update Block with additional content as tweet snapshot test 1`
   <Byline
     author="Braümhilda Snosages"
     avatar={Object {}}
-    className="fl-left"
+    className="float-left"
     jobTitle="DoSomething.org Staff"
     share={null}
   />
   <Connect(Share)
-    className="fl-right cl-none"
+    className="float-right clear-none"
     link="http://example.com/link-to-content"
     parentSource="campaign-update"
     variant="icon"
@@ -42,12 +42,12 @@ exports[`Campaign Update Block with additional content snapshot test 1`] = `
   <Byline
     author="Braümhilda Snosages"
     avatar={Object {}}
-    className="fl-left"
+    className="float-left"
     jobTitle="DoSomething.org Staff"
     share={null}
   />
   <Connect(Share)
-    className="fl-right cl-none"
+    className="float-right clear-none"
     link="http://example.com/link-to-content"
     parentSource="campaign-update"
     variant="icon"
@@ -69,7 +69,7 @@ exports[`Campaign Update Block with no additional content snapshot test 1`] = `
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
   </Markdown>
   <Connect(Share)
-    className="fl-right cl-none"
+    className="float-right clear-none"
     link="http://example.com/link-to-content"
     parentSource="campaign-update"
     variant="icon"

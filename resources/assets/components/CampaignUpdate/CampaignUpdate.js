@@ -20,13 +20,13 @@ const CampaignUpdate = ({ id, author, content, shareLink }) => {
           author={name}
           avatar={avatar || undefined}
           jobTitle={jobTitle || undefined}
-          className="fl-left"
+          className="float-left"
         />
         <ShareContainer
           link={shareLink}
           variant="icon"
           parentSource="campaignUpdate"
-          className="fl-right cl-none"
+          className="float-right clear-none"
         />
       </footer>
     </Card>

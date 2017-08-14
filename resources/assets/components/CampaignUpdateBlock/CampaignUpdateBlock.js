@@ -28,7 +28,7 @@ const CampaignUpdateBlock = (props) => {
           author={additionalContent.author}
           jobTitle={additionalContent.jobTitle}
           avatar={additionalContent.avatar}
-          className="fl-left"
+          className="float-left"
         />
         : null }
 
@@ -37,7 +37,7 @@ const CampaignUpdateBlock = (props) => {
           link={props.shareLink}
           variant="icon"
           parentSource="campaign-update"
-          className="fl-right cl-none"
+          className="float-right clear-none"
         />
         : null }
     </BlockWrapper>

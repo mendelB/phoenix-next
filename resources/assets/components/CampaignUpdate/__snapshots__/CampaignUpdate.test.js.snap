@@ -17,12 +17,12 @@ exports[`it generates a campaign update snapshot 1`] = `
     <Byline
       author="Aang"
       avatar="http://example.com/avatar-aang.jpg"
-      className="fl-left"
+      className="float-left"
       jobTitle="The Last Airbender"
       share={null}
     />
     <Connect(Share)
-      className="fl-right cl-none"
+      className="float-right clear-none"
       link="http://example.com/link-to-content"
       parentSource="campaignUpdate"
       variant="icon"
