@@ -4,15 +4,15 @@ import classnames from 'classnames';
 
 import './card.scss';
 
-const renderHeader = title => (
+const renderHeader = (title, link) => (
   <header className="card__title">
-    <h1>{title}</h1>
+    { link ? <h1><a href={link}>{title}</a></h1> : <h1>{title}</h1> }
   </header>
 );
 
-const Card = ({ children, className = '', title = null }) => (
+const Card = ({ children, className = '', link = null, title = null }) => (
   <article className={classnames('card', className)}>
-    { title ? renderHeader(title) : null }
+    { title ? renderHeader(title, link) : null }
 
     { children }
   </article>
@@ -25,11 +25,13 @@ Card.propTypes = {
     PropTypes.object,
   ]).isRequired,
   className: PropTypes.string,
+  link: PropTypes.string,
   title: PropTypes.string,
 };
 
 Card.defaultProps = {
   className: null,
+  link: null,
 };
 
 export default Card;

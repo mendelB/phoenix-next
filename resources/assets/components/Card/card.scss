@@ -15,4 +15,13 @@
     font-size: $font-regular;
     text-transform: uppercase;
   }
+
+  a {
+    color: $black;
+
+    &:hover {
+      color: rgba($black, 0.75);  // @TODO should be a variable
+      text-decoration: none;
+    }
+  }
 }
