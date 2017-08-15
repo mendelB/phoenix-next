@@ -1,19 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../Card';
+import Markdown from '../Markdown';
+import Question from './Question';
+import { makeHash } from '../../helpers';
 
-const Quiz = ({ content }) => (
-  <Card>
-    <div className="quiz">
-      <h1>{content.title}</h1>
-    </div>
-  </Card>
+const Quiz = ({ fields }) => (
+  <div className="quiz">
+    <h1 className="quiz__title">{fields.title}</h1>
+    { fields.introduction ? <Markdown>{fields.introduction}</Markdown> : null }
+    { fields.json.questions.map(question => (
+      <Question key={makeHash(question.title)} question={question} />
+    )) }
+    { fields.conclusion ? <Markdown>{fields.conclusion}</Markdown> : null }
+  </div>
 );
 
 Quiz.propTypes = {
-  content: PropTypes.shape({
+  fields: PropTypes.shape({
     title: PropTypes.string,
     slug: PropTypes.string,
+    introduction: PropTypes.string,
+    conclusion: PropTypes.string,
+    json: PropTypes.object,
   }).isRequired,
 };
 
