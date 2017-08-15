@@ -1,5 +1,3 @@
-/* eslint-disable react/no-danger */
-
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
@@ -21,12 +19,12 @@ class Embed extends React.Component {
   }
 
   render() {
-    let embed = <div className="spinner"/>;
+    let embed = <div className="spinner" />;
 
     // If an <iframe> code snippet is provided, use that. Otherwise, build preview card.
     if (this.state.code) {
       const embedHtml = { __html: this.state.code };
-      embed = (<div className="media-video" dangerouslySetInnerHTML={embedHtml} />);
+      embed = (<div className="media-video" dangerouslySetInnerHTML={embedHtml} />); //  eslint-disable-line react/no-danger
     } else if (this.state.title && this.state.url) {
       embed = (
         <a href={this.state.url} target="_blank" rel="noopener noreferrer">
@@ -43,9 +41,10 @@ class Embed extends React.Component {
       <div className={classnames('embed', this.props.className)}>
         <div className={classnames('wrapper', {
           'flex-center-xy': ! this.state.title,
-          'bordered': this.state.title,
-          'rounded': this.state.title
-        })}>
+          'bordered': this.state.title, // eslint-disable-line quote-props
+          'rounded': this.state.title, // eslint-disable-line quote-props
+        })}
+        >
           {embed}
         </div>
       </div>
@@ -54,7 +53,12 @@ class Embed extends React.Component {
 }
 
 Embed.propTypes = {
+  className: PropTypes.string,
   url: PropTypes.string.isRequired,
+};
+
+Embed.defaultProps = {
+  className: null,
 };
 
 export default Embed;
