@@ -4,7 +4,6 @@ import Quiz from './Quiz';
 import {
   pickQuizAnswer,
   compareQuizAnswer,
-  startQuiz,
   viewQuizResult,
 } from '../../actions';
 
@@ -26,7 +25,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const actions = {
-  pickQuizAnswer, compareQuizAnswer, startQuiz, viewQuizResult,
+  pickQuizAnswer, compareQuizAnswer, viewQuizResult,
 };
 
 // Export the container component.
