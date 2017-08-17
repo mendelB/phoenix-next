@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Markdown from '../Markdown';
 import Question from './Question';
 
-const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer }) => (
+const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, compareQuizAnswer }) => (
   <div className="quiz">
     <h1 className="quiz__title">{fields.title}</h1>
     {data.shouldSeeResult ? null : (
@@ -22,6 +22,10 @@ const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer }) => (
       <button onClick={() => viewQuizResult(id)}>get my results</button>
     )}
     { data.shouldSeeResult ? <Markdown>{fields.conclusion}</Markdown> : null }
+    { data.shouldSeeResult && ! data.shouldCompare ? (
+      <button onClick={() => compareQuizAnswer(id)}>compare your results</button>
+    ) : null }
+    { data.shouldCompare ? <p>TODO, pretend its the comparison</p> : null }
   </div>
 );
 
@@ -43,6 +47,7 @@ Quiz.propTypes = {
   }).isRequired,
   viewQuizResult: PropTypes.func.isRequired,
   pickQuizAnswer: PropTypes.func.isRequired,
+  compareQuizAnswer: PropTypes.func.isRequired,
 };
 
 Quiz.defaultProps = {
@@ -59,19 +64,4 @@ Quiz.defaultProps = {
   },
 };
 
-class QuizLoader extends React.Component {
-  componentDidMount() {
-    this.props.startQuiz(this.props.id);
-  }
-
-  render() {
-    return <Quiz {...this.props} />;
-  }
-}
-
-QuizLoader.propTypes = {
-  id: PropTypes.string.isRequired,
-  startQuiz: PropTypes.func.isRequired,
-};
-
-export default QuizLoader;
+export default Quiz;

@@ -1,14 +1,16 @@
 import { find } from 'lodash';
 import {
+  queueEvent,
   PICK_QUIZ_ANSWER,
   COMPARE_QUIZ_ANSWER,
   VIEW_QUIZ_RESULT,
-  START_QUIZ,
+  LOAD_PREVIOUS_QUIZ_STATE,
   QUIZ_ERROR,
 } from '../actions';
+import { QUIZ_STORAGE_KEY, set, get, remove } from '../helpers/storage';
 
-export function startQuiz(quizId) {
-  return { type: START_QUIZ, quizId };
+export function loadPreviousQuizState(quizId, questions) {
+  return { type: LOAD_PREVIOUS_QUIZ_STATE, quizId, questions };
 }
 
 export function pickQuizAnswer(quizId, questionId, award) {
@@ -24,7 +26,7 @@ export function viewQuizResult(quizId) {
     const quizData = getState().quiz[quizId];
     const quizContent = find(getState().campaign.quizzes, { id: quizId });
 
-    const totalAnswers = Object.values(quizData.questions).length;
+    const totalAnswers = quizData ? Object.values(quizData.questions).length : 0;
     const totalQuestions = quizContent.fields.questions.length;
 
     if (totalAnswers < totalQuestions) {
@@ -36,5 +38,21 @@ export function viewQuizResult(quizId) {
 }
 
 export function compareQuizAnswer(quizId) {
-  return { type: COMPARE_QUIZ_ANSWER, quizId }; // TODO
+  return (dispatch, getState) => {
+    // If the user is not logged in, handle this action later.
+    if (! getState().user.id) {
+      const quizData = getState().quiz[quizId];
+      set(quizId, QUIZ_STORAGE_KEY, quizData.questions);
+
+      return dispatch(queueEvent('compareQuizAnswer', quizId));
+    }
+
+    const questions = get(quizId, QUIZ_STORAGE_KEY);
+    if (questions) {
+      dispatch(loadPreviousQuizState(quizId, questions));
+      remove(quizId, QUIZ_STORAGE_KEY);
+    }
+
+    return dispatch({ type: COMPARE_QUIZ_ANSWER, quizId });
+  };
 }
