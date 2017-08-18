@@ -13,8 +13,6 @@ const CampaignUpdate = ({ id, author, content, link, shareLink }) => {
 
   const isTweet = content.length < 144;
 
-  console.log(isTweet);
-
   return (
     <Card id={id} className="rounded bordered" link={shareLink} title="Campaign Update">
       <Markdown className={classnames('padded', { 'font-size-lg': isTweet })}>

@@ -21,9 +21,7 @@ const CampaignUpdateBlock = (props) => {
         {content}
       </Markdown>
 
-      <div className="padding-bottom-lg">
-        { link ? <Embed url={link} /> : null }
-      </div>
+      { link ? <div className="padding-bottom-lg"><Embed url={link} /></div> : null }
 
       { additionalContent ?
         <Byline
