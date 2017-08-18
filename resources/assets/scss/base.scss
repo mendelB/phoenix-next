@@ -87,6 +87,14 @@ h1, h2, h3, p {
   padding: $half-spacing;
 }
 
+.padding-bottom-md {
+  padding-bottom: $half-spacing;
+}
+
+.padding-bottom-lg {
+  padding-bottom: $base-spacing;
+}
+
 .padded-md { // @TODO rename to .padding-md
   padding: $half-spacing;
 }
