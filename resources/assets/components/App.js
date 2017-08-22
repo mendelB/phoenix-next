@@ -1,11 +1,12 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { get } from 'lodash';
 import { Provider } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
+
 import { initializeStore } from '../store';
 import { isCampaignClosed } from '../helpers';
-
 import { paths } from '../helpers/navigation';
 import ChromeContainer from '../containers/ChromeContainer';
 import { FeedContainer } from './Feed';
@@ -24,7 +25,7 @@ const chrome = component => wrap(ChromeContainer, component);
 const App = ({ store, history }) => {
   initializeStore(store);
 
-  const endDate = store.getState().campaign.endDate.date;
+  const endDate = get(store.getState().campaign.endDate, 'date', null);
   const actionPage = isCampaignClosed(endDate) ? null : (
     <Route path={paths.action} component={chrome(ActionPageContainer)} />
   );

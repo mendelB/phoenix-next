@@ -347,5 +347,9 @@ export function getFormattedScreenSize(screenWidth = window.innerWidth) {
  * @return {Boolean}
  */
 export function isCampaignClosed(endDate) {
+  if (! endDate) {
+    return false;
+  }
+
   return new Date(endDate) - new Date() < 0;
 }
