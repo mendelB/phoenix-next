@@ -353,3 +353,14 @@ export function isCampaignClosed(endDate) {
 
   return new Date(endDate) - new Date() < 0;
 }
+
+/**
+ * Search an array of objects for the given id.
+ *
+ * @param  {Array}  array
+ * @param  {String} compareId
+ * @return {Object}
+ */
+export function findById(array, compareId) {
+  return array.find(({ id }) => id === compareId);
+}
