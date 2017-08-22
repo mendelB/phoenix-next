@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { get } from 'lodash';
 import { Provider } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
-import { get } from 'lodash';
 
 import { initializeStore } from '../store';
 import { isCampaignClosed } from '../helpers';

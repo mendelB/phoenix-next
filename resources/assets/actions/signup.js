@@ -1,5 +1,6 @@
-import { Phoenix } from '@dosomething/gateway';
+import { get } from 'lodash';
 import { push } from 'react-router-redux';
+import { Phoenix } from '@dosomething/gateway';
 import { isCampaignClosed } from '../helpers';
 import {
   SIGNUP_CREATED,
@@ -125,7 +126,8 @@ export function clickedSignUp(campaignId, metadata, shouldRedirectToActionTab = 
         dispatch(trackEvent('signup created', metadata));
 
         // Take user to the action page if campaign is open.
-        const isClosed = isCampaignClosed(getState().campaign.endDate.date);
+        const endDate = get(getState().campaign.endDate, 'date', null);
+        const isClosed = isCampaignClosed(endDate);
         if (shouldRedirectToActionTab && ! isClosed) {
           dispatch(openModal());
           dispatch(push('/action'));
