@@ -27,11 +27,13 @@ const Chrome = props => (
       clickedSignUp={props.clickedSignUp}
     />
     <div className="main">
-      <Dashboard
-        totalCampaignSignups={props.totalCampaignSignups}
-        content={props.dashboard}
-        endDate={props.endDate}
-      />
+      { props.dashboard ?
+        <Dashboard
+          totalCampaignSignups={props.totalCampaignSignups}
+          content={props.dashboard}
+          endDate={props.endDate}
+        />
+        : null }
       <TabbedNavigationContainer />
       <FeedEnclosure>
         {props.children}
