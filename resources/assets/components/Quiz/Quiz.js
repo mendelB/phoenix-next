@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from '../Markdown';
 import Question from './Question';
+import Share from '../Share';
 import './quiz.scss';
 
 const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, compareQuizAnswer }) => (
@@ -15,7 +16,7 @@ const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, compareQuizAns
         key={question.id}
         pickQuizAnswer={pickQuizAnswer}
         quizId={id}
-        activeAnswer={data.questions[question.id]}
+        activeAnswer={data.questions ? data.questions[question.id] : null}
         {...question}
       />
     ))}
@@ -29,10 +30,16 @@ const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, compareQuizAns
     { data.shouldSeeResult ? (
       <Markdown className="padding-bottom-lg">{fields.conclusion}</Markdown>
     ) : null }
+    { data.shouldSeeResult ? (
+      <Share
+        className="quiz__share"
+        parentSource="quiz"
+      />
+    ) : null }
     { data.shouldSeeResult && ! data.shouldCompare ? (
       <button
         onClick={() => compareQuizAnswer(id)}
-        className="button quiz__submit"
+        className="button quiz__submit margin-lg"
       >compare your results</button>
     ) : null }
     { data.shouldCompare ? <Markdown>{fields.comparison}</Markdown> : null }
