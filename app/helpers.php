@@ -281,3 +281,24 @@ function get_client_environment_vars()
         'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
     ];
 }
+
+/**
+ * Get the presentation values we should package with our
+ * Northstar authorization requests.
+ *
+ * @param  Campaign $campaign
+ * @return array
+ */
+function get_login_query($campaign = null)
+{
+    $title = $campaign ? $campaign->title : null;
+
+    return [
+        'destination' => $title,
+        'options' => [
+            'title' => $title,
+            'coverImage' => $campaign ? get_image_url($campaign->coverImage) : null,
+            'callToAction' => $campaign ? $campaign->callToAction : null,
+        ],
+    ];
+}
