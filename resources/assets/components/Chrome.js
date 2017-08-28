@@ -57,7 +57,11 @@ Chrome.propTypes = {
     description: PropTypes.string,
     url: PropTypes.string,
   }).isRequired,
-  dashboard: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  dashboard: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    fields: PropTypes.object,
+  }),
   endDate: PropTypes.shape({
     date: PropTypes.string,
     timezone: PropTypes.string,
@@ -77,6 +81,7 @@ Chrome.propTypes = {
 };
 
 Chrome.defaultProps = {
+  dashboard: null,
   isAffiliated: false,
 };
 
