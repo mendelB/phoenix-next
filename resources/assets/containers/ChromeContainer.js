@@ -24,6 +24,7 @@ const mapStateToProps = (state, props) => ({
   noun: get(state.campaign.additionalContent, 'noun'),
   verb: get(state.campaign.additionalContent, 'verb'),
   shouldShowModal: state.modal.shouldShowModal,
+  template: state.campaign.template,
 });
 
 /**

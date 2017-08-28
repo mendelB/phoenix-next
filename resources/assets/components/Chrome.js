@@ -25,6 +25,8 @@ const Chrome = props => (
       coverImage={props.coverImage}
       legacyCampaignId={props.legacyCampaignId}
       clickedSignUp={props.clickedSignUp}
+      endDate={props.endDate}
+      template={props.template}
     />
     <div className="main">
       { props.dashboard ?
