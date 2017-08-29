@@ -6,12 +6,16 @@ const LegacyTemplate = (props) => {
   const {
     title,
     subtitle,
-    backgroundImageStyle,
+    backgroundImageUrl,
     isAffiliated,
     legacyCampaignId,
     clickedSignUp,
     endDate,
   } = props;
+
+  const backgroundImageStyle = {
+    backgroundImage: `url(${backgroundImageUrl})`,
+  };
 
   return (
     <header role="banner" className="header -hero header--action has-promotions" style={backgroundImageStyle}>
@@ -27,7 +31,7 @@ const LegacyTemplate = (props) => {
 };
 
 LegacyTemplate.propTypes = {
-  backgroundImageStyle: PropTypes.string.isRequired,
+  backgroundImageUrl: PropTypes.string.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
   endDate: PropTypes.shape({
     date: PropTypes.string,

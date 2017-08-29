@@ -8,11 +8,15 @@ const MosaicTemplate = (props) => {
     title,
     subtitle,
     blurb,
-    backgroundImageStyle,
+    backgroundImageUrl,
     isAffiliated,
     legacyCampaignId,
     clickedSignUp,
   } = props;
+
+  const backgroundImageStyle = {
+    backgroundImage: `url(${backgroundImageUrl})`,
+  };
 
   return (
     <header role="banner" className="lede-banner">
@@ -34,9 +38,7 @@ const MosaicTemplate = (props) => {
 };
 
 MosaicTemplate.propTypes = {
-  backgroundImageStyle: PropTypes.shape({
-    backgroundImage: PropTypes.string.isRequired,
-  }).isRequired,
+  backgroundImageUrl: PropTypes.string.isRequired,
   blurb: PropTypes.string.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
   isAffiliated: PropTypes.bool.isRequired,

@@ -10,16 +10,18 @@ import './lede-banner.scss';
 const LedeBanner = (props) => {
   const { coverImage, template } = props;
 
-  const backgroundImageStyle = {
-    backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
-  };
+  // const backgroundImageStyle = {
+  //   backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
+  // };
+
+  const backgroundImageUrl = contentfulImageUrl(coverImage.url, '800', '600', 'fill');
 
   switch (template) {
     case 'legacy':
-      return <LegacyTemplate backgroundImageStyle={backgroundImageStyle} {...props} />;
+      return <LegacyTemplate backgroundImageUrl={backgroundImageUrl} {...props} />;
 
     default:
-      return <MosaicTemplate backgroundImageStyle={backgroundImageStyle} {...props} />;
+      return <MosaicTemplate backgroundImageUrl={backgroundImageUrl} {...props} />;
   }
 };
 
