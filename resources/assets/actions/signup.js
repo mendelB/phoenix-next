@@ -8,7 +8,7 @@ import {
   SIGNUP_NOT_FOUND,
   SIGNUP_PENDING,
   SET_TOTAL_SIGNUPS,
-  queueEvent,
+  queueGenericAuthEvent,
   trackEvent,
   addNotification,
   openModal,
@@ -107,7 +107,7 @@ export function clickedSignUp(campaignId, metadata, shouldRedirectToActionTab = 
   return (dispatch, getState) => {
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
-      return dispatch(queueEvent('clickedSignUp', campaignId, metadata));
+      return dispatch(queueGenericAuthEvent('clickedSignUp', campaignId, metadata));
     }
 
     // If we already have a signup, just go to the action page.
