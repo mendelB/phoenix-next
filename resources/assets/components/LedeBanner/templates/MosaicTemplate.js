@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Markdown from '../../Markdown';
 
@@ -10,7 +11,7 @@ const MosaicTemplate = (props) => {
     backgroundImageStyle,
     isAffiliated,
     legacyCampaignId,
-    clickedSignUp
+    clickedSignUp,
   } = props;
 
   return (
@@ -25,11 +26,23 @@ const MosaicTemplate = (props) => {
 
           <Markdown className="lede-banner__blurb">{blurb}</Markdown>
 
-          { isAffiliated ? null : <button className="button" onClick={() => clickedSignUp(legacyCampaignId, { source: 'lede banner|text: Join us' })}>Join us</button> }
+          { isAffiliated ? null : <button className="button" onClick={() => clickedSignUp(legacyCampaignId, { source: 'mosaic lede banner|text: Join us' })}>Join us</button> }
         </div>
       </div>
     </header>
   );
+};
+
+MosaicTemplate.propTypes = {
+  backgroundImageStyle: PropTypes.shape({
+    backgroundImage: PropTypes.string.isRequired,
+  }).isRequired,
+  blurb: PropTypes.string.isRequired,
+  clickedSignUp: PropTypes.func.isRequired,
+  isAffiliated: PropTypes.bool.isRequired,
+  legacyCampaignId: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default MosaicTemplate;

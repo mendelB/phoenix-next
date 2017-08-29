@@ -73,6 +73,7 @@ Chrome.propTypes = {
   isAffiliated: PropTypes.bool,
   signups: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   subtitle: PropTypes.string.isRequired,
+  template: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   totalCampaignSignups: PropTypes.number.isRequired,
   user: PropTypes.shape({
