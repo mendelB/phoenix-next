@@ -5,7 +5,7 @@ import Question from './Question';
 import Share from '../Share';
 import './quiz.scss';
 
-const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, compareQuizAnswer }) => (
+const Quiz = ({ id, fields, data, completeQuiz, pickQuizAnswer }) => (
   <div className="quiz">
     <h1 className="quiz__title">{fields.title}</h1>
     {data.shouldSeeResult ? null : (
@@ -21,28 +21,21 @@ const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, compareQuizAns
       />
     ))}
     { data.error ? <p className="quiz__error">{data.error}</p> : null }
-    {data.shouldSeeResult ? null : (
+    { ! data.shouldSeeResult ? (
       <button
-        onClick={() => viewQuizResult(id)}
+        onClick={() => completeQuiz(id)}
         className="button quiz__submit"
       >get my results</button>
-    )}
+    ) : null}
     { data.shouldSeeResult ? (
-      <Markdown className="padding-bottom-lg">{fields.conclusion}</Markdown>
+      <div>
+        <Markdown className="padding-bottom-lg">{fields.conclusion}</Markdown>
+        <Share
+          className="quiz__share"
+          parentSource="quiz"
+        />
+      </div>
     ) : null }
-    { data.shouldSeeResult ? (
-      <Share
-        className="quiz__share"
-        parentSource="quiz"
-      />
-    ) : null }
-    { data.shouldSeeResult && ! data.shouldCompare ? (
-      <button
-        onClick={() => compareQuizAnswer(id)}
-        className="button quiz__submit margin-lg"
-      >compare your results</button>
-    ) : null }
-    { data.shouldCompare ? <Markdown>{fields.comparison}</Markdown> : null }
   </div>
 );
 
@@ -58,19 +51,16 @@ Quiz.propTypes = {
     questions: PropTypes.array,
   }).isRequired,
   data: PropTypes.shape({
-    shouldCompare: PropTypes.bool,
     shouldSeeResult: PropTypes.bool,
     questions: PropTypes.object,
     error: PropTypes.string,
   }).isRequired,
-  viewQuizResult: PropTypes.func.isRequired,
+  completeQuiz: PropTypes.func.isRequired,
   pickQuizAnswer: PropTypes.func.isRequired,
-  compareQuizAnswer: PropTypes.func.isRequired,
 };
 
 Quiz.defaultProps = {
   data: {
-    shouldCompare: false,
     shouldSeeResult: false,
     questions: {},
     error: null,
