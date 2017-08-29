@@ -9,6 +9,7 @@ import {
   SIGNUP_PENDING,
   SET_TOTAL_SIGNUPS,
   queueGenericAuthEvent,
+  queueFacebookAuthEvent,
   trackEvent,
   addNotification,
   openModal,
@@ -107,7 +108,7 @@ export function clickedSignUp(campaignId, metadata, shouldRedirectToActionTab = 
   return (dispatch, getState) => {
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
-      return dispatch(queueGenericAuthEvent('clickedSignUp', campaignId, metadata));
+      return dispatch(queueGenericAuthEvent('clickedSignUp', campaignId, metadata, shouldRedirectToActionTab));
     }
 
     // If we already have a signup, just go to the action page.
@@ -138,5 +139,18 @@ export function clickedSignUp(campaignId, metadata, shouldRedirectToActionTab = 
         }
       }
     });
+  };
+}
+
+// Async Action: check if user is signed in, if not send to Facebook,
+// otherwise defer to signup action.
+export function clickedFacebookSignup(campaignId, metadata, shouldRedirectToActionTab = true) {
+  return (dispatch, getState) => {
+    // If the user is not logged in, handle this action later.
+    if (! getState().user.id) {
+      return dispatch(queueFacebookAuthEvent('clickedSignUp', campaignId, metadata, shouldRedirectToActionTab));
+    }
+
+    return dispatch(clickedSignUp(campaignId, metadata, shouldRedirectToActionTab));
   };
 }
