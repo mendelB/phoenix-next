@@ -25,6 +25,8 @@ const Chrome = props => (
       coverImage={props.coverImage}
       legacyCampaignId={props.legacyCampaignId}
       clickedSignUp={props.clickedSignUp}
+      endDate={props.endDate}
+      template={props.template}
     />
     <div className="main">
       { props.dashboard ?
@@ -71,6 +73,7 @@ Chrome.propTypes = {
   isAffiliated: PropTypes.bool,
   signups: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   subtitle: PropTypes.string.isRequired,
+  template: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   totalCampaignSignups: PropTypes.number.isRequired,
   user: PropTypes.shape({

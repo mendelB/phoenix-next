@@ -46,6 +46,7 @@
     "history": "^4.6.2",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
+    "moment": "^2.18.1",
     "prop-types": "^15.5.8",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

@@ -148,7 +148,7 @@ class Campaign extends Entity implements JsonSerializable
             'legacyCampaignId' => $this->legacyCampaignId,
             'legacyCampaignRunId' => get_legacy_campaign_data($this->legacyCampaignId, 'campaign_runs.current.en.id'),
             'type' => $this->entry->getContentType()->getId(),
-            'template' => $this->template->first() ?: 'community',
+            'template' => $this->template->first() ?: 'mosaic',
             'title' => $this->title,
             'slug' => $this->slug,
             'endDate' => $this->endDate,
