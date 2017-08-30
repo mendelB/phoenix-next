@@ -291,14 +291,16 @@ function get_client_environment_vars()
  */
 function get_login_query($campaign = null)
 {
-    $title = $campaign ? $campaign->title : null;
+    if (! $campaign) {
+        return [];
+    }
 
     return [
-        'destination' => $title,
+        'destination' => $campaign->title,
         'options' => [
-            'title' => $title,
-            'coverImage' => $campaign ? get_image_url($campaign->coverImage) : null,
-            'callToAction' => $campaign ? $campaign->callToAction : null,
+            'title' => $campaign->title,
+            'coverImage' => get_image_url($campaign->coverImage),
+            'callToAction' => $campaign->callToAction,
         ],
     ];
 }

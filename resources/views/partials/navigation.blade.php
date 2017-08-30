@@ -25,7 +25,11 @@
                         <li><a href="{{ route('logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
                     </ul>
                 @else
-                    <a href="{{ route('login', get_login_query($campaign)) }}">Log In</a>
+                    @if (isset($campaign))
+                        <a href="{{ route('login', get_login_query($campaign)) }}">Log In</a>
+                    @else
+                        <a href="{{ route('login') }}">Log In</a>
+                    @endif
                 @endif
             </li>
         </ul>
