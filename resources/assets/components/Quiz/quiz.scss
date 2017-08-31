@@ -26,10 +26,6 @@
     margin-bottom: $base-spacing * 2;
   }
 
-  .quiz__submit {
-    width: 100%;
-  }
-
   .question {
     margin: $base-spacing 0;
 
@@ -68,6 +64,30 @@
     .-active {
       border-color: $blue;
       border-width: 2px;
+    }
+  }
+
+  .conclusion {
+    margin-bottom: $base-spacing;
+
+    .conclusion__item {
+      display: inline-block;
+      float: left;
+      box-sizing: border-box;
+
+      @include media($tablet) {
+        &.-one-third {
+          width: 33%;
+        }
+
+        &.-two-thirds {
+          width: 66%;
+        }
+      }
+
+      button {
+        width: 100%;
+      }
     }
   }
 }
