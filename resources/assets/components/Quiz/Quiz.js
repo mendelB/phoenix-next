@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from '../Markdown';
 import Question from './Question';
-import Share from '../Share';
+import { ShareContainer } from '../Share';
 import Conclusion from './Conclusion';
 import './quiz.scss';
 
@@ -35,7 +35,7 @@ const Quiz = ({ id, fields, data, completeQuiz, pickQuizAnswer }) => (
     ) : null}
     { data.shouldSeeResult ? (
       <Conclusion callToAction={fields.conclusion}>
-        <Share
+        <ShareContainer
           className="quiz__share"
           parentSource="quiz"
         />
