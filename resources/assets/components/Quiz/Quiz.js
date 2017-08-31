@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 import Markdown from '../Markdown';
 import Question from './Question';
 import Share from '../Share';
+import Conclusion from './Conclusion';
 import './quiz.scss';
 
 const Quiz = ({ id, fields, data, completeQuiz, pickQuizAnswer }) => (
   <div className="quiz">
-    <h1 className="quiz__title">{fields.title}</h1>
-    {data.shouldSeeResult ? null : (
-      <Markdown>{fields.introduction}</Markdown>
-    )}
+    <div className="quiz__introduction">
+      <h1 className="quiz__title">Quiz</h1>
+      <h2 className="quiz__subtitle">{fields.title}</h2>
+      {data.shouldSeeResult ? null : (
+        <Markdown className="quiz__description">{fields.introduction}</Markdown>
+      )}
+    </div>
     {data.shouldSeeResult ? null : (fields.questions).map(question => (
       <Question
         key={question.id}
@@ -22,19 +26,20 @@ const Quiz = ({ id, fields, data, completeQuiz, pickQuizAnswer }) => (
     ))}
     { data.error ? <p className="quiz__error">{data.error}</p> : null }
     { ! data.shouldSeeResult ? (
-      <button
-        onClick={() => completeQuiz(id)}
-        className="button quiz__submit"
-      >get my results</button>
+      <Conclusion callToAction={fields.callToAction}>
+        <button
+          onClick={() => completeQuiz(id)}
+          className="button quiz__submit"
+        >get results</button>
+      </Conclusion>
     ) : null}
     { data.shouldSeeResult ? (
-      <div>
-        <Markdown className="padding-bottom-lg">{fields.conclusion}</Markdown>
+      <Conclusion callToAction={fields.conclusion}>
         <Share
           className="quiz__share"
           parentSource="quiz"
         />
-      </div>
+      </Conclusion>
     ) : null }
   </div>
 );
@@ -48,6 +53,7 @@ Quiz.propTypes = {
     introduction: PropTypes.string,
     conclusion: PropTypes.string,
     comparison: PropTypes.string,
+    callToAction: PropTypes.string,
     questions: PropTypes.array,
   }).isRequired,
   data: PropTypes.shape({
@@ -70,6 +76,7 @@ Quiz.defaultProps = {
     questions: [],
     conclusion: '',
     comparison: '',
+    callToAction: '',
   },
 };
 
