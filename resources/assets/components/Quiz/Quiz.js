@@ -7,10 +7,13 @@ import './quiz.scss';
 
 const Quiz = ({ id, fields, data, completeQuiz, pickQuizAnswer }) => (
   <div className="quiz">
-    <h1 className="quiz__title">{fields.title}</h1>
-    {data.shouldSeeResult ? null : (
-      <Markdown>{fields.introduction}</Markdown>
-    )}
+    <div className="quiz__introduction">
+      <h1 className="quiz__title">Quiz</h1>
+      <h2 className="quiz__subtitle">{fields.title}</h2>
+      {data.shouldSeeResult ? null : (
+        <Markdown className="quiz__description">{fields.introduction}</Markdown>
+      )}
+    </div>
     {data.shouldSeeResult ? null : (fields.questions).map(question => (
       <Question
         key={question.id}

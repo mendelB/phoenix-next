@@ -3,6 +3,29 @@
 .quiz {
   margin: 0 $base-spacing;
 
+  .quiz__introduction {
+    text-align: center;
+  }
+
+  .quiz__title {
+    color: $primary-color;
+    font-size: $font-large;
+    font-weight: $weight-bold;
+    text-transform: uppercase;
+  }
+
+  .quiz__subtitle {
+    font-family: $secondary-font-family;
+    font-size: $font-superhero;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: $base-spacing;
+  }
+
+  .quiz__description {
+    margin-bottom: $base-spacing * 2;
+  }
+
   .quiz__submit {
     width: 100%;
   }
