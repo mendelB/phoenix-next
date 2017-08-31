@@ -72,7 +72,7 @@
 
     .conclusion__item {
       display: inline-block;
-      float: left;
+      vertical-align: middle;
       box-sizing: border-box;
 
       @include media($tablet) {
