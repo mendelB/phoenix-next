@@ -10,8 +10,12 @@
   .question {
     margin: $base-spacing 0;
 
-    h2 {
+    .question__title {
       color: $white;
+      font-family: $secondary-font-family;
+      font-size: $font-larger;
+      letter-spacing: 2px;
+      padding: $base-spacing;
     }
   }
 
