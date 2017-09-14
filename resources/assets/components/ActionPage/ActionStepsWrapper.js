@@ -11,7 +11,7 @@ import { SubmissionGalleryContainer } from '../Gallery';
 
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
-    hasPendingSignup, isAuthenticated, isSignedUp } = props;
+    hasPendingSignup, isAuthenticated, isSignedUp, template } = props;
 
   const renderPhotoUploader = photoUploaderProps => (
     <FlexCell key="reportback_uploader" width="full">
@@ -78,6 +78,7 @@ const ActionStepsWrapper = (props) => {
             photoWidth={step.displayOptions === 'full' ? 'full' : 'one-third'}
             hideStepNumber={additionalContent.hideStepNumber || false}
             shouldTruncate={step.truncate}
+            template={template}
           />
         );
     }
@@ -102,6 +103,7 @@ ActionStepsWrapper.propTypes = {
   hasPendingSignup: PropTypes.bool.isRequired,
   isSignedUp: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
+  template: PropTypes.string.isRequired,
 };
 
 export default ActionStepsWrapper;
