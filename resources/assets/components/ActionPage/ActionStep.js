@@ -16,7 +16,7 @@ const renderPhoto = (photo, index) => (
 const ActionStep = (props) => {
   const {
     title, stepIndex, content, background, photos,
-    photoWidth, shouldTruncate, hideStepNumber, template
+    photoWidth, shouldTruncate, hideStepNumber, template,
   } = props;
   return (
     <FlexCell width="full">
@@ -40,7 +40,7 @@ const ActionStep = (props) => {
         </Flex>
       </div>
     </FlexCell>
-  )
+  );
 };
 
 ActionStep.propTypes = {
