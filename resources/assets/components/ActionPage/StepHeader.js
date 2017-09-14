@@ -11,6 +11,7 @@ const StepHeader = ({ title, step, background, hideStepNumber, template }) => {
         <LegacyStepHeaderTemplate
           title={title}
           step={step}
+          hideStepNumber={hideStepNumber}
         />
       );
     default:
