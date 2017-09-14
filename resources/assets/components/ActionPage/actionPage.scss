@@ -62,14 +62,11 @@
     }
   }
 
-  .heading.-banner.legacy-step-header {
-
-    span {
-      font-family: Proxima Nova;
-      padding: 24px 0px 0px;
-      margin-left: 0px;
-      width: 100%;
-    }
+  .heading.-banner.legacy-step-header span {
+    font-family: $font-proxima-nova;
+    padding: 24px 0px 0px;
+    margin-left: 0px;
+    width: 100%;
   }
 
 
