@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FlexCell } from '../../Flex';
 
 const LegacyStepHeaderTemplate = ({ title, step }) => (
-  <h2 className="heading -banner">
-    <span style={{ fontFamily: 'Proxima Nova', padding: '24px 0px 0px', marginLeft: '0px', width: '100%' }}>
-      Step { String(step) }: {title}
-    </span>
-  </h2>
+  <FlexCell width="full">
+    <h2 className="heading -banner legacy-step-header">
+      <span>
+        Step { String(step) }: {title}
+      </span>
+    </h2>
+  </FlexCell>
 );
 
 LegacyStepHeaderTemplate.propTypes = {
