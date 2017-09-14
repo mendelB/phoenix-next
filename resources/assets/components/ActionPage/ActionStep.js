@@ -13,7 +13,7 @@ const renderPhoto = (photo, index) => (
   </div>
 );
 
-const ActionStep = ({ title, stepIndex, content, background, photos, photoWidth, shouldTruncate, hideStepNumber }) => ( // eslint-disable-line max-len
+const ActionStep = ({ title, stepIndex, content, background, photos, photoWidth, shouldTruncate, hideStepNumber, template }) => ( // eslint-disable-line max-len
   <FlexCell width="full">
     <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
       <Flex>
@@ -22,6 +22,7 @@ const ActionStep = ({ title, stepIndex, content, background, photos, photoWidth,
           step={stepIndex}
           background={background}
           hideStepNumber={hideStepNumber}
+          template={template}
         />
         <FlexCell width="two-thirds">
           <Markdown>{ content }</Markdown>
@@ -45,6 +46,7 @@ ActionStep.propTypes = {
   photoWidth: PropTypes.string.isRequired,
   shouldTruncate: PropTypes.bool,
   hideStepNumber: PropTypes.bool,
+  template: PropTypes.string.isRequired,
 };
 
 ActionStep.defaultProps = {
