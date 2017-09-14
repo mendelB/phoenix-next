@@ -16,13 +16,15 @@ const MosaicStepHeaderTemplate = ({ title, step, background, hideStepNumber }) =
 
 MosaicStepHeaderTemplate.propTypes = {
   title: PropTypes.string.isRequired,
-  step: PropTypes.number.isRequired,
-  hideStepNumber: PropTypes.bool.isRequired,
+  step: PropTypes.number,
+  hideStepNumber: PropTypes.bool,
   background: PropTypes.string,
 };
 
 MosaicStepHeaderTemplate.defaultProps = {
   background: null,
+  step: null,
+  hideStepNumber: false,
 };
 
 export default MosaicStepHeaderTemplate;
