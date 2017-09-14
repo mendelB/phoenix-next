@@ -7,17 +7,21 @@ import MosaicStepHeaderTemplate from './templates/MosaicStepHeaderTemplate';
 const StepHeader = ({ title, step, background, hideStepNumber, template }) => {
   switch (template) {
     case 'legacy':
-      return <LegacyStepHeaderTemplate
-              title={title}
-              step={step}
-            />;
+      return (
+        <LegacyStepHeaderTemplate
+          title={title}
+          step={step}
+        />
+      );
     default:
-      return <MosaicStepHeaderTemplate
-              title={title}
-              step={step}
-              background={background}
-              hideStepNumber={hideStepNumber}
-            />;
+      return (
+        <MosaicStepHeaderTemplate
+          title={title}
+          step={step}
+          background={background}
+          hideStepNumber={hideStepNumber}
+        />
+      );
   }
 };
 
