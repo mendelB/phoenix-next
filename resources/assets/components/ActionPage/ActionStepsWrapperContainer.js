@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   hasPendingSignup: state.signups.isPending,
   isSignedUp: state.signups.thisCampaign,
   isAuthenticated: state.user.id !== null,
+  template: state.campaign.template,
 });
 
 /**
