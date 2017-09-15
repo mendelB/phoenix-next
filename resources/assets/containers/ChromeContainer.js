@@ -11,6 +11,8 @@ const mapStateToProps = (state, props) => ({
   children: props.children,
   legacyCampaignId: state.campaign.legacyCampaignId,
   isAffiliated: state.signups.thisCampaign,
+  affiliateSponsors: state.campaign.affiliateSponsors,
+  affiliatePartners: state.campaign.affiliatePartners,
   title: state.campaign.title,
   subtitle: state.campaign.callToAction,
   blurb: state.campaign.blurb,
