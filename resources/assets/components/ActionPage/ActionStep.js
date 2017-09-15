@@ -13,28 +13,35 @@ const renderPhoto = (photo, index) => (
   </div>
 );
 
-const ActionStep = ({ title, stepIndex, content, background, photos, photoWidth, shouldTruncate, hideStepNumber }) => ( // eslint-disable-line max-len
-  <FlexCell width="full">
-    <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
-      <Flex>
-        <StepHeader
-          title={title}
-          step={stepIndex}
-          background={background}
-          hideStepNumber={hideStepNumber}
-        />
-        <FlexCell width="two-thirds">
-          <Markdown>{ content }</Markdown>
-        </FlexCell>
-        <FlexCell width={photoWidth}>
-          <div className={`action-step__photos -${photoWidth}`}>
-            { photos ? photos.map(renderPhoto) : null }
-          </div>
-        </FlexCell>
-      </Flex>
-    </div>
-  </FlexCell>
-);
+const ActionStep = (props) => {
+  const {
+    title, stepIndex, content, background, photos,
+    photoWidth, shouldTruncate, hideStepNumber, template,
+  } = props;
+  return (
+    <FlexCell width="full">
+      <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
+        <Flex>
+          <StepHeader
+            title={title}
+            step={stepIndex}
+            background={background}
+            hideStepNumber={hideStepNumber}
+            template={template}
+          />
+          <FlexCell width="two-thirds">
+            <Markdown>{ content }</Markdown>
+          </FlexCell>
+          <FlexCell width={photoWidth}>
+            <div className={`action-step__photos -${photoWidth}`}>
+              { photos ? photos.map(renderPhoto) : null }
+            </div>
+          </FlexCell>
+        </Flex>
+      </div>
+    </FlexCell>
+  );
+};
 
 ActionStep.propTypes = {
   title: PropTypes.string.isRequired,
@@ -45,6 +52,7 @@ ActionStep.propTypes = {
   photoWidth: PropTypes.string.isRequired,
   shouldTruncate: PropTypes.bool,
   hideStepNumber: PropTypes.bool,
+  template: PropTypes.string.isRequired,
 };
 
 ActionStep.defaultProps = {
