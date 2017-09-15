@@ -11,6 +11,7 @@ import Modal from './Modal';
 import LedeBanner from './LedeBanner/LedeBanner';
 import TabbedNavigationContainer from '../containers/TabbedNavigationContainer';
 import NotificationContainer from '../containers/NotificationContainer';
+import Footer from './Footer';
 
 const Chrome = props => (
   <div className={classnames({ '-lock': props.shouldShowModal })}>
@@ -41,6 +42,10 @@ const Chrome = props => (
         {props.children}
       </FeedEnclosure>
       { props.isAffiliated ? null : <CallToActionContainer className="-sticky" /> }
+      <Footer
+        affiliateSponsors={props.affiliateSponsors}
+        affiliatePartners={props.affiliatePartners}
+      />
       <Debugger
         user={props.user}
         signups={props.signups}
@@ -71,6 +76,8 @@ Chrome.propTypes = {
   }).isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
   isAffiliated: PropTypes.bool,
+  affiliateSponsors: PropTypes.array.isRequired,
+  affiliatePartners: PropTypes.array.isRequired,
   signups: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   subtitle: PropTypes.string.isRequired,
   template: PropTypes.string.isRequired,
