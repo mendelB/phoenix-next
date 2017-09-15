@@ -76,8 +76,8 @@ Chrome.propTypes = {
   }).isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
   isAffiliated: PropTypes.bool,
-  affiliateSponsors: PropTypes.array.isRequired,
-  affiliatePartners: PropTypes.array.isRequired,
+  affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   signups: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   subtitle: PropTypes.string.isRequired,
   template: PropTypes.string.isRequired,
