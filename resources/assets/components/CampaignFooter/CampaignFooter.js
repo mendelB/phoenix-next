@@ -7,16 +7,16 @@ const CampaignFooter = ({ affiliateSponsors, affiliatePartners }) => {
   const sponser = affiliateSponsors[0];
   const partner = affiliatePartners[0];
 
-  const renderedAffiliateLink = sponser || partner;
+  const affiliate = sponser || partner;
 
   return (
     <footer className="info-bar">
       <div className="wrapper">
         {
-          renderedAffiliateLink ?
+          affiliate ?
             <AffiliateCredit
-              link={renderedAffiliateLink.fields.link}
-              title={renderedAffiliateLink.fields.title}
+              link={affiliate.fields.link}
+              title={affiliate.fields.title}
             /> : null
         }
         <div className="info-bar__secondary">
