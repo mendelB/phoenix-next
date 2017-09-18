@@ -4,9 +4,7 @@ import { Provider } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 
-import Page from './Page';
-import { CampaignPageContainer } from './Page';
-import { LandingPageContainer } from './Page';
+import { CampaignPageContainer, LandingPageContainer } from './Page';
 
 import { initializeStore } from '../store';
 
@@ -14,13 +12,13 @@ const App = ({ store, history }) => {
   initializeStore(store);
 
   const isAffiliated = store.getState().signups.thisCampaign;
-  const useLandingPage = store.getState().campaign.landingPage ? true : false;
+  const useLandingPage = store.getState().campaign.landingPage !== null;
 
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <Switch>
-          { (! isAffiliated  && useLandingPage) ?
+          { (! isAffiliated && useLandingPage) ?
             <Route path="/us/campaigns/:slug" component={LandingPageContainer} />
             :
             <Route path="/us/campaigns/:slug" component={CampaignPageContainer} />
@@ -29,6 +27,11 @@ const App = ({ store, history }) => {
       </ConnectedRouter>
     </Provider>
   );
+};
+
+App.propTypes = {
+  store: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default App;
