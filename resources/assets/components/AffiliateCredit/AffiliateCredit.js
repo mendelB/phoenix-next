@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AffiliateCredit = ({ title, link }) => (
-  <span>
-    In partnership with&nbsp;
-    { link ? <a href={link}>{title}</a> : title }
-  </span>
-);
+const AffiliateCredit = ({ title, link }) => {
+  const affiliate = link ? <a href={link}>{title}</a> : title;
+
+  return <span>In partnership with {affiliate}</span>;
+};
 
 AffiliateCredit.propTypes = {
   link: PropTypes.string,
