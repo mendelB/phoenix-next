@@ -7,8 +7,4 @@ const mapStateToProps = state => ({
   useLandingPage: state.campaign.landingPage !== null,
 });
 
-// const mapActionsToProps = {
-
-// };
-
 export default connect(mapStateToProps)(Campaign);
