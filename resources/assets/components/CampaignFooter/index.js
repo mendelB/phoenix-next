@@ -20,10 +20,7 @@ const CampaignFooter = ({ affiliateSponsors, affiliatePartners }) => {
             /> : null
         }
         <div className="info-bar__secondary">
-          Questions? Contact&nbsp;
-          <a href="mailto:campaignlead@dosomething.org">
-            campaignlead@dosomething.org
-          </a>
+          Questions? <a href="mailto:campaignlead@dosomething.org"> Contact Us </a>
         </div>
       </div>
     </footer>
