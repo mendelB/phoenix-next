@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AffiliateLink = props => (
+const AffiliateCredit = props => (
   <span>
     In partnership with&nbsp;
     <a href={props.link}>
@@ -10,9 +10,9 @@ const AffiliateLink = props => (
   </span>
 );
 
-AffiliateLink.propTypes = {
+AffiliateCredit.propTypes = {
   link: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
-export default AffiliateLink;
+export default AffiliateCredit;

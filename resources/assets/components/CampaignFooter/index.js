@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AffiliateLink from './AffiliateLink';
+import AffiliateCredit from './AffiliateCredit';
 
 const CampaignFooter = ({ affiliateSponsors, affiliatePartners }) => {
   const sponser = affiliateSponsors[0];
@@ -14,7 +14,7 @@ const CampaignFooter = ({ affiliateSponsors, affiliatePartners }) => {
       <div className="wrapper">
         {
           renderedAffiliateLink ?
-            <AffiliateLink
+            <AffiliateCredit
               link={renderedAffiliateLink.fields.link}
               title={renderedAffiliateLink.fields.title}
             /> : null
