@@ -22,7 +22,7 @@ const Answer = (props) => {
       tabIndex={0}
     >
       <Card className={classes}>
-        { backgroundImage ? <img src={backgroundImage} /> : null }
+        { backgroundImage ? <img src={backgroundImage} alt="" /> : null }
         <p className="padding-lg">{ title }</p>
       </Card>
     </a>
