@@ -1,5 +1,3 @@
-/* global window */
-
 import createHistory from 'history/createBrowserHistory';
 
 let history = null;
@@ -18,9 +16,7 @@ export function get() {
  * @return {History}
  */
 export function init() {
-  // Set the application "base name" to /us/campaigns/:slug so all pages are relative to that.
-  const basename = window.location.pathname.split('/').slice(0, 4).join('/');
-  history = createHistory({ basename });
+  history = createHistory();
 
   return history;
 }
