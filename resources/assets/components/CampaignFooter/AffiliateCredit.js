@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AffiliateCredit = props => (
+const AffiliateCredit = ({ title, link }) => (
   <span>
     In partnership with&nbsp;
-    <a href={props.link}>
-      {props.title}
-    </a>
+    { link ? <a href={link}> {title} </a> : title }
   </span>
 );
 
 AffiliateCredit.propTypes = {
-  link: PropTypes.string.isRequired,
+  link: PropTypes.string,
   title: PropTypes.string.isRequired,
+};
+
+AffiliateCredit.defaultProps = {
+  link: null,
 };
 
 export default AffiliateCredit;
