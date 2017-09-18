@@ -4,11 +4,12 @@ import { Switch, Route } from 'react-router-dom';
 
 import Dashboard from '../../Dashboard';
 import Enclosure from '../../Enclosure';
-import { FeedContainer } from '../../Feed';
+import { FeedContainer } from '../../Feed'; // @TODO: rename to ActivityFeed or ActivityPage...
 import { QuizContainer } from '../../Quiz';
-import { CampaignSubPageContainer } from '../CampaignSubPage';
 import { BlockContainer } from '../../Block';
 import LedeBanner from '../../LedeBanner/LedeBanner';
+import { ActionPageContainer } from '../../ActionPage';
+import { CampaignSubPageContainer } from '../CampaignSubPage';
 import TabbedNavigationContainer from '../../../containers/TabbedNavigationContainer';
 
 const CampaignPage = (props) => {
@@ -45,6 +46,7 @@ const CampaignPage = (props) => {
         <Enclosure className="margin-top-lg margin-bottom-lg col-default">
           <Switch>
             <Route path={`${match.url}`} exact component={FeedContainer} />
+            <Route path={`${match.url}/action`} component={ActionPageContainer} />
             <Route path={`${match.url}/pages/:slug`} component={CampaignSubPageContainer} />
             <Route path={`${match.url}/blocks/:id`} component={BlockContainer} />
             <Route path={`${match.url}/quiz/:slug`} component={QuizContainer} />
