@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import AffiliateLink from './AffiliateLink';
 
-const Footer = ({ affiliateSponsors, affiliatePartners }) => {
+const CampaignFooter = ({ affiliateSponsors, affiliatePartners }) => {
   const sponser = affiliateSponsors[0];
   const partner = affiliatePartners[0];
 
@@ -30,10 +30,10 @@ const Footer = ({ affiliateSponsors, affiliatePartners }) => {
   );
 };
 
-Footer.propTypes = {
+CampaignFooter.propTypes = {
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 
-export default Footer;
+export default CampaignFooter;

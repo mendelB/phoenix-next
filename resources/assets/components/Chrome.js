@@ -11,7 +11,7 @@ import Modal from './Modal';
 import LedeBanner from './LedeBanner/LedeBanner';
 import TabbedNavigationContainer from '../containers/TabbedNavigationContainer';
 import NotificationContainer from '../containers/NotificationContainer';
-import Footer from './Footer';
+import CampaignFooter from './CampaignFooter';
 
 const Chrome = props => (
   <div className={classnames({ '-lock': props.shouldShowModal })}>
@@ -42,7 +42,7 @@ const Chrome = props => (
         {props.children}
       </FeedEnclosure>
       { props.isAffiliated ? null : <CallToActionContainer className="-sticky" /> }
-      <Footer
+      <CampaignFooter
         affiliateSponsors={props.affiliateSponsors}
         affiliatePartners={props.affiliatePartners}
       />
