@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AffiliateCredit from './AffiliateCredit';
+import AffiliateCredit from '../AffiliateCredit';
 
 const CampaignFooter = ({ affiliateSponsors, affiliatePartners }) => {
   const sponser = affiliateSponsors[0];
