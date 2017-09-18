@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const AffiliateCredit = ({ title, link }) => (
   <span>
     In partnership with&nbsp;
-    { link ? <a href={link}> {title} </a> : title }
+    { link ? <a href={link}>{title}</a> : title }
   </span>
 );
 
