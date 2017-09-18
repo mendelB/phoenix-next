@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import AffiliateCredit from '../AffiliateCredit';
 
 const CampaignFooter = ({ affiliateSponsors, affiliatePartners }) => {
+  // @TODO Either deal with potentially supporting multiple affiliates per campaign
+  // as opposed to just grabbing the first one
+  // or change fields in Contentful to reflect single affiliates per campaign.
   const sponser = affiliateSponsors[0];
   const partner = affiliatePartners[0];
 
