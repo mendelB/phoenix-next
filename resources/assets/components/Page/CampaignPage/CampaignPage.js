@@ -17,9 +17,9 @@ import CampaignFooter from '../../CampaignFooter';
 
 const CampaignPage = (props) => {
   const {
-    blurb, clickedSignUp, coverImage, dashboard, endDate, isAffiliated,
-    legacyCampaignId, match, slug, subtitle, template, title, totalCampaignSignups,
-    affiliateSponsors, affiliatePartners, campaignLead,
+    affiliatePartners, affiliateSponsors, blurb, campaignLead, clickedSignUp, coverImage,
+    dashboard, endDate, isAffiliated, legacyCampaignId, match, slug, subtitle, template,
+    title, totalCampaignSignups,
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
