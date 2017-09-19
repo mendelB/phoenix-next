@@ -19,7 +19,7 @@ const CampaignPage = (props) => {
   const {
     blurb, clickedSignUp, coverImage, dashboard, endDate, isAffiliated,
     legacyCampaignId, match, slug, subtitle, template, title, totalCampaignSignups,
-    affiliateSponsors, affiliatePartners,
+    affiliateSponsors, affiliatePartners, campaignLead,
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
@@ -70,6 +70,7 @@ const CampaignPage = (props) => {
       <CampaignFooter
         affiliateSponsors={affiliateSponsors}
         affiliatePartners={affiliatePartners}
+        campaignLead={campaignLead}
       />
     </div>
   );
@@ -92,6 +93,10 @@ CampaignPage.propTypes = {
     timezone: PropTypes.string,
     timezone_type: PropTypes.number,
   }),
+  campaignLead: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+  }),
   isAffiliated: PropTypes.bool,
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -109,6 +114,7 @@ CampaignPage.defaultProps = {
   endDate: null,
   isAffiliated: false,
   totalCampaignSignups: 0,
+  campaignLead: undefined,
 };
 
 export default CampaignPage;
