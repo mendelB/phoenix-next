@@ -44,6 +44,9 @@
     },
     "FACEBOOK_APP_ID": {
       "required": true
+    },
+    "PUCK_URL": {
+      "required": true
     }
   },
   "formation": {},
