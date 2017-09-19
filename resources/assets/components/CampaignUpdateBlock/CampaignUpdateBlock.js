@@ -14,7 +14,7 @@ const CampaignUpdateBlock = (props) => {
   const isTweet = content.length < 144;
 
   return (
-    <BlockWrapper title="Campaign Update" id={props.id}>
+    <BlockWrapper title="Campaign Update" id={props.id} shareLink={props.shareLink} >
       { isTweet ? null : <h2>{title}</h2> }
 
       <Markdown className={classnames('campaign-update__content', { '-tweet': isTweet })}>
