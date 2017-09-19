@@ -9,7 +9,6 @@ import {
   SIGNUP_PENDING,
   SET_TOTAL_SIGNUPS,
   queueEvent,
-  trackEvent,
   addNotification,
   openModal,
 } from '../actions';
@@ -103,11 +102,11 @@ export function getTotalSignups(campaignId) {
 
 // Async Action: send signup to phoenix and
 // check if the user is logged in or has an existing signup.
-export function clickedSignUp(campaignId, metadata, shouldRedirectToActionTab = true) {
+export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
   return (dispatch, getState) => {
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
-      return dispatch(queueEvent('clickedSignUp', campaignId, metadata));
+      return dispatch(queueEvent('clickedSignUp', campaignId));
     }
 
     // If we already have a signup, just go to the action page.
@@ -127,7 +126,6 @@ export function clickedSignUp(campaignId, metadata, shouldRedirectToActionTab = 
       } else {
         // Create signup and track any data before redirects.
         dispatch(signupCreated(campaignId));
-        dispatch(trackEvent('signup created', metadata));
 
         // Take user to the action page if campaign is open.
         const endDate = get(getState().campaign.endDate, 'date', null);
