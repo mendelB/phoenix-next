@@ -12,6 +12,8 @@ const mapStateToProps = state => ({
   dashboard: state.campaign.dashboard,
   endDate: state.campaign.endDate,
   isAffiliated: state.signups.thisCampaign,
+  affiliateSponsors: state.campaign.affiliateSponsors,
+  affiliatePartners: state.campaign.affiliatePartners,
   legacyCampaignId: state.campaign.legacyCampaignId,
   slug: state.campaign.slug,
   subtitle: state.campaign.callToAction,
