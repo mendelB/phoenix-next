@@ -44,6 +44,10 @@ h1, h2, h3, p {
   border: 1px solid $primary-border-color;
 }
 
+.clearfix {
+  @include clearfix;
+}
+
 .clear-both {
   clear: both;
 }
@@ -87,20 +91,20 @@ h1, h2, h3, p {
   padding: $half-spacing;
 }
 
-.padding-bottom-md {
-  padding-bottom: $half-spacing;
-}
-
-.padding-bottom-lg {
-  padding-bottom: $base-spacing;
-}
-
 .padding-md {
   padding: $half-spacing;
 }
 
 .padding-lg {
   padding: $base-spacing;
+}
+
+.padding-bottom-md {
+  padding-bottom: $half-spacing;
+}
+
+.padding-bottom-lg {
+  padding-bottom: $base-spacing;
 }
 
 .margin-md {
@@ -111,10 +115,33 @@ h1, h2, h3, p {
   margin: $base-spacing;
 }
 
+.margin-bottom-md {
+  margin-bottom: $half-spacing;
+}
+
+.margin-bottom-lg {
+  margin-bottom: $base-spacing;
+}
+
+.margin-top-md {
+  margin-top: $half-spacing;
+}
+
+.margin-top-lg {
+  margin-top: $base-spacing;
+}
+
 .rounded {
   border-radius: $lg-border-radius;
 }
 
 .faded {
   opacity: 0.5;
+}
+
+.default-container {
+  @include media($tablet) {
+    @include span(12 no-gutters);
+    @include push(2);
+  }
 }

@@ -2,7 +2,7 @@
 
 import { findKey } from 'lodash';
 
-export const paths = {
+export const campaignPaths = {
   community: '/',
   action: '/action',
   blocks: '/blocks/',
@@ -19,7 +19,9 @@ export const paths = {
 export function getRouteName(route) {
   // When doing path comparisons, we want the least specific
   // (eg: '/') paths at the end of the array.
-  const pathValues = Object.values(paths).sort((pathA, pathB) => pathB.length - pathA.length);
+  const pathValues = (
+    Object.values(campaignPaths).sort((pathA, pathB) => pathB.length - pathA.length)
+  );
 
   // Check if /pages/faq starts with /pages/.
   const match = pathValues.find(path => route.startsWith(path));
@@ -29,9 +31,9 @@ export function getRouteName(route) {
 
   // Find the display name for the matched path value.
   // This is a bit crazy because we need to find the index
-  // in the `paths` object and the `pathValues` array is in
+  // in the `campaignPaths` object and the `pathValues` array is in
   // a different order.
-  let name = findKey(paths, path => path === match);
+  let name = findKey(campaignPaths, path => path === match);
   if (name === 'pages') {
     // Remove /pages/ from /pages/faq
     // Not the most fullproof solution in the world but should suffice.
