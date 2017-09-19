@@ -14,7 +14,7 @@ const CampaignFooter = ({ affiliateSponsors, affiliatePartners }) => {
 
   return (
     <footer className="info-bar">
-      <div className="wrapper">
+      <div className="default-container padding-vertical-lg padding-horizontal-md">
         {
           affiliate ?
             <AffiliateCredit
