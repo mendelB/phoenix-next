@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { join } from 'path';
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -32,7 +33,8 @@ const TabbedNavigationContainer = (props) => {
 
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = pages.map((page) => {
-    const path = `/us/campaigns/${campaignSlug}${campaignPaths.pages}${page.fields.slug}`;
+    const path = join('/us/campaigns', campaignSlug, campaignPaths.pages, page.fields.slug);
+
     return (
       <NavigationLink key={page.id} to={path}>{page.fields.title}</NavigationLink>
     );
@@ -41,8 +43,8 @@ const TabbedNavigationContainer = (props) => {
   return (
     <TabbedNavigation>
       <div className="nav-items">
-        <NavigationLink to={`/us/campaigns/${campaignSlug}${campaignPaths.community}`} exact>Community</NavigationLink>
-        { isClosed ? null : <NavigationLink to={`/us/campaigns/${campaignSlug}${campaignPaths.action}`}>Action</NavigationLink> }
+        <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.community)} exact>Community</NavigationLink>
+        { isClosed ? null : <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.action)}>Action</NavigationLink> }
         { additionalPages }
       </div>
       { isAffiliated ? null : <Button className="-inline nav-button" onClick={() => props.clickedSignUp(legacyCampaignId, { source: 'tabbed navigation|text: Join us' })} /> }

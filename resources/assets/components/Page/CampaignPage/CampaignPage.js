@@ -1,12 +1,14 @@
 import React from 'react';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Dashboard from '../../Dashboard';
 import Enclosure from '../../Enclosure';
 import { FeedContainer } from '../../Feed'; // @TODO: rename to ActivityFeed or ActivityPage...
 import { QuizContainer } from '../../Quiz';
 import { BlockContainer } from '../../Block';
+import { isCampaignClosed } from '../../../helpers';
 import LedeBanner from '../../LedeBanner/LedeBanner';
 import { ActionPageContainer } from '../../ActionPage';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
@@ -17,6 +19,8 @@ const CampaignPage = (props) => {
     blurb, clickedSignUp, coverImage, dashboard, endDate, isAffiliated,
     legacyCampaignId, match, slug, subtitle, template, title, totalCampaignSignups,
   } = props;
+
+  const isClosed = isCampaignClosed(get(endDate, 'date', null));
 
   return (
     <div>
@@ -43,10 +47,17 @@ const CampaignPage = (props) => {
 
         <TabbedNavigationContainer campaignSlug={slug} />
 
-        <Enclosure className="margin-top-lg margin-bottom-lg col-default">
+        <Enclosure className="margin-top-lg margin-bottom-lg default-container">
           <Switch>
             <Route path={`${match.url}`} exact component={FeedContainer} />
-            <Route path={`${match.url}/action`} component={ActionPageContainer} />
+            <Route
+              path={`${match.url}/action`}
+              render={() => (isClosed ?
+                <Redirect to={`${match.url}`} />
+                :
+                <ActionPageContainer />
+              )}
+            />
             <Route path={`${match.url}/pages/:slug`} component={CampaignSubPageContainer} />
             <Route path={`${match.url}/blocks/:id`} component={BlockContainer} />
             <Route path={`${match.url}/quiz/:slug`} component={QuizContainer} />

@@ -139,7 +139,7 @@ h1, h2, h3, p {
   opacity: 0.5;
 }
 
-.col-default {
+.default-container {
   @include media($tablet) {
     @include span(12 no-gutters);
     @include push(2);
