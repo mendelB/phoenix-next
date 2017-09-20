@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
-import CampaignSponsorPromotion from '../../CampaignSponsorPromotion';
+import SponsorPromotion from '../../SponsorPromotion';
 
 const LegacyTemplate = (props) => {
   const {
@@ -33,7 +33,7 @@ const LegacyTemplate = (props) => {
 
         {
           sponsor ?
-            <CampaignSponsorPromotion
+            <SponsorPromotion
               imgUrl={sponsor.fields.logo.url}
               title={sponsor.fields.logo.title}
             />

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './CampaignSponsorPromotion.scss';
+import './SponsorPromotion.scss';
 
-const CampaignSponsorPromotion = ({ imgUrl, title }) => (
+const SponsorPromotion = ({ imgUrl, title }) => (
   <div className="promotions">
     <div className="promotion promotion--sponsor">
       <div className="wrapper">
@@ -16,13 +16,13 @@ const CampaignSponsorPromotion = ({ imgUrl, title }) => (
   </div>
 );
 
-CampaignSponsorPromotion.propTypes = {
+SponsorPromotion.propTypes = {
   title: PropTypes.string,
   imgUrl: PropTypes.string.isRequired,
 };
 
-CampaignSponsorPromotion.defaultProps = {
+SponsorPromotion.defaultProps = {
   title: 'Campaign Sponsor Logo',
 };
 
-export default CampaignSponsorPromotion;
+export default SponsorPromotion;
