@@ -1,5 +1,7 @@
+import { join } from 'path';
 import { get } from 'lodash';
 import { push } from 'react-router-redux';
+
 import { Phoenix } from '@dosomething/gateway';
 import { isCampaignClosed } from '../helpers';
 import {
@@ -104,6 +106,8 @@ export function getTotalSignups(campaignId) {
 // check if the user is logged in or has an existing signup.
 export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
   return (dispatch, getState) => {
+    const campaignActionUrl = join('/us/campaigns', getState().campaign.slug, '/action');
+
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
       return dispatch(queueEvent('clickedSignUp', campaignId));
@@ -111,7 +115,7 @@ export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
 
     // If we already have a signup, just go to the action page.
     if (getState().signups.data.includes(campaignId)) {
-      return shouldRedirectToActionTab ? dispatch(push('/action')) : null;
+      return shouldRedirectToActionTab ? dispatch(push(campaignActionUrl)) : null;
     }
 
     dispatch(signupPending());
@@ -132,7 +136,7 @@ export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
         const isClosed = isCampaignClosed(endDate);
         if (shouldRedirectToActionTab && ! isClosed) {
           dispatch(openModal());
-          dispatch(push('/action'));
+          dispatch(push(campaignActionUrl));
         }
       }
     });
