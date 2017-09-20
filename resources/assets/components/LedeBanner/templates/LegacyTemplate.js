@@ -20,6 +20,8 @@ const LegacyTemplate = (props) => {
     backgroundImage: `url(${backgroundImageUrl})`,
   };
 
+  // @TODO: consider whether there can be more than one affiliate, or
+  // whether to grab single entry when transforming in PHP
   const sponsor = affiliateSponsors[0];
 
   return (
