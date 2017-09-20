@@ -2,7 +2,6 @@
 
 exports[`Campaign Update Block with additional content as tweet snapshot test 1`] = `
 <BlockWrapper
-  id="1234512345"
   shareLink="http://example.com/link-to-content"
   title="Campaign Update"
 >
@@ -29,7 +28,6 @@ exports[`Campaign Update Block with additional content as tweet snapshot test 1`
 
 exports[`Campaign Update Block with additional content snapshot test 1`] = `
 <BlockWrapper
-  id="1234512345"
   shareLink="http://example.com/link-to-content"
   title="Campaign Update"
 >
@@ -59,7 +57,6 @@ exports[`Campaign Update Block with additional content snapshot test 1`] = `
 
 exports[`Campaign Update Block with no additional content snapshot test 1`] = `
 <BlockWrapper
-  id="1234512345"
   shareLink="http://example.com/link-to-content"
   title="Campaign Update"
 >
