@@ -10,7 +10,7 @@ type BlockTitleProps = {
   title: ?string,
 };
 
-const BlockTitle = ({ shareLink, title }: BlockTitleProps) => {
+const BlockTitle = ({ title, shareLink }: BlockTitleProps) => {
   const titleElement = shareLink ? <Link to={shareLink}>{title}</Link> : title;
 
   return <h4 className="block-wrapper__title">{titleElement}</h4>;
@@ -23,7 +23,7 @@ type BlockWrapperProps = {
   title: ?string,
 };
 
-const BlockWrapper = ({ title, className, children, shareLink = null }: BlockWrapperProps) => (
+const BlockWrapper = ({ title, className, children, shareLink }: BlockWrapperProps) => (
   <article className={classnames('block-wrapper', className)}>
     { title ? <BlockTitle title={title} shareLink={shareLink} /> : null }
     { children }
