@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
+import CampaignSponsorPromotion from '../../CampaignSponsorPromotion';
+
 const LegacyTemplate = (props) => {
   const {
     title,
@@ -11,11 +13,14 @@ const LegacyTemplate = (props) => {
     legacyCampaignId,
     clickedSignUp,
     endDate,
+    affiliateSponsors,
   } = props;
 
   const backgroundImageStyle = {
     backgroundImage: `url(${backgroundImageUrl})`,
   };
+
+  const sponsor = affiliateSponsors[0];
 
   return (
     <header role="banner" className="header -hero header--action has-promotions" style={backgroundImageStyle}>
@@ -25,6 +30,15 @@ const LegacyTemplate = (props) => {
         { endDate ? <p className="header__date">Ends {moment(endDate.date).format('MMMM Do')}</p> : null }
 
         { isAffiliated ? null : <div className="header__signup"><button className="button" onClick={() => clickedSignUp(legacyCampaignId, { source: 'legacy lede banner|text: Join us' })}>Sign Up</button></div>}
+
+        {
+          sponsor ?
+            <CampaignSponsorPromotion
+              imgUrl={sponsor.fields.logo.url}
+              title={sponsor.fields.logo.title}
+            />
+            : null
+        }
       </div>
     </header>
   );
@@ -39,6 +53,7 @@ LegacyTemplate.propTypes = {
     timezone_type: PropTypes.int,
   }),
   isAffiliated: PropTypes.bool.isRequired,
+  affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   legacyCampaignId: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
