@@ -36,6 +36,7 @@ const CampaignPage = (props) => {
         clickedSignUp={clickedSignUp}
         endDate={endDate}
         template={template}
+        affiliateSponsors={affiliateSponsors}
       />
 
       <div className="main">
