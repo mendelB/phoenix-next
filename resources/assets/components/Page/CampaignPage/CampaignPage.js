@@ -13,11 +13,13 @@ import LedeBanner from '../../LedeBanner/LedeBanner';
 import { ActionPageContainer } from '../../ActionPage';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
 import TabbedNavigationContainer from '../../../containers/TabbedNavigationContainer';
+import CampaignFooter from '../../CampaignFooter';
 
 const CampaignPage = (props) => {
   const {
-    blurb, clickedSignUp, coverImage, dashboard, endDate, isAffiliated,
-    legacyCampaignId, match, slug, subtitle, template, title, totalCampaignSignups,
+    affiliatePartners, affiliateSponsors, blurb, campaignLead, clickedSignUp, coverImage,
+    dashboard, endDate, isAffiliated, legacyCampaignId, match, slug, subtitle, template,
+    title, totalCampaignSignups,
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
@@ -64,6 +66,12 @@ const CampaignPage = (props) => {
           </Switch>
         </Enclosure>
       </div>
+
+      <CampaignFooter
+        affiliateSponsors={affiliateSponsors}
+        affiliatePartners={affiliatePartners}
+        campaignLead={campaignLead}
+      />
     </div>
   );
 };
@@ -85,7 +93,13 @@ CampaignPage.propTypes = {
     timezone: PropTypes.string,
     timezone_type: PropTypes.number,
   }),
+  campaignLead: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+  }),
   isAffiliated: PropTypes.bool,
+  affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   legacyCampaignId: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   slug: PropTypes.string.isRequired,
@@ -100,6 +114,7 @@ CampaignPage.defaultProps = {
   endDate: null,
   isAffiliated: false,
   totalCampaignSignups: 0,
+  campaignLead: undefined,
 };
 
 export default CampaignPage;
