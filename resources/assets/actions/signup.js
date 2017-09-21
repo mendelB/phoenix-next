@@ -4,6 +4,7 @@ import { push } from 'react-router-redux';
 
 import { Phoenix } from '@dosomething/gateway';
 import { isCampaignClosed } from '../helpers';
+import { POST_SIGNUP_MODAL } from '../components/Modal';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
@@ -135,7 +136,7 @@ export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
         const endDate = get(getState().campaign.endDate, 'date', null);
         const isClosed = isCampaignClosed(endDate);
         if (shouldRedirectToActionTab && ! isClosed) {
-          dispatch(openModal());
+          dispatch(openModal(POST_SIGNUP_MODAL));
           dispatch(push(campaignActionUrl));
         }
       }
