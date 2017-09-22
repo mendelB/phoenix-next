@@ -23,7 +23,5 @@ const actionCreators = {
   clickedSignUp,
 };
 
-console.log(actionCreators);
-
 // Export the container component.
 export default connect(mapStateToProps, actionCreators)(CallToActionBlock);
