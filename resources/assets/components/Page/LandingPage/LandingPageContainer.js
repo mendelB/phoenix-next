@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
   legacyCampaignId: state.campaign.legacyCampaignId,
   pitchContent: get(state.campaign.landingPage.fields.additionalContent, 'pitchContent'),
   subtitle: state.campaign.callToAction,
+  tagline: get(state.campaign.additionalContent, 'tagline'),
   template: state.campaign.template,
   title: state.campaign.title,
 });
