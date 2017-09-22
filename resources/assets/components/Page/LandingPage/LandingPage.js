@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Enclosure from '../../Enclosure';
 import LedeBanner from '../../LedeBanner/LedeBanner';
 import ColumnizedContent from '../../ColumnizedContent';
+import CallToActionBlockContainer from '../../../containers/CallToActionBlockContainer';
 
 import './landing-page.scss';
 
@@ -21,7 +22,7 @@ const formatToMarkup = data => (
 const LandingPage = (props) => {
   const {
     affiliateSponsors, blurb, clickedSignUp, coverImage, endDate, isAffiliated,
-    legacyCampaignId, pitchContent, subtitle, template, title,
+    legacyCampaignId, pitchContent, subtitle, tagline, template, title,
   } = props;
 
   return (
@@ -39,9 +40,17 @@ const LandingPage = (props) => {
         affiliateSponsors={affiliateSponsors}
       />
 
-      <Enclosure className="default-container margin-top-lg margin-bottom-lg pitch-landing-page">
-        <ColumnizedContent className="container__block -half" content={formatToMarkup(pitchContent)} />
-      </Enclosure>
+      <div className="clearfix bg-white">
+        <Enclosure className="default-container margin-top-lg margin-bottom-lg pitch-landing-page">
+          <ColumnizedContent className="container__block -half" content={formatToMarkup(pitchContent)} />
+        </Enclosure>
+      </div>
+
+      <CallToActionBlockContainer
+        fields={{ title: tagline }}
+        buttonOverride="Sign up"
+        modifierClasses="transparent border-top bg-light-gray border-radius-none"
+      />
 
       <div className="info-bar -dark">
         <div className="wrapper">A DoSomething.org campaign. Join over 5.5 million members taking action. Any cause, anytime, anywhere.</div>
@@ -67,6 +76,7 @@ LandingPage.propTypes = {
   legacyCampaignId: PropTypes.string.isRequired,
   pitchContent: PropTypes.arrayOf(PropTypes.object).isRequired,
   subtitle: PropTypes.string.isRequired,
+  tagline: PropTypes.string,
   template: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
@@ -74,6 +84,7 @@ LandingPage.propTypes = {
 LandingPage.defaultProps = {
   endDate: null,
   isAffiliated: false,
+  tagline: 'Ready to start?',
 };
 
 export default LandingPage;
