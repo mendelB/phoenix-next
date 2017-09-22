@@ -10,8 +10,8 @@ import ColumnizedContent from '../../ColumnizedContent';
 import './landing-page.scss';
 
 const formatToMarkup = data => (
-  data.map((item, index) => (
-    <div key={index}>
+  data.map((item, dataIndex) => (
+    <div key={dataIndex}>
       <h3>{item.title}</h3>
       { item.content.map((paragraph, index) => (<p key={index}>{paragraph}</p>)) }
     </div>
