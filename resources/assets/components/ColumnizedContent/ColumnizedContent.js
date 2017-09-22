@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import { chunk } from 'lodash';
 import PropTypes from 'prop-types';
@@ -11,7 +13,11 @@ const ColumnizedContent = ({ content, columnCount = 2, className = null }) => {
 
   return (
     <div>
-      { columns.map(column => (<div className={classnames(className)}>{column}</div>))}
+      { columns.map((column, index) => (
+        <div key={index} className={classnames(className)}>
+          {column}
+        </div>
+      ))}
     </div>
   );
 };
