@@ -50,7 +50,7 @@ const CampaignPage = (props) => {
 
         <TabbedNavigationContainer campaignSlug={slug} />
 
-        <Enclosure className="margin-top-lg margin-bottom-lg default-container">
+        <Enclosure className="default-container margin-top-lg margin-bottom-lg">
           <Switch>
             <Route path={`${match.url}`} exact component={FeedContainer} />
             <Route
