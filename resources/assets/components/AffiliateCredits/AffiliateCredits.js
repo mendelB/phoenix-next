@@ -29,6 +29,7 @@ const AffiliateCredits = ({ affiliatePartners, affiliateSponsors }) => {
     : null;
 
   const multipleCredits = sponsor && partner ? ' and ' : null;
+  debugger
 
   return (
     (sponsorCredit || partnerCredit) ?
@@ -38,8 +39,8 @@ const AffiliateCredits = ({ affiliatePartners, affiliateSponsors }) => {
 };
 
 AffiliateCredits.propTypes = {
-  affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-  affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
+  affiliatePartners: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default AffiliateCredits;

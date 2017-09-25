@@ -18,8 +18,8 @@ const CampaignFooter = ({ affiliateSponsors, affiliatePartners, campaignLead }) 
 );
 
 CampaignFooter.propTypes = {
-  affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-  affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
+  affiliatePartners: PropTypes.arrayOf(PropTypes.object).isRequired,
   campaignLead: PropTypes.shape({
     name: PropTypes.string,
     email: PropTypes.string,
