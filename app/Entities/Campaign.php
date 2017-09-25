@@ -182,7 +182,7 @@ class Campaign extends Entity implements JsonSerializable
             // @TODO: Why is it 'activity_feed' oy? ;/
             'activityFeed' => $this->parseActivityFeed(
                 $this->activity_feed,
-                array_get($this->additionalContent, 'reverseUpdateOrder', true)
+                array_get($this->additionalContent, 'reverseActivityFeedOrder', true)
             ),
             'actionSteps' => $this->parseActionSteps($this->actionSteps),
             'quizzes' => $this->parseQuizzes($this->quizzes),
