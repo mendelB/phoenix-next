@@ -29,7 +29,6 @@ const AffiliateCredits = ({ affiliatePartners, affiliateSponsors }) => {
     : null;
 
   const multipleCredits = sponsor && partner ? ' and ' : null;
-  debugger
 
   return (
     (sponsorCredit || partnerCredit) ?
