@@ -7,10 +7,10 @@ const CampaignFooter = ({ affiliateSponsors, affiliatePartners, campaignLead }) 
   // @TODO Either deal with potentially supporting multiple affiliates per campaign
   // as opposed to just grabbing the first one
   // or change fields in Contentful to reflect single affiliates per campaign.
-  const sponser = affiliateSponsors[0];
+  const sponsor = affiliateSponsors[0];
   const partner = affiliatePartners[0];
 
-  const affiliate = sponser || partner;
+  const affiliate = sponsor || partner;
 
   return (
     <footer className="info-bar">
