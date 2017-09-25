@@ -1,7 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AffiliateCredit from './AffiliateCredit';
+const AffiliateCredit = ({ title, link }) => {
+  const affiliate = link ? <a href={link} target="blank">{title}</a> : title;
+
+  return <span>{affiliate}</span>;
+};
+
+AffiliateCredit.propTypes = {
+  link: PropTypes.string,
+  title: PropTypes.string.isRequired,
+};
+
+AffiliateCredit.defaultProps = {
+  link: null,
+};
+
 
 const AffiliateCredits = ({ affiliatePartners, affiliateSponsors }) => {
   const sponsor = affiliateSponsors[0];
