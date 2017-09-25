@@ -1,1 +1,1 @@
-export default from './AffiliateCredit';
+export default from './AffiliateCredits';
