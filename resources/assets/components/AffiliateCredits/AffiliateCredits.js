@@ -10,9 +10,9 @@ const AffiliateCredits = ({ affiliatePartners, affiliateSponsors }) => {
   const sponsorCredit = sponsor ?
     <AffiliateCredit link={sponsor.fields.link} title={sponsor.fields.title} />
     : null;
-  const partnerCredit = (partner ?
+  const partnerCredit = partner ?
     <AffiliateCredit link={partner.fields.link} title={partner.fields.title} />
-    : null);
+    : null;
 
   const multipleCredits = sponsor && partner ? ' and ' : null;
 
