@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const AffiliateCredit = ({ title, link }) => {
-  const affiliate = link ? <a href={link}>{title}</a> : title;
+  const affiliate = link ? <a href={link} target="blank">{title}</a> : title;
 
   return <span>In partnership with {affiliate}</span>;
 };
