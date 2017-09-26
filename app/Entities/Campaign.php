@@ -79,7 +79,7 @@ class Campaign extends Entity implements JsonSerializable
      * @param  array $activityItems
      * @return array
      */
-    public function parseActivityFeed($activityItems, $reverseActivityFeedOrder)
+    public function parseActivityFeed($activityItems, $reverseActivityFeedOrder = true)
     {
         $parsedActivityItems = collect($activityItems)->map(function ($item) {
             switch ($item->getContentType()) {
