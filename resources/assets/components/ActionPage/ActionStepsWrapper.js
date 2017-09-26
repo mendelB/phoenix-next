@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 
 import ActionStep from './ActionStep';
 import Revealer from '../Revealer';
-import { Flex, FlexCell } from '../Flex';
 import { makeHash } from '../../helpers';
-import CompetitionContainer from '../../containers/CompetitionContainer';
-import { ReportbackUploaderContainer } from '../ReportbackUploader';
+import { Flex, FlexCell } from '../Flex';
+import { PostGalleryContainer } from '../Gallery';
 import { SubmissionGalleryContainer } from '../Gallery';
+import { ReportbackUploaderContainer } from '../ReportbackUploader';
+import CompetitionContainer from '../../containers/CompetitionContainer';
 
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
@@ -17,6 +18,10 @@ const ActionStepsWrapper = (props) => {
     <FlexCell key="reportback_uploader" width="full">
       <ReportbackUploaderContainer {...photoUploaderProps} />
     </FlexCell>
+  );
+
+  const postGallery = (
+    <PostGalleryContainer key="post_gallery" />
   );
 
   const submissionGallery = (
@@ -87,6 +92,8 @@ const ActionStepsWrapper = (props) => {
   if (! isSignedUp) {
     stepComponents.push(actionRevealer);
   }
+
+  stepComponents.unshift(postGallery);
 
   return (
     <Flex>
