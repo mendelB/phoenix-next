@@ -39,7 +39,7 @@ PostGallery.propTypes = {
     entities: PropTypes.objectOf(PropTypes.object),
     isFetching: PropTypes.bool,
     itemEntities: PropTypes.objectOf(PropTypes.object),
-  }),
+  }).isRequired,
 };
 
 export default PostGallery;

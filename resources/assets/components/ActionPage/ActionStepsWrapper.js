@@ -5,10 +5,9 @@ import ActionStep from './ActionStep';
 import Revealer from '../Revealer';
 import { makeHash } from '../../helpers';
 import { Flex, FlexCell } from '../Flex';
-import { PostGalleryContainer } from '../Gallery';
-import { SubmissionGalleryContainer } from '../Gallery';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import CompetitionContainer from '../../containers/CompetitionContainer';
+import { PostGalleryContainer, SubmissionGalleryContainer } from '../Gallery';
 
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
