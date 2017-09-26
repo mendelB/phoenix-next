@@ -207,9 +207,6 @@ export function fetchReportbacks() {
     const node = getState().campaign.legacyCampaignId;
     const page = getState().reportbacks.page;
 
-    console.log(node);
-    console.log(page);
-
     dispatch(requestedReportbacks(node));
 
     (new Phoenix()).get('next/reportbackItems', { campaigns: node, page }).then((json) => {

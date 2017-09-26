@@ -93,7 +93,9 @@ const ActionStepsWrapper = (props) => {
     stepComponents.push(actionRevealer);
   }
 
-  stepComponents.unshift(postGallery);
+  if (template === 'legacy') {
+    stepComponents.push(postGallery);
+  }
 
   return (
     <Flex>

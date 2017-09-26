@@ -12,14 +12,14 @@ class PostGallery extends React.Component {
   }
 
   componentDidMount() {
-    console.log('PostGallery mounted!');
+    //
   }
 
   renderItem(key) {
     const post = this.props.reportbacks.itemEntities[key];
 
     return (
-      <ReportbackItemContainer key={key} id={post.id} />
+      <ReportbackItemContainer key={key} id={post.reportback.id} />
     );
   }
 
@@ -33,5 +33,13 @@ class PostGallery extends React.Component {
       </Gallery>;
   }
 }
+
+PostGallery.propTypes = {
+  reportbacks: PropTypes.shape({
+    entities: PropTypes.objectOf(PropTypes.object),
+    isFetching: PropTypes.bool,
+    itemEntities: PropTypes.objectOf(PropTypes.object),
+  }),
+};
 
 export default PostGallery;
