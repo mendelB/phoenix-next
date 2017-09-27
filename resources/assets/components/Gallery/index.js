@@ -1,9 +1,7 @@
-export PostGallery from './PostGallery';
+export { PostGallery } from './PostGallery';
+export { PostGalleryContainer } from './PostGallery';
 
-export PostGalleryContainer from './PostGalleryContainer';
-
-export SubmissionGallery from './SubmissionGallery';
-
-export SubmissionGalleryContainer from './SubmissionGalleryContainer';
+export { SubmissionGallery } from './SubmissionGallery';
+export { SubmissionGalleryContainer } from './SubmissionGallery';
 
 export default from './Gallery';

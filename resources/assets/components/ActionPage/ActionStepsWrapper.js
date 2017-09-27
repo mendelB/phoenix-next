@@ -5,9 +5,10 @@ import ActionStep from './ActionStep';
 import Revealer from '../Revealer';
 import { makeHash } from '../../helpers';
 import { Flex, FlexCell } from '../Flex';
+import { PostGalleryContainer } from '../Gallery/PostGallery';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import CompetitionContainer from '../../containers/CompetitionContainer';
-import { PostGalleryContainer, SubmissionGalleryContainer } from '../Gallery';
+import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
@@ -20,7 +21,7 @@ const ActionStepsWrapper = (props) => {
   );
 
   const postGallery = (
-    <PostGalleryContainer key="post_gallery" />
+    <PostGalleryContainer key="post_gallery" type="reportback" />
   );
 
   const submissionGallery = (
@@ -93,7 +94,16 @@ const ActionStepsWrapper = (props) => {
   }
 
   if (template === 'legacy') {
-    stepComponents.push(postGallery);
+    const postGallerySection = (
+      <div key="user_gallery" className="margin-top-lg margin-bottom-lg">
+        <h2 className="heading -emphasized legacy-step-header">
+          <span>User Gallery</span>
+        </h2>
+        {postGallery}
+      </div>
+    );
+
+    stepComponents.push(postGallerySection);
   }
 
   return (
