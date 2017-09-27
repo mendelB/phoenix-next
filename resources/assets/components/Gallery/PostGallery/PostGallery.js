@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Card from '../../Card';
 import Gallery from '../Gallery';
 import ReportbackItemContainer from '../../../containers/ReportbackItemContainer';
 
@@ -19,7 +20,9 @@ class PostGallery extends React.Component {
     const post = this.props.reportbacks.itemEntities[key];
 
     return (
-      <ReportbackItemContainer key={key} id={post.reportback.id} />
+      <Card className="rounded">
+        <ReportbackItemContainer key={key} id={post.reportback.id} />
+      </Card>
     );
   }
 
@@ -29,7 +32,7 @@ class PostGallery extends React.Component {
     return isFetching ?
       <div className="spinner -centered" />
       :
-      <Gallery type="triad">
+      <Gallery type="triad" className="expand-horizontal-md">
         {Object.keys(itemEntities).map(this.renderItem)}
       </Gallery>;
   }
