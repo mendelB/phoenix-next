@@ -1,5 +1,5 @@
 import React from 'react';
-import moment from 'moment';
+import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import SponsorPromotion from '../../SponsorPromotion';
@@ -33,7 +33,7 @@ const LegacyTemplate = (props) => {
       <div className="wrapper">
         <h1 className="header__title">{title}</h1>
         <p className="header__subtitle">{subtitle}</p>
-        { endDate ? <p className="header__date">Ends {moment(endDate.date).format('MMMM Do')}</p> : null }
+        { endDate ? <p className="header__date">Ends {format(endDate.date, 'MMMM Do')}</p> : null }
 
         { isAffiliated ? null : (
           <div className="header__signup">
