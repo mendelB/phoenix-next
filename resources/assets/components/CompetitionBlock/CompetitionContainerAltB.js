@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import CompetitionBlock from '../components/CompetitionBlock';
-import { joinCompetition, checkForCompetition } from '../actions/competition';
+import CompetitionBlockAltB from './CompetitionBlockAltB';
+import { joinCompetition, checkForCompetition } from '../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -23,4 +23,4 @@ const actionCreators = {
 };
 
 // Export the container component.
-export default connect(mapStateToProps, actionCreators)(CompetitionBlock);
+export default connect(mapStateToProps, actionCreators)(CompetitionBlockAltB);
