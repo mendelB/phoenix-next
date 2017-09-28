@@ -5,7 +5,7 @@ import Block from './Block';
 // Mock Redux containers so we don't need Provider context.
 jest.mock('./BlockContainer', () => 'BlockContainer');
 jest.mock('../CallToActionBlock', () => 'CallToActionBlockContainer');
-jest.mock('../CampaignUpdateBlock', () => 'CampaignUpdateBlockContainer');
+jest.mock('../CampaignUpdateBlock/CampaignUpdateBlockContainer', () => 'CampaignUpdateBlockContainer');
 
 test('it can display a campaign update', () => {
   const wrapper = shallow(<Block json={{ id: '12345', type: 'campaign_update' }} />);
