@@ -1,5 +1,5 @@
 import React from 'react';
-import { find, get } from 'lodash';
+import { find } from 'lodash';
 import PropTypes from 'prop-types';
 
 import NotFound from '../../NotFound';
@@ -11,7 +11,7 @@ import { isCampaignClosed } from '../../../helpers';
 import './campaign-subpage.scss';
 
 const CampaignSubPage = (props) => {
-  const { endDate, match, noun, pages, tagline, verb } = props;
+  const { campaignEndDate, match, noun, pages, tagline, verb } = props;
 
   const subPage = find(pages, page => page.fields.slug === match.params.slug);
 
@@ -19,7 +19,7 @@ const CampaignSubPage = (props) => {
     return <NotFound />;
   }
 
-  const isClosed = isCampaignClosed(get(endDate, 'date', null));
+  const isClosed = isCampaignClosed(campaignEndDate);
 
   const ctaContent = `${tagline}\n\n__Join hundreds of members and ${verb.plural} ${noun.plural}!__`;
 
@@ -54,6 +54,7 @@ const CampaignSubPage = (props) => {
 };
 
 CampaignSubPage.propTypes = {
+  campaignEndDate: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   noun: PropTypes.shape({
     singular: PropTypes.string,
@@ -66,11 +67,6 @@ CampaignSubPage.propTypes = {
       content: PropTypes.string.isRequired,
     }),
   })),
-  endDate: PropTypes.shape({
-    date: PropTypes.string,
-    timezone: PropTypes.string,
-    timezone_type: PropTypes.number,
-  }),
   tagline: PropTypes.string,
   verb: PropTypes.shape({
     singular: PropTypes.string,
@@ -84,7 +80,6 @@ CampaignSubPage.defaultProps = {
     singular: 'action',
     plural: 'action',
   },
-  endDate: null,
   tagline: 'Ready to start?',
   verb: {
     singular: 'take',
