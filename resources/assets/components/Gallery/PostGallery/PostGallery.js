@@ -20,8 +20,8 @@ class PostGallery extends React.Component {
     const post = this.props.reportbacks.itemEntities[key];
 
     return (
-      <Card className="rounded">
-        <ReportbackItemContainer key={key} id={post.reportback.id} />
+      <Card className="rounded" key={key}>
+        <ReportbackItemContainer id={post.reportback.id} />
       </Card>
     );
   }

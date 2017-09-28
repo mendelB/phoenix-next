@@ -2,4 +2,7 @@ export SubmissionGallery from './SubmissionGallery';
 
 export SubmissionGalleryContainer from './SubmissionGalleryContainer';
 
-export default './SubmissionGallery';
+/**
+ * By default we prefer to export the container.
+ */
+export default from './SubmissionGalleryContainer';

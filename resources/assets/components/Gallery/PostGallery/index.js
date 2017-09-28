@@ -2,4 +2,7 @@ export PostGallery from './PostGallery';
 
 export PostGalleryContainer from './PostGalleryContainer';
 
-export default './PostGallery';
+/**
+ * By default we prefer to export the container.
+ */
+export default from './PostGalleryContainer';
