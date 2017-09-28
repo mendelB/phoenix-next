@@ -7,7 +7,7 @@ import { makeHash } from '../../helpers';
 import { Flex, FlexCell } from '../Flex';
 import { PostGalleryContainer } from '../Gallery/PostGallery';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
-import CompetitionContainer from '../../containers/CompetitionContainer';
+import { CompetitionContainer } from '../CompetitionBlock';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 
 const ActionStepsWrapper = (props) => {

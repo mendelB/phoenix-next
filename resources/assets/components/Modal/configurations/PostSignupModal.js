@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AffirmationContainer } from '../../Affirmation';
-import CompetitionContainer from '../../../containers/CompetitionContainer';
+import { CompetitionContainer } from '../../CompetitionBlock';
 
 const PostSignupModal = ({ competitionStep }) => (
   <article>
