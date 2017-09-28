@@ -11,7 +11,7 @@ import { isCampaignClosed } from '../../../helpers';
 import './campaign-subpage.scss';
 
 const CampaignSubPage = (props) => {
-  const { match, noun, pages, tagline, verb, endDate } = props;
+  const { endDate, match, noun, pages, tagline, verb } = props;
 
   const subPage = find(pages, page => page.fields.slug === match.params.slug);
 
