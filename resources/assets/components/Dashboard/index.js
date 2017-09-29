@@ -20,8 +20,10 @@ const Dashboard = (props) => {
    * @return {String}
    */
   function replaceTemplateVars(text) {
+    const totalCampaignSignups = (props.totalCampaignSignups || 0).toLocaleString();
+
     return text
-      .replace('{totalSignups}', props.totalCampaignSignups.toLocaleString())
+      .replace('{totalSignups}', totalCampaignSignups)
       .replace('{endDate}', getDaysBetween(new Date(), new Date(props.endDate.date)));
   }
 
@@ -55,7 +57,7 @@ const Dashboard = (props) => {
 };
 
 Dashboard.propTypes = {
-  totalCampaignSignups: PropTypes.number.isRequired,
+  totalCampaignSignups: PropTypes.number,
   endDate: PropTypes.shape({
     date: PropTypes.string,
   }).isRequired,
@@ -72,6 +74,7 @@ Dashboard.propTypes = {
 };
 
 Dashboard.defaultProps = {
+  totalCampaignSignups: 0,
   content: {
     fields: {
       // ...!
