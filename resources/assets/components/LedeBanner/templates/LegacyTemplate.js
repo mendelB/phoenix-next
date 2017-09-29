@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import SignupButtonFactory from '../../SignupButton';
 import SponsorPromotion from '../../SponsorPromotion';
+import CampaignSignupArrow from '../../CampaignSignupArrow';
 import { contentfulImageUrl } from '../../../helpers';
 
 const LegacyTemplate = (props) => {
@@ -15,6 +16,7 @@ const LegacyTemplate = (props) => {
     legacyCampaignId,
     endDate,
     affiliateSponsors,
+    signupArrowContent,
   } = props;
 
   const backgroundImageStyle = {
@@ -38,6 +40,7 @@ const LegacyTemplate = (props) => {
 
         { isAffiliated ? null : (
           <div className="header__signup">
+            { signupArrowContent ? <CampaignSignupArrow content={signupArrowContent} /> : null }
             <SignupButton />
           </div>
         )}
@@ -68,12 +71,14 @@ LegacyTemplate.propTypes = {
   isAffiliated: PropTypes.bool.isRequired,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
+  signupArrowContent: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
 LegacyTemplate.defaultProps = {
   endDate: null,
+  signupArrowContent: null,
 };
 
 export default LegacyTemplate;
