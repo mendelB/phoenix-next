@@ -10,8 +10,14 @@ type BlockTitleProps = {
   title: ?string,
 };
 
+const BlockTitleLink = ({ title, shareLink }: BlockTitleProps) => (
+  shareLink.match(/http/) ?
+    <a href={shareLink}>{title}</a>
+    : <Link to={shareLink}>{title}</Link>
+);
+
 const BlockTitle = ({ title, shareLink }: BlockTitleProps) => {
-  const titleElement = shareLink ? <Link to={shareLink}>{title}</Link> : title;
+  const titleElement = shareLink ? <BlockTitleLink title={title} shareLink={shareLink} /> : title;
 
   return <h4 className="block-wrapper__title">{titleElement}</h4>;
 };
