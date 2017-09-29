@@ -1,3 +1,3 @@
 export CompetitionBlock from './CompetitionBlock';
 
-export default from './CompetitionBlockContainer';
+export CompetitionBlockContainer from './CompetitionBlockContainer';
