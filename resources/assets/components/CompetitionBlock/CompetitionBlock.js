@@ -15,7 +15,7 @@ You should recieve an email shortly with more instructions.
 You can keep working on the campaign for now. I'm so excited to have you onboard!
 `;
 
-const CompetitionBlockAltB = (props) => {
+const CompetitionBlock = (props) => {
   const { content, photo, byline, joinCompetition, hasJoinedCompetition, hasPendingJoin,
     showConfirmation, campaignId, campaignRunId, checkForCompetition, experiment, convert } = props;
 
@@ -63,7 +63,7 @@ const CompetitionBlockAltB = (props) => {
   );
 };
 
-CompetitionBlockAltB.propTypes = {
+CompetitionBlock.propTypes = {
   content: PropTypes.string.isRequired,
   convert: PropTypes.func.isRequired,
   photo: PropTypes.string,
@@ -82,8 +82,8 @@ CompetitionBlockAltB.propTypes = {
   campaignRunId: PropTypes.string.isRequired,
 };
 
-CompetitionBlockAltB.defaultProps = {
+CompetitionBlock.defaultProps = {
   photo: null,
 };
 
-export default CompetitionBlockAltB;
+export default CompetitionBlock;
