@@ -5,16 +5,21 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import './block-wrapper.scss';
 
-type BlockTitleProps = {
-  shareLink: ?string,
-  title: ?string,
+type BlockTitleLinkProps = {
+  shareLink: string,
+  title: string,
 };
 
-const BlockTitleLink = ({ title, shareLink }: BlockTitleProps) => (
+const BlockTitleLink = ({ title, shareLink }: BlockTitleLinkProps) => (
   shareLink.match(/http/) ?
     <a href={shareLink}>{title}</a>
     : <Link to={shareLink}>{title}</Link>
 );
+
+type BlockTitleProps = {
+  shareLink: ?string,
+  title: ?string,
+};
 
 const BlockTitle = ({ title, shareLink }: BlockTitleProps) => {
   const titleElement = shareLink ? <BlockTitleLink title={title} shareLink={shareLink} /> : title;
