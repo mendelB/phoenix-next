@@ -7,7 +7,7 @@ import './block-wrapper.scss';
 
 type BlockTitleLinkProps = {
   shareLink: string,
-  title: string,
+  title: ?string,
 };
 
 const BlockTitleLink = ({ title, shareLink }: BlockTitleLinkProps) => (
