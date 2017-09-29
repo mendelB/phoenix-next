@@ -23,7 +23,7 @@ const CampaignPage = (props) => {
   const {
     affiliatePartners, affiliateSponsors, blurb, campaignLead, coverImage,
     dashboard, endDate, isAffiliated, legacyCampaignId, match, openModal,
-    slug, subtitle, template, title, totalCampaignSignups,
+    signupArrowContent, slug, subtitle, template, title, totalCampaignSignups,
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
@@ -40,6 +40,7 @@ const CampaignPage = (props) => {
         endDate={endDate}
         template={template}
         affiliateSponsors={affiliateSponsors}
+        signupArrowContent={signupArrowContent}
       />
 
       <div className="main">
@@ -122,6 +123,7 @@ CampaignPage.propTypes = {
   match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   slug: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
+  signupArrowContent: PropTypes.string,
   template: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   totalCampaignSignups: PropTypes.number,
@@ -134,6 +136,7 @@ CampaignPage.defaultProps = {
   isAffiliated: false,
   totalCampaignSignups: 0,
   campaignLead: undefined,
+  signupArrowContent: null,
 };
 
 export default CampaignPage;
