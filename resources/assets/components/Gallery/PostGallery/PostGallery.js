@@ -17,23 +17,24 @@ class PostGallery extends React.Component {
   }
 
   renderItem(key) {
-    const post = this.props.reportbacks.itemEntities[key];
+    const itemId = this.props.reportbacks.entities[key].reportback_items[0];
+    const post = this.props.reportbacks.itemEntities[itemId];
 
     return (
-      <Card className="rounded" key={key}>
+      <Card className="rounded" key={post.id}>
         <ReportbackItemContainer id={post.reportback.id} />
       </Card>
     );
   }
 
   render() {
-    const { isFetching, itemEntities } = this.props.reportbacks;
+    const { entities, isFetching } = this.props.reportbacks;
 
     return isFetching ?
       <div className="spinner -centered" />
       :
       <Gallery type="triad" className="expand-horizontal-md">
-        {Object.keys(itemEntities).map(this.renderItem)}
+        {Object.keys(entities).map(this.renderItem)}
       </Gallery>;
   }
 }
