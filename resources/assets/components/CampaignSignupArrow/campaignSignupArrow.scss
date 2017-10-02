@@ -1,0 +1,14 @@
+@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox.scss';
+
+.message-callout.-dynamic-right {
+  @include media($medium) {
+    position: absolute;
+    left: 144px;
+    width: 180px;
+  }
+
+  @include media($large) {
+    width: 300px;
+  }
+}
