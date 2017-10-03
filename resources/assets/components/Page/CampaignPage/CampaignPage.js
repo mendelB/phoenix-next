@@ -42,7 +42,7 @@ const CampaignPage = (props) => {
         affiliateSponsors={affiliateSponsors}
       />
 
-      <div className="main">
+      <div className="main clearfix">
         { dashboard ?
           <Dashboard
             totalCampaignSignups={totalCampaignSignups}
