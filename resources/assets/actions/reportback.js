@@ -203,6 +203,8 @@ export function fetchUserReportbacks(userId, campaignId) {
 
 // Async Action: fetch another page of reportbacks.
 export function fetchReportbacks() {
+  console.log('🤖 Fetching Reportback!');
+
   return (dispatch, getState) => {
     const node = getState().campaign.legacyCampaignId;
     const page = getState().reportbacks.page;

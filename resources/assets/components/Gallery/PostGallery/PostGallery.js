@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Card from '../../Card';
 import Gallery from '../Gallery';
+import LoadMore from '../../LoadMore';
 import ReportbackItemContainer from '../../ReportbackItem';
 
 class PostGallery extends React.Component {
@@ -10,10 +11,16 @@ class PostGallery extends React.Component {
     super();
 
     this.renderItem = this.renderItem.bind(this);
+
+    this.state = {
+      isLoading: true,
+    };
   }
 
   componentDidMount() {
-    //
+    this.setState({
+      isLoading: false,
+    });
   }
 
   renderItem(key) {
@@ -30,12 +37,18 @@ class PostGallery extends React.Component {
   render() {
     const { entities, isFetching } = this.props.reportbacks;
 
-    return isFetching ?
+    console.log(this.state.isLoading);
+
+    return this.state.isLoading ?
       <div className="spinner -centered" />
       :
-      <Gallery type="triad" className="expand-horizontal-md">
-        {Object.keys(entities).map(this.renderItem)}
-      </Gallery>;
+      <div>
+        <Gallery type="triad" className="expand-horizontal-md">
+          {Object.keys(entities).map(this.renderItem)}
+        </Gallery>
+
+        <LoadMore className="padding-lg" text="view more" onClick={this.props.fetchReportbacks} />
+      </div>;
   }
 }
 
