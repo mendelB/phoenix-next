@@ -64,13 +64,14 @@ class ScrollConcierge extends React.Component {
     // Wait for headline font to load so we don't scroll to
     // the wrong place when the page reflows & offset changes.
     font.load().then(() => {
-      const offsetParent = this.node.offsetParent;
-      const offsetTop = offsetParent.offsetTop + this.node.offsetTop;
+      // Get node offset from top of viewport combined with scroll distance to obtain desired scroll target
+      const viewportOffset = this.node.getBoundingClientRect().top;
+      const pageOffset = window.scrollY + viewportOffset;
 
       const VISUAL_OFFSET = 95;
 
       // Wait until the page has finished layout, then scroll.
-      waitForLayout(() => scrollTo(offsetTop - VISUAL_OFFSET));
+      waitForLayout(() => scrollTo(pageOffset - VISUAL_OFFSET));
     });
   }
 
