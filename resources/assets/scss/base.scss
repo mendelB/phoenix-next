@@ -165,6 +165,16 @@ h1, h2, h3, p {
   margin: $base-spacing;
 }
 
+.margin-horizontal-lg {
+  margin-left: $base-spacing;
+  margin-right: $base-spacing;
+}
+
+.margin-horizontal-md {
+  margin-left: $half-spacing;
+  margin-right: $half-spacing;
+}
+
 .margin-bottom-md {
   margin-bottom: $half-spacing;
 }
@@ -195,6 +205,10 @@ h1, h2, h3, p {
 
 .faded {
   opacity: 0.5;
+}
+
+.text-centered {
+  text-align: center;
 }
 
 .default-container {

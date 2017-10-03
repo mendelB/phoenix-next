@@ -8,11 +8,11 @@ const renderGalleryItem = (child, index) => <li key={`submission-${index}`}>{chi
 
 const Gallery = ({ type, children, className = null }) => (
   children.length ?
-  <ul className={classnames('gallery', className, modifiers(type))}>
-    {children.map(renderGalleryItem)}
-  </ul>
-  :
-  null
+    <ul className={classnames('gallery', className, modifiers(type))}>
+      {children.map(renderGalleryItem)}
+    </ul>
+    :
+    null
 );
 
 Gallery.propTypes = {

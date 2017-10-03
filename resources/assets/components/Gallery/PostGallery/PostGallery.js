@@ -11,16 +11,6 @@ class PostGallery extends React.Component {
     super();
 
     this.renderItem = this.renderItem.bind(this);
-
-    this.state = {
-      isLoading: true,
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      isLoading: false,
-    });
   }
 
   renderItem(key) {
@@ -37,9 +27,7 @@ class PostGallery extends React.Component {
   render() {
     const { entities, isFetching } = this.props.reportbacks;
 
-    console.log(this.state.isLoading);
-
-    return this.state.isLoading ?
+    return ! this.props.reportbacks.total ?
       <div className="spinner -centered" />
       :
       <div>
@@ -47,16 +35,18 @@ class PostGallery extends React.Component {
           {Object.keys(entities).map(this.renderItem)}
         </Gallery>
 
-        <LoadMore className="padding-lg" text="view more" onClick={this.props.fetchReportbacks} />
+        <LoadMore className="padding-lg text-centered" text="view more" onClick={this.props.fetchReportbacks} isLoading={isFetching} />
       </div>;
   }
 }
 
 PostGallery.propTypes = {
+  fetchReportbacks: PropTypes.func.isRequired,
   reportbacks: PropTypes.shape({
     entities: PropTypes.objectOf(PropTypes.object),
     isFetching: PropTypes.bool,
     itemEntities: PropTypes.objectOf(PropTypes.object),
+    total: PropTypes.number,
   }).isRequired,
 };
 
