@@ -10,4 +10,12 @@
   &.-align-right {
     float: right;
   }
+
+  &.-secondary,
+  &.is-loading {
+    &:focus {
+      border: 0 none;
+      box-shadow: none;
+    }
+  }
 }

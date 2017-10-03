@@ -87,7 +87,7 @@ class ReportbackUploader extends React.Component {
     );
 
     return (
-      <BlockWrapper>
+      <BlockWrapper className="margin-horizontal-md">
         <div className="reportback-uploader">
           <h2 className="heading">Upload your photos</h2>
 

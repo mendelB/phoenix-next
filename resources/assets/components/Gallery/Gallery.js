@@ -7,7 +7,12 @@ import { modifiers } from '../../helpers';
 const renderGalleryItem = (child, index) => <li key={`submission-${index}`}>{child}</li>;
 
 const Gallery = ({ type, children, className = null }) => (
-  children.length ? <ul className={classnames('gallery', className, modifiers(type))}>{children.map(renderGalleryItem)}</ul> : null
+  children.length ?
+    <ul className={classnames('gallery', className, modifiers(type))}>
+      {children.map(renderGalleryItem)}
+    </ul>
+    :
+    null
 );
 
 Gallery.propTypes = {
