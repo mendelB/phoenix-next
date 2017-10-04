@@ -221,7 +221,7 @@ export function fetchUserReportbacks(userId, campaignId) {
 // Async Action: fetch another page of reportbacks.
 export function fetchReportbacks() {
   return (dispatch, getState) => {
-    const count = 24;
+    const count = 24; // Count of items divisible by 2, 3, and 4,for full gallery rows!
     const node = getState().campaign.legacyCampaignId;
     const page = getState().reportbacks.currentPage + 1;
 
