@@ -23,7 +23,7 @@ const CampaignPage = (props) => {
   const {
     affiliatePartners, affiliateSponsors, blurb, campaignLead, coverImage,
     dashboard, endDate, isAffiliated, legacyCampaignId, match, openModal,
-    slug, subtitle, template, title, totalCampaignSignups,
+    slug, subtitle, template, title, totalCampaignSignups, showPartnerMsgOptIn,
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
@@ -40,6 +40,7 @@ const CampaignPage = (props) => {
         endDate={endDate}
         template={template}
         affiliateSponsors={affiliateSponsors}
+        showPartnerMsgOptIn={showPartnerMsgOptIn}
       />
 
       <div className="main clearfix">
@@ -126,6 +127,7 @@ CampaignPage.propTypes = {
   title: PropTypes.string.isRequired,
   totalCampaignSignups: PropTypes.number,
   openModal: PropTypes.func.isRequired,
+  showPartnerMsgOptIn: PropTypes.bool,
 };
 
 CampaignPage.defaultProps = {
@@ -134,6 +136,7 @@ CampaignPage.defaultProps = {
   isAffiliated: false,
   totalCampaignSignups: 0,
   campaignLead: undefined,
+  showPartnerMsgOptIn: false,
 };
 
 export default CampaignPage;
