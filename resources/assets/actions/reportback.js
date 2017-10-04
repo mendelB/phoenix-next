@@ -221,12 +221,13 @@ export function fetchUserReportbacks(userId, campaignId) {
 // Async Action: fetch another page of reportbacks.
 export function fetchReportbacks() {
   return (dispatch, getState) => {
+    const count = 24;
     const node = getState().campaign.legacyCampaignId;
     const page = getState().reportbacks.currentPage + 1;
 
     dispatch(requestedReportbacks(node));
 
-    (new Phoenix()).get('next/reportbackItems', { campaigns: node, page }).then((json) => {
+    (new Phoenix()).get('next/reportbackItems', { campaigns: node, count, page }).then((json) => {
       const normalizedData = normalizeReportbackItemResponse(json.data);
       const currentPage = get(json, 'meta.pagination.current_page', 1);
       const totalPages = get(json, 'meta.pagination.total_pages', 1);
