@@ -14,7 +14,7 @@ const Affirmation = ({ content }) => (
       <Highlight>{ content.header }</Highlight>
     </div>
     <div className="affirmation__section affirmation__section-quote">
-      <Figure image={content.photo} alt={content.author} alignment="left">
+      <Figure className="margin-bottom-none" image={content.photo} alt={content.author} alignment="left">
         <Markdown>{ content.quote }</Markdown>
         <span>- { content.author }</span>
       </Figure>

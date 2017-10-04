@@ -15,6 +15,7 @@ const Byline = ({ author, jobTitle, avatar, share, className }) => (
       image={avatar}
       alt={`picture of ${author}`}
       imageClassName="avatar"
+      className="margin-bottom-none"
     >
       <strong>{author}</strong><br />
       <p className="footnote">{jobTitle}</p>
