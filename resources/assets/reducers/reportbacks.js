@@ -19,10 +19,12 @@ const reportbacks = (state = {}, action) => {
       };
 
     case RECEIVED_REPORTBACKS:
+      // console.log(action, 'action');
       return {
         ...state,
+        currentPage: action.currentPage,
         isFetching: false,
-        page: action.page + 1,
+        totalPages: action.totalPages,
         total: action.total,
         ids: state.ids.concat(Object.keys(action.reportbacks)),
         entities: merge(state.entities, action.reportbacks),
