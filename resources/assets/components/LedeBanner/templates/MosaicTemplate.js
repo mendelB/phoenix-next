@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Markdown from '../../Markdown';
+import AffiliateOptionContainer from '../../AffiliateOption';
 import SignupButtonFactory from '../../SignupButton';
 import { contentfulImageUrl } from '../../../helpers';
 
@@ -36,6 +37,7 @@ const MosaicTemplate = (props) => {
           <Markdown className="lede-banner__blurb">{blurb}</Markdown>
 
           { isAffiliated ? null : <SignupButton /> }
+          { isAffiliated ? null : <AffiliateOptionContainer /> }
         </div>
       </div>
     </header>
