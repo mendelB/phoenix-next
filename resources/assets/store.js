@@ -19,9 +19,10 @@ const initialState = {
     activityFeed: [],
   },
   reportbacks: {
+    currentPage: 0,
     isFetching: false,
     total: 0,
-    page: 1,
+    totalPages: 1,
     ids: [],
     entities: {},
     itemEntities: {},

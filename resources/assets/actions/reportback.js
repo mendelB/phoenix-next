@@ -30,8 +30,25 @@ export function requestedReportbacks(node) {
 }
 
 // Action: new reportback data received.
-export function receivedReportbacks({ reportbacks, reportbackItems, reactions }, page, total) {
-  return { type: RECEIVED_REPORTBACKS, reportbacks, reportbackItems, reactions, page, total };
+export function receivedReportbacks(
+  {
+    reportbacks,
+    reportbackItems,
+    reactions,
+  },
+  currentPage,
+  totalPages,
+  total,
+) {
+  return {
+    type: RECEIVED_REPORTBACKS,
+    reportbacks,
+    reportbackItems,
+    reactions,
+    currentPage,
+    totalPages,
+    total,
+  };
 }
 
 // Action: toggled a reaction
@@ -205,16 +222,17 @@ export function fetchUserReportbacks(userId, campaignId) {
 export function fetchReportbacks() {
   return (dispatch, getState) => {
     const node = getState().campaign.legacyCampaignId;
-    const page = getState().reportbacks.page;
+    const page = getState().reportbacks.currentPage + 1;
 
     dispatch(requestedReportbacks(node));
 
     (new Phoenix()).get('next/reportbackItems', { campaigns: node, page }).then((json) => {
       const normalizedData = normalizeReportbackItemResponse(json.data);
       const currentPage = get(json, 'meta.pagination.current_page', 1);
+      const totalPages = get(json, 'meta.pagination.total_pages', 1);
       const total = get(json, 'meta.pagination.total', 0);
 
-      dispatch(receivedReportbacks(normalizedData, currentPage, total));
+      dispatch(receivedReportbacks(normalizedData, currentPage, totalPages, total));
     });
   };
 }
