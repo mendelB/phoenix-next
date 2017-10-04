@@ -19,7 +19,6 @@ const reportbacks = (state = {}, action) => {
       };
 
     case RECEIVED_REPORTBACKS:
-      // console.log(action, 'action');
       return {
         ...state,
         currentPage: action.currentPage,

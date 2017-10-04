@@ -25,9 +25,9 @@ class PostGallery extends React.Component {
   }
 
   render() {
-    const { entities, isFetching } = this.props.reportbacks;
+    const { currentPage, entities, isFetching, total, totalPages } = this.props.reportbacks;
 
-    return ! this.props.reportbacks.total ?
+    return ! total ?
       <div className="spinner -centered" />
       :
       <div>
@@ -35,7 +35,12 @@ class PostGallery extends React.Component {
           {Object.keys(entities).map(this.renderItem)}
         </Gallery>
 
-        <LoadMore className="padding-lg text-centered" text="view more" onClick={this.props.fetchReportbacks} isLoading={isFetching} />
+        {
+          currentPage !== totalPages ?
+            <LoadMore className="padding-lg text-centered" text="view more" onClick={this.props.fetchReportbacks} isLoading={isFetching} />
+            :
+            null
+        }
       </div>;
   }
 }
