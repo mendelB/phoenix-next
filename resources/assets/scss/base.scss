@@ -165,6 +165,10 @@ h1, h2, h3, p {
   margin: $base-spacing;
 }
 
+.margin-bottom-none {
+  margin-bottom: 0 !important;
+}
+
 .margin-horizontal-lg {
   margin-left: $base-spacing;
   margin-right: $base-spacing;

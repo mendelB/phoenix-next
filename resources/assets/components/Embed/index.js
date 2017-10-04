@@ -28,7 +28,7 @@ class Embed extends React.Component {
     } else if (this.state.title && this.state.url) {
       embed = (
         <a href={this.state.url} target="_blank" rel="noopener noreferrer">
-          <Figure className="padded" image={this.state.image || this.state.provider.icon} alt={this.state.provider.name} alignment="left-collapse" size="large">
+          <Figure className="padded margin-bottom-none" image={this.state.image || this.state.provider.icon} alt={this.state.provider.name} alignment="left-collapse" size="large">
             <h3>{ this.state.title }</h3>
             { this.state.description ? <p>{ this.state.description }</p> : null }
             <p className="footnote">{ this.state.provider.name }</p>
