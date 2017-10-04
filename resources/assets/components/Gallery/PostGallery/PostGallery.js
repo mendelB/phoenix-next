@@ -48,10 +48,12 @@ class PostGallery extends React.Component {
 PostGallery.propTypes = {
   fetchReportbacks: PropTypes.func.isRequired,
   reportbacks: PropTypes.shape({
+    currentPage: PropTypes.number,
     entities: PropTypes.objectOf(PropTypes.object),
     isFetching: PropTypes.bool,
     itemEntities: PropTypes.objectOf(PropTypes.object),
     total: PropTypes.number,
+    totalPages: PropTypes.number,
   }).isRequired,
 };
 
