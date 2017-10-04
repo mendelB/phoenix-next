@@ -23,6 +23,10 @@
   > .figure__body p {
     word-break: break-word;
   }
+
+  &.figure, .figure {
+    margin-bottom: 0;
+  }
 }
 
 .padded {
