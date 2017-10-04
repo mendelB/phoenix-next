@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Card from '../../Card';
 import Gallery from '../Gallery';
+import LoadMore from '../../LoadMore';
 import ReportbackItemContainer from '../../ReportbackItem';
 
 class PostGallery extends React.Component {
@@ -10,10 +11,6 @@ class PostGallery extends React.Component {
     super();
 
     this.renderItem = this.renderItem.bind(this);
-  }
-
-  componentDidMount() {
-    //
   }
 
   renderItem(key) {
@@ -30,20 +27,26 @@ class PostGallery extends React.Component {
   render() {
     const { entities, isFetching } = this.props.reportbacks;
 
-    return isFetching ?
+    return ! this.props.reportbacks.total ?
       <div className="spinner -centered" />
       :
-      <Gallery type="triad" className="expand-horizontal-md">
-        {Object.keys(entities).map(this.renderItem)}
-      </Gallery>;
+      <div>
+        <Gallery type="triad" className="expand-horizontal-md">
+          {Object.keys(entities).map(this.renderItem)}
+        </Gallery>
+
+        <LoadMore className="padding-lg text-centered" text="view more" onClick={this.props.fetchReportbacks} isLoading={isFetching} />
+      </div>;
   }
 }
 
 PostGallery.propTypes = {
+  fetchReportbacks: PropTypes.func.isRequired,
   reportbacks: PropTypes.shape({
     entities: PropTypes.objectOf(PropTypes.object),
     isFetching: PropTypes.bool,
     itemEntities: PropTypes.objectOf(PropTypes.object),
+    total: PropTypes.number,
   }).isRequired,
 };
 
