@@ -14,7 +14,11 @@
     }
   }
 
-  .js-footnote-hidden {
+  .footnote-details {
     visibility: hidden;
+
+    &.is-expanded {
+      visibility: visible;
+    }
   }
 }

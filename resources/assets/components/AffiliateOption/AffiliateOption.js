@@ -1,41 +1,38 @@
-/* global document */
-
-import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import React from 'react';
 import './affiliateOption.scss';
 
 
-const AffiliateOption = (props) => {
-  const {
-    optedOut,
-    clickedOptOut,
-    affiliateOptionLabel,
-    moreInformationLabel,
-    moreInformationMessage,
-  } = props;
+class AffiliateOption extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const handleClick = (event) => {
+    this.state = { expanded: false };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(event) {
     event.preventDefault();
+    this.setState({ expanded: ! this.state.expanded });
+  }
 
-    const details = document.querySelector('.footnote-details');
-
-    details.classList.toggle('js-footnote-hidden');
-  };
-
-  return (
-    <div className="form-wrapper affiliate-option">
-      <label className="option -checkbox" htmlFor="affiliate_opt_in">
-        <input type="checkbox" id="opt_in" name="affiliate_opt_in" value={optedOut} checked={! optedOut} className="form-checkbox" onClick={clickedOptOut} />
-        <span className="option__indicator" />
-        {affiliateOptionLabel}
-      </label>
-      <div className="footnote">
-        <button onClick={handleClick}>{moreInformationLabel}</button>
-        <div className="footnote-details js-footnote-hidden">{moreInformationMessage}</div>
+  render() {
+    return (
+      <div className="form-wrapper affiliate-option">
+        <label className="option -checkbox" htmlFor="affiliate_opt_in">
+          <input type="checkbox" id="opt_in" name="affiliate_opt_in" value={this.props.optedOut} checked={! this.props.optedOut} className="form-checkbox" onClick={this.props.clickedOptOut} />
+          <span className="option__indicator" />
+          {this.props.affiliateOptionLabel}
+        </label>
+        <div className="footnote">
+          <button onClick={this.handleClick}>{this.props.moreInformationLabel}</button>
+          <div className={classnames('footnote-details', { 'is-expanded': this.state.expanded })}>{ this.props.moreInformationMessage }</div>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 AffiliateOption.propTypes = {
   clickedOptOut: PropTypes.func.isRequired,
