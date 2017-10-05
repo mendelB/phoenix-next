@@ -41,6 +41,12 @@ const initialState = {
     isPending: false,
     total: 0,
     optedOut: false,
+    // @TODO: this configuration should come from contentful.
+    affilitateConfiguration: {
+      label: 'Also sign me up for messages from our partner test',
+      moreInformationLabel: 'Click here for more information',
+      moreInformationMessage: 'More details about this option',
+    },
   },
   competitions: {
     data: [],

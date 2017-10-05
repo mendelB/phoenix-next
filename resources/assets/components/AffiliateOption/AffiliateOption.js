@@ -6,11 +6,17 @@ import './affiliateOption.scss';
 
 
 const AffiliateOption = (props) => {
-  const { optedOut, clickedOptOut } = props;
+  const {
+    optedOut,
+    clickedOptOut,
+    affiliateOptionLabel,
+    moreInformationLabel,
+    moreInformationMessage,
+  } = props;
 
   const handleClick = (event) => {
     event.preventDefault();
-    console.log('clicking');
+
     const details = document.querySelector('.footnote-details');
 
     details.classList.toggle('js-footnote-hidden');
@@ -21,13 +27,11 @@ const AffiliateOption = (props) => {
       <label className="option -checkbox" htmlFor="affiliate_opt_in">
         <input type="checkbox" id="opt_in" name="affiliate_opt_in" value={optedOut} className="form-checkbox" onClick={clickedOptOut} />
         <span className="option__indicator" />
-        Also sign me up for messages from our partner
+        {affiliateOptionLabel}
       </label>
       <div className="footnote">
-        <button onClick={handleClick}>Affiliate Opt-in More Information Label</button>
-        <div className="footnote-details js-footnote-hidden">
-          Affiliate Opt-in More Information Message
-        </div>
+        <button onClick={handleClick}>{moreInformationLabel}</button>
+        <div className="footnote-details js-footnote-hidden">{moreInformationMessage}</div>
       </div>
     </div>
   );
@@ -36,6 +40,9 @@ const AffiliateOption = (props) => {
 AffiliateOption.propTypes = {
   clickedOptOut: PropTypes.func.isRequired,
   optedOut: PropTypes.bool.isRequired,
+  affiliateOptionLabel: PropTypes.string.isRequired,
+  moreInformationLabel: PropTypes.string.isRequired,
+  moreInformationMessage: PropTypes.string.isRequired,
 };
 
 export default AffiliateOption;

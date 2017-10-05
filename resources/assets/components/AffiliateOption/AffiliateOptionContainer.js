@@ -4,6 +4,9 @@ import { clickedOptOut } from '../../actions/signup';
 
 const mapStateToProps = state => ({
   optedOut: state.signups.optedOut,
+  affiliateOptionLabel: state.signups.affilitateConfiguration.label,
+  moreInformationLabel: state.signups.affilitateConfiguration.moreInformationLabel,
+  moreInformationMessage: state.signups.affilitateConfiguration.moreInformationMessage,
 });
 
 const actionCreators = {
