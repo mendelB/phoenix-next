@@ -59,8 +59,8 @@ export function signupPending() {
 }
 
 // Action: reportback fetch initiated.
-export function signupOptOut(node) {
-  return { type: SIGNUP_CLICKED_OPT_OUT, node };
+export function signupOptOut() {
+  return { type: SIGNUP_CLICKED_OPT_OUT };
 }
 
 // Async Action: check if user already signed up for the campaign
