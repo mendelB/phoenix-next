@@ -58,11 +58,6 @@ export function signupPending() {
   return { type: SIGNUP_PENDING };
 }
 
-// Action: reportback fetch initiated.
-export function signupOptOut() {
-  return { type: SIGNUP_CLICKED_OPT_OUT };
-}
-
 // Async Action: check if user already signed up for the campaign
 export function checkForSignup(campaignId) {
   return (dispatch, getState) => {
@@ -152,7 +147,5 @@ export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
 
 // Action: sends whether the user opted out of affiliate messaging.
 export function clickedOptOut() {
-  return (dispatch) => {
-    dispatch(signupOptOut());
-  };
+  return { type: SIGNUP_CLICKED_OPT_OUT };
 }
