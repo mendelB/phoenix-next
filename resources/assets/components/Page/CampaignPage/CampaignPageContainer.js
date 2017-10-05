@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
   isAffiliated: state.signups.thisCampaign,
   affiliateSponsors: state.campaign.affiliateSponsors,
   affiliatePartners: state.campaign.affiliatePartners,
-  showPartnerMsgOptIn: true, // @TODO grab from state
+  showPartnerMsgOptIn: state.signups.affilitateConfiguration.show,
   campaignLead: get(state.campaign.additionalContent, 'campaignLead'),
   legacyCampaignId: state.campaign.legacyCampaignId,
   slug: state.campaign.slug,

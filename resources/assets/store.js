@@ -41,8 +41,9 @@ const initialState = {
     isPending: false,
     total: 0,
     optedOut: false,
-    // @TODO: this configuration should come from contentful.
+    // @TODO: this configuration should come from contentful. Should this be in the campaign object?
     affilitateConfiguration: {
+      show: true,
       label: 'Also sign me up for messages from our partner test',
       moreInformationLabel: 'Click here for more information',
       moreInformationMessage: 'More details about this option',
