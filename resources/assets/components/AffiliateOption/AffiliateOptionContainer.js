@@ -4,16 +4,14 @@ import { clickedOptOut } from '../../actions/signup';
 
 const mapStateToProps = state => ({
   optedOut: state.signups.optedOut,
-  affiliateOptionLabel: state.signups.affilitateConfiguration.label,
-  moreInformationLabel: state.signups.affilitateConfiguration.moreInformationLabel,
-  moreInformationMessage: state.signups.affilitateConfiguration.moreInformationMessage,
+  affiliateOptionLabel: state.campaign.displayAffilitateOptOut.label,
+  moreInformationLabel: state.campaign.displayAffilitateOptOut.moreInformationLabel,
+  moreInformationMessage: state.campaign.displayAffilitateOptOut.moreInformationMessage,
 });
 
 const actionCreators = {
   clickedOptOut,
 };
 
-// Probably need a opt-out boolean, whether the user has already opted in/out
-// Probably need a show boolean to let us know if we should or should not show.
 export default connect(mapStateToProps, actionCreators)(AffiliateOption);
 

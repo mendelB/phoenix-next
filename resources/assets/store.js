@@ -17,6 +17,13 @@ const initialState = {
   },
   campaign: {
     activityFeed: [],
+    // @TODO: this configuration should come from contentful?
+    displayAffilitateOptOut: {
+      show: false,
+      label: 'Also sign me up for messages from our partner test',
+      moreInformationLabel: 'Click here for more information',
+      moreInformationMessage: 'More details about this option',
+    },
   },
   reportbacks: {
     currentPage: 0,
@@ -41,13 +48,6 @@ const initialState = {
     isPending: false,
     total: 0,
     optedOut: false,
-    // @TODO: this configuration should come from contentful. Should this be in the campaign object?
-    affilitateConfiguration: {
-      show: true,
-      label: 'Also sign me up for messages from our partner test',
-      moreInformationLabel: 'Click here for more information',
-      moreInformationMessage: 'More details about this option',
-    },
   },
   competitions: {
     data: [],
