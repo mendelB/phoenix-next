@@ -25,7 +25,7 @@ const AffiliateOption = (props) => {
   return (
     <div className="form-wrapper affiliate-option">
       <label className="option -checkbox" htmlFor="affiliate_opt_in">
-        <input type="checkbox" id="opt_in" name="affiliate_opt_in" value={optedOut} className="form-checkbox" onClick={clickedOptOut} />
+        <input type="checkbox" id="opt_in" name="affiliate_opt_in" value={optedOut} checked={!optedOut} className="form-checkbox" onClick={clickedOptOut} />
         <span className="option__indicator" />
         {affiliateOptionLabel}
       </label>
