@@ -4,7 +4,7 @@ import AffiliateOption from './AffiliateOption';
 import { clickedOptOut } from '../../actions/signup';
 
 const mapStateToProps = state => ({
-  optedOut: state.signups.optedOut,
+  affiliateMessagingOptOut: state.signups.affiliateMessagingOptOut,
   affiliateOptionLabel: get(state.campaign.additionalContent.affiliateOption, 'label', ''),
   moreInformationLabel: get(state.campaign.additionalContent.affiliateOption, 'moreInformationLabel', ''),
   moreInformationMessage: get(state.campaign.additionalContent.affiliateOption, 'moreInformationMessage', ''),
