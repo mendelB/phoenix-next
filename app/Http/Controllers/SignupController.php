@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Rogue;
 use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
 
@@ -13,9 +14,10 @@ class SignupController extends Controller
      * @todo once Rogue is ready, this will all change to request
      * Signups from Rogue instead of PhoenixLegacy.
      */
-    public function __construct(PhoenixLegacy $phoenixLegacy)
+    public function __construct(PhoenixLegacy $phoenixLegacy, Rogue $rogue)
     {
         $this->phoenixLegacy = $phoenixLegacy;
+        $this->rogue = $rogue;
 
         $this->middleware('auth', ['only' => 'store']);
     }
@@ -52,13 +54,22 @@ class SignupController extends Controller
     {
         $this->validate($request, [
             'campaignId' => 'required',
+            'campaignRunId' => 'required',
         ]);
 
-        return $this->phoenixLegacy->storeSignup(
+        return $this->rogue->storeSignup(
             auth()->id(),
             $request->input('campaignId'),
-            'phoenix-next'
+            $request->input('campaignRunId'),
+            'phoenix-next',
+            $request->input('details')
         );
+
+        // return $this->phoenixLegacy->storeSignup(
+        //     auth()->id(),
+        //     $request->input('campaignId'),
+        //     'phoenix-next'
+        // );
     }
 
     /**
