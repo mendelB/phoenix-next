@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import React from 'react';
 import './affiliateOption.scss';
 
-
 class AffiliateOption extends React.Component {
   constructor(props) {
     super(props);
