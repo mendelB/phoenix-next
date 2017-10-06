@@ -16,6 +16,7 @@ const mapStateToProps = state => ({
   affiliateSponsors: state.campaign.affiliateSponsors,
   legacyCampaignId: state.campaign.legacyCampaignId,
   pitchContent: get(state.campaign.landingPage.fields.additionalContent, 'pitchContent'),
+  showPartnerMsgOptIn: get(state.campaign.additionalContent, 'displayAffilitateOptOut', false),
   signupArrowContent: get(state.campaign.additionalContent, 'signupArrowContent', null),
   subtitle: state.campaign.callToAction,
   tagline: get(state.campaign.additionalContent, 'tagline'),
