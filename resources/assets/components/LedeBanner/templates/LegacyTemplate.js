@@ -2,6 +2,7 @@ import React from 'react';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
+import AffiliateOptionContainer from '../../AffiliateOption';
 import SignupButtonFactory from '../../SignupButton';
 import SponsorPromotion from '../../SponsorPromotion';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
@@ -17,6 +18,7 @@ const LegacyTemplate = (props) => {
     endDate,
     affiliateSponsors,
     signupArrowContent,
+    showPartnerMsgOptIn,
   } = props;
 
   const backgroundImageStyle = {
@@ -28,7 +30,10 @@ const LegacyTemplate = (props) => {
   const sponsor = affiliateSponsors[0];
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
-    <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>Sign Up</button>
+    <div>
+      <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>Sign Up</button>
+      { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
+    </div>
   ), 'legacy lede banner', { text: 'sign up' });
 
   return (
@@ -74,11 +79,13 @@ LegacyTemplate.propTypes = {
   signupArrowContent: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  showPartnerMsgOptIn: PropTypes.bool,
 };
 
 LegacyTemplate.defaultProps = {
   endDate: null,
   signupArrowContent: null,
+  showPartnerMsgOptIn: false,
 };
 
 export default LegacyTemplate;

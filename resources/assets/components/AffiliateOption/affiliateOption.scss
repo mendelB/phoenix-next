@@ -1,6 +1,10 @@
 @import '../../scss/next-toolbox.scss';
 
 .affiliate-option {
+  .option {
+    color: $white;
+  }
+
   .footnote {
     button {
       color: $light-gray;

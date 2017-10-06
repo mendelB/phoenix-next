@@ -39,6 +39,7 @@ const LandingPage = (props) => {
         template={template}
         affiliateSponsors={affiliateSponsors}
         signupArrowContent={signupArrowContent}
+        showPartnerMsgOptIn={showPartnerMsgOptIn}
       />
 
       <div className="clearfix bg-white">
