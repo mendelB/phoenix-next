@@ -123,24 +123,25 @@ export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
     dispatch(signupPending());
 
     return (new Phoenix()).post('next/signups', { campaignId }).then((response) => {
-      // Handle a bad signup response...
-      if (! response) {
-        dispatch(addNotification('error'));
-      } else if (response[0] === false) {
-        // If Drupal denied our signup request, check if we already had a signup.
-        dispatch(checkForSignup(campaignId));
-      } else {
-        // Create signup and track any data before redirects.
-        dispatch(signupCreated(campaignId));
+      console.log(response);
+      // // Handle a bad signup response...
+      // if (! response) {
+      //   dispatch(addNotification('error'));
+      // } else if (response[0] === false) {
+      //   // If Drupal denied our signup request, check if we already had a signup.
+      //   dispatch(checkForSignup(campaignId));
+      // } else {
+      //   // Create signup and track any data before redirects.
+      //   dispatch(signupCreated(campaignId));
 
-        // Take user to the action page if campaign is open.
-        const endDate = get(getState().campaign.endDate, 'date', null);
-        const isClosed = isCampaignClosed(endDate);
-        if (shouldRedirectToActionTab && ! isClosed) {
-          dispatch(openModal(POST_SIGNUP_MODAL));
-          dispatch(push(campaignActionUrl));
-        }
-      }
+      //   // Take user to the action page if campaign is open.
+      //   const endDate = get(getState().campaign.endDate, 'date', null);
+      //   const isClosed = isCampaignClosed(endDate);
+      //   if (shouldRedirectToActionTab && ! isClosed) {
+      //     dispatch(openModal(POST_SIGNUP_MODAL));
+      //     dispatch(push(campaignActionUrl));
+      //   }
+      // }
     });
   };
 }

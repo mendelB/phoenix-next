@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
   affiliatePartners: state.campaign.affiliatePartners,
   campaignLead: get(state.campaign.additionalContent, 'campaignLead'),
   legacyCampaignId: state.campaign.legacyCampaignId,
+  legacyCampaignRunId: state.campaign.legacyCampaignRunId,
   slug: state.campaign.slug,
   subtitle: state.campaign.callToAction,
   template: state.campaign.template,
