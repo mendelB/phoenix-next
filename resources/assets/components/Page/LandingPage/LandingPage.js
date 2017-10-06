@@ -25,7 +25,7 @@ const LandingPage = (props) => {
     isAffiliated, legacyCampaignId, pitchContent, showPartnerMsgOptIn,
     signupArrowContent, subtitle, tagline, template, title,
   } = props;
-  console.log(showPartnerMsgOptIn);
+
   return (
     <div>
       <LedeBanner

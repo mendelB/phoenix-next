@@ -17,13 +17,6 @@ const initialState = {
   },
   campaign: {
     activityFeed: [],
-    // @TODO: this configuration should come from contentful?
-    displayAffilitateOptOut: {
-      show: false,
-      label: 'Also sign me up for messages from our partner test',
-      moreInformationLabel: 'Click here for more information',
-      moreInformationMessage: 'More details about this option',
-    },
   },
   reportbacks: {
     currentPage: 0,
