@@ -40,6 +40,7 @@ const initialState = {
     thisSession: false,
     isPending: false,
     total: 0,
+    affiliateMessagingOptOut: false,
   },
   competitions: {
     data: [],

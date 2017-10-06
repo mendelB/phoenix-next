@@ -22,7 +22,7 @@ const formatToMarkup = data => (
 const LandingPage = (props) => {
   const {
     affiliateSponsors, blurb, coverImage, endDate,
-    isAffiliated, legacyCampaignId, pitchContent,
+    isAffiliated, legacyCampaignId, pitchContent, showPartnerMsgOptIn,
     signupArrowContent, subtitle, tagline, template, title,
   } = props;
 
@@ -39,6 +39,7 @@ const LandingPage = (props) => {
         template={template}
         affiliateSponsors={affiliateSponsors}
         signupArrowContent={signupArrowContent}
+        showPartnerMsgOptIn={showPartnerMsgOptIn}
       />
 
       <div className="clearfix bg-white">
@@ -75,6 +76,7 @@ LandingPage.propTypes = {
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   legacyCampaignId: PropTypes.string.isRequired,
   pitchContent: PropTypes.arrayOf(PropTypes.object).isRequired,
+  showPartnerMsgOptIn: PropTypes.bool,
   signupArrowContent: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
   tagline: PropTypes.string,
@@ -87,6 +89,7 @@ LandingPage.defaultProps = {
   isAffiliated: false,
   tagline: 'Ready to start?',
   signupArrowContent: null,
+  showPartnerMsgOptIn: false,
 };
 
 export default LandingPage;

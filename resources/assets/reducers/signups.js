@@ -3,6 +3,7 @@ import {
   SIGNUP_FOUND,
   SIGNUP_PENDING,
   SIGNUP_NOT_FOUND,
+  SIGNUP_CLICKED_OPT_OUT,
   SET_TOTAL_SIGNUPS,
 } from '../actions';
 
@@ -59,6 +60,10 @@ const signupReducer = (state = {}, action) => {
 
     case SET_TOTAL_SIGNUPS:
       return { ...state, total: action.total };
+
+    case SIGNUP_CLICKED_OPT_OUT:
+      return { ...state, affiliateMessagingOptOut: ! state.affiliateMessagingOptOut };
+
 
     default:
       return state;

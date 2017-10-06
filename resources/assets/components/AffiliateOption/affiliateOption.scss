@@ -1,0 +1,28 @@
+@import '../../scss/next-toolbox.scss';
+
+.affiliate-option {
+  .option {
+    color: $white;
+  }
+
+  .footnote {
+    button {
+      color: $light-gray;
+      font-size: 14px;
+      text-decoration:underline;
+      padding: 0px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .footnote-details {
+    visibility: hidden;
+
+    &.is-expanded {
+      visibility: visible;
+    }
+  }
+}

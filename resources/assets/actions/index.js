@@ -41,6 +41,7 @@ export const SIGNUP_CREATED = 'SIGNUP_CREATED';
 export const SIGNUP_FOUND = 'SIGNUP_FOUND';
 export const SIGNUP_PENDING = 'SIGNUP_PENDING';
 export const SIGNUP_NOT_FOUND = 'SIGNUP_NOT_FOUND';
+export const SIGNUP_CLICKED_OPT_OUT = 'SIGNUP_CLICKED_OPT_OUT';
 export const HIDE_AFFIRMATION = 'HIDE_AFFIRMATION';
 export const SET_TOTAL_SIGNUPS = 'SET_TOTAL_SIGNUPS';
 export * from './signup';

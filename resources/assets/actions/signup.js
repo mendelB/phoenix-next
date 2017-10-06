@@ -10,6 +10,7 @@ import {
   SIGNUP_FOUND,
   SIGNUP_NOT_FOUND,
   SIGNUP_PENDING,
+  SIGNUP_CLICKED_OPT_OUT,
   SET_TOTAL_SIGNUPS,
   queueEvent,
   addNotification,
@@ -142,4 +143,9 @@ export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
       }
     });
   };
+}
+
+// Action: sends whether the user opted out of affiliate messaging.
+export function clickedOptOut() {
+  return { type: SIGNUP_CLICKED_OPT_OUT };
 }
