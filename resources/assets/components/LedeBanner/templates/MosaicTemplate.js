@@ -14,6 +14,7 @@ const MosaicTemplate = (props) => {
     coverImage,
     isAffiliated,
     legacyCampaignId,
+    legacyCampaignRunId,
     showPartnerMsgOptIn,
   } = props;
 
@@ -23,7 +24,7 @@ const MosaicTemplate = (props) => {
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <div>
-      <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>Join Us</button>
+      <button className="button" onClick={() => clickedSignUp(legacyCampaignId, legacyCampaignRunId)}>Join Us</button>
       { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
     </div>
   ), 'lede banner', { text: 'join us' });
@@ -55,9 +56,14 @@ MosaicTemplate.propTypes = {
   }).isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
+  legacyCampaignRunId: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   showPartnerMsgOptIn: PropTypes.bool.isRequired,
+};
+
+MosaicTemplate.defaultProps = {
+  showPartnerMsgOptIn: false,
 };
 
 export default MosaicTemplate;

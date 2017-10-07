@@ -22,7 +22,7 @@ import { PAGE_MODAL } from '../../Modal';
 const CampaignPage = (props) => {
   const {
     affiliatePartners, affiliateSponsors, blurb, campaignLead, coverImage,
-    dashboard, endDate, isAffiliated, legacyCampaignId, match, openModal,
+    dashboard, endDate, isAffiliated, legacyCampaignId, legacyCampaignRunId, match, openModal,
     slug, subtitle, template, title, totalCampaignSignups,
   } = props;
 
@@ -37,6 +37,7 @@ const CampaignPage = (props) => {
         blurb={blurb}
         coverImage={coverImage}
         legacyCampaignId={legacyCampaignId}
+        legacyCampaignRunId={legacyCampaignRunId}
         endDate={endDate}
         template={template}
         affiliateSponsors={affiliateSponsors}
@@ -119,6 +120,7 @@ CampaignPage.propTypes = {
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   legacyCampaignId: PropTypes.string.isRequired,
+  legacyCampaignRunId: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   slug: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,

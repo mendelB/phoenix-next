@@ -16,8 +16,8 @@ const SignupButtonFactory = (WrappedComponent, source = null, sourceData = null)
   const SignupButton = (props) => {
     const { clickedSignUp, trackEvent } = props;
 
-    const onSignup = (campaignId) => {
-      clickedSignUp(campaignId);
+    const onSignup = (campaignId, campaignRunId) => {
+      clickedSignUp(campaignId, campaignRunId);
       trackEvent('signup', { campaignId, source, sourceData });
     };
 

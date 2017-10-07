@@ -15,6 +15,7 @@ const LegacyTemplate = (props) => {
     coverImage,
     isAffiliated,
     legacyCampaignId,
+    legacyCampaignRunId,
     endDate,
     affiliateSponsors,
     signupArrowContent,
@@ -31,7 +32,7 @@ const LegacyTemplate = (props) => {
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <div>
-      <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>Sign Up</button>
+      <button className="button" onClick={() => clickedSignUp(legacyCampaignId, legacyCampaignRunId)}>Sign Up</button>
       { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
     </div>
   ), 'legacy lede banner', { text: 'sign up' });
@@ -76,6 +77,7 @@ LegacyTemplate.propTypes = {
   isAffiliated: PropTypes.bool.isRequired,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
+  legacyCampaignRunId: PropTypes.string.isRequired,
   signupArrowContent: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

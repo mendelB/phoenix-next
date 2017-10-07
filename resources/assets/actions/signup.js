@@ -106,7 +106,7 @@ export function getTotalSignups(campaignId) {
 
 // Async Action: send signup to phoenix and
 // check if the user is logged in or has an existing signup.
-export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
+export function clickedSignUp(campaignId, campaignRunId, shouldRedirectToActionTab = true) {
   return (dispatch, getState) => {
     const campaignActionUrl = join('/us/campaigns', getState().campaign.slug, '/action');
 
@@ -122,7 +122,7 @@ export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
 
     dispatch(signupPending());
 
-    return (new Phoenix()).post('next/signups', { campaignId }).then((response) => {
+    return (new Phoenix()).post('next/signups', { campaignId, campaignRunId }).then((response) => {
       console.log(response);
       // // Handle a bad signup response...
       // if (! response) {
