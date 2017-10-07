@@ -52,18 +52,23 @@ class SignupController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'campaignId' => 'required',
-            'campaignRunId' => 'required',
+        // dd("hiiii");
+        return response()->json([
+            'name' => 'Abigail',
+            'state' => 'CA'
         ]);
+        // $this->validate($request, [
+        //     'campaignId' => 'required',
+        //     'campaignRunId' => 'required',
+        // ]);
 
-        return $this->rogue->storeSignup(
-            auth()->id(),
-            $request->input('campaignId'),
-            $request->input('campaignRunId'),
-            'phoenix-next',
-            $request->input('details')
-        );
+        // return $this->rogue->storeSignup(
+        //     auth()->id(),
+        //     $request->input('campaignId'),
+        //     $request->input('campaignRunId'),
+        //     'phoenix-next',
+        //     $request->input('details')
+        // );
 
         // return $this->phoenixLegacy->storeSignup(
         //     auth()->id(),

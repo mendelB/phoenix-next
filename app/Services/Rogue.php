@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Log;
 use DoSomething\Gateway\Common\RestApiClient;
 
 class Rogue extends RestApiClient
@@ -87,12 +88,16 @@ class Rogue extends RestApiClient
      */
     public function storeSignup($userId, $legacyCampaignId, $legacyCampaignRunId, $source, $details = NULL )
     {
-        return $this->post('v1/signups/', [
+        Log::info('Signing up for: ', ['legacyCampaignId' => $legacyCampaignId, 'legacyCampaignRunId' => $legacyCampaignRunId]);
+
+        $response = $this->post('v2/signups', [
             'northstar_id' => $userId,
             'campaign_id' => $legacyCampaignId,
             'campaign_run_id' => $legacyCampaignRunId,
             'source' => $source,
             'details' => $details,
         ]);
+
+        return $response;
     }
 }
