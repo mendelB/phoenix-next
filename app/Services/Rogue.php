@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use Log;
 use DoSomething\Gateway\Common\RestApiClient;
 
 class Rogue extends RestApiClient
@@ -88,8 +87,6 @@ class Rogue extends RestApiClient
      */
     public function storeSignup($userId, $legacyCampaignId, $legacyCampaignRunId, $source, $details = NULL )
     {
-        Log::info('Signing up for: ', ['legacyCampaignId' => $legacyCampaignId, 'legacyCampaignRunId' => $legacyCampaignRunId]);
-
         $response = $this->post('v2/signups', [
             'northstar_id' => $userId,
             'campaign_id' => $legacyCampaignId,
@@ -99,5 +96,25 @@ class Rogue extends RestApiClient
         ]);
 
         return $response;
+    }
+
+    /**
+     * Send a raw API request, without attempting to handle error responses.
+     *
+     * @param $method
+     * @param $path
+     * @param array $options
+     * @param bool $withAuthorization
+     * @return \GuzzleHttp\Psr7\Response
+     */
+    public function raw($method, $path, $options, $withAuthorization = true)
+    {
+        $options['headers'] = $this->defaultHeaders;
+
+        if ($withAuthorization) {
+            $options['headers']['X-DS-Rogue-API-Key'] = config('services.rogue.key');
+        }
+
+        return parent::raw($method, $path, $options, $withAuthorization);
     }
 }
