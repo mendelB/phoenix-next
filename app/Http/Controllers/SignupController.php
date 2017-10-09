@@ -52,7 +52,6 @@ class SignupController extends Controller
      */
     public function store(Request $request)
     {
-        // dd("hiiii");
         $this->validate($request, [
             'campaignId' => 'required',
             'campaignRunId' => 'required',

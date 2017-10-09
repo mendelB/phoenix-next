@@ -6,8 +6,6 @@ use DoSomething\Gateway\Common\RestApiClient;
 
 class Rogue extends RestApiClient
 {
-    // use AuthorizesWithDrupal;
-
     /**
      * Mintues to retain data in cache.
      *
@@ -26,37 +24,37 @@ class Rogue extends RestApiClient
     }
 
     /**
-     * Get an index of (optionally filtered) campaign signups from Phoenix.
-     * @see: https://github.com/DoSomething/phoenix/wiki/API#retrieve-a-signup-collection
+     * Get an index of (optionally filtered) campaign signups from Rogue.
+     * @see: https://github.com/DoSomething/rogue/blob/master/documentation/endpoints/activity.md
      *
      * @param array $query - query string, for filtering results
      * @return array - JSON response
      */
     public function getAllSignups(array $query = [])
     {
-        // $path = 'v1/signups';
+        $path = 'v2/activity';
 
-        // return $this->get($path, $query);
+        return $this->get($path, $query);
     }
 
     /**
-     * Get a cached index of (optionally filtered) campaign signups from Phoenix.
-     * @see: https://github.com/DoSomething/phoenix/wiki/API#retrieve-a-signup-collection
+     * Get a cached index of (optionally filtered) campaign signups from Rogue.
+     * @see: https://github.com/DoSomething/rogue/blob/master/documentation/endpoints/activity.md
      *
      * @param array $query - query string, for filtering results
      * @return array - JSON response
      */
     public function getAllSignupsCached(array $query = [])
     {
-        // $path = 'v1/signups';
+        $path = 'v2/activity';
 
-        // // Use a lower expiration on this.
-        // $customCacheExpiration = 10;
-        // $cacheKey = 'legacy-' . $path . '-' . implode($query);
+        // Use a lower expiration on this.
+        $customCacheExpiration = 10;
+        $cacheKey = 'rogue-' . $path . '-' . implode($query);
 
-        // return remember(make_cache_key($cacheKey), $customCacheExpiration, function () use ($path, $query) {
-        //     return $this->get($path, $query);
-        // });
+        return remember(make_cache_key($cacheKey), $customCacheExpiration, function () use ($path, $query) {
+            return $this->get($path, $query);
+        });
     }
 
     /**
@@ -67,11 +65,15 @@ class Rogue extends RestApiClient
      */
     public function getSignup($signup_id)
     {
-        // $path = 'v1/signups/'.$signup_id;
+        $path = 'v2/activity';
 
-        // return remember(make_cache_key('legacy-'.$path), $this->cacheExpiration, function () use ($path) {
-        //     return $this->get($path);
-        // });
+        $query = [
+            'id' => $signup_id,
+        ];
+
+        return remember(make_cache_key('rogue-'.$path), $this->cacheExpiration, function () use ($path, $query) {
+            return $this->get($path, $query);
+        });
     }
 
     /**
