@@ -57,6 +57,17 @@ class SignupController extends Controller
             'campaignRunId' => 'required',
         ]);
 
+        // Send to phoenix proxy if Rogue is off.
+        // @TODO - Remove need for feature flag when rogue is hooked up to everything.
+        if (! config('features.rogue')) {
+            return $this->phoenixLegacy->storeSignup(
+                auth()->id(),
+                $request->input('campaignId'),
+                'phoenix-next'
+            );
+        }
+
+        // By default, send directly to rogue.
         return $this->rogue->storeSignup(
             auth()->id(),
             $request->input('campaignId'),
@@ -64,12 +75,6 @@ class SignupController extends Controller
             'phoenix-next',
             $request->input('details')
         );
-
-        // return $this->phoenixLegacy->storeSignup(
-        //     auth()->id(),
-        //     $request->input('campaignId'),
-        //     'phoenix-next'
-        // );
     }
 
     /**
