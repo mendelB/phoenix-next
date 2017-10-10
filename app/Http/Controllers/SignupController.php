@@ -57,7 +57,6 @@ class SignupController extends Controller
             'campaignRunId' => 'required',
         ]);
 
-        // By default, send directly to rogue.
         return $this->rogue->storeSignup(
             auth()->id(),
             $request->input('campaignId'),

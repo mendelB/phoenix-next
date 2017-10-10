@@ -34,7 +34,7 @@ class Rogue extends RestApiClient
      *
      * @return string - Signup ID
      */
-    public function storeSignup($userId, $legacyCampaignId, $legacyCampaignRunId, $source, $details = NULL )
+    public function storeSignup($userId, $legacyCampaignId, $legacyCampaignRunId, $source, $details = null)
     {
         $response = $this->post('v2/signups', [
             'northstar_id' => $userId,
