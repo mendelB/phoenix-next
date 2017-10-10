@@ -22,7 +22,7 @@ const formatToMarkup = data => (
 const LandingPage = (props) => {
   const {
     affiliateSponsors, blurb, coverImage, endDate,
-    isAffiliated, legacyCampaignId, legacyCampaignRunId, pitchContent, showPartnerMsgOptIn,
+    isAffiliated, legacyCampaignId, pitchContent, showPartnerMsgOptIn,
     signupArrowContent, subtitle, tagline, template, title,
   } = props;
 
@@ -35,7 +35,6 @@ const LandingPage = (props) => {
         blurb={blurb}
         coverImage={coverImage}
         legacyCampaignId={legacyCampaignId}
-        legacyCampaignRunId={legacyCampaignRunId}
         endDate={endDate}
         template={template}
         affiliateSponsors={affiliateSponsors}
@@ -76,7 +75,6 @@ LandingPage.propTypes = {
   isAffiliated: PropTypes.bool,
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   legacyCampaignId: PropTypes.string.isRequired,
-  legacyCampaignRunId: PropTypes.string.isRequired,
   pitchContent: PropTypes.arrayOf(PropTypes.object).isRequired,
   showPartnerMsgOptIn: PropTypes.bool,
   signupArrowContent: PropTypes.string,

@@ -106,9 +106,12 @@ export function getTotalSignups(campaignId) {
 
 // Async Action: send signup to phoenix and
 // check if the user is logged in or has an existing signup.
-export function clickedSignUp(campaignId, campaignRunId, shouldRedirectToActionTab = true) {
+export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
   return (dispatch, getState) => {
     const campaignActionUrl = join('/us/campaigns', getState().campaign.slug, '/action');
+
+    // get campagin run id from state.
+    const campaignRunId = getState().campaign.legacyCampaignRunId;
 
     // If we show an affiliate option, send the value over to Rogue as details
     let details = null;
@@ -133,7 +136,6 @@ export function clickedSignUp(campaignId, campaignRunId, shouldRedirectToActionT
       // Handle a bad signup response...
       if (! response) {
         dispatch(addNotification('error'));
-      // @TODO - check if a signup already exists in rogue.
       } else if (response[0] === false) {
         // If Drupal denied our signup request, check if we already had a signup.
         dispatch(checkForSignup(campaignId));
