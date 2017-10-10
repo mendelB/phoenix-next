@@ -20,7 +20,7 @@ class AffiliateOption extends React.Component {
     return (
       <div className="form-wrapper affiliate-option">
         <label className="option -checkbox" htmlFor="affiliate_opt_in">
-          <input type="checkbox" id="opt_in" name="affiliate_opt_in" value={this.props.affiliateMessagingOptOut} checked={! this.props.affiliateMessagingOptOut} className="form-checkbox" onClick={this.props.clickedOptOut} />
+          <input type="checkbox" id="opt_in" name="affiliate_opt_in" value={this.props.affiliateMessagingOptOut} defaultChecked={! this.props.affiliateMessagingOptOut} className="form-checkbox" onClick={this.props.clickedOptOut} />
           <span className="option__indicator" />
           {this.props.affiliateOptionLabel}
         </label>

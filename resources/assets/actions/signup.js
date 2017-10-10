@@ -110,6 +110,13 @@ export function clickedSignUp(campaignId, campaignRunId, shouldRedirectToActionT
   return (dispatch, getState) => {
     const campaignActionUrl = join('/us/campaigns', getState().campaign.slug, '/action');
 
+    // If we show an affiliate option, send the value over to Rogue as details
+    let details = null;
+
+    if (getState().campaign.additionalContent.displayAffilitateOptOut) {
+      details = getState().signups.affiliateMessagingOptOut ? 'affiliate-opt-out' : null;
+    }
+
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
       return dispatch(queueEvent('clickedSignUp', campaignId));
@@ -122,7 +129,7 @@ export function clickedSignUp(campaignId, campaignRunId, shouldRedirectToActionT
 
     dispatch(signupPending());
 
-    return (new Phoenix()).post('next/signups', { campaignId, campaignRunId }).then((response) => {
+    return (new Phoenix()).post('next/signups', { campaignId, campaignRunId, details }).then((response) => {
       // Handle a bad signup response...
       if (! response) {
         dispatch(addNotification('error'));
