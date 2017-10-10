@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import React from 'react';
+import Markdown from '../Markdown';
 import './affiliateOption.scss';
 
 class AffiliateOption extends React.Component {
@@ -26,7 +27,7 @@ class AffiliateOption extends React.Component {
         </label>
         <div className="footnote">
           <button onClick={this.handleClick}>{this.props.moreInformationLabel}</button>
-          <div className={classnames('footnote-details', { 'is-expanded': this.state.expanded })}>{ this.props.moreInformationMessage }</div>
+          <div className={classnames('footnote-details', { 'is-expanded': this.state.expanded })}><Markdown>{ this.props.moreInformationMessage }</Markdown></div>
         </div>
       </div>
     );
