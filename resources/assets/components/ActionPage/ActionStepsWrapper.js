@@ -10,6 +10,11 @@ import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { CompetitionBlockContainer } from '../CompetitionBlock';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 
+const thirdPartyAction = (content, additionalContent, link) => {
+  const fullLink = additionalContent.dynamicParam + link;
+  console.log(fullLink);
+}
+
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
     hasPendingSignup, isAuthenticated, isSignedUp, template } = props;
@@ -49,6 +54,9 @@ const ActionStepsWrapper = (props) => {
     const content = step.content || null;
     const additionalContent = step.additionalContent || {};
     const key = makeHash(title);
+    const contentLink = type === 'third_party_action' ?
+      `[${additionalContent.urlTitle}](${additionalContent.url}&${additionalContent.dynamicParam}=12345) ${step.content}`
+    : null
 
     switch (type) {
       case 'competition':
@@ -76,7 +84,7 @@ const ActionStepsWrapper = (props) => {
           <ActionStep
             key={key}
             title={title}
-            content={content}
+            content={contentLink ? contentLink : content}
             stepIndex={stepIndex}
             background={step.background}
             photos={step.photos}
