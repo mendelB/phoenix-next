@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import React from 'react';
+import Markdown from '../Markdown';
 import './affiliateOption.scss';
 
 class AffiliateOption extends React.Component {
@@ -20,13 +21,13 @@ class AffiliateOption extends React.Component {
     return (
       <div className="form-wrapper affiliate-option">
         <label className="option -checkbox" htmlFor="affiliate_opt_in">
-          <input type="checkbox" id="opt_in" name="affiliate_opt_in" value={this.props.affiliateMessagingOptOut} checked={! this.props.affiliateMessagingOptOut} className="form-checkbox" onClick={this.props.clickedOptOut} />
+          <input type="checkbox" id="opt_in" name="affiliate_opt_in" value={this.props.affiliateMessagingOptOut} defaultChecked={! this.props.affiliateMessagingOptOut} className="form-checkbox" onClick={this.props.clickedOptOut} />
           <span className="option__indicator" />
           {this.props.affiliateOptionLabel}
         </label>
         <div className="footnote">
           <button onClick={this.handleClick}>{this.props.moreInformationLabel}</button>
-          <div className={classnames('footnote-details', { 'is-expanded': this.state.expanded })}>{ this.props.moreInformationMessage }</div>
+          <div className={classnames('footnote-details', { 'is-expanded': this.state.expanded })}><Markdown>{ this.props.moreInformationMessage }</Markdown></div>
         </div>
       </div>
     );

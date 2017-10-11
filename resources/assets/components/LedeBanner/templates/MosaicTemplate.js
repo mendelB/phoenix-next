@@ -60,4 +60,8 @@ MosaicTemplate.propTypes = {
   showPartnerMsgOptIn: PropTypes.bool.isRequired,
 };
 
+MosaicTemplate.defaultProps = {
+  showPartnerMsgOptIn: false,
+};
+
 export default MosaicTemplate;
