@@ -106,7 +106,7 @@ export function getTotalSignups(campaignId) {
 
 // Async Action: send signup to phoenix and
 // check if the user is logged in or has an existing signup.
-export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
+export function clickedSignUp(campaignId, options = null, shouldRedirectToActionTab = true) {
   return (dispatch, getState) => {
     const campaignActionUrl = join('/us/campaigns', getState().campaign.slug, '/action');
 
@@ -114,15 +114,15 @@ export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
     const campaignRunId = getState().campaign.legacyCampaignRunId;
 
     // If we show an affiliate option, send the value over to Rogue as details
-    let details = null;
+    let details = options;
 
-    if (getState().campaign.additionalContent.displayAffilitateOptOut) {
+    if (getState().campaign.additionalContent.displayAffilitateOptOut && ! details) {
       details = getState().signups.affiliateMessagingOptOut ? 'affiliate-opt-out' : null;
     }
 
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
-      return dispatch(queueEvent('clickedSignUp', campaignId));
+      return dispatch(queueEvent('clickedSignUp', campaignId, details));
     }
 
     // If we already have a signup, just go to the action page.
