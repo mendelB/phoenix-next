@@ -12,6 +12,8 @@ const ThirdParyAction = (props) => {
     template, title, userId,
   } = props;
 
+  let contentLink = '';
+
   const urlParams = dynamicUrlParams.map((param) => {
     if (param === 'northstarId') {
       return `northstarId=${userId}`;
@@ -20,10 +22,12 @@ const ThirdParyAction = (props) => {
     return `${param}=${props[param]}`;
   });
 
-  const contentLink = dynamicLink.indexOf('?') === -1 ?
-    `${dynamicLink}?${urlParams.join('&')}`
-    :
-    `${dynamicLink}&${urlParams.join('&')}`;
+  if (dynamicLink) {
+    contentLink = dynamicLink.indexOf('?') === -1 ?
+      `${dynamicLink}?${urlParams.join('&')}`
+      :
+      `${dynamicLink}&${urlParams.join('&')}`;
+  }
 
   return (
     <FlexCell width="full">
@@ -62,7 +66,7 @@ ThirdParyAction.propTypes = {
 ThirdParyAction.defaultProps = {
   content: null,
   dynamicLink: null,
-  dynamicUrlParams: null,
+  dynamicUrlParams: [],
   hideStepNumber: false,
   userId: null,
 };
