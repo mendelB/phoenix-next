@@ -6,6 +6,7 @@ import Revealer from '../Revealer';
 import { makeHash } from '../../helpers';
 import { Flex, FlexCell } from '../Flex';
 import { PostGalleryContainer } from '../Gallery/PostGallery';
+import { ThirdPartyActionContainer } from '../Actions/ThirdPartyAction';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { CompetitionBlockContainer } from '../CompetitionBlock';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
@@ -68,6 +69,22 @@ const ActionStepsWrapper = (props) => {
 
       case 'submission-gallery':
         return isSignedUp ? submissionGallery : null;
+
+      case 'third-party-action':
+        stepIndex += 1;
+
+        return (
+          <ThirdPartyActionContainer
+            key={key}
+            title={title}
+            template="legacy"
+            content={content}
+            stepIndex={stepIndex}
+            dynamicLink={additionalContent.dynamicLink || null}
+            hideStepNumber={additionalContent.hideStepNumber || false}
+            dynamicUrlParams={additionalContent.dynamicUrlParams || null}
+          />
+        );
 
       default:
         stepIndex += 1;

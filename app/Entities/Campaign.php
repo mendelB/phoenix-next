@@ -125,6 +125,10 @@ class Campaign extends Entity implements JsonSerializable
             $step->customType ? $data['customType'] = $step->customType->first() : null;
             $step->additionalContent ? $data['additionalContent'] = $step->additionalContent : null;
 
+            if ($step->type) {
+                $data['customType'] = $step->type;
+            }
+
             return $data;
         });
     }
