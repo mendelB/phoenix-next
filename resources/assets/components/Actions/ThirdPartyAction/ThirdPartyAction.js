@@ -15,11 +15,9 @@ const ThirdParyAction = (props) => {
   let contentLink = '';
 
   const urlParams = dynamicUrlParams.map((param) => {
-    if (param === 'northstarId') {
-      return `northstarId=${userId}`;
-    }
+    const value = param === 'northstarId' ? userId : props[param];
 
-    return `${param}=${props[param]}`;
+    return `${param}=${value}`;
   });
 
   if (dynamicLink) {
