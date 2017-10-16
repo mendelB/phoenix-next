@@ -180,6 +180,7 @@ class Campaign extends Entity implements JsonSerializable
             'coverImage' => [
                 'description' => $this->coverImage ? $this->coverImage->getDescription() : '',
                 'url' => get_image_url($this->coverImage),
+                'landscapeUrl' => get_image_url($this->coverImage, 'landscape'),
             ],
             'affiliateSponsors' => $this->parseAffiliates($this->affiliateSponsors),
             'affiliatePartners' => $this->parseAffiliates($this->affiliatePartners),
