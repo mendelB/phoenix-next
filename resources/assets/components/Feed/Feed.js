@@ -35,7 +35,7 @@ const Feed = (props) => {
       isLoading={hasPendingSignup}
       isVisible={(isAuthenticated && ! signedUp) || canLoadMorePages}
       onReveal={() => viewMoreOrSignup()}
-      isAuthenticated={isAuthenticated}
+      isSignedUp={signedUp}
     />
   );
 

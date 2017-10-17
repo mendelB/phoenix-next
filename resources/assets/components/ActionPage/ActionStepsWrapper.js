@@ -13,7 +13,7 @@ import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
-    hasPendingSignup, isAuthenticated, isSignedUp, template } = props;
+    hasPendingSignup, isSignedUp, template } = props;
 
   const renderPhotoUploader = photoUploaderProps => (
     <FlexCell key="reportback_uploader" width="full">
@@ -38,7 +38,7 @@ const ActionStepsWrapper = (props) => {
       callToAction={callToAction}
       isLoading={hasPendingSignup}
       onReveal={() => clickedSignUp(campaignId, { source: 'action page revealer' })}
-      isAuthenticated={isAuthenticated}
+      isSignedUp={isSignedUp}
     />
   );
 
@@ -135,7 +135,6 @@ ActionStepsWrapper.propTypes = {
   clickedSignUp: PropTypes.func.isRequired,
   hasPendingSignup: PropTypes.bool.isRequired,
   isSignedUp: PropTypes.bool.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
   template: PropTypes.string.isRequired,
 };
 
