@@ -11,13 +11,17 @@ type CallToActionProps = {
   className: ?string,
 };
 
-const CallToAction = ({ legacyCampaignId, className }: CallToActionProps) => (
-  <div className={classnames('call-to-action', className)}>
-    { SignupButtonFactory(({ clickedSignUp }) => (
-      <Button onClick={() => clickedSignUp(legacyCampaignId)} />
-    ), 'call to action', { text: 'join us' })}
-  </div>
-);
+const CallToAction = ({ legacyCampaignId, className }: CallToActionProps) => {
+  const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
+    <Button onClick={() => clickedSignUp(legacyCampaignId)} />
+  ), 'call to action', { text: 'join us' });
+
+  return (
+    <div className={classnames('call-to-action', className)}>
+      <SignupButton />
+    </div>
+  );
+};
 
 CallToAction.defaultProps = {
   className: null,
