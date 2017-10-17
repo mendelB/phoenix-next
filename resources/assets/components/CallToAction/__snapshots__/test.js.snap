@@ -3,5 +3,7 @@
 exports[`CallToAction snapshot test 1`] = `
 <div
   className="call-to-action sample-class"
-/>
+>
+  <Connect(PuckWrapper) />
+</div>
 `;

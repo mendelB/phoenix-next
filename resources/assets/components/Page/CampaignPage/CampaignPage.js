@@ -11,6 +11,7 @@ import { BlockContainer } from '../../Block';
 import { isCampaignClosed } from '../../../helpers';
 import LedeBanner from '../../LedeBanner/LedeBanner';
 import { ActionPageContainer } from '../../ActionPage';
+import { CallToActionContainer } from '../../CallToAction';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
 import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
 import CampaignFooter from '../../CampaignFooter';
@@ -97,6 +98,7 @@ const CampaignPage = (props) => {
             />
           </Switch>
         </Enclosure>
+        { ! isAffiliated ? <CallToActionContainer key="callToAction" className="-sticky" /> : null }
       </div>
 
       <CampaignFooter
