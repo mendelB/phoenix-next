@@ -90,7 +90,7 @@
     font-size: $font-hero;
   }
 
-  .button.join-us {
+  .last-cta.is-not-affiliated {
     display: none;
 
     @include media($medium) {
