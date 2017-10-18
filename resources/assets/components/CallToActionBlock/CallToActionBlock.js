@@ -26,7 +26,7 @@ const renderBackgroundImageStyle = imageUrl => (
 
 const CallToActionBlock = (props) => {
   const { isAffiliated, fields, imageUrl, campaignId, modifierClasses,
-    noun, verb, buttonOverride } = props;
+    noun, verb, buttonOverride, className } = props;
   const { title, content, additionalContent } = fields;
 
   const hasPhoto = additionalContent ? additionalContent.hasPhoto : false;
@@ -34,7 +34,7 @@ const CallToActionBlock = (props) => {
   const defaultText = isAffiliated ? `${verb.plural} ${noun.plural}` : 'Join Us';
   const buttonText = buttonOverride || defaultText;
 
-  const signupButtonClassNames = `button ${isAffiliated ? '' : 'join-us'}`;
+  const signupButtonClassNames = `button ${isAffiliated ? '' : 'is-not-affiliated'} ${className}`;
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <button
@@ -65,6 +65,7 @@ const CallToActionBlock = (props) => {
 CallToActionBlock.propTypes = {
   buttonOverride: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
+  className: PropTypes.string,
   fields: PropTypes.shape({
     title: PropTypes.string,
     content: PropTypes.string,
@@ -85,6 +86,7 @@ CallToActionBlock.propTypes = {
 
 CallToActionBlock.defaultProps = {
   buttonOverride: null,
+  className: '',
   fields: {
     title: 'Ready to start?',
   },
