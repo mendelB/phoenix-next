@@ -34,8 +34,13 @@ const CallToActionBlock = (props) => {
   const defaultText = isAffiliated ? `${verb.plural} ${noun.plural}` : 'Join Us';
   const buttonText = buttonOverride || defaultText;
 
+  const signupButtonClassNames = `button ${isAffiliated ? '' : 'join-us'}`;
+
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
-    <button className="button" onClick={() => clickedSignUp(campaignId)}>{ buttonText }</button>
+    <button
+      className={signupButtonClassNames}
+      onClick={() => clickedSignUp(campaignId)}
+    >{ buttonText }</button>
   ), 'call to action block', { text: buttonText });
 
   return (

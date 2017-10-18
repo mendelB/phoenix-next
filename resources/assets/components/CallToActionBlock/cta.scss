@@ -89,4 +89,12 @@
   .cta__impact-number {
     font-size: $font-hero;
   }
+
+  .button.join-us {
+    display: none;
+
+    @include media($medium) {
+      display: inline-block;
+    }
+  }
 }
