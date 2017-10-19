@@ -20,6 +20,9 @@
 
   .footnote-details {
     display: none;
+    background-color: rgba(0,0,0,.7);
+    border-radius: 4px;
+    padding: 5px;
 
     &.is-expanded {
       display: block;
