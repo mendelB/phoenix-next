@@ -13,7 +13,7 @@ test('it can display a campaign update', () => {
 });
 
 test('it can display a CTA block', () => {
-  const wrapper = shallow(<Block json={{ id: '12345', type: 'join_cta' }} />);
+  const wrapper = shallow(<Block json={{ id: '12345', type: 'callToAction' }} />);
   expect(wrapper.find('CallToActionBlockContainer')).toHaveLength(1);
 });
 
