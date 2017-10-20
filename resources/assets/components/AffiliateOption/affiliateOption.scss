@@ -20,6 +20,9 @@
 
   .footnote-details {
     display: none;
+    background-color: rgba(0,0,0,.7);
+    border-radius: $lg-border-radius;
+    padding: $half-spacing / 2;
 
     &.is-expanded {
       display: block;
