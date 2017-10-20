@@ -86,7 +86,14 @@ class Campaign extends Entity implements JsonSerializable
                 case 'campaignUpdate':
                     return new CampaignUpdate($item->entry);
 
+                case 'callToAction':
+                    return new CallToAction($item->entry);
+
                 case 'customBlock':
+                    if ($item->entry->getType() === 'join_cta') {
+                        return new CallToAction($item->entry);
+                    }
+
                     if ($item->entry->getType() === 'reportbacks') {
                         return  $this->fillReportbackPosts($item->entry);
                     }
