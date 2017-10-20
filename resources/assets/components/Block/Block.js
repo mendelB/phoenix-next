@@ -15,6 +15,9 @@ const DEFAULT_BLOCK: BlockJson = { fields: { type: null } };
 
 const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
   switch (json.type) {
+    case 'callToAction':
+      return <CallToActionBlockContainer fields={json.fields} modifierClasses="dark-bg" />;
+
     case 'campaignUpdate':
       return (
         <CampaignUpdateContainer
@@ -31,9 +34,6 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
 
     case 'campaign_update':
       return <CampaignUpdateBlockContainer id={json.id} fields={json.fields} />;
-
-    case 'join_cta':
-      return <CallToActionBlockContainer fields={json.fields} modifierClasses="dark-bg" />;
 
     case 'reportbacks':
       return <ReportbackBlock fields={json.fields} reportbacks={json.reportbacks} />;
