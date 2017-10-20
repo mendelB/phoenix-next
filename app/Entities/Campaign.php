@@ -90,11 +90,9 @@ class Campaign extends Entity implements JsonSerializable
                     return new CallToAction($item->entry);
 
                 case 'customBlock':
-                    // dump($item);
-
-                    // if ($item->entry->getType() === 'join_cta') {
-                    //     dd($item, 'boom');
-                    // }
+                    if ($item->entry->getType() === 'join_cta') {
+                        return new CallToAction($item->entry);
+                    }
 
                     if ($item->entry->getType() === 'reportbacks') {
                         return  $this->fillReportbackPosts($item->entry);
