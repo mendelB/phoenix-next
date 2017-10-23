@@ -7,6 +7,8 @@ import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import StaticBlock from '../StaticBlock';
 import Quiz from '../Quiz';
+// import CallToActionContainer from '../CallToAction'; // doesn't find the container??
+import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import CallToActionBlockContainer from '../CallToActionBlock';
 import { BlockJson } from '../../types';
 
@@ -16,7 +18,11 @@ const DEFAULT_BLOCK: BlockJson = { fields: { type: null } };
 const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
   switch (json.type) {
     case 'callToAction':
-      return <CallToActionBlockContainer fields={json.fields} modifierClasses="dark-bg" />;
+      return (
+        <CallToActionContainer
+          className="something-cool"
+        />
+      );
 
     case 'campaignUpdate':
       return (
@@ -47,3 +53,9 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
 };
 
 export default Block;
+
+
+// <CallToActionContainer
+//   fields={json.fields}
+//   modifierClasses="dark-bg"
+// />

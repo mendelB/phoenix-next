@@ -2,9 +2,12 @@
 
 import React from 'react';
 import classnames from 'classnames';
+
+import Card from '../Card';
 import Button from '../Button/Button';
 import SignupButtonFactory from '../SignupButton';
-import './cta.scss';
+
+// import './cta.scss';
 
 type CallToActionProps = {
   legacyCampaignId: string,
@@ -12,14 +15,10 @@ type CallToActionProps = {
 };
 
 const CallToAction = ({ legacyCampaignId, className }: CallToActionProps) => {
-  const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
-    <Button onClick={() => clickedSignUp(legacyCampaignId)} />
-  ), 'call to action', { text: 'join us' });
-
   return (
-    <div className={classnames('call-to-action', className)}>
-      <SignupButton />
-    </div>
+    <Card className="call-to-action rounded padded">
+      jellooo
+    </Card>
   );
 };
 
@@ -28,3 +27,13 @@ CallToAction.defaultProps = {
 };
 
 export default CallToAction;
+
+// const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
+//   <Button onClick={() => clickedSignUp(legacyCampaignId)} />
+// ), 'call to action', { text: 'join us' });
+
+// return (
+//   <div className={classnames('call-to-action', className)}>
+//     <SignupButton />
+//   </div>
+// );
