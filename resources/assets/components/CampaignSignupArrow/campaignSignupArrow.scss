@@ -12,3 +12,24 @@
     width: 300px;
   }
 }
+
+.message-callout.-right {
+
+  @include media($larger) {
+    width: 300px;
+    margin-left: 10px;
+  }
+
+  @include media($small) {
+    text-align: center;
+  }
+
+  .message-callout__copy::before {
+    @include media("(min-width: 1116px)") {
+      transform: none;
+    }
+
+
+    transform: rotate(90deg);
+  }
+}
