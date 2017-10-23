@@ -5,9 +5,9 @@ import { markdown, contentfulImageUrl } from '../../helpers';
 
 import './markdown.scss';
 
-const urlToFormat = /\/\/images\.contentful\.com.+\.(jpg|png)/g;
-const formatImageUrl = url => (contentfulImageUrl(url, '1000', '700', 'fill'));
-const formatImageUrls = string => (string.replace(urlToFormat, formatImageUrl));
+const pattern = /\/\/images\.contentful\.com.+\.(jpg|png)/g;
+const contentfulImageFormat = url => (contentfulImageUrl(url, '1000', '700', 'fill'));
+const formatImageUrls = string => (string.replace(pattern, contentfulImageFormat));
 
 const Markdown = ({ className = null, children }) => (
   <div className={classnames('markdown', 'with-lists', className)} dangerouslySetInnerHTML={markdown(formatImageUrls(children))} /> // eslint-disable-line react/no-danger
