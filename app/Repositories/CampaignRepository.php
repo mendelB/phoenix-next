@@ -47,8 +47,7 @@ class CampaignRepository
      */
     public function findBySlug($slug)
     {
-        if (Cache::has($slug))
-        {
+        if (Cache::has($slug)) {
             $cachedCampaignJson = Cache::get($slug);
 
             // This turns the JSON into a Contentful Dynamic Entry
@@ -56,8 +55,7 @@ class CampaignRepository
             $revivedContentfulEntry = $this->client->reviveJson($cachedCampaignJson);
 
             $campaign = new Campaign($revivedContentfulEntry);
-        }
-        else {
+        } else {
             $query = (new Query)
             ->setContentType('campaign')
             ->where('fields.slug', $slug)
@@ -76,6 +74,7 @@ class CampaignRepository
 
             $campaign = new Campaign($campaigns[0]);
         }
+
         return $campaign;
     }
 
