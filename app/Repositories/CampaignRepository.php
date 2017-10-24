@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use Cache;
+use Carbon\Carbon;
 use App\Entities\Campaign;
 use Contentful\Delivery\Query;
 use Contentful\Delivery\Client as Contentful;
@@ -56,8 +58,10 @@ class CampaignRepository
         if (! $campaigns->count()) {
             throw new ModelNotFoundException;
         }
+        $expiresAt = Carbon::now()->addMinutes(15);
 
         return new Campaign($campaigns[0]);
+        Cache::add($slug, json_encode($campaigns[0]), $expiresAt);
     }
 
     /**
