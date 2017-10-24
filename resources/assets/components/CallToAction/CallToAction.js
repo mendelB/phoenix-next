@@ -9,15 +9,32 @@ import SignupButtonFactory from '../SignupButton';
 
 // import './cta.scss';
 
+const renderImpactContent = (prefix, value, suffix) => {
+  const valueElem = <span>{value}</span>;
+
+  return (
+    <div className="cta__impact">
+      { prefix ? `${prefix} ` : null } {valueElem} { suffix ? ` ${suffix}` : null }
+    </div>
+  );
+}
+
 type CallToActionProps = {
   legacyCampaignId: string,
   className: ?string,
+  impactPrefix: ?string,
+  impactSuffix: ?string,
+  impactValue: ?string,
 };
 
-const CallToAction = ({ legacyCampaignId, className }: CallToActionProps) => {
+const CallToAction = ({
+  legacyCampaignId, className, content, impactPrefix, impactSuffix, impactValue
+}: CallToActionProps) => {
   return (
-    <Card className="call-to-action rounded padded">
-      jellooo
+    <Card className="call-to-action rounded padded text-centered">
+      { impactValue ? renderImpactContent(impactPrefix, impactValue, impactSuffix) : null }
+
+      { content ? <div>{content}</div> : null }
     </Card>
   );
 };
@@ -37,3 +54,7 @@ export default CallToAction;
 //     <SignupButton />
 //   </div>
 // );
+
+// { prefix ? <span>{prefix}</span> : null }
+//       <span>{value}</span>
+//       { suffix ? <span>{suffix}</span> : null }

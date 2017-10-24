@@ -44,11 +44,9 @@ const CampaignSubPage = (props) => {
             />
           </div>
 
-          <CallToActionBlockContainer
-            fields={{ title: tagline }}
-            modifierClasses="transparent border-none"
-            className="last-cta"
-          />
+          <CallToActionContainer
+              className="something-cooler"
+            />
         </span>
       ) : null }
     </div>
@@ -95,4 +93,10 @@ export default CampaignSubPage;
 // <CallToActionBlockContainer
 //   fields={{ content: ctaContent }}
 //   modifierClasses="dark-bg"
+// />
+
+// <CallToActionBlockContainer
+//   fields={{ title: tagline }}
+//   modifierClasses="transparent border-none"
+//   className="last-cta"
 // />
