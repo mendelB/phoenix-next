@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use Cache;
+use Carbon\Carbon;
 use App\Entities\Campaign;
 use Contentful\Delivery\Query;
 use Contentful\Delivery\Client as Contentful;
@@ -45,19 +47,35 @@ class CampaignRepository
      */
     public function findBySlug($slug)
     {
-        $query = (new Query)
+        if (Cache::has($slug)) {
+            $cachedCampaignJson = Cache::get($slug);
+
+            // This turns the JSON into a Contentful Dynamic Entry
+            // so we can create a campaign entity out of the cached data
+            $campaignEntry = $this->client->reviveJson($cachedCampaignJson);
+        } else {
+            $query = (new Query)
             ->setContentType('campaign')
             ->where('fields.slug', $slug)
             ->setInclude(3)
             ->setLimit(1);
 
-        $campaigns = $this->makeRequest($query);
+            $campaigns = $this->makeRequest($query);
 
-        if (! $campaigns->count()) {
-            throw new ModelNotFoundException;
+            if (! $campaigns->count()) {
+                throw new ModelNotFoundException;
+            }
+
+            $campaignEntry = $campaigns[0];
+
+            if (config('services.contentful.cache')) {
+                $expiresAt = Carbon::now()->addMinutes(15);
+
+                Cache::add($slug, json_encode($campaignEntry), $expiresAt);
+            }
         }
 
-        return new Campaign($campaigns[0]);
+        return new Campaign($campaignEntry);
     }
 
     /**
