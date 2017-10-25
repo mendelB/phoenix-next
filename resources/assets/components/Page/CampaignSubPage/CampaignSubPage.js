@@ -23,7 +23,7 @@ const CampaignSubPage = (props) => {
 
   const isClosed = isCampaignClosed(campaignEndDate);
 
-  const ctaContent = `${tagline}\n\n__Join hundreds of members and ${verb.plural} ${noun.plural}!__`;
+  const ctaContent = `${tagline} Join hundreds of members and ${verb.plural} ${noun.plural}!`;
 
   return (
     <div className="clearfix padded campaign-subpage" id={subPage.id}>
@@ -41,11 +41,16 @@ const CampaignSubPage = (props) => {
           <div className="secondary">
             <CallToActionContainer
               className="something-cooler"
+              content={ctaContent}
+              useCampaignTagline={true}
+              style="dark"
             />
           </div>
 
           <CallToActionContainer
               className="something-cooler"
+              useCampaignTagline={true}
+              style="transparent"
             />
         </span>
       ) : null }

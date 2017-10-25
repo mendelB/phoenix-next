@@ -25,6 +25,8 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
           impactPrefix={json.fields.impactPrefix}
           impactSuffix={json.fields.impactSuffix}
           impactValue={json.fields.impactValue}
+          style={json.fields.style}
+          useCampaignTagline={json.fields.useCampaignTagline}
         />
       );
 

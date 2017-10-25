@@ -7,7 +7,7 @@ import Card from '../Card';
 import Button from '../Button/Button';
 import SignupButtonFactory from '../SignupButton';
 
-// import './cta.scss';
+import './cta.scss';
 
 const renderImpactContent = (prefix, value, suffix) => {
   const valueElem = <span>{value}</span>;
@@ -25,16 +25,30 @@ type CallToActionProps = {
   impactPrefix: ?string,
   impactSuffix: ?string,
   impactValue: ?string,
+  tagline: string,
+  useCampaignTagline: bool,
 };
 
 const CallToAction = ({
-  legacyCampaignId, className, content, impactPrefix, impactSuffix, impactValue
+  legacyCampaignId, className, content, impactPrefix, impactSuffix, impactValue,
+  tagline, useCampaignTagline, style,
 }: CallToActionProps) => {
+
+  let classes;
+
   return (
-    <Card className="call-to-action rounded padded text-centered">
+    <Card className={classnames('call-to-action rounded padded text-centered', {
+      'bg-white bordered light': style === 'light',
+      'bg-black dark': style === 'dark',
+      'bg-transparent border-none transparent': style === 'transparent',
+    })}>
+      { useCampaignTagline ? <div className="cta__tagline">{tagline}</div> : null }
+
       { impactValue ? renderImpactContent(impactPrefix, impactValue, impactSuffix) : null }
 
-      { content ? <div>{content}</div> : null }
+      { content ? <div className="cta__message">{content}</div> : null }
+
+       <button className="button" onClick={() => {}}>Join us</button>
     </Card>
   );
 };

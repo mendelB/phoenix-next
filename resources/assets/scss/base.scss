@@ -40,12 +40,20 @@ h1, h2, h3, p {
   background-size: cover;
 }
 
+.bg-black {
+  background-color: $black !important;
+}
+
 .bg-white {
-  background-color: $white;
+  background-color: $white !important;
 }
 
 .bg-light-gray {
   background-color: $light-gray;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
 }
 
 .bordered {
@@ -53,7 +61,7 @@ h1, h2, h3, p {
 }
 
 .border-none {
-  border: 0 none;
+  border: 0 none !important;
 }
 
 .border-top {

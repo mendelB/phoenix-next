@@ -6,9 +6,10 @@ import CallToAction from './CallToAction';
  */
 const mapStateToProps = state => ({
   campaignId: state.campaign.id,
-  legacyCampaignId: state.campaign.legacyCampaignId,
   coverImageUrl: state.campaign.coverImage.url,
   isSignedUp: state.signups.thisCampaign,
+  legacyCampaignId: state.campaign.legacyCampaignId,
+  tagline: state.campaign.callToAction,
   // noun: '',
   // verb: '',
 });
