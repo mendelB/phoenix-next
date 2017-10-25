@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use Cache;
 use App;
+use Cache;
 use Carbon\Carbon;
 use App\Entities\Campaign;
 use Contentful\Delivery\Query;
