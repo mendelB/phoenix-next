@@ -53,9 +53,7 @@ class CampaignRepository
 
             // This turns the JSON into a Contentful Dynamic Entry
             // so we can create a campaign entity out of the cached data
-            $revivedContentfulEntry = $this->client->reviveJson($cachedCampaignJson);
-
-            $campaign = new Campaign($revivedContentfulEntry);
+            $campaignEntry = $this->client->reviveJson($cachedCampaignJson);
         } else {
             $query = (new Query)
             ->setContentType('campaign')
@@ -69,16 +67,16 @@ class CampaignRepository
                 throw new ModelNotFoundException;
             }
 
+            $campaignEntry = $campaigns[0];
+
             if (! App::environment(['local', 'staging'])) {
                 $expiresAt = Carbon::now()->addMinutes(15);
 
-                Cache::add($slug, json_encode($campaigns[0]), $expiresAt);
+                Cache::add($slug, json_encode($campaignEntry), $expiresAt);
             }
-
-            $campaign = new Campaign($campaigns[0]);
         }
 
-        return $campaign;
+        return new Campaign($campaignEntry);
     }
 
     /**
