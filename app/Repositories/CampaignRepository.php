@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App;
 use Cache;
 use Carbon\Carbon;
 use App\Entities\Campaign;
@@ -69,7 +68,7 @@ class CampaignRepository
 
             $campaignEntry = $campaigns[0];
 
-            if (! App::environment(['local', 'staging'])) {
+            if (env('CONTENTFUL_CACHE')) {
                 $expiresAt = Carbon::now()->addMinutes(15);
 
                 Cache::add($slug, json_encode($campaignEntry), $expiresAt);
