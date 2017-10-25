@@ -57,6 +57,6 @@ return [
     ],
 
     'contentful' => [
-        'cache' => env('CONTENTFUL_CACHE'),
+        'cache' => env('CONTENTFUL_CACHE', true),
     ],
 ];
