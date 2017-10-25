@@ -68,7 +68,7 @@ class CampaignRepository
 
             $campaignEntry = $campaigns[0];
 
-            if (env('CONTENTFUL_CACHE')) {
+            if (config('services.contentful.cache')) {
                 $expiresAt = Carbon::now()->addMinutes(15);
 
                 Cache::add($slug, json_encode($campaignEntry), $expiresAt);
