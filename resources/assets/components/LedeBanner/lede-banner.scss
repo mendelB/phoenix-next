@@ -9,6 +9,24 @@
     display: table;
   }
 
+  &.lede-banner-alt {
+    .button-div > div {
+      @include  media($large) {
+        display: inline-block;
+      }
+    }
+
+    .button-div > div > button {
+      @include media($large) {
+        width: 200px;
+      }
+    }
+
+    .button {
+      margin-top: 20px;
+    }
+  }
+
   .button {
     width: 100%;
 
