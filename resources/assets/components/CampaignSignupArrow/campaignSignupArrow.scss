@@ -16,7 +16,7 @@
 .message-callout.-right {
 
   @include media($larger) {
-    width: 300px;
+    width: 45%;
     margin-left: 10px;
     float: right;
   }
@@ -26,7 +26,7 @@
   }
 
   .message-callout__copy::before {
-    @include media("(min-width: 1116px)") {
+    @include media($larger) {
       transform: none;
     }
 
