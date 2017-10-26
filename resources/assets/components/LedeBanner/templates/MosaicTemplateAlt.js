@@ -7,7 +7,7 @@ import SignupButtonFactory from '../../SignupButton';
 import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
 
-const MosaicTemplate = (props) => {
+const MosaicTemplateAlt = (props) => {
   const {
     title,
     subtitle,
@@ -16,6 +16,7 @@ const MosaicTemplate = (props) => {
     legacyCampaignId,
     showPartnerMsgOptIn,
     affiliateSponsors,
+    signupArrowContent,
   } = props;
 
 
@@ -25,7 +26,9 @@ const MosaicTemplate = (props) => {
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };
 
-  const scholarship = <CampaignSignupArrow content="win a $5,000 dollar scholarship" className="-right" />
+  const signupArrowComponent = signupArrowContent ? (
+    <CampaignSignupArrow content={signupArrowContent} className="-right" />
+  ) : null;
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <div>
@@ -35,7 +38,7 @@ const MosaicTemplate = (props) => {
   ), 'lede banner', { text: 'join us' });
 
   return (
-    <header role="banner" className="lede-banner">
+    <header role="banner" className="lede-banner lede-banner-alt">
       <div className="lede-banner__image" style={backgroundImageStyle} />
       <div className="lede-banner__content">
         <div className="wrapper">
@@ -47,12 +50,11 @@ const MosaicTemplate = (props) => {
           { isAffiliated ? null : (
             <div className="button-div">
               <SignupButton />
-              {scholarship}
+              {signupArrowComponent}
             </div>
           )}
 
-          {
-          sponsor ?
+          { sponsor ?
             <SponsorPromotion
               imgUrl={sponsor.fields.logo.url}
               title={sponsor.fields.logo.title}
@@ -66,8 +68,7 @@ const MosaicTemplate = (props) => {
   );
 };
 
-MosaicTemplate.propTypes = {
-  blurb: PropTypes.string.isRequired,
+MosaicTemplateAlt.propTypes = {
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,
@@ -78,10 +79,12 @@ MosaicTemplate.propTypes = {
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   showPartnerMsgOptIn: PropTypes.bool.isRequired,
+  signupArrowContent: PropTypes.string,
 };
 
-MosaicTemplate.defaultProps = {
+MosaicTemplateAlt.defaultProps = {
   showPartnerMsgOptIn: false,
+  signupArrowContent: null,
 };
 
-export default MosaicTemplate;
+export default MosaicTemplateAlt;
