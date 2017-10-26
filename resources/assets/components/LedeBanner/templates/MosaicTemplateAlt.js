@@ -31,7 +31,8 @@ const MosaicTemplateAlt = (props) => {
   ) : null;
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
-    <div>
+    <div className="button-div">
+      { signupArrowComponent }
       <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>Join Us</button>
       { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
     </div>
@@ -47,12 +48,7 @@ const MosaicTemplateAlt = (props) => {
             <h2 className="lede-banner__headline-subtitle">{subtitle}</h2>
           </div>
 
-          { isAffiliated ? null : (
-            <div className="button-div">
-              <SignupButton />
-              {signupArrowComponent}
-            </div>
-          )}
+          { isAffiliated ? null : <SignupButton /> }
 
           { sponsor ?
             <SponsorPromotion
@@ -84,7 +80,7 @@ MosaicTemplateAlt.propTypes = {
 
 MosaicTemplateAlt.defaultProps = {
   showPartnerMsgOptIn: false,
-  signupArrowContent: null,
+  signupArrowContent: 'sign up to win $5,000 scholarship',
 };
 
 export default MosaicTemplateAlt;
