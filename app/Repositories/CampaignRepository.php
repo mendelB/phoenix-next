@@ -66,7 +66,7 @@ class CampaignRepository
 
             $campaign = new Campaign($campaignEntry);
 
-            $flattenedCampaign = json_decode(json_encode($campaign));
+            $flattenedCampaign = json_encode($campaign);
 
             if (config('services.contentful.cache')) {
                 $expiresAt = Carbon::now()->addMinutes(15);
@@ -75,7 +75,7 @@ class CampaignRepository
             }
         }
 
-        return $flattenedCampaign;
+        return json_decode($flattenedCampaign);
     }
 
     /**
