@@ -243,15 +243,15 @@ function useOverrideIfSet($field, $campaign, $override)
  * @param  string   $uri
  * @return array
  */
-function get_social_fields($campaignFlattened, $uri)
+function get_social_fields($flattenedCampaign, $uri)
 {
-    $socialOverride = $campaignFlattened->socialOverride ? $campaignFlattened->socialOverride->fields : null;
-    $blockPath = $campaignFlattened->slug . '/blocks';
+    $socialOverride = $flattenedCampaign->socialOverride ? $flattenedCampaign->socialOverride->fields : null;
+    $blockPath = $flattenedCampaign->slug . '/blocks';
 
     if (str_contains($uri, $blockPath)) {
         $blockId = last(explode('/', $uri));
 
-        $block = array_first($campaignFlattened->activityFeed, function ($value) use ($blockId) {
+        $block = array_first($flattenedCampaign->activityFeed, function ($value) use ($blockId) {
             return $value->id === $blockId;
         });
 
@@ -260,19 +260,19 @@ function get_social_fields($campaignFlattened, $uri)
         }
     }
 
-    $coverImage = useOverrideIfSet('coverImage', $campaignFlattened, $socialOverride);
+    $coverImage = useOverrideIfSet('coverImage', $flattenedCampaign, $socialOverride);
     // If the image is pulled from socialOverride, its going to be a string.
-    // But if its pulled from campaignFlattened, its an object containing a url string.
+    // But if its pulled from flattenedCampaign, its an object containing a url string.
     if (gettype($coverImage) === 'object') {
         $coverImage = $coverImage->landscapeUrl;
     }
 
     return [
-        'title' => useOverrideIfSet('title', $campaignFlattened, $socialOverride),
-        'callToAction' => useOverrideIfSet('callToAction', $campaignFlattened, $socialOverride),
+        'title' => useOverrideIfSet('title', $flattenedCampaign, $socialOverride),
+        'callToAction' => useOverrideIfSet('callToAction', $flattenedCampaign, $socialOverride),
         'coverImage' => $coverImage,
         'facebookAppId' => config('services.analytics.facebook_id'),
-        'quote' => useOverrideIfSet('quote', $campaignFlattened, $socialOverride),
+        'quote' => useOverrideIfSet('quote', $flattenedCampaign, $socialOverride),
     ];
 }
 
