@@ -219,7 +219,12 @@ function get_legacy_campaign_data($id, $key = null)
  */
 function useOverrideIfSet($field, $campaign, $override)
 {
-    $base = $campaign->{$field};
+    if (! isset($campaign->{$field})) {
+        $base = null;
+    } else {
+        $base = $campaign->{$field};
+    }
+
     if ($override === null) {
         return $base;
     }
@@ -238,9 +243,8 @@ function useOverrideIfSet($field, $campaign, $override)
  * @param  string   $uri
  * @return array
  */
-function get_social_fields($campaign, $uri)
+function get_social_fields($campaignFlattened, $uri)
 {
-    $campaignFlattened = json_decode(json_encode($campaign));
     $socialOverride = $campaignFlattened->socialOverride ? $campaignFlattened->socialOverride->fields : null;
     $blockPath = $campaignFlattened->slug . '/blocks';
 
@@ -264,11 +268,11 @@ function get_social_fields($campaign, $uri)
     }
 
     return [
-        'title' => useOverrideIfSet('title', $campaign, $socialOverride),
-        'callToAction' => useOverrideIfSet('callToAction', $campaign, $socialOverride),
+        'title' => useOverrideIfSet('title', $campaignFlattened, $socialOverride),
+        'callToAction' => useOverrideIfSet('callToAction', $campaignFlattened, $socialOverride),
         'coverImage' => $coverImage,
         'facebookAppId' => config('services.analytics.facebook_id'),
-        'quote' => useOverrideIfSet('quote', $campaign, $socialOverride),
+        'quote' => useOverrideIfSet('quote', $campaignFlattened, $socialOverride),
     ];
 }
 
