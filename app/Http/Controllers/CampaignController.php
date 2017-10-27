@@ -56,19 +56,19 @@ class CampaignController extends Controller
      */
     public function show($slug)
     {
-        $flattenedCampaign = $this->campaignRepository->findBySlug($slug);
+        $campaign = $this->campaignRepository->findBySlug($slug);
 
         $env = get_client_environment_vars();
 
         // The slug argument will not contain `/blocks` or other path extensions, hence `::url()`.
-        $socialFields = get_social_fields($flattenedCampaign, Request::url());
+        $socialFields = get_social_fields($campaign, Request::url());
 
         return view('campaigns.show', [
-            'campaign' => $flattenedCampaign,
+            'campaign' => $campaign,
             'socialFields' => $socialFields,
             'env' => $env,
         ])->with('state', [
-            'campaign' => $flattenedCampaign,
+            'campaign' => $campaign,
             'share' => $socialFields,
             'user' => [
                 'id' => auth()->id(),
