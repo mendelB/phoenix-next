@@ -48,11 +48,7 @@ class CampaignRepository
     public function findBySlug($slug)
     {
         if (Cache::has($slug)) {
-            $cachedCampaignJson = Cache::get($slug);
-
-            // This turns the JSON into a Contentful Dynamic Entry
-            // so we can create a campaign entity out of the cached data
-            $campaignEntry = $this->client->reviveJson($cachedCampaignJson);
+            $flattenedCampaign = Cache::get($slug);
         } else {
             $query = (new Query)
             ->setContentType('campaign')
@@ -68,14 +64,18 @@ class CampaignRepository
 
             $campaignEntry = $campaigns[0];
 
+            $campaign = new Campaign($campaignEntry);
+
+            $flattenedCampaign = json_decode(json_encode($campaign));
+
             if (config('services.contentful.cache')) {
                 $expiresAt = Carbon::now()->addMinutes(15);
 
-                Cache::add($slug, json_encode($campaignEntry), $expiresAt);
+                Cache::add($slug, $flattenedCampaign, $expiresAt);
             }
         }
 
-        return new Campaign($campaignEntry);
+        return $flattenedCampaign;
     }
 
     /**
