@@ -112,9 +112,9 @@ const ActionStepsWrapper = (props) => {
 
   if (template === 'legacy') {
     stepComponents.push(
-      <div key="user_gallery" className="action-step margin-top-xlg margin-bottom-xlg margin-horizontal-md">
+      <div key="member_gallery" className="action-step margin-top-xlg margin-bottom-xlg margin-horizontal-md">
         <h2 className="heading -emphasized legacy-step-header margin-top-md margin-bottom-md">
-          <span>User Gallery</span>
+          <span>Member Gallery</span>
         </h2>
         {postGallery}
       </div>,
