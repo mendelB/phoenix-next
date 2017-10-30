@@ -239,7 +239,7 @@ function useOverrideIfSet($field, $campaign, $override)
 /**
  * Determine the fields to display in the social share.
  *
- * @param  Campaign $campaign
+ * @param  stdClass $campaign
  * @param  string   $uri
  * @return array
  */
@@ -312,7 +312,7 @@ function get_client_environment_vars()
  * Get the presentation values we should package with our
  * Northstar authorization requests.
  *
- * @param  Campaign $campaign
+ * @param  stdClass $campaign
  * @return array
  */
 function get_login_query($campaign = null)
