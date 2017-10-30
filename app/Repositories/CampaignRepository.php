@@ -2,8 +2,6 @@
 
 namespace App\Repositories;
 
-use Cache;
-use Carbon\Carbon;
 use App\Entities\Campaign;
 use Contentful\Delivery\Query;
 use Contentful\Delivery\Client as Contentful;
@@ -47,7 +45,7 @@ class CampaignRepository
      */
     public function findBySlug($slug)
     {
-        $flattenedCampaign = remember('campaign_'.$slug, 15, function () use($slug) {
+        $flattenedCampaign = remember('campaign_'.$slug, 15, function () use ($slug) {
             $query = (new Query)
                 ->setContentType('campaign')
                 ->where('fields.slug', $slug)
