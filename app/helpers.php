@@ -33,9 +33,9 @@ function scriptify($json = [], $store = 'STATE')
  * @param  \Closure  $callback
  * @return mixed
  */
-function remember($key, $minutes, Closure $callback)
+function remember($key, $minutes, Closure $callback, $skipCache = false)
 {
-    return app('cache')->remember($key, $minutes, $callback);
+    return $skipCache ? $callback() : app('cache')->remember($key, $minutes, $callback);
 }
 
 /**
