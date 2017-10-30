@@ -45,6 +45,8 @@ class CampaignRepository
      */
     public function findBySlug($slug)
     {
+        $skipCache = ! config('services.contentful.cache');
+
         $flattenedCampaign = remember('campaign_'.$slug, 15, function () use ($slug) {
             $query = (new Query)
                 ->setContentType('campaign')
@@ -63,7 +65,7 @@ class CampaignRepository
                 // "Serialization of 'Closure' is not allowed" error.
                 return json_encode($campaign);
             }
-        });
+        }, $skipCache);
 
         if ($flattenedCampaign == 'not_found') {
             throw new ModelNotFoundException;
