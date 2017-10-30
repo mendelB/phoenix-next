@@ -15,18 +15,17 @@ import './feed.scss';
  * @param index
  * @returns {XML}
  */
-const renderFeedItem = (block, index) => {
-  console.log(block);
-
-
-  return (
-    <FlexCell key={`${block.id}-${index}`} width={block.fields.displayOptions} className={classnames('padded', {
+const renderFeedItem = (block, index) => (
+  <FlexCell
+    key={`${block.id}-${index}`}
+    width={block.fields.displayOptions}
+    className={classnames('padded', {
       'display-flex': block.type === 'reportbacks',
-    })}>
-      <Block json={block} />
-    </FlexCell>
-  );
-};
+    })}
+  >
+    <Block json={block} />
+  </FlexCell>
+);
 
 /**
  * Render the feed.
