@@ -42,37 +42,31 @@ class CampaignRepository
      * Find a campaign by its slug.
      *
      * @param  string $slug
-     * @return \App\Entities\Campaign
+     * @return stdClass
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findBySlug($slug)
     {
-        if (Cache::has($slug)) {
-            $flattenedCampaign = Cache::get($slug);
-        } else {
+        $flattenedCampaign = remember('campaign_'.$slug, 15, function () use($slug) {
             $query = (new Query)
-            ->setContentType('campaign')
-            ->where('fields.slug', $slug)
-            ->setInclude(3)
-            ->setLimit(1);
+                ->setContentType('campaign')
+                ->where('fields.slug', $slug)
+                ->setInclude(3)
+                ->setLimit(1);
 
             $campaigns = $this->makeRequest($query);
 
             if (! $campaigns->count()) {
-                throw new ModelNotFoundException;
+                return 'not_found';
+            } else {
+                $campaign = new Campaign($campaigns[0]);
+
+                return json_encode($campaign);
             }
+        });
 
-            $campaignEntry = $campaigns[0];
-
-            $campaign = new Campaign($campaignEntry);
-
-            $flattenedCampaign = json_encode($campaign);
-
-            if (config('services.contentful.cache')) {
-                $expiresAt = Carbon::now()->addMinutes(15);
-
-                Cache::add($slug, $flattenedCampaign, $expiresAt);
-            }
+        if ($flattenedCampaign == 'not_found') {
+            throw new ModelNotFoundException;
         }
 
         return json_decode($flattenedCampaign);
