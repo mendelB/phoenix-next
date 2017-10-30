@@ -61,6 +61,8 @@ class CampaignRepository
             } else {
                 $campaign = new Campaign($campaigns[0]);
 
+                // encoding campaign to provide serialized version of the campaign to cache, to avoid
+                // "Serialization of 'Closure' is not allowed" error.
                 return json_encode($campaign);
             }
         });
