@@ -33,9 +33,9 @@ function scriptify($json = [], $store = 'STATE')
  * @param  \Closure  $callback
  * @return mixed
  */
-function remember($key, $minutes, Closure $callback)
+function remember($key, $minutes, Closure $callback, $skipCache = false)
 {
-    return app('cache')->remember($key, $minutes, $callback);
+    return $skipCache ? $callback() : app('cache')->remember($key, $minutes, $callback);
 }
 
 /**
@@ -213,13 +213,18 @@ function get_legacy_campaign_data($id, $key = null)
  * base object.
  *
  * @param  string $field
- * @param  Campaign $campaign
+ * @param  stdClass $campaign
  * @param  DynamicEntry $override
  * @return mixed
  */
 function useOverrideIfSet($field, $campaign, $override)
 {
-    $base = $campaign->{$field};
+    if (! isset($campaign->{$field})) {
+        $base = null;
+    } else {
+        $base = $campaign->{$field};
+    }
+
     if ($override === null) {
         return $base;
     }
@@ -234,20 +239,19 @@ function useOverrideIfSet($field, $campaign, $override)
 /**
  * Determine the fields to display in the social share.
  *
- * @param  Campaign $campaign
+ * @param  stdClass $campaign
  * @param  string   $uri
  * @return array
  */
 function get_social_fields($campaign, $uri)
 {
-    $campaignFlattened = json_decode(json_encode($campaign));
-    $socialOverride = $campaignFlattened->socialOverride ? $campaignFlattened->socialOverride->fields : null;
-    $blockPath = $campaignFlattened->slug . '/blocks';
+    $socialOverride = $campaign->socialOverride ? $campaign->socialOverride->fields : null;
+    $blockPath = $campaign->slug . '/blocks';
 
     if (str_contains($uri, $blockPath)) {
         $blockId = last(explode('/', $uri));
 
-        $block = array_first($campaignFlattened->activityFeed, function ($value) use ($blockId) {
+        $block = array_first($campaign->activityFeed, function ($value) use ($blockId) {
             return $value->id === $blockId;
         });
 
@@ -256,9 +260,9 @@ function get_social_fields($campaign, $uri)
         }
     }
 
-    $coverImage = useOverrideIfSet('coverImage', $campaignFlattened, $socialOverride);
+    $coverImage = useOverrideIfSet('coverImage', $campaign, $socialOverride);
     // If the image is pulled from socialOverride, its going to be a string.
-    // But if its pulled from campaignFlattened, its an object containing a url string.
+    // But if its pulled from campaign, its an object containing a url string.
     if (gettype($coverImage) === 'object') {
         $coverImage = $coverImage->landscapeUrl;
     }
@@ -308,7 +312,7 @@ function get_client_environment_vars()
  * Get the presentation values we should package with our
  * Northstar authorization requests.
  *
- * @param  Campaign $campaign
+ * @param  stdClass $campaign
  * @return array
  */
 function get_login_query($campaign = null)
@@ -321,7 +325,7 @@ function get_login_query($campaign = null)
         'destination' => $campaign->title,
         'options' => [
             'title' => $campaign->title,
-            'coverImage' => get_image_url($campaign->coverImage),
+            'coverImage' => $campaign->coverImage->url,
             'callToAction' => $campaign->callToAction,
         ],
     ];

@@ -2,8 +2,6 @@
 
 namespace App\Repositories;
 
-use Cache;
-use Carbon\Carbon;
 use App\Entities\Campaign;
 use Contentful\Delivery\Query;
 use Contentful\Delivery\Client as Contentful;
@@ -42,40 +40,38 @@ class CampaignRepository
      * Find a campaign by its slug.
      *
      * @param  string $slug
-     * @return \App\Entities\Campaign
+     * @return stdClass
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findBySlug($slug)
     {
-        if (Cache::has($slug)) {
-            $cachedCampaignJson = Cache::get($slug);
+        $skipCache = ! config('services.contentful.cache');
 
-            // This turns the JSON into a Contentful Dynamic Entry
-            // so we can create a campaign entity out of the cached data
-            $campaignEntry = $this->client->reviveJson($cachedCampaignJson);
-        } else {
+        $flattenedCampaign = remember('campaign_'.$slug, 15, function () use ($slug) {
             $query = (new Query)
-            ->setContentType('campaign')
-            ->where('fields.slug', $slug)
-            ->setInclude(3)
-            ->setLimit(1);
+                ->setContentType('campaign')
+                ->where('fields.slug', $slug)
+                ->setInclude(3)
+                ->setLimit(1);
 
             $campaigns = $this->makeRequest($query);
 
             if (! $campaigns->count()) {
-                throw new ModelNotFoundException;
+                return 'not_found';
+            } else {
+                $campaign = new Campaign($campaigns[0]);
+
+                // encoding campaign to provide serialized version of the campaign to cache, to avoid
+                // "Serialization of 'Closure' is not allowed" error.
+                return json_encode($campaign);
             }
+        }, $skipCache);
 
-            $campaignEntry = $campaigns[0];
-
-            if (config('services.contentful.cache')) {
-                $expiresAt = Carbon::now()->addMinutes(15);
-
-                Cache::add($slug, json_encode($campaignEntry), $expiresAt);
-            }
+        if ($flattenedCampaign == 'not_found') {
+            throw new ModelNotFoundException;
         }
 
-        return new Campaign($campaignEntry);
+        return json_decode($flattenedCampaign);
     }
 
     /**
