@@ -321,18 +321,11 @@ function get_login_query($campaign = null)
         return [];
     }
 
-    // This deals with when the $campaign is the flattenedCampaign std object
-    if (! $campaign instanceof App\Entities\Campaign) {
-        $coverImage = $campaign->coverImage->url;
-    } else {
-        $coverImage = get_image_url($campaign->coverImage);
-    }
-
     return [
         'destination' => $campaign->title,
         'options' => [
             'title' => $campaign->title,
-            'coverImage' => $coverImage,
+            'coverImage' => $campaign->coverImage->url,
             'callToAction' => $campaign->callToAction,
         ],
     ];
