@@ -1,9 +1,12 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+
+import Block from '../Block';
 import Revealer from '../Revealer';
 import { Flex, FlexCell } from '../Flex';
+
 import './feed.scss';
-import Block from '../Block';
 
 /**
  * Render a single feed item.
@@ -12,11 +15,18 @@ import Block from '../Block';
  * @param index
  * @returns {XML}
  */
-const renderFeedItem = (block, index) => (
-  <FlexCell className="padded" key={`${block.id}-${index}`} width={block.fields.displayOptions}>
-    <Block json={block} />
-  </FlexCell>
-);
+const renderFeedItem = (block, index) => {
+  console.log(block);
+
+
+  return (
+    <FlexCell key={`${block.id}-${index}`} width={block.fields.displayOptions} className={classnames('padded', {
+      'display-flex': block.type === 'reportbacks',
+    })}>
+      <Block json={block} />
+    </FlexCell>
+  );
+};
 
 /**
  * Render the feed.

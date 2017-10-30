@@ -1,33 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BlockWrapper from '../Block/BlockWrapper';
-import { FlexCell } from '../Flex';
 import ReportbackItemContainer from '../ReportbackItem';
-import { mapDisplayToPoints } from '../../selectors/feed';
 import './reportback-block.scss';
 
-const ReportbackBlock = (props) => {
-  const items = [];
+const ReportbackBlock = ({ reportbacks }) => {
+  const id = reportbacks[0];
 
-  for (let i = 0; i < mapDisplayToPoints(props.fields.displayOptions); i += 1) {
-    const id = props.reportbacks[i];
-
-    items.push(
-      <FlexCell key={id || `null-${i}`}>
-        <BlockWrapper className="reportback-block">
-          <ReportbackItemContainer id={id} />
-        </BlockWrapper>
-      </FlexCell>,
-    );
-  }
-
-  return <FlexCell>{items}</FlexCell>;
+  return (
+    <BlockWrapper className="reportback-block" key={id}>
+      <ReportbackItemContainer id={id} />
+    </BlockWrapper>
+  );
 };
 
 ReportbackBlock.propTypes = {
-  fields: PropTypes.shape({
-    displayOptions: PropTypes.string,
-  }).isRequired,
   reportbacks: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
