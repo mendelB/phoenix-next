@@ -213,7 +213,7 @@ function get_legacy_campaign_data($id, $key = null)
  * base object.
  *
  * @param  string $field
- * @param  Campaign $campaign
+ * @param  stdClass $campaign
  * @param  DynamicEntry $override
  * @return mixed
  */
