@@ -66,7 +66,10 @@ class ReportbackUploader extends React.Component {
 
     reportback.media.type = fileType ? fileType.substring(0, fileType.indexOf('/')) : null;
 
-    this.props.submitReportback(ReportbackUploader.setFormData(reportback));
+    this.props.submitReportback(
+      ReportbackUploader.setFormData(reportback),
+      this.props.reportbackAffirmation,
+    );
 
     // @TODO: only reset form AFTER successful RB submission.
     // We'll make this a lot better once we switch to storing all the state
@@ -133,6 +136,7 @@ ReportbackUploader.propTypes = {
     plural: PropTypes.string,
   }),
   quantityOverride: PropTypes.number,
+  reportbackAffirmation: PropTypes.string,
 };
 
 ReportbackUploader.defaultProps = {
@@ -141,6 +145,7 @@ ReportbackUploader.defaultProps = {
     plural: 'items',
   },
   quantityOverride: null,
+  reportbackAffirmation: 'Thanks! We got your photo and you\'re entered to win the scholarship!',
 };
 
 export default ReportbackUploader;
