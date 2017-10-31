@@ -84,6 +84,14 @@ h1, h2, h3, p {
   clear: none;
 }
 
+.display-block {
+  display: block;
+}
+
+.display-flex {
+  display: flex;
+}
+
 .expand-horizontal-lg {
   margin-left: -$base-spacing;
   margin-right: -$base-spacing;
