@@ -78,8 +78,11 @@ export function storeReportbackFailed(error) {
 }
 
 // Action: storing new user submitted reportback was successful.
-export function storeReportbackSuccessful() {
-  return { type: STORE_REPORTBACK_SUCCESSFUL };
+export function storeReportbackSuccessful(reportbackAffirmation) {
+  return {
+    type: STORE_REPORTBACK_SUCCESSFUL,
+    reportbackAffirmation,
+  };
 }
 
 export function requestingUserReportbacks() {
@@ -151,7 +154,7 @@ export function toggleReactionOff(reportbackItemId, reactionId) {
 }
 
 // Async Action: submit a new reportback and place in submissions gallery.
-export function submitReportback(reportback) {
+export function submitReportback(reportback, reportbackAffirmation) {
   return (dispatch) => {
     dispatch(storeReportback(reportback));
 
@@ -176,8 +179,7 @@ export function submitReportback(reportback) {
             dispatch(storeReportbackFailed(json));
           });
         } else {
-          dispatch(storeReportbackSuccessful());
-
+          dispatch(storeReportbackSuccessful(reportbackAffirmation));
           response.json().then((json) => {
             dispatch(addSubmissionMetadata(reportback, json.shift()));
             dispatch(addSubmissionItemToList(reportback));
