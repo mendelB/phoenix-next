@@ -32,7 +32,6 @@
           <li><a href="{{ phoenixLink('us/about/our-people') }}">Our Team</a></li>
           <li><a href="{{ phoenixLink('us/about/sexy-financials') }}">Sexy Financials</a></li>
           <li><a href="http://xyzfactor.org/">XYZ Factor</a></li>
-          <li><a href="https://app.dosomething.org/">Mobile App</a></li>
           <li><a href="{{ phoenixLink('us/about/our-press') }}">Press</a></li>
           <li><a href="https://blog.dosomething.org/">Blog</a></li>
          </ul>
