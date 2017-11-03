@@ -1,41 +1,35 @@
 @import '../../scss/next-toolbox';
 
 .call-to-action {
-  // background-color: $white;
-  // border-top: 1px solid $primary-border-color;
-  // padding: $half-spacing;
+  &.-sticky {
+    bottom: -1px;
+    position: sticky;
+    z-index: $sticky-cta-zindex;
 
-  // &.-sticky {
-  //   bottom: -1px;
-  //   position: sticky;
-  //   z-index: $sticky-cta-zindex;
+    @include media($medium) {
+      display: none;
+    }
 
-  //   @include media($medium) {
-  //     display: none;
-  //   }
-
-  //   > .button {
-  //     width: 100%;
-  //   }
-  // }
-
-  &.light, &.transparent {
-    color: $dark-gray !important;
+    > .button {
+      width: 100%;
+    }
   }
 
-  &.dark {
-    color: $white !important;
-
-    .cta__message {
-      color: $white !important;
-    }
+  .cta__tagline {
+    font-weight: bold;
   }
 
   .cta__impact {
-    > span {
-      font-size: $font-hero;
-      display: block;
-    }
+    font-weight: bold;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .cta__impact_number {
+    display: block;
+    font-family: $secondary-font-family;
+    font-size: $font-hero;
+    font-weight: normal;
   }
 
   .cta__message {
@@ -44,7 +38,27 @@
     font-weight: normal;
   }
 
-  .cta__tagline {
-    font-weight: bold;
+  &.light {
+    color: $dark-gray !important;
+  }
+
+  &.transparent {
+    color: $dark-gray !important;
+
+    .cta__tagline {
+      font-size: $font-medium;
+    }
+  }
+
+  &.dark {
+    color: $white !important;
+
+    .cta__tagline {
+      color: $primary-color;
+    }
+
+    .cta__message {
+      color: $white !important;
+    }
   }
 }
