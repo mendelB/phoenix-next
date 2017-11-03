@@ -10,8 +10,6 @@ const mapStateToProps = state => ({
   isSignedUp: state.signups.thisCampaign,
   legacyCampaignId: state.campaign.legacyCampaignId,
   tagline: state.campaign.callToAction,
-  // noun: '',
-  // verb: '',
 });
 
 /**

@@ -29,31 +29,29 @@ const CampaignSubPage = (props) => {
     <div className="clearfix padded campaign-subpage" id={subPage.id}>
       <div className="primary">
         <ScrollConcierge />
-        <article>
+        <article className="padded bordered rounded bg-white">
           <h2 className="visually-hidden">{ subPage.fields.title }</h2>
 
           <Markdown>{ subPage.fields.content }</Markdown>
         </article>
       </div>
 
-      { ! isClosed ? (
-        <span>
-          <div className="secondary">
-            <CallToActionContainer
-              className="something-cooler"
-              content={ctaContent}
-              useCampaignTagline={true}
-              style="dark"
-            />
-          </div>
-
+      { isClosed ? null : (
+        <div className="secondary">
           <CallToActionContainer
-              className="something-cooler"
-              useCampaignTagline={true}
-              style="transparent"
-            />
-        </span>
-      ) : null }
+            content={ctaContent}
+            useCampaignTagline={true}
+            style="dark"
+          />
+        </div>
+      )}
+
+      { isClosed ? null : (
+        <CallToActionContainer
+          useCampaignTagline={true}
+          style="transparent"
+        />
+      )}
     </div>
   );
 };
