@@ -10,14 +10,18 @@ import SignupButtonFactory from '../SignupButton';
 import './cta.scss';
 
 const renderImpactContent = (prefix, value, suffix) => {
-  const valueElem = <span>{value}</span>;
+  const valueElem = <span className="cta__impact_number">{value}</span>;
 
   return (
-    <div className="cta__impact">
+    <div className="cta__impact margin-bottom-lg">
       { prefix ? `${prefix} ` : null } {valueElem} { suffix ? ` ${suffix}` : null }
     </div>
   );
 }
+
+const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
+  <Button onClick={() => clickedSignUp(legacyCampaignId)} />
+), 'call to action', { text: 'join us' });
 
 type CallToActionProps = {
   legacyCampaignId: string,
@@ -37,18 +41,18 @@ const CallToAction = ({
   let classes;
 
   return (
-    <Card className={classnames('call-to-action rounded padded text-centered', {
+    <Card className={classnames('call-to-action rounded padded text-centered', className, {
       'bg-white bordered light': style === 'light',
       'bg-black dark': style === 'dark',
       'bg-transparent border-none transparent': style === 'transparent',
     })}>
-      { useCampaignTagline ? <div className="cta__tagline">{tagline}</div> : null }
+      { useCampaignTagline ? <div className="cta__tagline margin-bottom-lg">{tagline}</div> : null }
 
       { impactValue ? renderImpactContent(impactPrefix, impactValue, impactSuffix) : null }
 
-      { content ? <div className="cta__message">{content}</div> : null }
+      { content ? <div className="cta__message margin-bottom-lg">{content}</div> : null }
 
-       <button className="button" onClick={() => {}}>Join us</button>
+      <SignupButton />
     </Card>
   );
 };
@@ -58,17 +62,3 @@ CallToAction.defaultProps = {
 };
 
 export default CallToAction;
-
-// const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
-//   <Button onClick={() => clickedSignUp(legacyCampaignId)} />
-// ), 'call to action', { text: 'join us' });
-
-// return (
-//   <div className={classnames('call-to-action', className)}>
-//     <SignupButton />
-//   </div>
-// );
-
-// { prefix ? <span>{prefix}</span> : null }
-//       <span>{value}</span>
-//       { suffix ? <span>{suffix}</span> : null }

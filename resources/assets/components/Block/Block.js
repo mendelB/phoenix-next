@@ -20,7 +20,6 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
     case 'callToAction':
       return (
         <CallToActionContainer
-          className="something-cool"
           content={json.fields.content}
           impactPrefix={json.fields.impactPrefix}
           impactSuffix={json.fields.impactSuffix}
@@ -59,9 +58,3 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
 };
 
 export default Block;
-
-
-// <CallToActionContainer
-//   fields={json.fields}
-//   modifierClasses="dark-bg"
-// />
