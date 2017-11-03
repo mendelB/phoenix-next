@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import NotFound from '../../NotFound';
 import Markdown from '../../Markdown';
 import ScrollConcierge from '../../ScrollConcierge';
-// import CallToActionContainer from '../CallToAction'; // doesn't find the container??
 import CallToActionContainer from '../../CallToAction/CallToActionContainer';
 import CallToActionBlockContainer from '../../CallToActionBlock';
 import { isCampaignClosed } from '../../../helpers';
@@ -91,15 +90,3 @@ CampaignSubPage.defaultProps = {
 };
 
 export default CampaignSubPage;
-
-
-// <CallToActionBlockContainer
-//   fields={{ content: ctaContent }}
-//   modifierClasses="dark-bg"
-// />
-
-// <CallToActionBlockContainer
-//   fields={{ title: tagline }}
-//   modifierClasses="transparent border-none"
-//   className="last-cta"
-// />
