@@ -32,16 +32,11 @@ const Share = (props) => {
   };
 
   const buttonClassName = classnames(
-    'button share', className, { '-black': variant === 'black', '-icon': variant === 'icon' },
+    'button share padding-horizontal-md', className, { '-black': variant === 'black', '-icon': variant === 'icon' },
   );
 
   return (
     <div>
-      <button className={buttonClassName} onClick={onFacebookClick}>
-        {variant === 'icon' ? null : 'share on'}
-        <i className="social-icon -facebook"><span>Facebook</span></i>
-      </button>
-
       { variant === 'icon' ? (
         <a href={`https://twitter.com/intent/tweet?url=${link}`} target="_blank" onClick={onTwitterClick}>
           <button className={buttonClassName}>
@@ -50,6 +45,11 @@ const Share = (props) => {
           </button>
         </a>) : null
       }
+
+      <button className={buttonClassName} onClick={onFacebookClick}>
+        {variant === 'icon' ? null : 'share on'}
+        <i className="social-icon -facebook"><span>Facebook</span></i>
+      </button>
     </div>
   );
 };
