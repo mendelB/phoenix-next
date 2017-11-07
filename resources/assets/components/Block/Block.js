@@ -1,16 +1,15 @@
 /* @flow */
 
 import React from 'react';
-import { CampaignUpdateBlockContainer } from '../CampaignUpdateBlock';
-import { CampaignUpdateContainer } from '../CampaignUpdate';
-import PlaceholderBlock from '../PlaceholderBlock';
-import ReportbackBlock from '../ReportbackBlock';
-import StaticBlock from '../StaticBlock';
+
 import Quiz from '../Quiz';
-// import CallToActionContainer from '../CallToAction'; // doesn't find the container??
-import CallToActionContainer from '../CallToAction/CallToActionContainer';
-import CallToActionBlockContainer from '../CallToActionBlock';
 import { BlockJson } from '../../types';
+import StaticBlock from '../StaticBlock';
+import ReportbackBlock from '../ReportbackBlock';
+import PlaceholderBlock from '../PlaceholderBlock';
+import { CampaignUpdateContainer } from '../CampaignUpdate';
+import { CampaignUpdateBlockContainer } from '../CampaignUpdateBlock';
+import CallToActionContainer from '../CallToAction/CallToActionContainer';
 
 // If no block is passed, just render an empty "placeholder".
 const DEFAULT_BLOCK: BlockJson = { fields: { type: null } };
@@ -24,7 +23,7 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
           impactPrefix={json.fields.impactPrefix}
           impactSuffix={json.fields.impactSuffix}
           impactValue={json.fields.impactValue}
-          style={json.fields.style}
+          visualStyle={json.fields.visualStyle}
           useCampaignTagline={json.fields.useCampaignTagline}
         />
       );

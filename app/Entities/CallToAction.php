@@ -42,7 +42,7 @@ class CallToAction extends Entity implements JsonSerializable
                 'impactSuffix' => $impactSuffix,
                 'impactValue' => $impactValue,
                 'photo' => $this->photo ?: null,
-                'style' => $this->style ? $this->style->first() : 'light',
+                'visualStyle' => $this->visualStyle ? $this->visualStyle->first() : 'light',
                 'useCampaignCoverImage' => $this->useCampaignCoverImage ?: null,
                 'useCampaignTagline' => $this->useCampaignTagline ?: true,
             ],

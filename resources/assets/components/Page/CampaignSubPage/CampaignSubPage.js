@@ -2,12 +2,11 @@ import React from 'react';
 import { find } from 'lodash';
 import PropTypes from 'prop-types';
 
-import NotFound from '../../NotFound';
 import Markdown from '../../Markdown';
+import NotFound from '../../NotFound';
+import { isCampaignClosed } from '../../../helpers';
 import ScrollConcierge from '../../ScrollConcierge';
 import CallToActionContainer from '../../CallToAction/CallToActionContainer';
-import CallToActionBlockContainer from '../../CallToActionBlock';
-import { isCampaignClosed } from '../../../helpers';
 
 import './campaign-subpage.scss';
 
@@ -39,16 +38,16 @@ const CampaignSubPage = (props) => {
         <div className="secondary">
           <CallToActionContainer
             content={ctaContent}
-            useCampaignTagline={true}
-            style="dark"
+            useCampaignTagline
+            visualStyle="dark"
           />
         </div>
       )}
 
       { isClosed ? null : (
         <CallToActionContainer
-          useCampaignTagline={true}
-          style="transparent"
+          useCampaignTagline
+          visualStyle="transparent"
         />
       )}
     </div>

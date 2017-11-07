@@ -17,35 +17,36 @@ const renderImpactContent = (prefix, value, suffix) => {
       { prefix ? `${prefix} ` : null } {valueElem} { suffix ? ` ${suffix}` : null }
     </div>
   );
-}
-
-const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
-  <Button onClick={() => clickedSignUp(legacyCampaignId)} />
-), 'call to action', { text: 'join us' });
+};
 
 type CallToActionProps = {
-  legacyCampaignId: string,
+  campaignId: string,
   className: ?string,
+  content: ?string,
   impactPrefix: ?string,
   impactSuffix: ?string,
   impactValue: ?string,
+  legacyCampaignId: ?string,
   tagline: string,
   useCampaignTagline: bool,
+  visualStyle: string,
 };
 
 const CallToAction = ({
-  legacyCampaignId, className, content, impactPrefix, impactSuffix, impactValue,
-  tagline, useCampaignTagline, style,
+  campaignId, className, content, impactPrefix, impactSuffix, impactValue,
+  legacyCampaignId, tagline, useCampaignTagline, visualStyle,
 }: CallToActionProps) => {
-
-  let classes;
+  const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
+    <Button onClick={() => clickedSignUp(legacyCampaignId || campaignId)} />
+  ), 'call to action', { text: 'join us' });
 
   return (
     <Card className={classnames('call-to-action rounded padded text-centered', className, {
-      'bg-white bordered light': style === 'light',
-      'bg-black dark': style === 'dark',
-      'bg-transparent border-none transparent': style === 'transparent',
-    })}>
+      'bg-white bordered light': visualStyle === 'light',
+      'bg-black dark': visualStyle === 'dark',
+      'bg-transparent border-none transparent': visualStyle === 'transparent',
+    })}
+    >
       { useCampaignTagline ? <div className="cta__tagline margin-bottom-lg">{tagline}</div> : null }
 
       { impactValue ? renderImpactContent(impactPrefix, impactValue, impactSuffix) : null }
@@ -59,6 +60,7 @@ const CallToAction = ({
 
 CallToAction.defaultProps = {
   className: null,
+  content: null,
 };
 
 export default CallToAction;
