@@ -14,7 +14,7 @@ const component = shallow(
     campaignId="12345"
     legacyCampaignId="67890"
     tagline="Aenean eu leo quam. Pellentesque ornare sem vestibulum."
-    useCampaignTagline={true}
+    useCampaignTagline
     visualStyle="light"
   />,
 );
