@@ -40,7 +40,6 @@ const Share = (props) => {
       { variant === 'icon' ? (
         <a href={`https://twitter.com/intent/tweet?url=${link}`} target="_blank" onClick={onTwitterClick}>
           <button className={buttonClassName}>
-            {variant === 'icon' ? null : 'share on'}
             <i className="social-icon -twitter"><span>Twitter</span></i>
           </button>
         </a>) : null
