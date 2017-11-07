@@ -394,11 +394,10 @@ export function showFacebookSharePrompt(share, callback) {
 /**
  * Share a link by generating a Twitter intent share prompt.
  *
- * @param  {Object}   share
+ * @param  {String} href
+ * @param  {String} quote
  */
-export function showTwitterSharePrompt(share) {
-  const { href, quote } = share;
-
+export function showTwitterSharePrompt(href, quote) {
   const width = 550;
   const height = 420;
   const winHeight = window.screen.height;
@@ -411,6 +410,6 @@ export function showTwitterSharePrompt(share) {
     top = Math.round((winHeight / 2) - (height / 2));
   }
 
-  window.open(`https://twitter.com/intent/tweet?url=${href}&text=${quote || ''}`, 'intent',
+  window.open(`https://twitter.com/intent/tweet?url=${href}&text=${quote}`, 'intent',
     `scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=${width},height=${height},left=${left},top=${top}`);
 }
