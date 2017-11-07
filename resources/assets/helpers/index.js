@@ -390,3 +390,27 @@ export function showFacebookSharePrompt(share, callback) {
     quote,
   }, callback);
 }
+
+/**
+ * Share a link by generating a Twitter intent share prompt.
+ *
+ * @param  {Object}   share
+ */
+export function showTwitterSharePrompt(share) {
+  const { href, quote } = share;
+
+  const width = 550;
+  const height = 420;
+  const winHeight = window.screen.height;
+  const winWidth = window.screen.width;
+
+  const left = Math.round((winWidth / 2) - (width / 2));
+  let top = 0;
+
+  if (winHeight > height) {
+    top = Math.round((winHeight / 2) - (height / 2));
+  }
+
+  window.open(`https://twitter.com/intent/tweet?url=${href}&text=${quote || ''}`, 'intent',
+    `scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=${width},height=${height},left=${left},top=${top}`);
+}
