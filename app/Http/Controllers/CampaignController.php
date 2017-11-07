@@ -76,4 +76,22 @@ class CampaignController extends Controller
             ],
         ]);
     }
+
+    /**
+     * Refresh the campaigns cached data.
+     *
+     * @param  string $slug
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function refresh($slug)
+    {
+        if (auth()->user() && auth()->user()->isStaff()) {
+            $this->campaignRepository->findBySlug($slug, true);
+            $message = 'Cache cleared for the '.$slug.'campaign';
+        } else {
+            $message = 'Hey, staff only please!';
+        }
+
+        return redirect('us/campaigns/'.$slug)->with('flash_message', $message);
+    }
 }
