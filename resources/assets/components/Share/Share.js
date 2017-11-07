@@ -30,7 +30,7 @@ const Share = (props) => {
   const onTwitterClick = () => {
     trackEvent('clicked twitter share', trackingData);
 
-    showTwitterSharePrompt({ href: link, quote });
+    showTwitterSharePrompt(link, quote || '');
   };
 
   const buttonClassName = classnames(
