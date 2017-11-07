@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
-import { showFacebookSharePrompt } from '../../helpers';
+import { showFacebookSharePrompt, showTwitterSharePrompt } from '../../helpers';
 
 import './share.scss';
 
@@ -29,6 +29,8 @@ const Share = (props) => {
 
   const onTwitterClick = () => {
     trackEvent('clicked twitter share', trackingData);
+
+    showTwitterSharePrompt({ href: link, quote });
   };
 
   const buttonClassName = classnames(
@@ -38,11 +40,9 @@ const Share = (props) => {
   return (
     <div>
       { variant === 'icon' ? (
-        <a href={`https://twitter.com/intent/tweet?url=${link}`} target="_blank" onClick={onTwitterClick}>
-          <button className={buttonClassName}>
-            <i className="social-icon -twitter"><span>Twitter</span></i>
-          </button>
-        </a>) : null
+        <button className={buttonClassName} onClick={onTwitterClick}>
+          <i className="social-icon -twitter"><span>Twitter</span></i>
+        </button>) : null
       }
 
       <button className={buttonClassName} onClick={onFacebookClick}>
