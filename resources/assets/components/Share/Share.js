@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
-import { showFacebookSharePrompt } from '../../helpers';
+import { showFacebookSharePrompt, showTwitterSharePrompt } from '../../helpers';
 
 import './share.scss';
 
@@ -15,7 +15,7 @@ const Share = (props) => {
 
   const trackingData = { parentSource, variant, link, quote };
 
-  const onClick = () => {
+  const onFacebookClick = () => {
     trackEvent('clicked facebook share', trackingData);
 
     showFacebookSharePrompt({ href: link, quote }, (response) => {
@@ -27,14 +27,29 @@ const Share = (props) => {
     });
   };
 
+  const onTwitterClick = () => {
+    trackEvent('clicked twitter share', trackingData);
+
+    showTwitterSharePrompt(link, quote || '');
+  };
+
+  const buttonClassName = classnames(
+    'button share padding-horizontal-md', className, { '-black': variant === 'black', '-icon': variant === 'icon' },
+  );
+
   return (
-    <button
-      className={classnames('button share', className, { '-black': variant === 'black', '-icon': variant === 'icon' })}
-      onClick={onClick}
-    >
-      {variant === 'icon' ? null : 'share on'}
-      <i className="social-icon -facebook"><span>Facebook</span></i>
-    </button>
+    <div>
+      { variant === 'icon' ? (
+        <button className={buttonClassName} onClick={onTwitterClick}>
+          <i className="social-icon -twitter"><span>Twitter</span></i>
+        </button>) : null
+      }
+
+      <button className={buttonClassName} onClick={onFacebookClick}>
+        {variant === 'icon' ? null : 'share on'}
+        <i className="social-icon -facebook"><span>Facebook</span></i>
+      </button>
+    </div>
   );
 };
 
