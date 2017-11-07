@@ -3,8 +3,6 @@ import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 import CallToAction from './CallToAction';
 
-console.log('hello');
-
 const component = shallow(
   <CallToAction
     campaignId="12345"
