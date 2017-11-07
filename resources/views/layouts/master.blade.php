@@ -17,6 +17,10 @@
 </head>
 
 <body>
+    @if (session('flash_message'))
+        <div class="alert">{{ session('flash_message') }}</div>
+    @endif
+
     <div id="fb-root"></div>
     <div class="chrome">
         <div class="wrapper">
