@@ -3,6 +3,9 @@ import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 import CallToAction from './CallToAction';
 
+// Mock Redux containers so we don't need Provider context.
+jest.mock('./CallToActionContainer', () => 'CallToActionContainer');
+
 const component = shallow(
   <CallToAction
     campaignId="12345"

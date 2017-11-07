@@ -61,6 +61,10 @@ const CallToAction = ({
 CallToAction.defaultProps = {
   className: null,
   content: null,
+  impactPrefix: null,
+  impactSuffix: null,
+  impactValue: null,
+  legacyCampaignId: null,
 };
 
 export default CallToAction;

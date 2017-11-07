@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CallToAction snapshot test 1`] = `
+<Card
+  className="call-to-action rounded padded text-centered bg-white bordered light"
+  link={null}
+  title={null}
+>
+  <div
+    className="cta__tagline margin-bottom-lg"
+  >
+    Aenean eu leo quam. Pellentesque ornare sem vestibulum.
+  </div>
+  <Connect(PuckWrapper) />
+</Card>
+`;
