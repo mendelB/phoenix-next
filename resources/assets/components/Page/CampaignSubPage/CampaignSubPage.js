@@ -2,11 +2,11 @@ import React from 'react';
 import { find } from 'lodash';
 import PropTypes from 'prop-types';
 
-import NotFound from '../../NotFound';
 import Markdown from '../../Markdown';
-import ScrollConcierge from '../../ScrollConcierge';
-import CallToActionBlockContainer from '../../CallToActionBlock';
+import NotFound from '../../NotFound';
 import { isCampaignClosed } from '../../../helpers';
+import ScrollConcierge from '../../ScrollConcierge';
+import CallToActionContainer from '../../CallToAction/CallToActionContainer';
 
 import './campaign-subpage.scss';
 
@@ -21,35 +21,35 @@ const CampaignSubPage = (props) => {
 
   const isClosed = isCampaignClosed(campaignEndDate);
 
-  const ctaContent = `${tagline}\n\n__Join hundreds of members and ${verb.plural} ${noun.plural}!__`;
+  const ctaContent = `${tagline} Join hundreds of members and ${verb.plural} ${noun.plural}!`;
 
   return (
     <div className="clearfix padded campaign-subpage" id={subPage.id}>
       <div className="primary">
         <ScrollConcierge />
-        <article>
+        <article className="padded bordered rounded bg-white">
           <h2 className="visually-hidden">{ subPage.fields.title }</h2>
 
           <Markdown>{ subPage.fields.content }</Markdown>
         </article>
       </div>
 
-      { ! isClosed ? (
-        <span>
-          <div className="secondary">
-            <CallToActionBlockContainer
-              fields={{ content: ctaContent }}
-              modifierClasses="dark-bg"
-            />
-          </div>
-
-          <CallToActionBlockContainer
-            fields={{ title: tagline }}
-            modifierClasses="transparent border-none"
-            className="last-cta"
+      { isClosed ? null : (
+        <div className="secondary">
+          <CallToActionContainer
+            content={ctaContent}
+            useCampaignTagline
+            visualStyle="dark"
           />
-        </span>
-      ) : null }
+        </div>
+      )}
+
+      { isClosed ? null : (
+        <CallToActionContainer
+          useCampaignTagline
+          visualStyle="transparent"
+        />
+      )}
     </div>
   );
 };

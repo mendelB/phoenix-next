@@ -30,13 +30,4 @@
   > div {
     margin: $base-spacing 0;
   }
-
-  article {
-    @extend %block;
-  }
-
-  .cta {
-    clear: both;
-    margin: 0;
-  }
 }

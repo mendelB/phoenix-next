@@ -35,13 +35,16 @@ class CallToAction extends Entity implements JsonSerializable
             'id' => $this->entry->getId(),
             'type' => $type,
             'fields' => [
+                'buttonText' => 'Join us',
                 'content' => $content,
-                'displayOptions' =>$this->displayOptions->first(),
+                'displayOptions' => $this->displayOptions->first(),
                 'impactPrefix' => $impactPrefix,
                 'impactSuffix' => $impactSuffix,
                 'impactValue' => $impactValue,
-                'useCoverImage' => $this->useCoverImage ?: null,
                 'photo' => $this->photo ?: null,
+                'visualStyle' => $this->visualStyle ? $this->visualStyle->first() : 'light',
+                'useCampaignCoverImage' => $this->useCampaignCoverImage ?: null,
+                'useCampaignTagline' => $this->useCampaignTagline ?: true,
             ],
         ];
     }

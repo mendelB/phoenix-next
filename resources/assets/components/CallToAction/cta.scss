@@ -1,10 +1,6 @@
 @import '../../scss/next-toolbox';
 
 .call-to-action {
-  background-color: $white;
-  border-top: 1px solid $primary-border-color;
-  padding: $half-spacing;
-
   &.-sticky {
     bottom: -1px;
     position: sticky;
@@ -16,6 +12,53 @@
 
     > .button {
       width: 100%;
+    }
+  }
+
+  .cta__tagline {
+    font-weight: bold;
+  }
+
+  .cta__impact {
+    font-weight: bold;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .cta__impact_number {
+    display: block;
+    font-family: $secondary-font-family;
+    font-size: $font-hero;
+    font-weight: normal;
+  }
+
+  .cta__message {
+    font-size: $font-regular;
+    font-style: italic;
+    font-weight: normal;
+  }
+
+  &.light {
+    color: $dark-gray !important;
+  }
+
+  &.transparent {
+    color: $dark-gray !important;
+
+    .cta__tagline {
+      font-size: $font-medium;
+    }
+  }
+
+  &.dark {
+    color: $white !important;
+
+    .cta__tagline {
+      color: $primary-color;
+    }
+
+    .cta__message {
+      color: $white !important;
     }
   }
 }
