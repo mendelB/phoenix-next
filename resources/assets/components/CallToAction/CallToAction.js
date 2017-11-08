@@ -20,6 +20,7 @@ const renderImpactContent = (prefix, value, suffix) => {
 };
 
 type CallToActionProps = {
+  actionText: ?string,
   campaignId: string,
   className: ?string,
   content: ?string,
