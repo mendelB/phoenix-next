@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Enclosure from '../../Enclosure';
 import LedeBanner from '../../LedeBanner/LedeBanner';
 import ColumnizedContent from '../../ColumnizedContent';
-// import CallToActionBlockContainer from '../../CallToActionBlock';
 import CallToActionContainer from '../../CallToAction/CallToActionContainer';
 
 import './landing-page.scss';
