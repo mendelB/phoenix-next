@@ -18,7 +18,9 @@
 
 <body>
     @if (session('flash_message'))
-        <div class="alert">{{ session('flash_message') }}</div>
+        <div class="{{session('flash_message')['class']}}">
+            <em>{{ session('flash_message')['text'] }}</em>
+        </div>
     @endif
 
     <div id="fb-root"></div>
