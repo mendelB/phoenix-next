@@ -19,6 +19,7 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
     case 'callToAction':
       return (
         <CallToActionContainer
+          actionText={json.fields.actionText}
           content={json.fields.content}
           impactPrefix={json.fields.impactPrefix}
           impactSuffix={json.fields.impactSuffix}

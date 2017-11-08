@@ -26,6 +26,7 @@ type CallToActionProps = {
   impactPrefix: ?string,
   impactSuffix: ?string,
   impactValue: ?string,
+  isSignedUp: bool,
   legacyCampaignId: ?string,
   tagline: string,
   useCampaignTagline: bool,
@@ -33,12 +34,12 @@ type CallToActionProps = {
 };
 
 const CallToAction = ({
-  campaignId, className, content, impactPrefix, impactSuffix, impactValue,
-  legacyCampaignId, tagline, useCampaignTagline, visualStyle,
+  actionText, campaignId, className, content, impactPrefix, impactSuffix, impactValue,
+  isSignedUp, legacyCampaignId, tagline, useCampaignTagline, visualStyle,
 }: CallToActionProps) => {
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
-    <Button onClick={() => clickedSignUp(legacyCampaignId || campaignId)} />
-  ), 'call to action', { text: 'join us' });
+    <Button onClick={() => clickedSignUp(legacyCampaignId || campaignId)} text={actionText} />
+  ), 'call to action', { text: actionText });
 
   return (
     <Card className={classnames('call-to-action rounded padded text-centered', className, {
@@ -53,12 +54,13 @@ const CallToAction = ({
 
       { content ? <div className="cta__message margin-bottom-lg">{content}</div> : null }
 
-      <SignupButton />
+      { isSignedUp ? null : <SignupButton /> }
     </Card>
   );
 };
 
 CallToAction.defaultProps = {
+  actionText: 'Join us',
   className: null,
   content: null,
   impactPrefix: null,
