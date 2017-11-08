@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use URL;
+use Auth;
 use Illuminate\Http\Request;
 
 class CacheController extends Controller
@@ -15,10 +17,15 @@ class CacheController extends Controller
      */
     public function __invoke(Request $request, $cacheId)
     {
-        $redirectUrl = $request->query('redirect');
+        $redirectUrl = $request->query('redirect') ?: URL::previous();
 
-        app('cache')->forget($cacheId);
+        if (auth()->user() && auth()->user()->isStaff()) {
+            app('cache')->forget($cacheId);
+            $message = $cacheId.' has been cleared from the cache';
+        } else {
+            $message = 'Hey, staff only please!';
+        }
 
-        return $redirectUrl ? redirect($redirectUrl) : back();
+        return redirect($redirectUrl)->with('flash_message', ['class' => 'messages', 'text' => $message]);
     }
 }
