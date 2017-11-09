@@ -69,7 +69,8 @@ export const getMaximumOffset = state => (
  * @param state
  */
 export function getVisibleBlocks(state) {
-  const blockOffset = getBlockOffset(state);
+  let blockOffset = getBlockOffset(state);
+
   let totalPoints = 0;
 
   // Filter out blocks that don't fit within offset.
@@ -79,6 +80,9 @@ export function getVisibleBlocks(state) {
     return totalPoints <= blockOffset;
   });
 
+  if ((state.reportbacks.ids.length + totalPoints) < blockOffset) {
+    blockOffset = state.reportbacks.ids.length + totalPoints;
+  }
   // If we weren't able to fill enough rows with blocks, add
   // additional reportback blocks until we hit the target.
   while (totalPoints < blockOffset && totalPoints < getMaximumOffset(state)) {
