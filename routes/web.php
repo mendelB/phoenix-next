@@ -23,6 +23,9 @@ $router->get('us/campaigns/{slug}/{clientRoute?}', 'CampaignController@show')
     ->where('clientRoute', '.*');
 $router->redirect('campaigns/{slug}', 'us/campaigns/{slug}');
 
+// Campaigns cache clear
+$router->get('next/cache/{cacheId}', 'CacheController');
+
 // Embeds
 $router->get('next/embed', 'EmbedController@index');
 
