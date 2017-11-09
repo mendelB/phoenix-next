@@ -8,13 +8,14 @@ import StaticBlock from '../StaticBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
-import { CampaignUpdateBlockContainer } from '../CampaignUpdateBlock';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 
 // If no block is passed, just render an empty "placeholder".
 const DEFAULT_BLOCK: BlockJson = { fields: { type: null } };
 
 const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
+  console.log(json.type);
+
   switch (json.type) {
     case 'callToAction':
       return (
@@ -42,9 +43,6 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
 
     case 'quiz':
       return <Quiz />;
-
-    case 'campaign_update':
-      return <CampaignUpdateBlockContainer id={json.id} fields={json.fields} />;
 
     case 'reportbacks':
       return <ReportbackBlock fields={json.fields} reportbacks={json.reportbacks} />;
