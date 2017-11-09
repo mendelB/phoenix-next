@@ -13,7 +13,7 @@ class CampaignUpdate extends Entity implements JsonSerializable
      */
     public function jsonSerialize()
     {
-        switch($this->getContentType()) {
+        switch ($this->getContentType()) {
             case 'campaignUpdate':
                 $type = $this->getContentType();
                 $author = new Staff($this->author->entry);
