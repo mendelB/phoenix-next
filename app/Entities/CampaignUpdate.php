@@ -13,15 +13,39 @@ class CampaignUpdate extends Entity implements JsonSerializable
      */
     public function jsonSerialize()
     {
+        switch ($this->getContentType()) {
+            case 'campaignUpdate':
+                $type = $this->getContentType();
+                $author = new Staff($this->author->entry);
+                $content = $this->content;
+                $socialOverride = $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null;
+                break;
+
+            case 'customBlock':
+                $type = 'campaignUpdate';
+                $author = [
+                    'id' => null,
+                    'type' => 'staff',
+                    'fields' => [
+                        'name' => isset($this->additionalContent['author']) ? $this->additionalContent['author'] : null,
+                        'jobTitle' => isset($this->additionalContent['jobTitle']) ? $this->additionalContent['jobTitle'] : null,
+                        'avatar' => null,
+                    ],
+                ];
+                $content = "## {$this->title}\n\n {$this->content}";
+                $socialOverride = null;
+                break;
+        }
+
         return [
             'id' => $this->entry->getId(),
-            'type' => $this->getContentType(),
+            'type' => $type,
             'fields' => [
-                'author' => new Staff($this->author->entry),
-                'content' => $this->content,
+                'author' => $author,
+                'content' => $content,
                 'displayOptions' => $this->displayOptions->first(),
                 'link' => $this->link,
-                'socialOverride' => $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null,
+                'socialOverride' => $socialOverride,
             ],
         ];
     }
