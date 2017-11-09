@@ -14,8 +14,6 @@ import CallToActionContainer from '../CallToAction/CallToActionContainer';
 const DEFAULT_BLOCK: BlockJson = { fields: { type: null } };
 
 const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
-  console.log(json.type);
-
   switch (json.type) {
     case 'callToAction':
       return (
