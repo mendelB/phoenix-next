@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Enclosure from '../../Enclosure';
 import LedeBanner from '../../LedeBanner/LedeBanner';
 import ColumnizedContent from '../../ColumnizedContent';
-import CallToActionBlockContainer from '../../CallToActionBlock';
+import CallToActionContainer from '../../CallToAction/CallToActionContainer';
 
 import './landing-page.scss';
 
@@ -48,10 +48,10 @@ const LandingPage = (props) => {
         </Enclosure>
       </div>
 
-      <CallToActionBlockContainer
-        fields={{ title: tagline }}
-        buttonOverride="Sign up"
-        modifierClasses="transparent border-top bg-light-gray border-radius-none"
+      <CallToActionContainer
+        actionText="Sign up"
+        className="legacy border-top border-radius-none bg-off-white padding-lg"
+        content={tagline}
       />
 
       <div className="info-bar -dark">

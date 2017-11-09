@@ -52,6 +52,10 @@ h1, h2, h3, p {
   background-color: $light-gray;
 }
 
+.bg-off-white {
+  background-color: $off-white;
+}
+
 .bg-transparent {
   background-color: transparent !important;
 }
@@ -69,7 +73,7 @@ h1, h2, h3, p {
 }
 
 .border-radius-none {
-  border-radius: 0;
+  border-radius: 0 !important;
 }
 
 .clearfix {
